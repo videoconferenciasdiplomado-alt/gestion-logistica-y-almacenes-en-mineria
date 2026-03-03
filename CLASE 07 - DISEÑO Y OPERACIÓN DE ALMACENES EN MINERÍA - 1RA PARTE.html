@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y apertura de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del diplomado, moderación y comunicación de consultas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Monitor y profesora dan la bienvenida a los participantes y explican que podrán usar chat o micrófono para consultas durante la sesión.</div>
+                  <div class="content-text">Se anuncia que en breve se iniciará la sesión del diplomado Gestión logística y almacenes en minería y se dará pase al profesor responsable.</div>
+                  <div class="content-text">Se indica que a mitad de sesión se compartirá el enlace para la asistencia y se sugiere cómo registrar dudas o comentarios.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=10" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:00:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Objetivos de la sesión y temas a tratar esta semana</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Profesor anuncia enfoque en módulo 2 sobre gestión estratégica de almacenes en entornos mineros y que se abordará diseño y operación de aplicaciones en minería.</div>
+                  <div class="content-text">Se enumera la programación: tipos de almacenes hoy; clasificación ABC y gestión documental en sesión posterior (jueves).</div>
+                  <div class="content-text">Se enfatiza que hoy se centrará en tipos de almacenes mineros y su importancia por la alta demanda de materiales.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=708" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Importancia de los almacenes en minería y relación con costos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se explica que los almacenes mineros son críticos por tiempos de descarga, control de inventarios, disponibilidad oportuna y reducción de costos.</div>
+                  <div class="content-text">Se describe el almacén como dinero estático que requiere gestión para reducir deterioro y costos de espacio.</div>
+                  <div class="content-text">Se introduce noción de costo de oportunidad y costos de gestión asociados a mantener inventarios inmovilizados.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=771" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Definición, funciones y características de los almacenes mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Definición funcional del almacén y procesos generales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El almacén se define como recinto para recepción, almacenamiento, preparación y expedición de mercancías dentro de procesos logísticos.</div>
+                  <div class="content-text">Se menciona la aplicación general de procesos de almacén tanto en minería como en industria en general.</div>
+                  <div class="content-text">Se subraya la necesidad de control de inventarios y la catalogación adecuada de productos según sus características.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=856" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Recursos, elementos asociados y clasificación por uso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se enumeran recursos involucrados: recursos humanos directos e indirectos, infraestructura, maquinaria, equipos de mantenimiento y energía.</div>
+                  <div class="content-text">Se ejemplifican insumos peligrosos como ácidos y combustibles, y su relación con la gestión de almacén por seguridad.</div>
+                  <div class="content-text">Se menciona que la administración del almacén está orientada al coste y debe considerar inversiones y riesgos por existencias.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=885" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Funciones operativas del almacén para la continuidad productiva</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Facilitar el recuento diario de materiales y controlar entradas y salidas para garantizar disponibilidad.</div>
+                  <div class="content-text">Optimizar ubicación y preparación de pedidos para reducir trabajos y tiempos en inventarios y despacho.</div>
+                  <div class="content-text">Actuar sobre la demanda y capacidad productiva, diferenciando rotaciones tipo A, B y C según frecuencia de uso.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1089" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:18:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.4</span>
+                  <span class="subsection-title">Tipos de protección, transformación y características físicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacenes clasificados por grado de protección: al aire libre, cubiertos, o especializados según el grado de transformación del producto.</div>
+                  <div class="content-text">Clasificación por naturaleza física: paletización, granel, líquidos y gases, con ejemplos en minería (ácidos, combustibles, tierras).</div>
+                  <div class="content-text">Diferenciación por nivel de mecanización y automatización: convencional, alta densidad y automáticos, con ejemplos de implementación limitada en la región.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1261" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Tipos de almacenes según localización, función logística y uso productivo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Localización: centrales, regionales y de tránsito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacenes centrales ubicados en fábrica o planta para consolidación y control de grandes volúmenes.</div>
+                  <div class="content-text">Almacenes regionales posicionados cerca de puntos de consumo para reducir tiempos y costos de transporte.</div>
+                  <div class="content-text">Almacenes de tránsito o apoyos regionales para optimizar rutas y entregas en la cadena logística.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1415" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:23:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Tres características básicas: consolidación, ruptura y suministro productivo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Centro de consolidación: se recibe gran volumen del proveedor, se concentra mercancía y se distribuye a clientes, permitiendo ahorros en transporte.</div>
+                  <div class="content-text">Centro de ruptura: se reciben lotes grandes y se fraccionan para múltiples clientes, función enfocada en manejo de volúmenes y separación de pedidos.</div>
+                  <div class="content-text">Suministro productivo: abastecimiento secuenciado hacia procesos productivos, con necesidad de secuenciación y alto alineamiento con producción.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1445" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Gestión del suministro productivo y niveles de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Suministro productivo requiere secuenciación de entregas y coordinación estrecha con almacén para garantizar continuidad operativa.</div>
+                  <div class="content-text">Se sugiere establecer niveles de stock de seguridad elevados (5% a 14% o más) en función de criticidad y tiempos de reposición.</div>
+                  <div class="content-text">El centro de suministro implica gestión administrativa de proveedores y suministro de insumos críticos para procesos como lixiviación.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1668" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.4</span>
+                  <span class="subsection-title">Opciones de propiedad y alquiler de almacenes, ventajas y desventajas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacén propio: mayor inversión inicial, mejor rentabilidad y control de existencias, preferido para auditoría y seguridad.</div>
+                  <div class="content-text">Almacén en alquiler: menor inversión, costos variables, pero posible desventaja con volúmenes y frecuencia de carga/descarga.</div>
+                  <div class="content-text">Almacenes emergentes o estaciones en sitio para cargas y descargas directas en faena como alternativa al almacenamiento propio.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=1799" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:59)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Operaciones, control documental y aseguramiento de materiales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Actividades principales de gestión de almacenes y etapas operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Actividades esenciales: recepción, verificación, registro, codificación, control de inventarios, preparación de pedidos y gestión de devoluciones.</div>
+                  <div class="content-text">Recepción incluye verificación documental, inspección física, comparación con orden de compra y certificaciones técnicas.</div>
+                  <div class="content-text">Objetivo de notificar y registrar no conformidades para devolución inmediata y actualización del registro de entradas.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2737" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Documentos y formatos necesarios en recepción y control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Documentos típicos: guía de remisión, orden de compra, certificado de calidad, cotizaciones y formatos de verificación e inspección.</div>
+                  <div class="content-text">Orden de compra contiene validez temporal, código del producto, descripción, cantidades, precios y tiempo estimado de entrega.</div>
+                  <div class="content-text">Certificados de calidad deben comprobar características técnicas y normativas; rechazo si las especificaciones no coinciden con lo solicitado.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2833" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:47:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Inspecciones, registros y evidencia de conformidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inspecciones programadas y no programadas registradas mediante listas de control, versiones y número de registro según norma ISO.</div>
+                  <div class="content-text">Participantes de la inspección consignan observaciones, evidencias fotográficas y asignan responsabilidades para acciones correctivas.</div>
+                  <div class="content-text">Importancia de generar evidencia tangible (fotos, fechas, firmas) para auditorías y seguimiento de acciones correctivas.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3188" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.4</span>
+                  <span class="subsection-title">Control de no conformidades y acciones correctivas con plazos y responsables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cada observación debe identificar área afectada, tipo de observación y evidencia, y asignar acción correctiva con responsable y plazo.</div>
+                  <div class="content-text">Ejemplo de acción correctiva: orden y limpieza con responsable asignado y fecha límite de cumplimiento.</div>
+                  <div class="content-text">Seguimiento del avance porcentual y registro de evidencia para cerrar la no conformidad y presentarla en auditorías.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3274" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Tipos específicos de almacenes mineros, ejemplos y prácticas de mejora operacional</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Almacenes de gran capacidad y su configuración física y tecnológica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacenes de gran capacidad diseñados para grandes volúmenes con estanterías avanzadas y maximización de densidad de almacenamiento.</div>
+                  <div class="content-text">Pueden incorporar niveles estructurales (nivel 0, 1, 2, 3) y sistemas de automatización en industrias más desarrolladas.</div>
+                  <div class="content-text">Ejemplos comparativos con industrias automotriz o retail que utilizan automatización para minimizar intervención humana.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2401" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Almacenes de campo, cercanos a operaciones y enfoque en sostenibilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacenes de campo ubicados próximos a las operaciones mineras como soporte logístico crucial para continuidad operativa.</div>
+                  <div class="content-text">Enfoque tecnológico en paneles solares, automatización básica y medidas de seguridad adaptadas a campamentos y faenas.</div>
+                  <div class="content-text">Ejemplos de almacenamiento al aire libre con agrupación por lotes y extracción por camiones según necesidad operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2500" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:41:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Almacenes de seguridad para repuestos críticos e insumos estratégicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacén de seguridad mantiene cantidades adicionales de repuestos críticos para garantizar continuidad productiva.</div>
+                  <div class="content-text">Incluye productos con largos tiempos de reposición, fallas frecuentes o alta criticidad para la operación, como sensores y pernos.</div>
+                  <div class="content-text">Organización y señalización adecuada de materiales peligrosos, con anaqueles identificados y aislamiento por riesgo.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2614" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:43:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.4</span>
+                  <span class="subsection-title">Mejora continua: reducción de costos, mantenimiento y niveles de servicio</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Estrategias para reducir costos: optimizar espacios, minimizar ruma (pilas) y establecer cronogramas de mantenimiento y limpieza regulares.</div>
+                  <div class="content-text">Establecer niveles de servicio por producto y periodo productivo, ajustando inventarios a picos de demanda estacional.</div>
+                  <div class="content-text">En minería se priorizan repuestos críticos y productos operativos para mantener continuidad, reduciendo almacenamiento de items no estratégicos.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=2066" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:34:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Control operacional, auditorías y evidencia en almacenes mineros antes del cierre</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Procedimientos de auditoría, frecuencia y registros requeridos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Auditorías pueden ser planeadas o no planeadas; requieren listas maestras, versiones y registros según normas aplicables.</div>
+                  <div class="content-text">Se registran datos del empleador, tipo de actividad, responsables, participantes y observaciones con evidencia adjunta.</div>
+                  <div class="content-text">Importancia de mantener registros organizados para demostrar cumplimiento y actividades de seguimiento ante auditorías.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3188" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Gestión del personal, responsabilidades y preparación ante cambios de turno</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Procedimientos administrativos para entrega y recepción de materiales entre turnos, con asignaciones claras y habilitación de responsabilidades.</div>
+                  <div class="content-text">Observaciones sobre prácticas inadecuadas como dejar herramientas sueltas y la necesidad de corregirlo inmediatamente.</div>
+                  <div class="content-text">La cultura de cumplimiento exige que las acciones correctivas se realicen en el momento y se documenten para seguimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3306" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Volumen de actividades y complejidad en distintos sectores industriales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cantidad de actividades gestionadas varía por sector: minería presenta alta complejidad por diversidad de materiales y peligrosidad.</div>
+                  <div class="content-text">Ejemplos de rangos: textileras 100-150 actividades, metalmecánicas 250-300, industrias con productos perecibles hasta 500.</div>
+                  <div class="content-text">Minería maneja mayor complejidad por variedad de insumos, compuestos peligrosos y necesidad de coordinación con proveedores externos.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3434" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.4</span>
+                  <span class="subsection-title">Evidencia de operaciones y cierre de registros antes del descanso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se enfatiza la entrega de evidencia fotográfica y documental que respalde registros mensuales y movimientos de material.</div>
+                  <div class="content-text">Para cierres y auditorías se solicita fechas, fotos y documentación que demuestren inspecciones realizadas y acciones tomadas.</div>
+                  <div class="content-text">Monitor anuncia descanso breve y envío del enlace para registrar asistencia, cerrando la sección con indicación de pausa.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=3500" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:20)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Implementación de registro y codificación de materiales en proyectos mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Procedimiento de recepción y codificación del material con requisitos formales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El procedimiento incluye objetivo, alcance, documentos de referencia, responsables y modos de aceptación para recepción de materiales del proyecto.</div>
+                  <div class="content-text">Se exige registro físico en el almacén, identificación, inspección y conformidad según requisitos de calidad de la empresa minera.</div>
+                  <div class="content-text">Materiales del proyecto deben destinarse exclusivamente al desarrollo del mismo y no a otros fines; se mantiene trazabilidad documental.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4110" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:08:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Requisitos técnicos y certificaciones para materiales equivalentes o por lotes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Materiales equivalentes deben entregarse anticipadamente y comprobarse con certificados de composición química, propiedades mecánicas y físicas.</div>
+                  <div class="content-text">Se aceptan certificados por lotes o laminación; no son aceptables cartas de certificación emitidas por distribuidores, deben provenir del fabricante.</div>
+                  <div class="content-text">Ninguna fabricación o uso en planta debe iniciarse sin autorización del control de calidad basada en ensayos y comprobaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4229" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:10:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Registro de no conformidades y control de calidad en recepción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Si ensayos indican que el material no cumple, se registra la no conformidad y se aplica tratamiento respectivo.</div>
+                  <div class="content-text">Materiales deben ser nuevos, sin defectos, grietas, corrosión o mala apariencia que afecten especificaciones.</div>
+                  <div class="content-text">El jefe de logística gestiona certificaciones y el jefe de control de calidad revisa documentación y trazabilidad; planta verifica armado y uso correcto.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4292" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:32)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Control de inventarios, rotación y sistemas de gestión tecnológica</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Sistemas de inventario, clasificación ABC y gestión de mínimos y máximos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los sistemas de inventario son fundamentales para eficiencia operativa, optimización de repuestos y materiales.</div>
+                  <div class="content-text">Aplicación del método ABC para priorizar productos; pocos ítems representan gran valor, se analizará con ejemplos en sesiones posteriores.</div>
+                  <div class="content-text">Gestión de mínimos y máximos basada en variabilidad de entrega del proveedor y consumo diario para productos de uso frecuente.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4429" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Integración tecnológica, automatización y problemas de sincronización entre físico y digital</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La tecnología permite ver existencias en tiempo real mediante ERP y módulos, pero persisten problemas cuando documentos no se actualizan o hay duplicidad de asignaciones.</div>
+                  <div class="content-text">El cardex físico aún es útil en almacenes pequeños; en minería grande la verificación digital y Machine Learning está reemplazando tarjetas físicas.</div>
+                  <div class="content-text">Riesgos: discrepancias entre sistema y registro físico por omisiones humanas, olvidos en registros manuales o errores en actualizaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4504" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:15:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Beneficios cuantitativos de reorganización espacial y operacional del almacén</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Caso práctico: reordenamiento de almacén recuperó 44 metros cuadrados adicionales y generó un aumento positivo en valorización aproximado S/50,000.</div>
+                  <div class="content-text">Mejor ubicación reduce tiempo de búsqueda y reposición, disminuye recontados y errores, incrementando eficiencia en 10-11% en algunos indicadores.</div>
+                  <div class="content-text">La reorganización permitió destinar espacio a almacén temporal para materiales peligrosos y facilitar el abastecimiento local en zonas de operación.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4810" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:20:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.4</span>
+                  <span class="subsection-title">Limitaciones actuales y adopción parcial en minería local</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En minería local todavía persisten procesos manuales y cardex físico en almacenes pequeños; la digitalización no es homogénea en todas las operaciones.</div>
+                  <div class="content-text">Problemas de sincronización entre sistemas y registros físicos requieren controles intermedios hasta lograr plena confianza en soluciones digitales.</div>
+                  <div class="content-text">Implementaciones exitosas en otras industrias y países sirven de referencia para planear incrementos tecnológicos en minería peruana.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=4668" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Futuro tecnológico, Machine Learning y transformación de puestos en la industria</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Aplicaciones de Machine Learning para seguimiento, validación y predicción de riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Machine Learning puede enseñar patrones de riesgo y validar registros automáticos, reduciendo necesidad de registros manuales de inspección.</div>
+                  <div class="content-text">Sistemas inteligentes podrían reemplazar roles de coordinación al verificar y soportar operaciones en tiempo real en industrias avanzadas.</div>
+                  <div class="content-text">Adopción tecnológica en Perú se visualiza a futuro; en países desarrollados ya hay implementaciones que muestran el reemplazo del cardex físico por pantallas y módulos.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=5165" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Impacto en puestos de trabajo y adaptación a la industria 4.0</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Automatización y digitalización pueden poner en riesgo algunos puestos como coordinadores, pero también generan nuevas funciones de supervisión tecnificada.</div>
+                  <div class="content-text">Se proyecta una transición gradual, posiblemente en 10-15 años, hacia prácticas más automatizadas en operaciones mineras y logísticas.</div>
+                  <div class="content-text">La formación y adaptación del personal será clave para integrar nuevas herramientas, sistemas y metodologías en la operación cotidiana.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=5200" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:40)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Gestión de materiales peligrosos, residuos y planes de aprovechamiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Manejo, segregación y control documental de residuos peligrosos y no peligrosos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La mina debe minimizar generación de residuos, aplicar las tres R (reducir, reutilizar, reciclar) y contratar empresas terciarias para gestión especializada.</div>
+                  <div class="content-text">Formatos de manejo registran fecha, hora, área, tipo de residuo, estado del recipiente, observaciones, responsable y receptor para cumplir auditorías.</div>
+                  <div class="content-text">Frecuencia de recolección puede ser mensual o mes y medio según normativa y condiciones de transportabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=5242" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:27:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Aprovechamiento y valorización de residuos: aceites, vidrios, cartón y plásticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Aceites usados pueden refinarse y reutilizarse en grupos electrógenos; algunas empresas aprovechan residuos como materia prima secundario.</div>
+                  <div class="content-text">Vidrio puede reciclarse varias veces con distintas etapas de cristalización; cartón y papel tienen diferentes niveles de reutilización y reciclaje.</div>
+                  <div class="content-text">Empresas de recolección firman convenios con minas para compra y valorización de residuos, generando mercados de segundo uso y oportunidades comerciales.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=5588" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:33:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Planes de residuos sólidos, normativa aplicable y clasificación por colores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El plan incluye introducción, objetivos, marco legal y administración; registros de creación, modificación, revisión y aprobación.</div>
+                  <div class="content-text">Normativa referida: Ley General del Ambiente 28 611, decretos supremos sobre gestión integral de residuos y transporte de materiales peligrosos.</div>
+                  <div class="content-text">Segregación de residuos por colores y tipos: orgánicos, aprovechables, peligrosos, metálicos, plásticos, papel, cartón, vidrio, con señalética y puntos de acopio definidos.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=5693" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:34:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Diseño físico del almacén, flujo de materiales y zonas operativas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Requisitos de diseño: entradas, salidas, muelles, zonas de maniobra y seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El almacén debe ser robusto, seguro y optimizado considerando flujo de equipos, materiales pesados, control de polvo y elementos peligrosos.</div>
+                  <div class="content-text">Áreas clave: recepción, descarga, control/inspección, reserva, picking, preparación de pedidos, expedición, oficinas, servicios y cámaras frigoríficas si procede.</div>
+                  <div class="content-text">Diseño influye en congestión y retrasos; almacenes aislados y sin interconexión dificultan operación y deben evitarse.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=6196" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Organización por flujos: líneas, U y distribución en planta para máxima utilización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Distribuir el almacén en flujos de línea, en U o la configuración más entendible facilita movimientos, preparación y expedición.</div>
+                  <div class="content-text">Separación de actividades: evitar una única zona para todas las tareas; asignar áreas diferenciadas para recepción, clasificación y preparación.</div>
+                  <div class="content-text">Planificar pasillos, muelles y zonas de reserva para minimizar bloqueos y choques en áreas de entrada y mejorar seguridad y eficiencia.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7051" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Gestión de espacios, picking y preparación de pedidos en entorno minero</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Zona de reserva debe ubicarse posterior para no interrumpir preparación y expedición; asignación clara de turnos y responsabilidades evita fallas operativas.</div>
+                  <div class="content-text">La preparación de pedidos es crítica para ahorrar tiempo y costos; metodologías lean (esbeltas) reducen tiempos y mejoran confiabilidad.</div>
+                  <div class="content-text">Control de ciclos, asignación de trabajadores y verificación de información evita pérdidas de tiempo por pedidos mal preparados o datos no autenticados.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=6550" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.4</span>
+                  <span class="subsection-title">Problemas operativos por falta de planificación y consecuencias económicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Falta de anticipación en compras o reservas provoca paradas operativas costosas; pequeñas compras improvisadas pueden causar grandes pérdidas operativas.</div>
+                  <div class="content-text">Ejemplo: evitar comprar S/200 de más puede ahorrar pérdidas de miles de dólares por paradas en rampas y líneas productivas.</div>
+                  <div class="content-text">La planificación de reservas y ciclos de reposición es esencial para mantener continuidad operativa en minería que opera 365 días al año.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=6407" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:46:47)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Organización interna, codificación y control de ubicaciones para minimizar errores</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Métodos de organización: codificación, ubicaciones fijas y actualización constante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cada referencia debe tener asignada una ubicación clara con codificación tipo ABCDE, facilitando búsquedas y control de stock.</div>
+                  <div class="content-text">La ausencia de ubicaciones provoca duplicidades, confusión en conteos y desajustes entre inventario físico y sistema.</div>
+                  <div class="content-text">Se recomienda uso de sistemas electrónicos y actualización periódica para evitar errores de registro y operaciones de reconteo innecesarias.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7045" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Integración de mantenimiento, tipos de almacenamiento y responsabilidad de personal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Zonas de mantenimiento son complejas por variedad de maquinaria específica y diferentes normativas y programas de mantenimiento.</div>
+                  <div class="content-text">Clasificación de mantenimientos por niveles (M1, M2, M3, M4) requiere coordinación con almacén para repuestos y logística.</div>
+                  <div class="content-text">En algunas minas se terceriza flota y mantenimiento; en otras hay que gestionar internamente, lo cual implica distinta planificación del almacén.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7018" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Importancia del layout y distribución en almacenes mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Consecuencia de una difusión desigual y medición de distancias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La difusión de productos en un solo lado puede ser más ventajosa y altera notablemente la eficacia del flujo dentro del almacén.</div>
+                  <div class="content-text">La distancia recorrida debe medirse con criterios claros, no solo según la proporción del espacio, para optimizar tiempos y movimientos.</div>
+                  <div class="content-text">Un diseño considerado evita desplazamientos innecesarios y asegura un flujo de trabajo más eficiente para operaciones repetitivas.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7231" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Beneficio de un layout claro para el recorrido y operación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un sistema de layout bien definido permite un recorrido lógico que facilita las labores de inventario y expedición.</div>
+                  <div class="content-text">Mientras más claro esté el sistema para los almacenistas, más sencillo será operar y reducir errores en procesos de picking.</div>
+                  <div class="content-text">El orden en pasillos y estanterías evita tumultos que entorpecen la circulación y aumentan tiempos muertos.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7243" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Errores comunes por mala organización y materiales en espera</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mantener materiales en espera o acumulados en zonas de trabajo genera pérdida de espacio y sobrecostos operativos.</div>
+                  <div class="content-text">Productos obsoletos o de baja rotación ocupan espacio que podría usarse para inventario activo, implicando inversiones innecesarias.</div>
+                  <div class="content-text">Evitar amontonar material en pasillos y trabajar con estanterías optimiza tiempo de orden y reduce reordenamientos frecuentes.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7277" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.4</span>
+                  <span class="subsection-title">Impacto en costos y trabajo en curso por un layout ineficiente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un layout eficiente contribuye a minimizar costos de manejo de materiales y a reducir trabajo en curso.</div>
+                  <div class="content-text">Aprovechar el espacio evitable inversiones de capital destinadas a ampliar capacidad física innecesariamente.</div>
+                  <div class="content-text">Mantener inventario obsoleto representa devaluación y capital inmovilizado que no genera beneficio.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7374" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Coordinación del personal, clima organizacional y sistemas de incentivos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Resistencia operativa al orden y razones del desinterés</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los operarios a menudo resisten mantener el orden por temor a mayor carga de trabajo o exigencias adicionales.</div>
+                  <div class="content-text">La falta de identificación con el sistema y de recompensas genera desmotivación para mantener procesos ordenados.</div>
+                  <div class="content-text">El conflicto entre quienes desean ordenar y quienes prefieren no hacerlo desgasta la coordinación del equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7396" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Implementación de bonificaciones y efectos sobre productividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Establecer sistemas de bonificación basados en indicadores de rentabilidad puede mejorar cumplimiento y motivación.</div>
+                  <div class="content-text">Ejemplo numérico: reducir inventario de 2.4 millones a 1.8 millones genera ahorro que puede financiar incentivos o inversiones.</div>
+                  <div class="content-text">Bonos modestos pueden impulsar cumplimiento temprano y sostenido, elevando índices de eficiencia temporalmente.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7504" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Resultados observados con incentivos y limitaciones prácticas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Implementaciones de bonos mostraron aumentos de eficiencia de 70% a 85% durante varios meses por mayor motivación.</div>
+                  <div class="content-text">Limitaciones como tercerización o estancamiento salarial pueden reducir el impacto de incentivos a largo plazo.</div>
+                  <div class="content-text">Es necesario diseñar programas de incentivos conversables y sostenibles para mantener mejoras en rendimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7582" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.4</span>
+                  <span class="subsection-title">Soluciones prácticas ante falta de coordinación en horarios y flujo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Modificar horarios y programar descargas en la primera hora de la jornada garantiza flujo continuo y reduce interrupciones.</div>
+                  <div class="content-text">Preparar carga y zonas de trabajo antes del inicio operativo facilita la jornada y evita congestiones.</div>
+                  <div class="content-text">Establecer órdenes simples y rutinas claras contribuye a una circulación más armónica dentro del almacén.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7616" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Principios de distribución, análisis de procesos y reestructuración de zonas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Principios básicos: satisfacción, seguridad, distancia mínima y flujo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El layout debe priorizar la satisfacción y seguridad del operario, además de minimizar distancia recorrida.</div>
+                  <div class="content-text">Menos desplazamientos reducen esfuerzo físico y tiempos muertos, especialmente en tareas repetitivas del inventario.</div>
+                  <div class="content-text">Considerar productos, cantidades, recorridos, servicios y tiempos al diseñar la distribución operacional.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7648" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Fases de análisis para diseñar el layout eficiente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Fase uno: analizar producto y elaborar histograma que muestre frecuencia y ordenanzas para priorizar ubicación.</div>
+                  <div class="content-text">Fase dos: determinar recorrido de productos y secuencia de actividades para optimizar flujo operativo.</div>
+                  <div class="content-text">Fase tres: analizar relaciones entre actividades para identificar concatenación y proximidad necesaria entre zonas.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7861" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Ejemplo práctico de reestructuración de almacén por tipo de productos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">División por naves: estanterías para productos pequeños, estanterías para recepción y una nave para palets sin estanterías.</div>
+                  <div class="content-text">Redistribuir zonas para crear espacios de trabajo holgados y áreas específicas para pedidos preparados y papelería.</div>
+                  <div class="content-text">Objetivo central: aprovechar espacio, mejorar accesibilidad y reducir interferencias entre entrada y expedición.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7902" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:42)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.4</span>
+                  <span class="subsection-title">Reorganización de zonas para embalaje y materiales unipersonales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Separar áreas de embalaje de zonas de almacenamiento para evitar interferencias en procesos de picking.</div>
+                  <div class="content-text">Crear zonas específicas para palets vacíos y papeletas facilita preparación de pedidos y libera espacio de trabajo.</div>
+                  <div class="content-text">Redistribuir almacenamiento conforme a tipos de materiales permite mayor flexibilidad y uso eficiente del espacio cúbico.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7947" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:27)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Flujo operativo, tecnologías Industria 4.0 y automatización en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Aplicación de inteligencia artificial y sistemas de monitoreo en flujos operativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los flujos operativos eficientes actuales incorporan inteligencia artificial y monitoreo en sistemas de transporte.</div>
+                  <div class="content-text">Tecnologías de Industria 4.0 permiten supervisión continua, análisis de datos y optimización de rutas y tiempos.</div>
+                  <div class="content-text">Implementaciones de sistemas inteligentes pueden reducir supervisión manual y mejorar predictibilidad operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=7961" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:41)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Concepto de fábricas inteligentes y su analogía con procesos mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Fábricas inteligentes operan con mínima intervención humana, un supervisor y procesos estandarizados y maleables.</div>
+                  <div class="content-text">Machine learning genera optimizaciones de producto y ruta que pueden trasladarse a la cadena de suministro minera.</div>
+                  <div class="content-text">La estandarización de procedimientos garantiza que cambios en rutas o productos no afecten la continuidad operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8029" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Limitaciones actuales y visión hacia maquinaria y procesos unificables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La minería seguirá dependiendo de maquinaria hasta que existan equipos capaces de extracción unicelular sin voladuras.</div>
+                  <div class="content-text">La adopción de tecnologías avanzadas en etapas futuras permite reducir uso de explosivos y optimizar extracción.</div>
+                  <div class="content-text">Investigaciones futuras en terreno y maquinaria prometen transformaciones, pero requieren tiempo y adaptación.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8065" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.4</span>
+                  <span class="subsection-title">Recomendaciones operativas para minimizar tiempos muertos y duplicidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mantener secuencia y rutas claras para movimientos reduce tiempos muertos y duplicidad de actividades.</div>
+                  <div class="content-text">Aplicar principios logísticos tradicionales y las cinco s para crear una cultura de trabajo ordenada y eficiente.</div>
+                  <div class="content-text">Identificar meses de mayor carga (picos estacionales) y aumentar capacidad temporalmente para atender demanda crítica.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8003" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Cierre de la sesión, referencias y próximos pasos académicos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Agradecimientos, recursos y disponibilidad de la grabación de la sesión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se referencia a Christopher y al gestor de estrategia en logística como fuentes de la sesión impartida.</div>
+                  <div class="content-text">Se informó que enviarán el enlace para visualizar la grabación de la sesión a los estudiantes.</div>
+                  <div class="content-text">Se agradeció la participación y se ofreció espacio para dudas pendientes entre los asistentes.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8106" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Información sobre próxima sesión y canales de atención académica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Próxima sesión programada para el jueves nueve en el mismo horario; indican envío de link correspondiente.</div>
+                  <div class="content-text">Canales de atención disponibles: coordinación académica, atención a diplomados y correo electrónico para consultas.</div>
+                  <div class="content-text">Horario de atención establecido: lunes a viernes de ocho a seis y media de la tarde para contacto y soporte.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8149" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Conclusión administrativa y despedida final de la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se dio por concluida la sesión número siete con agradecimientos al docente y a los participantes.</div>
+                  <div class="content-text">Se recordó a los estudiantes verificar canales de comunicación para material y seguimiento académico.</div>
+                  <div class="content-text">Despedida final y cierre oficial de la clase por parte del monitor académico.</div>
+                  <a href="https://www.youtube.com/watch?v=A22Ip7_5tpg&start=8190" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:30)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 07: DISEÑO Y OPERACIÓN DE ALMACENES EN MINERÍA - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

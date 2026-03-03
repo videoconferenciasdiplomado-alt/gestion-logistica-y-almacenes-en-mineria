@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción a la sesión y objetivos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del docente y objetivos de la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se inicia la sesión online con presentación del moderador y del profesor, indicando canal de consultas y método de comunicación para dudas.</div>
+                  <div class="content-text">Objetivo de la sesión: revisar seguridad sostenida y cumplimiento en el sector minero, enfocándose en seguridad operativa en almacenes y manejo de materiales peligrosos.</div>
+                  <div class="content-text">Plan de trabajo: hoy abordar seguridad operativa y materiales peligrosos; en clase posterior tratar normas ambientales, logística verde, auditorías y control normativo.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=344" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:05:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Marco legal y normativo aplicable al sector minero</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Referencia al Decreto Supremo 024 modificado por Decreto Supremo 023 de Energía y Minas que regula la prevención de accidentes laborales y enfermedades ocupacionales.</div>
+                  <div class="content-text">Obligación de las empresas mineras de implementar sistemas de gestión de seguridad y salud en el trabajo, mencionando estándares como ISO 45000 (ISO 45001).</div>
+                  <div class="content-text">Necesidad de respaldo documental y cumplimiento normativo para modificaciones operativas y ambientales.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=423" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Integración de logística con cumplimiento operativo y ambiental</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La logística debe integrarse con la gestión operativa y el cumplimiento normativo, considerando regulaciones ambientales y planes de contingencia.</div>
+                  <div class="content-text">Importancia del uso de EPP y señalización para reducir riesgos y mejorar desempeño operativo en almacenes mineros.</div>
+                  <div class="content-text">Identificación de riesgos: físicos, químicos, biológicos, ergonómicos; cada material se debe almacenar acorde a su peligro identificado.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=443" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Seguridad específica en almacenes mineros y prácticas operativas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Roles y responsabilidades dentro del sistema de seguridad en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definición de roles: gerentes, jefes de área, supervisores, coordinadores y asistentes con responsabilidades en gestión y cumplimiento.</div>
+                  <div class="content-text">Implementación de planes de acción anuales, programas de inducción, planes de respuesta ante emergencias y auditorías periódicas.</div>
+                  <div class="content-text">Importancia de la coordinación multidisciplinaria para inspecciones y seguimiento de acciones correctivas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=578" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Medidas básicas de seguridad operativa en almacenes mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Uso obligatorio de equipo de protección personal (EPP), capacitaciones continuas y señalización clara para tránsito y manejo de materiales.</div>
+                  <div class="content-text">Implementación de sistemas de comunicación y software de gestión (WMS, RPP) para coordinar operaciones y trazabilidad de unidades.</div>
+                  <div class="content-text">Optimización de rutas y monitoreo en tiempo real para transporte y descarga de minerales, mejorando la performance logística.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=617" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Retos operativos y ambientales en almacenes mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Dificultad de operar en zonas remotas que requieren presencia física para adecuaciones y mejoras de instalaciones.</div>
+                  <div class="content-text">Regulación ambiental como reto en el control total de logística minera debido a residuos y posibles impactos en el entorno.</div>
+                  <div class="content-text">Necesidad de sostenibilidad mediante tecnología, optimización y diseño de envases y embalajes para materiales peligrosos.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=745" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:25)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Gestión de insumos críticos y control de materiales peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Importancia de los insumos críticos en continuidad operativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los insumos críticos garantizan continuidad de la producción y requieren gestión estricta a lo largo del ciclo de vida.</div>
+                  <div class="content-text">Diseño mejorado de envases y embalajes para reducir fallas en almacenamiento y manipulación de volúmenes grandes de sustancias peligrosas.</div>
+                  <div class="content-text">Protección de la salud y del medio ambiente como motivación para gestionar adecuadamente insumos y reducir paradas por incidentes.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=904" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Principales riesgos asociados a materiales peligrosos en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Riesgos primarios: incendios, derrames, caídas y colisiones relacionados con la presencia de sustancias peligrosas y condiciones operativas.</div>
+                  <div class="content-text">Posibles causas: explosiones de gases (por ejemplo etileno, hidrógeno), fallas eléctricas por mantenimiento deficiente, sobrecargas y falta de ventilación.</div>
+                  <div class="content-text">Riesgos de fugas por envases deteriorados; recomendaciones de reemplazo periódico de recipientes según normativa (por ejemplo cada uno o dos años).</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=1042" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Prevención y control de incendios y derrames</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Incendios: causas como sobrecalentamiento de equipos eléctricos, contacto con materiales inflamables y soldaduras; el monóxido de carbono como gas tóxico principal.</div>
+                  <div class="content-text">Medidas preventivas: planes de mantenimiento, separación de materiales combustibles y sistemas de ventilación eficientes.</div>
+                  <div class="content-text">Derrames: riesgo de exposición a químicos tóxicos como ácido sulfúrico y cianuro; mitigación mediante almacenamiento adecuado y áreas aisladas para reducir la proliferación de personas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=1254" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Riesgos físicos, estructurales y organizacionales en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Caídas, desprendimiento de rocas y condiciones subterráneas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Causas de caídas: desprendimiento de rocas en minería subterránea, fallas en techos, superficies defectuosas y desniveles.</div>
+                  <div class="content-text">Mayor gravedad en minería subterránea por limitación de oxígeno y dificultades de rescate; importancia del refuerzo estructural con mallas y pérgolas.</div>
+                  <div class="content-text">Prevención: refuerzo de entradas, control geotécnico y planificación logística que apoye operaciones seguras.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=1468" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Colisiones y tránsito de materiales en instalaciones mineras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Incremento del tránsito de materiales en minería que exige medidas para evitar colisiones entre equipos, vehículos y personal.</div>
+                  <div class="content-text">Señalización, zonificación y sistemas de control de tráfico interno desde el almacén hasta la planta para reducir incidentes.</div>
+                  <div class="content-text">Coordinación entre logística, seguridad y operaciones para gestionar rutas, descargas y áreas de maniobra.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=1612" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Relaciones de responsabilidad entre logística, seguridad y operación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Debate sobre responsabilidades: logística entrega materiales según especificaciones; seguridad es responsable del cumplimiento normativo y supervisión en terreno.</div>
+                  <div class="content-text">Necesidad de coordinación: logística suministra según requisiciones técnicas, seguridad verifica condiciones de uso y cumplimiento de EPP y permisos.</div>
+                  <div class="content-text">Supervisores de operaciones en campo actúan como control directo del ingreso y cumplimiento de requisitos de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=1669" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Inspecciones, señalización y formación continua en almacenes mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Importancia de la señalización y codificación en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Propósito de la señalización: comunicar peligros, prohibiciones y rutas; uso de códigos de color armonizados con layout de cada mina.</div>
+                  <div class="content-text">Variabilidad entre minas en colores y codificación, aunque principios generales (rojo: peligro; amarillo: precaución; verde: habilitación) son comunes.</div>
+                  <div class="content-text">Señalización como herramienta transversal que debe ser comprendida por ingenieros, seguridad, calidad y logística.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=2275" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Inspecciones y equipos multidisciplinarios para seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las inspecciones permiten identificar peligros, evaluar cumplimiento normativo y controlar condiciones operativas de forma continua.</div>
+                  <div class="content-text">Recomendación de inspecciones realizadas por equipos multidisciplinarios que incluyan a todos los actores involucrados en el área.</div>
+                  <div class="content-text">Inspecciones como base para procesos de seguimiento y mejora continua; seguimiento es esencial para verificar eficacia de acciones correctivas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=2419" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Capacitación, familiarización y cultura de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La capacitación debe ser continua, conocer procedimientos de emergencia y familiarizar al personal con protocolos de respuesta, no solo teoría.</div>
+                  <div class="content-text">Formación dirigida a todo el personal, incluidas funciones de logística, para fomentar la cultura de seguridad y la interiorización de responsabilidades.</div>
+                  <div class="content-text">Capacitaciones sirven para actualizar normativas, incluir a trabajadores nuevos y reducir resistencia al cambio frente a sistemas de gestión.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=2488" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:41:28)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Implementación de sistemas de gestión y mejora organizacional en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Diagnóstico de brechas y análisis de riesgos previos a la implementación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Primera fase: diagnóstico de brechas que mide la diferencia entre el estado actual y el estado deseado en seguridad, medio ambiente y operaciones.</div>
+                  <div class="content-text">Identificación de cuellos de botella, requisitos legales pendientes y performance para establecer prioridades de mejora.</div>
+                  <div class="content-text">Análisis de riesgos para valorar y tratar amenazas que impacten continuidad operativa y salud de trabajadores.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3044" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Diseño del sistema de gestión y definición de políticas integradas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Diseño del SG: definición de políticas claras que integren seguridad, salud ocupacional, medio ambiente, calidad y producción.</div>
+                  <div class="content-text">Establecimiento de objetivos y metas alineadas con la estrategia corporativa para mejorar rendimiento y cumplimiento normativo.</div>
+                  <div class="content-text">Documentación de procesos operativos, procedimientos de auditoría y estándares necesarios para garantizar trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3084" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:24)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Capacitación al liderazgo, auditorías internas y revisión gerencial</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Formación en liderazgo orientada a fomentar cultura de seguridad, comunicación efectiva y gestión de cambios y crisis.</div>
+                  <div class="content-text">Implementación de auditorías internas y seguimiento para verificar cumplimiento y efectividad del sistema de gestión.</div>
+                  <div class="content-text">Revisión gerencial periódica para mantener compromiso institucional, ajustar políticas y evaluar resultados de las acciones implementadas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3284" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Retos humanos, resistencia al cambio y lecciones prácticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Resistencia al cambio y diferencias generacionales en capacitación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existencia de resistencia por parte de personal con largo tiempo en la empresa frente a nuevas prácticas y tecnologías (WMS, IA).</div>
+                  <div class="content-text">Diferencias de entendimiento entre miembros más jóvenes y jefes veteranos; necesidad de metodologías adaptadas para capacitación efectiva.</div>
+                  <div class="content-text">Importancia de concienciación y demostración de beneficios para superar barreras culturales internas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3310" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Integración tecnológica y ejemplos prácticos de mejora</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Uso de sistemas WMS y herramientas inteligentes para gestión de inventarios, simulaciones de repuestos y optimización logística.</div>
+                  <div class="content-text">Ejemplos prácticos: implementación de módulos de gestión para reducir desperdicios, mejorar control de repuestos y minimizar paradas por faltantes.</div>
+                  <div class="content-text">Beneficios de la digitalización: mayor rapidez en reportes, trazabilidad y menor pérdida de información operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3400" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Logística como parte del equipo y responsabilidad compartida</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enfoque integrado: todos los departamentos deben entender que acciones individuales afectan al conjunto y la seguridad es responsabilidad compartida.</div>
+                  <div class="content-text">Necesidad de coordinación entre logística, operaciones y seguridad para evitar incidentes por fallas en la comunicación o en el suministro.</div>
+                  <div class="content-text">Cultura de trabajo en equipo y eliminación de rivalidades internas que dificultan la implementación de normas y acciones preventivas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=2810" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Resistencia al cambio y actitudes de jefaturas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Descripción de la resistencia al cambio en jefes veteranos y su origen</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Muchos jefes con larga experiencia mantienen percepciones rígidas y resisten nuevas tecnologías como módulos 3D y renovación de equipos.</div>
+                  <div class="content-text">La resistencia no siempre es mala; proviene de perspectivas formadas por años de trabajo en un rubro específico y experiencias previas.</div>
+                  <div class="content-text">Ejemplos de prácticas antiguas en minería que generan una mentalidad dura y cerrada frente a nuevas metodologías y liderazgo moderno.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3612" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Impacto del ego profesional y la falta de aprendizaje recíproco</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El ego profesional impide reconocer que practicantes o asistentes pueden aportar métodos nuevos y soluciones prácticas, como atajos en Excel.</div>
+                  <div class="content-text">Esta actitud limita la capacidad de un equipo de adoptar mejoras y genera una cultura donde no se escucha a perfiles más jóvenes o menos jerárquicos.</div>
+                  <div class="content-text">La capacitación en liderazgo debe enfocarse en eliminar ese principio negativo y fomentar la escucha activa y la humildad profesional.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3646" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Ejemplos reales de jefes rígidos versus líderes empáticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relatos de jefes que castigaban con más trabajo o mirada de desprecio, mostrando comportamiento infantil en la autoridad.</div>
+                  <div class="content-text">Contraste con líderes que generan compromiso, participación y ganas de mejorar sin necesidad de recompensas económicas.</div>
+                  <div class="content-text">Cuando hay buen liderazgo, las personas participan, proponen ideas y se involucran por crecimiento personal; sin liderazgo, solo cumplen horarios.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3674" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:14)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Capacitación, cultura preventiva y conclusiones prácticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Importancia de la capacitación en liderazgo y manejo de materiales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Capacitaciones constantes en liderazgo y manejo de riesgos rebajan la resistencia al cambio y promueven un ambiente de comunicación y aprendizaje continuo.</div>
+                  <div class="content-text">Se recomiendan charlas periódicas y entrenamientos que aborden ego profesional, escucha activa y prácticas de seguridad logística.</div>
+                  <div class="content-text">La formación en sistemas de gestión ayuda a entender la diferencia entre trabajo en equipo y trabajo en grupo, y a estandarizar procesos.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3727" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Actitud preventiva y responsabilidad compartida en el entorno laboral</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La actitud preventiva implica tomar acciones propias frente a riesgos potenciales sin esperar instrucciones, reduciendo impacto de incidentes.</div>
+                  <div class="content-text">Cada área (logística, seguridad, mantenimiento) debe conocer criterios del otro para actuar colaborativamente, sin sobrecargar a un solo responsable.</div>
+                  <div class="content-text">Ejemplos cotidianos demuestran que la proactividad del personal evita problemas y mejora el desempeño global.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=5185" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Recomendaciones prácticas mencionadas en la sesión y cierre</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mantener fichas de seguridad accesibles, rotular correctamente, registrar lotes y fechas de ingreso, y capacitar al personal en uso y almacenamiento seguro.</div>
+                  <div class="content-text">Fomentar liderazgo empático que motive participación, compromiso y crecimiento personal sin esperar recompensas externas.</div>
+                  <div class="content-text">Integrar contratistas como parte del equipo, aplicar ISO 45001 con liderazgo sólido, y promover un cambio cultural que reduzca incidentes y mejore desempeño.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=3882" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:42)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Auditorías internas, implementación ISO 45001 y mejora del desempeño</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Propósito y enfoque de las auditorías internas en gestión de riesgos y valor agregado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las auditorías internas buscan una evaluación independiente que identifique riesgos estratégicos y verifique el cumplimiento y efectividad.</div>
+                  <div class="content-text">El objetivo es generar información que permita la mejora del desempeño en seguridad, salud ocupacional y procesos operativos.</div>
+                  <div class="content-text">La retroalimentación de auditorías alimenta revisiones y optimizaciones en operaciones, con información recopilada e identificada gradualmente.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=4403" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Tiempos de implementación de sistemas de gestión según condiciones organizacionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Empresas con problemas graves pueden tardar hasta doce meses en implementar ISO 45001; empresas poco ordenadas seis meses; empresas con buen clima laboral dos o tres meses.</div>
+                  <div class="content-text">La velocidad depende del clima organizacional y la calidad del liderazgo; buen liderazgo acelera integración y cumplimiento.</div>
+                  <div class="content-text">Ejemplos de resultados: reducción de incidentes de 8.5 a 4.2 por millón de horas-hombre y disminución del 50% en eventos de alta potencialidad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=4513" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:15:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Liderazgo como factor crítico para compromiso y cultura de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">ISO 45001 requiere liderazgo, compromiso y participación; sin un liderazgo sólido, el resto del sistema se desmorona.</div>
+                  <div class="content-text">En presencia de buen liderazgo, el personal se involucra sin esperar recompensas; en ausencia, se trabaja solo por obligación horaria.</div>
+                  <div class="content-text">Cambios culturales impulsados por liderazgo se reflejan en reducción de incidentes y mejor integración con contratistas, tratándolos como parte del equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=4599" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Conceptos básicos de materiales y sustancias peligrosas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Definición y criterios que determinan la peligrosidad de sustancias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Materiales peligrosos se caracterizan por corrosividad, explosividad, inflamabilidad, patogenicidad, toxicidad o radioactividad.</div>
+                  <div class="content-text">Otros criterios incluyen reactividad y capacidad de provocar enfermedades o efectos letales en personas y medio ambiente.</div>
+                  <div class="content-text">Es esencial entender símbolos, fichas de seguridad y criterios de almacenamiento según propiedades físicas y químicas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=4906" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Responsabilidades del personal logístico respecto a materiales peligrosos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El personal logístico no solo compra materiales, también debe garantizar su conservación, uso correcto y disponibilidad.</div>
+                  <div class="content-text">No hay que delegar completamente en seguridad; la logística tiene la responsabilidad de custodiar y proteger los materiales conforme a la ficha de seguridad.</div>
+                  <div class="content-text">La conciencia y actitud preventiva del logístico puede evitar incidentes y reducir impactos al conocer riesgos y tomar acciones.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=4983" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:23:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Importancia de la hoja de seguridad (MSDS) y su aplicación práctica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La hoja de seguridad contiene identificación del producto, peligros, composición, medidas de primeros auxilios, medidas contra incendios y almacenamiento.</div>
+                  <div class="content-text">Aunque el ingeniero de seguridad maneje los riesgos, el logístico debe conocer la MSDS para determinar cómo custodiar y disponer el material de forma segura.</div>
+                  <div class="content-text">Se insiste en que el encargado de logística debe actuar según la MSDS y no esperar la supervisión constante de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=5336" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:28:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Sistema globalmente armonizado, pictogramas y rotulación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Elementos del sistema armonizado y diferencias respecto a NFPA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema armonizado identifica y comunica peligros mediante pictogramas modernos que incluyen símbolos para salud, físicos y ambientales.</div>
+                  <div class="content-text">A diferencia del rombo NFPA, el sistema GHS (SGA) incluye palabra de advertencia, indicaciones de peligro y consejos de prudencia P/H.</div>
+                  <div class="content-text">La rotulación clara permite reconocer productos peligrosos a distancia y aplicar medidas específicas para transporte y almacenamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=5738" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:35:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Pictogramas y su significado en la práctica logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pictogramas cubren explosivos, inflamables, gases a presión, corrosivos, tóxicos, cancerígenos y peligros ambientales, entre otros.</div>
+                  <div class="content-text">Ejemplos de uso práctico: identificar si un material debe almacenarse separado de otro por riesgo de reacción y evitar mezclas peligrosas.</div>
+                  <div class="content-text">La nueva etiqueta incluye información del fabricante, composición, advertencia, pictograma y consejos de prudencia para facilitar la catalogación logística.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6570" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Aplicación de frases H y P para medidas preventivas y de almacenamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las frases H (hazard) describen la naturaleza del peligro físico o para la salud, por ejemplo H200 para explosivos inestables.</div>
+                  <div class="content-text">Las frases P (precaution) dan recomendaciones de manejo, almacenamiento y eliminación, orientando acciones preventivas e interventivas.</div>
+                  <div class="content-text">La etiqueta armonizada ayuda al logístico a determinar acciones de control, protección personal y disposiciones de transporte específicas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6803" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:53:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Gestión logística del transporte y almacenamiento de sustancias peligrosas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Responsabilidades del coordinador de transporte y requisitos prácticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El coordinador de transporte debe planificar el envío, conocer la naturaleza del material, su rotulación y la normativa aplicable para transporte seguro.</div>
+                  <div class="content-text">Es necesario asignar unidades y choferes adecuados, verificar capacidades de contenedores y cumplir con regulaciones iberoamericanas de transporte.</div>
+                  <div class="content-text">El desconocimiento no exime de responsabilidad; el coordinador debe aprender a identificar riesgos y tomar decisiones con base en la MSDS y pictogramas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=5786" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:36:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Rotulación, clasificación de códigos UN y ejemplos de materiales comunes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La rotulación identifica producto, riesgos y clasificación; ejemplos incluyen códigos UN para diésel (1993), GLP (1075) y otros materiales de la industria.</div>
+                  <div class="content-text">Lista de ejemplos mencionados: acetona (UN 1307), acetileno (UN 143), ácido acético (UN 221), clorhídrico (UN 1789), sulfúrico, hidrógeno, butano, cloro, gasolina.</div>
+                  <div class="content-text">Conocer estos códigos y propiedades permite planificar transporte y almacenamiento correcto, evitando mezclas y reacciones peligrosas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6011" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:40:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Diferencias operativas entre transporte y almacenamiento prolongado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El transporte y el almacenamiento requieren condiciones distintas: mantenimiento, contenedores y control de sedimentos según la naturaleza del producto.</div>
+                  <div class="content-text">Ejemplo: peróxido de hidrógeno y diésel tienen requisitos de transporte y almacenamiento muy diferentes por estabilidad y riesgos a largo plazo.</div>
+                  <div class="content-text">El logístico debe ajustar planes de rotación, reposición y monitoreo según tiempos de reposición y condiciones estacionales de uso.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6030" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:40:30)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Inventario, trazabilidad y buenas prácticas en almacenes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Componentes esenciales de la etiqueta y registro del inventario</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La etiqueta armonizada contiene composición, concentración, palabra de advertencia, pictograma, consejos de prudencia y datos del proveedor.</div>
+                  <div class="content-text">Para logística es crucial registrar cantidad nominal, fecha de ingreso, lote y ubicación de almacenamiento para control y trazabilidad.</div>
+                  <div class="content-text">Esta información facilita identificar lotes defectuosos y responder ante anomalías en uso o calidad del producto.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6960" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Ejemplo de gestión de lotes y resolución de problemas con materiales defectuosos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato de caso: disco de corte entregado con especificación incorrecta que provocó fallas; la identificación de lotes permitió detectar la fuente del problema.</div>
+                  <div class="content-text">Mantener identificadores de ingreso y lotes en el sistema permite rastrear quién pidió, quién aceptó el material y cuándo fue recibido.</div>
+                  <div class="content-text">La trazabilidad evita culpas infundadas y facilita auditorías internas para determinar responsabilidades y acciones correctivas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7040" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Planificación, anticipación y diferenciación profesional en logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un profesional logístico planificado considera tiempos de reposición, variaciones estacionales y capacidades de personal para asegurar suministro continuo.</div>
+                  <div class="content-text">La logística es analítica y de largo plazo; la seguridad es práctica y de corto plazo; ambas disciplinas deben complementarse para una operación segura.</div>
+                  <div class="content-text">Tener materiales catalogados, planificados y rotulados diferencia al profesional competente del que solo cumple tareas reactivas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=6198" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:18)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Introducción al problema y ejemplo práctico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Descripción de un caso donde el proveedor envía material incorrecto y las consecuencias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un proveedor remitió material que no correspondía a lo solicitado, provocando mezcla con otros lotes y dificultades para separar productos correctamente.</div>
+                  <div class="content-text">El encargado de logística había realizado correctamente la solicitud, pero el proveedor actuó de forma negligente o intencional al enviar material equivocado.</div>
+                  <div class="content-text">La falta de control y orden en la recepción produjo riesgo de sanciones y reproche del jefe, además de problemas operativos en almacenaje y trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7201" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Responsabilidades y relaciones entre lotes productivos y logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los lotes productivos y logística deben trabajar coordinados, manteniendo segregación de lotes y conocimiento de modificaciones de composición o estructura.</div>
+                  <div class="content-text">La logística debe estar alerta ante cambios y proponer soluciones rápidas para evitar mezclas y errores en procesos productivos.</div>
+                  <div class="content-text">Se menciona que en el mercado laboral existen conflictos entre seguridad y logística, lo cual no debería ocurrir si ambos comprenden sus funciones.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7240" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Presentación de material de referencia y casos para estudio</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se comparte un ejemplo de manejo de materiales peligrosos aplicado a la minería (las bambas) como referencia para elaborar documentos de materiales peligrosos.</div>
+                  <div class="content-text">El objetivo de la documentación es asegurar que productos químicos cumplan requisitos para almacenamiento, manipulación y uso, con el fin de evitar accidentes.</div>
+                  <div class="content-text">Se entrega como material de estudio para que los asistentes investiguen y profundicen en el tema en casa.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7285" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:25)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Objetivo, alcance y estructura del procedimiento para materiales peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Objetivo general y componentes del documento del procedimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Asegurar que productos químicos y sustancias cuenten con requisitos necesarios para almacenamiento, manipulación y uso, evitando accidentes.</div>
+                  <div class="content-text">El procedimiento incluye objetivo, alcance, tabla de funciones, contexto, resumen del procedimiento y flujo de información.</div>
+                  <div class="content-text">Contempla pasos del procedimiento, supervisión, manipulación, competencias, verificación, referencias y glosario.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7326" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Funciones y responsabilidades definidas en el procedimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Deben asignarse responsabilidades claras a responsables de logística, seguridad, compras, proveedor, medio ambiente y supervisores.</div>
+                  <div class="content-text">Cada puesto tiene funciones específicas: logística gestiona la cadena y seguimiento; seguridad realiza inspecciones; proveedor entrega fichas y actualizaciones.</div>
+                  <div class="content-text">Se enfatiza la necesidad de nombrar responsables y dejar registro de qué hace cada puesto para la trazabilidad y cumplimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7358" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Registro de documentación y hojas de datos de seguridad (MSDS/SDS)</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las hojas de datos de seguridad deben ser archivadas, preferiblemente en formato físico impreso y también en formato virtual encriptado y supervisado.</div>
+                  <div class="content-text">Se recomienda que las hojas estén actualizadas y disponibles para emergencias, con copias impresas para acceso inmediato en caso de incidentes.</div>
+                  <div class="content-text">El responsable de compras y logística debe verificar periódicamente la vigencia de las MSDS y solicitar actualizaciones al proveedor cuando tengan más de un año.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7550" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Roles específicos y tareas en la gestión de materiales peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Funciones del proveedor y del responsable de compras y logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El proveedor debe entregar las hojas MSDS y comunicar cualquier modificación en la composición o características del producto, remitiendo nuevas fichas de seguridad.</div>
+                  <div class="content-text">El responsable de compras solicita actualizaciones de las MSDS cuando superan antigüedad máxima de un año y verifica la disponibilidad de las hojas para auditorías.</div>
+                  <div class="content-text">Logística es la encargada de recibir documentación, archivar y garantizar que el etiquetado y embalaje cumplan requisitos antes de su ingreso a almacén.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7381" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Funciones del área de medio ambiente y su aporte técnico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Medio ambiente evalúa productos en términos ambientales, analizando composición, efectos ambientales y posibles alternativas para reducir impactos.</div>
+                  <div class="content-text">Propone recomendaciones para la manipulación y manejo de residuos según normativas ambientales aplicables en la operación minera.</div>
+                  <div class="content-text">Evalúa la merma generada por el uso del material peligroso y asesora en la adquisición y alternativas menos impactantes.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7397" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Funciones del supervisor de área y el operario entrenado en manipulación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El supervisor es responsable de que el personal a su cargo cumpla con las normas establecidas y supervise el cumplimiento operativo diario.</div>
+                  <div class="content-text">El operario de sustancias peligrosas debe tener formación mínima para manipular los productos, conocer dónde encontrar la información y cómo actuar ante problemas.</div>
+                  <div class="content-text">Se aclara que no se exige conocimiento exhaustivo de las MSDS, pero sí saber ubicarlas y aplicar procedimientos de solución ante contingencias.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7426" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:46)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Procedimiento de adquisición, manipulación y almacenamiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Flujo desde la adquisición hasta la manipulación según el procedimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El procedimiento inicia con la adquisición del material peligroso, donde el responsable identifica producto, compañía, peligros, composición y medidas de emergencia.</div>
+                  <div class="content-text">Incluye verificación de propiedades físicas, estabilidad, medidas de primeros auxilios y lucha contra incendios, registrando la información en el sistema de gestión.</div>
+                  <div class="content-text">Se define que el responsable de compras y logística es quien debe revisar y validar estas fichas, no exclusivamente el área de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7475" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Requisitos de etiquetado, embalaje y señalización de envases</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los envases deben estar etiquetados identificando el producto, fabricante y advertencias de peligro y precauciones de seguridad, responsabilidad del proveedor y verificación logística.</div>
+                  <div class="content-text">El supervisor de área debe asegurar rotulación, señalización y delimitación de zonas para el almacenamiento seguro de sustancias peligrosas.</div>
+                  <div class="content-text">Se establecen códigos de color, demarcación y señalización adecuados para prevenir confusiones y garantizar respuesta rápida en emergencias.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7539" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:39)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Almacenamiento, apilamiento y medidas de contención ante derrames</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para líquidos se requieren barreras metálicas y de hormigón diseñadas para contener derrames y gestionar contingencias según normativa vigente.</div>
+                  <div class="content-text">Se mantiene una lista actualizada de sustancias peligrosas manipuladas y se controlan niveles de stock máximo y mínimo para evitar acumulación innecesaria.</div>
+                  <div class="content-text">El manejo de residuos y desechos de estas sustancias debe cumplir con la ley de manejo de residuos sólidos y procedimientos de eliminación adecuados.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7728" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Capacitación, entrenamiento y controles operativos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Requisitos mínimos de entrenamiento y competencias del personal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se exige un entrenamiento mínimo para trabajadores que manipulan materiales peligrosos, incluyendo autocontrol, trabajo en equipo, comunicación y tolerancia a la presión.</div>
+                  <div class="content-text">El operario debe saber localizar hojas MSDS y aplicar procedimientos básicos de respuesta ante incidentes, sin necesidad de memorizar toda la ficha.</div>
+                  <div class="content-text">El supervisor debe solicitar capacitación y entrenamiento continuo, garantizando que el personal cuente con un manual de uso de sustancias peligrosas.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7825" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Equipos de protección personal (EPP) y procedimientos de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El procedimiento incluye especificaciones sobre equipos de protección personal necesarios según el tipo de sustancia y riesgos identificados.</div>
+                  <div class="content-text">Se detallan procedimientos operativos, códigos de colores, señalización y demarcación para manipulación segura y reducción de exposición.</div>
+                  <div class="content-text">Se registran cumplimiento y disponibilidad de EPP como parte de los registros obligatorios para auditoría y seguimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7953" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Registros, archivos y verificación para auditorías</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se deben mantener registros de sustancias peligrosas, archivos de MSDS y listados encriptados con control de acceso y actualizaciones periódicas.</div>
+                  <div class="content-text">Las hojas MSDS deben estar disponibles para auditorías y el responsable debe verificar su vigencia, asegurando que no tengan más de un año de antigüedad sin actualización.</div>
+                  <div class="content-text">El registro incluye historial de capacitación, inspecciones, incidentes y ajuste de controles según resultados de verificación.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7889" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Marco normativo, coordinación interáreas y conclusiones finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Legislación aplicable y referencia a leyes nacionales del sector químico y residuos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se mencionan leyes aplicables relacionadas con control de productos químicos fiscalizados y manejo de residuos peligrosos, citando ejemplos normativos relevantes.</div>
+                  <div class="content-text">El procedimiento debe adecuarse a la normativa vigente y mantener actualizado el listado de sustancias peligrosas manipuladas conforme a ley.</div>
+                  <div class="content-text">Las especificaciones técnicas de materiales peligrosos y el control legal son parte integral del procedimiento para garantizar cumplimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7934" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Coordinación entre seguridad, logística, compras y operaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El procedimiento debe ser conocido y aplicado por seguridad, logística, mantenimiento, operarios y áreas técnicas para contar con respuesta organizada ante incidentes.</div>
+                  <div class="content-text">Se enfatiza la corresponsabilidad: compras no actúa sin considerar seguridad; seguridad no asume funciones logísticas, pero supervisa cumplimiento.</div>
+                  <div class="content-text">La comunicación entre áreas evita sesgos y resistencia al aprendizaje, promoviendo un enfoque proactivo para la gestión de materiales peligrosos.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=7983" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Materiales adicionales, estudio en casa y cierre de la sesión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se dejó material adicional y un video para que los asistentes revisen el manejo de materiales químicos en casa y refuercen lo visto en la sesión.</div>
+                  <div class="content-text">Se anunció que la próxima clase abordará normativas ambientales y logística verde, y que se enviará la grabación de la sesión para repaso.</div>
+                  <div class="content-text">Se realizó la despedida final con agradecimientos, confirmación de envío de la grabación y recomendaciones para conectarse en la próxima clase.</div>
+                  <a href="https://www.youtube.com/watch?v=VnQprEc4zeM&start=8026" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:46)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 11: SEGURIDAD, SOSTENIBILIDAD Y CUMPLIMIENTO - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

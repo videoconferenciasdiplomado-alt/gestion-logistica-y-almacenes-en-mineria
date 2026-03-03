@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y agenda</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación y objetivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La sesión inicia con una bienvenida enfocada en tres pilares: el avance del contenido, una ronda de preguntas y el esquema final.</div>
+                  <div class="content-text">El profesor recopila las dudas de los estudiantes para asegurar que todas las inquietudes sobre el módulo sean resueltas.</div>
+                  <div class="content-text">El objetivo central es consolidar el conocimiento previo y avanzar hacia los temas finales de la gestión logística minera.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=387" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:06:27)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Gestión de inventarios en zonas remotas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Desafíos y características del sector</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Operar en zonas remotas implica enfrentar plazos de aprovisionamiento extensos, con ciclos de reposición que pueden durar meses.</div>
+                  <div class="content-text">Los tiempos de pedido prolongados exigen una planificación minuciosa para evitar interrupciones en la continuidad operativa.</div>
+                  <div class="content-text">Se requiere la implementación de protecciones especiales para insumos estratégicos que representan cuellos de botella logísticos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=445" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:25)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Herramientas y tácticas recomendadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La Matriz de Kraljic es la herramienta recomendada para priorizar el inventario de equipos estratégicos en zonas de minado.</div>
+                  <div class="content-text">Los productos estratégicos requieren un seguimiento diario y una cobertura de inventario de seguridad de al menos 3 a 5 días.</div>
+                  <div class="content-text">Para los productos rutinarios se aplica una reposición estándar, dado que su impacto en los costos operativos es significativamente menor.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=472" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:52)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Logística internacional y contratos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En importaciones es vital considerar los seguros, la cadena de frío si aplica y los INCOTERMS pactados con el proveedor.</div>
+                  <div class="content-text">Es indispensable revisar detalladamente las cláusulas de cumplimiento para prever los tiempos reales de entrega internacional.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=594" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Pronóstico de demanda de repuestos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Métodos de pronóstico recomendados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La suavización exponencial se destaca como el método más efectivo para repuestos mineros al priorizar los datos más recientes.</div>
+                  <div class="content-text">El promedio móvil simple se presenta como una alternativa práctica para usuarios que no cuentan con formación estadística avanzada.</div>
+                  <div class="content-text">El éxito del pronóstico depende de capturar las tendencias de consumo reales para ajustar los niveles de stock en almacén.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=630" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:30)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Herramientas avanzadas y optimización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se recomienda el uso de SOLVER y complementos de Excel para desarrollar modelos probabilísticos de investigación operativa.</div>
+                  <div class="content-text">A pesar de las opciones avanzadas, en el campo se prefieren métodos simples por su rapidez de cálculo y facilidad de implementación.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=663" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:03)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Aplicación práctica en campo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los sistemas Pick2Line y PoolTool permiten gestionar kits de herramientas prediseñados para agilizar el trabajo en el sitio.</div>
+                  <div class="content-text">El uso de Cross-docking facilita que los proveedores entreguen paquetes ya ensamblados, simplificando la recepción física.</div>
+                  <div class="content-text">El armado de kits externos reduce los tiempos de búsqueda en almacén y mejora la trazabilidad de los repuestos utilizados.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=763" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">KPIs en logística y almacenes mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">KPIs principales identificados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se monitorea la disponibilidad mecánica de los equipos y el porcentaje de actividades completadas frente a lo planificado.</div>
+                  <div class="content-text">La eficiencia operativa se mide mediante el seguimiento constante del estado de los proyectos y el uso de los recursos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=890" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:50)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">KPI crítico para sostenibilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El avance por metro cúbico o metraje avanzado es el indicador más crítico para la producción real de la unidad minera.</div>
+                  <div class="content-text">De nada sirve tener maquinaria disponible si no se genera avance físico en la mina, lo que impacta directamente en la rentabilidad.</div>
+                  <div class="content-text">El índice general de equipos (OEE) funciona como una métrica complementaria para vigilar la eficiencia de la flota pesada.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=912" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:12)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Transporte: fajas y sistemas bimodales (carretera-ferrocarril)</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Factibilidad en ubicaciones altoandinas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La instalación de fajas industriales requiere evaluar la transitabilidad, el metraje total y los elevados costos de mantenimiento.</div>
+                  <div class="content-text">Las limitaciones geográficas y el trazado ferroviario existente determinan si una mina es apta para sistemas de transporte bimodales.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=994" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:34)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Análisis costo-beneficio y condiciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se debe comparar el ahorro en hidrocarburos frente a la inversión inicial en fajas, la cual puede ascender a cientos de miles de soles.</div>
+                  <div class="content-text">Un ahorro mensual sostenido de entre 50 y 60 mil soles puede justificar técnicamente el cambio de transporte por carretera a faja.</div>
+                  <div class="content-text">Es indispensable considerar los riesgos sociales y ambientales antes de solicitar permisos para nuevas infraestructuras de transporte.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1049" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:29)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Recomendaciones operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La carretera continúa siendo la opción más fiable en la mayoría de casos debido a su flexibilidad ante cambios operativos.</div>
+                  <div class="content-text">El ferrocarril se recomienda solo cuando existe un trazado previo y un volumen de carga masivo que justifique su operación.</div>
+                  <div class="content-text">Las fajas transportadoras son ideales para distancias internas cortas o conexiones directas dentro de la planta concentradora.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1185" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:45)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Casos de éxito e innovación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Ejemplos mencionados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La Mina Constancia destaca por su alta productividad lograda bajo un enfoque estricto de responsabilidad social y ambiental.</div>
+                  <div class="content-text">El Grupo Hochi es un referente en la adopción de energías limpias e innovación tecnológica en sus procesos productivos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1203" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:03)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Áreas de innovación relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La innovación actual se centra en la reducción de emisiones de carbono y el uso de fuentes de energía renovables.</div>
+                  <div class="content-text">El desarrollo sostenible incluye el fortalecimiento social a través de la compra de repuestos y servicios a proveedores locales.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1220" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:20)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Seguridad y gestión de riesgos en transporte</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Características generales y riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La manipulación de materiales peligrosos (MATPEL) conlleva riesgos de incendios, explosiones y reacciones químicas en cadena.</div>
+                  <div class="content-text">Es imperativo normar y documentar cada fase de la recepción, el transporte y el almacenamiento de estas sustancias.</div>
+                  <div class="content-text">Las Hojas de Datos de Seguridad (MSDS) deben estar siempre vigentes, accesibles y en el idioma del personal operativo.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1890" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:30)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Normativa y clasificación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se utiliza el sistema de códigos de la ONU y las directrices del "Libro Naranja" para la clasificación internacional de peligros.</div>
+                  <div class="content-text">La carga MATPEL debe estar correctamente plaqueada y acompañada de la Declaración de Mercancías Peligrosas (DGD).</div>
+                  <div class="content-text">Se clasifican las sustancias en 9 clases, que abarcan desde explosivos y gases hasta corrosivos y materiales radioactivos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1998" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:18)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Tipos de peligros y sustancias en mina</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Principales peligros químicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los riesgos químicos más comunes en mina son la toxicidad, la inflamabilidad, la corrosividad y la alta reactividad.</div>
+                  <div class="content-text">Sustancias críticas como el cianuro de potasio, el ácido sulfúrico y el mercurio requieren protocolos de manejo extremadamente rígidos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=2064" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:34:24)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Clasificación por clases</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Clase 1: explosivos (dynamita, nitroglicerina). Clase 2: gases (hidrógeno, cloro). Clase 3: líquidos inflamables (gasolina, benceno).</div>
+                  <div class="content-text">Clase 4: sólidos inflamables. Clase 5: oxidantes. Clase 6: materia venenosa (mercurio, cianuro).</div>
+                  <div class="content-text">Clase 7: reactivos/radioactivos (uranio). Clase 8: corrosivos (ácidos, hidróxido de sodio). Clase 9: misceláneos (asbesto, sílice, fibra de vidrio).</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=2217" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:36:57)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Recomendaciones para almacenamiento y manipulación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Ubicación y separación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las bodegas de materiales peligrosos deben estar aisladas de las zonas de procesamiento en caliente y a distancias seguras de las oficinas.</div>
+                  <div class="content-text">Se recomienda una separación física de al menos 100 a 300 metros para mitigar el impacto en caso de un evento accidental.</div>
+                  <div class="content-text">El almacenamiento debe evitar la exposición directa a condiciones climáticas adversas que puedan degradar los envases.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=2821" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:47:01)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Procedimientos y control de acceso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Solo personal autorizado y debidamente capacitado debe tener acceso y responsabilidad sobre el despacho de MATPEL.</div>
+                  <div class="content-text">Se debe mantener un registro riguroso que detalle el nombre químico, la cantidad exacta, la ubicación y el uso de cada sustancia.</div>
+                  <div class="content-text">En sistemas de turnos, es vital realizar una transferencia de responsabilidad formal entre los encargados salientes y entrantes.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=2898" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:18)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Embalaje, señalización e incompatibilidades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El uso de tablas de incompatibilidad es obligatorio para evitar el almacenamiento conjunto de sustancias reactivas.</div>
+                  <div class="content-text">La señalización debe cumplir con las normas NFPA y NTP, utilizando pictogramas visibles que adviertan sobre los riesgos específicos.</div>
+                  <div class="content-text">Las bandejas de contención y el etiquetado conforme a la ONU son elementos indispensables para prevenir derrames y confusiones.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=2813" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:53)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.4</span>
+                  <span class="subsection-title">Equipos y documentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es responsabilidad del logístico mantener las MSDS actualizadas para cada proveedor y cada material presente en el inventario.</div>
+                  <div class="content-text">Los manipuladores deben contar con EPP especializado y recibir capacitación basada en competencias con niveles MAPEL 1 al 3.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3043" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Riesgos humanos y culturales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Errores humanos y tercerización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La falta de hojas de seguridad en servicios tercerizados representa un riesgo crítico de desconocimiento ante emergencias.</div>
+                  <div class="content-text">Cualquier cambio de proveedor debe gatillar automáticamente la actualización de los protocolos y la documentación de seguridad.</div>
+                  <div class="content-text">El supervisor operativo tiene la misión de asegurar que los protocolos de manejo se transfieran correctamente entre los relevos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3070" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:10)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Consecuencias de prácticas inseguras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La rotura de envases o la mezcla accidental de corrosivos puede derivar en daños ambientales severos e incendios incontrolables.</div>
+                  <div class="content-text">La preparación para emergencias y la capacitación práctica son las únicas herramientas efectivas para mitigar las fallas de supervisión.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3296" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Buenas prácticas operativas y ejemplos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Organización y 5S</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La aplicación de la metodología 5S es fundamental para identificar y separar correctamente los materiales peligrosos en las bodegas.</div>
+                  <div class="content-text">Se prohíbe estrictamente la reutilización de envases para sustancias distintas a las originales para evitar reacciones químicas peligrosas.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3319" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:19)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Señalización y croquis de bodegas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es obligatorio señalizar zonas específicas para cilindros llenos y vacíos, así como segregar los almacenes por tipo de sustancia.</div>
+                  <div class="content-text">El mantenimiento de un croquis de disposición claro permite una respuesta rápida y eficiente de los equipos de emergencia.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3398" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:38)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Ejemplos prácticos y concentraciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El registro en almacén debe ser específico, detallando cantidad, código UN (ej. UN 1830 para ácido sulfúrico) y clase de riesgo.</div>
+                  <div class="content-text">Se debe considerar que las condiciones de uso y peligrosidad varían drásticamente según la concentración del ácido (del 10% al >80%).</div>
+                  <div class="content-text">Otros compuestos críticos citados son el arsénico, cloroformo, hipoclorito de sodio y diversos reactivos de laboratorio.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3533" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Manejo de reactivos y procedimientos operativos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Clasificación y cantidades mínimas de almacenamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las cantidades máximas de stock se determinan según la clasificación de riesgo y la capacidad de los sistemas de apilación segura.</div>
+                  <div class="content-text">No siempre es viable almacenar grandes volúmenes de reactivos críticos por las restricciones legales y riesgos asociados.</div>
+                  <div class="content-text">La declaración de mercancías y guía de remisión deben reflejar con exactitud las cantidades reales para evitar impedimentos.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3603" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:03)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Hojas de datos y documentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las HDS o MSDS son la herramienta base para definir medidas contra incendios, control de exposición y primeros auxilios.</div>
+                  <div class="content-text">Es imperativo que estas hojas estén vigentes y sean accesibles tanto en almacenamiento como en el punto de uso final.</div>
+                  <div class="content-text">El registro maestro debe integrar el nombre comercial, código UN, inventario máximo y el método de eliminación segura.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=3676" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:16)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Metodología de agrupación e incompatibilidades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las sustancias deben agruparse por clase, aplicando estrictamente las tablas de incompatibilidad química.</div>
+                  <div class="content-text">Se deben elaborar planos detallados de laboratorios y bodegas que identifiquen la ubicación exacta de las bandejas por clase.</div>
+                  <div class="content-text">El monitoreo de las clases más críticas (6.1 y 9) es responsabilidad directa de supervisores y almacenistas.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=4701" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Procedimientos, protocolos y evaluación de riesgos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Protocolo de Control de Riesgos Críticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El objetivo es eliminar o minimizar accidentes fatales e incidentes derivados del ciclo de vida de los materiales peligrosos.</div>
+                  <div class="content-text">El alcance es integral, aplicando a todos los sitios controlados por la empresa y a todo el personal, propio o subcontratado.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=5326" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:28:46)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Requisitos de equipo, sitio y documentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cualquier diseño o modificación de instalaciones MATPEL requiere una evaluación de riesgos previa con expertos y proveedores.</div>
+                  <div class="content-text">Las instalaciones deben contar con ventilación adecuada, sistemas de drenaje de emergencia y kits de absorción.</div>
+                  <div class="content-text">El etiquetado debe cumplir estándares internacionales y las tuberías deben estar marcadas para identificar fluido y flujo.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=5375" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:35)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Requisitos procedimentales y permisos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El ingreso o eliminación de cualquier material peligroso debe ser aprobado formalmente por el coordinador MATPEL.</div>
+                  <div class="content-text">Se requieren permisos de trabajo específicos para labores donde se pueda exceder el límite de exposición permisible.</div>
+                  <div class="content-text">Es obligatorio mantener procedimientos operativos seguros documentados que incluyan gestión de inventarios y respuesta.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=5520" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:32:00)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Gestión de transporte de materiales peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Documentación, plaqueo y normativas aplicables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La Declaración de Mercancías Peligrosas (DGD) y la placa naranja con el código UN son requisitos obligatorios para circular.</div>
+                  <div class="content-text">El marco legal peruano se rige por la Ley 28256 y el Decreto Supremo 021 (Reglamento de Transporte MATPEL).</div>
+                  <div class="content-text">Las normas técnicas NTP 399-015 y NFPA definen los criterios de riesgo y pictogramas de seguridad de las unidades.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=4818" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:20:18)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Organismos reguladores y apoyo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El MTC fiscaliza licencias, rutas y condiciones técnicas. El Ministerio de Salud (Digesa) controla envases y condiciones sanitarias.</div>
+                  <div class="content-text">Indeci, Bomberos e IPEN actúan como apoyo fundamental en la respuesta ante incidentes y control de radiaciones.</div>
+                  <div class="content-text">Es obligatoria la contratación de pólizas de seguro de responsabilidad civil con cobertura anual para el transporte.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=6516" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:48:36)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Condiciones operativas y restricciones de tránsito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las unidades con carga peligrosa tienen restricciones de ingreso a ciudades y deben cumplir horarios nocturnos.</div>
+                  <div class="content-text">La planificación debe considerar multas municipales y programar las descargas preferentemente durante la madrugada.</div>
+                  <div class="content-text">Cargas especiales requieren escoltas y formación de convoyes con límites de velocidad estrictos para garantizar la seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=6648" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:50:48)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.4</span>
+                  <span class="subsection-title">Seguridad del conductor y gestión de fatiga</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El riesgo de fatiga se gestiona con ciclos de 4 horas de conducción por 1 de descanso, evitando traslados nocturnos prolongados.</div>
+                  <div class="content-text">Se realizan evaluaciones de salud periódicas para controlar condiciones cardiovasculares que incrementen el riesgo en ruta.</div>
+                  <div class="content-text">La capacitación constante busca reducir la presión por prisa, fomentando una movilidad coordinada y segura.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=5908" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:38:28)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.5</span>
+                  <span class="subsection-title">Equipamiento, mantenimiento y pólizas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cada unidad debe pasar un checklist que incluya extintores, EPP de emergencia y programa de mantenimiento.</div>
+                  <div class="content-text">Los mantenimientos preventivos (M1 a M4) son requisito indispensable para que las pólizas mantengan vigencia.</div>
+                  <div class="content-text">El transporte MATPEL conlleva responsabilidades civiles y penales, por lo que la documentación técnica debe estar en orden.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=6903" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:03)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.6</span>
+                  <span class="subsection-title">Planes de contingencia y capacitación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El plan de contingencia debe ser actualizado cada seis meses o inmediatamente después de cualquier incidente en ruta.</div>
+                  <div class="content-text">La capacitación mínima para conductores es de 40 horas, basada en competencias y certificada en los niveles MAPEL.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=7147" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:59:07)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Gestión operativa del transporte y cumplimiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Niveles de certificación y responsabilidades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El personal se certifica en tres niveles MAPEL: Nivel 1 (concientización), Nivel 2 (operativo) y Nivel 3 (contingencia avanzada).</div>
+                  <div class="content-text">El transportista rotula el vehículo y el conductor verifica ausencia de fugas y estado de neumáticos.</div>
+                  <div class="content-text">El remitente proporciona la HDS técnica y el destinatario presta apoyo inmediato durante la descarga.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=7204" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:04)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Habilitaciones, licencias y antigüedad vehicular</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las habilitaciones se renuevan periódicamente ante el MTC, exigiendo licencias de categoría A2 en adelante.</div>
+                  <div class="content-text">Muchas minas imponen un máximo de 5 años de antigüedad vehicular para garantizar la confiabilidad mecánica.</div>
+                  <div class="content-text">Se recomienda revisión documental un mes antes del vencimiento de SWAT, revisiones técnicas y licencias.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=7232" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:32)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Edad del conductor, certificaciones y límites</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para transportar categorías críticas (A4), las empresas suelen exigir una edad mínima de entre 25 y 27 años.</div>
+                  <div class="content-text">El control policial en carretera exige la presentación física del certificado del curso anual MAPEL vigente para transitar.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8070" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:30)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.4</span>
+                  <span class="subsection-title">Seguridad operacional en ruta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se debe controlar la profundidad de la cocada de las llantas y ausencia de fugas de aceite antes de iniciar ruta.</div>
+                  <div class="content-text">Queda prohibido purgar residuos peligrosos en la vía pública o mezclar cargas incompatibles en el mismo compartimento.</div>
+                  <div class="content-text">No se permite el transporte de materiales peligrosos en unidades de transporte público bajo ninguna circunstancia.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=7709" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Trazabilidad, tecnología y gestión de flota</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Sistemas de trazabilidad y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La trazabilidad se asegura mediante GPS, blockchain e inteligencia artificial para el monitoreo en tiempo real.</div>
+                  <div class="content-text">Estos sistemas proporcionan evidencia automatizada y control sobre cumplimiento de rutas autorizadas por el MTC.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8181" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:21)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Sala de gestión de flota y herramientas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se implementan salas de monitoreo para coordinar el movimiento de flota y responder ante desviaciones operativas en mina.</div>
+                  <div class="content-text">El uso de plantillas especializadas facilita el ruteo, seguimiento de entregas y control de costos diarios.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8234" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:17:14)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Plantillas y costeo del transporte</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelado financiero clasifica costos en fijos, variables (combustible, neumáticos) y administrativos para la tarifa mensual.</div>
+                  <div class="content-text">El cálculo incluye vida útil del vehículo, kilometraje proyectado, depreciación lineal y tasa residual.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8249" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:17:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Gestión de recursos humanos y costos operativos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Personal y modalidades de contratación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existen modalidades de pago por viaje (destajo) o planilla con beneficios sociales, dependiendo de la estabilidad requerida.</div>
+                  <div class="content-text">El costo laboral debe incluir exámenes médico-ocupacionales periódicos y capacitación continua obligatoria.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8304" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:18:24)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Mantenimiento, depreciación y renovación de flota</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los costos de lubricantes, neumáticos y seguros deben incorporarse proporcionalmente según el kilometraje recorrido.</div>
+                  <div class="content-text">Las minas suelen renovar flota cada 2 o 3 años para evitar incremento exponencial de costos de mantenimiento y depreciación.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=8391" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:19:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Cierre y actividad final</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Próxima parte y actividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La formación continuará con un caso práctico sobre seguridad y gestión de riesgos en transporte para aplicar conceptos.</div>
+                  <div class="content-text">Se compartirá con los estudiantes la plantilla Excel de costeo y trazabilidad para que sirva de guía.</div>
+                  <div class="content-text">Se coordinará el envío de la grabación y la gestión de la asistencia para la próxima sesión programada.</div>
+                  <a href="https://www.youtube.com/watch?v=YE7HAi5Lo98&start=1855" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:55)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 06: TRANSPORTE Y DISTRIBUCIÓN MINERA - 2DA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

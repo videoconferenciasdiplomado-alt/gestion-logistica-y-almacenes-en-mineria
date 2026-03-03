@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción al curso y logística de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del docente, moderadora y objetivos de la sesión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Saludo inicial del profesor Gonzalo y presentación de la moderadora Ana Orlich, indicando canales de comunicación y apoyo académico para consultas.</div>
+                  <div class="content-text">Explicación breve del propósito de la sesión y la invitación a los alumnos para plantear dudas previas al inicio del tema.</div>
+                  <div class="content-text">Mención de problemas logísticos ocurridos en la sesión anterior relacionados con la presentación de un caso práctico y propuesta de revisarlo al final si hay tiempo.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=188" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:03:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Índice temático general del módulo sobre seguridad y normativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Desglose de los temas a abordar: marco normativo general, régimen de seguridad y salud ocupacional, control de insumos químicos y bienes fiscalizados, transporte logístico y regulación de hidrocarburos.</div>
+                  <div class="content-text">Inclusión de gestión y control de inventarios, inspecciones y auditorías, y preparación de respuesta eficiente a emergencias como contenidos del curso.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=340" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:05:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Introducción al contexto y relevancia del control normativo en minería</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de la alta complejidad del sector minero y la necesidad de alinear la gestión de inventarios con regulaciones nacionales e internacionales para minimizar riesgos operativos.</div>
+                  <div class="content-text">Enfoque del curso en la seguridad, normativas aplicables y preparación para emergencias, destacando la adaptación constante a cambios legales.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=386" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:06:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Marco normativo general y entidades rectoras del sector minero</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Ley General de Minería como piedra angular y su reglamentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Identificación de la Ley General de Minería (Decreto Supremo) como la norma fundamental que regula las actividades mineras en el Perú.</div>
+                  <div class="content-text">Mención de la distinción entre ley y reglamento y la función del reglamento para detallar requisitos, derechos y obligaciones de concesionarios.</div>
+                  <div class="content-text">Necesidad de seguimiento constante de decretos, modificaciones y actualizaciones legislativas que afectan la operativa minera.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=427" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Tipos de concesiones y organización jurídica entre Estado y empresas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumeración de las concesiones: minera, de beneficio, de trabajo, general y transporte minero, consideradas derechos reales para ejecutar actividades específicas.</div>
+                  <div class="content-text">Aclaración de que la titularidad de concesiones está sujeta al estricto cumplimiento legal y reglamentario por parte del operador minero.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=464" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Entidades de fiscalización y sus competencias principales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ministerio de Energía y Minas (MINEM) como ente rector, responsable de formular políticas nacionales, dictar normativa y otorgar concesiones a gran y mediana minería.</div>
+                  <div class="content-text">INGEMMET y otras direcciones técnicas vinculadas a supervisión y aprobación de instrumentos de gestión, como planes de cierre de minas.</div>
+                  <div class="content-text">SINERMIN (probable mención a un organismo supervisor) y SUNAFIL como autoridades técnicas y laborales responsables de fiscalización de seguridad y salud ocupacional, investigación de accidentes y sanciones.</div>
+                  <div class="content-text">SUNAT como autoridad fiscalizadora del ingreso, permanencia, transporte y uso de insumos químicos fiscalizados para prevenir desvíos hacia minería ilegal y narcotráfico.</div>
+                  <div class="content-text">SUCAME (Superintendencia Nacional de Control de Armas, Municiones y Explosivos - Sucamef/SEGURIDAD) dependiente del Ministerio del Interior, responsable de autorizar y fiscalizar adquisición, almacenamiento, transporte y uso de explosivos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=641" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Régimen de seguridad y salud ocupacional en minería: obligaciones y consecuencias</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Decreto supremo y objetivos del sistema de gestión de seguridad y salud</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Identificación del Decreto Supremo que rige la seguridad y salud ocupacional en minería, con objetivo de prevenir incidentes, accidentes y enfermedades ocupacionales.</div>
+                  <div class="content-text">Énfasis en una cultura de prevención y la participación activa de empleadores, trabajadores y el Estado como triángulo fundamental.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=872" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Requisitos documentales, gestión de riesgos y cultura preventiva</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Obligación de documentar identificación de peligros, evaluación de riesgos, análisis de trabajo seguro, procedimientos escritos y planes de mitigación.</div>
+                  <div class="content-text">Necesidad de registros periódicos, checklists y evidencias de capacitación teórica y práctica para demostrar gestión proactiva ante auditorías y fiscalización.</div>
+                  <div class="content-text">Comparación con estándares internacionales (p. ej. ISO 45001) y la exigencia de integración del sistema SST en la gestión operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=905" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Comité de seguridad, provisión de recursos y formación obligatoria</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Implementación de un sistema de gestión con política de seguridad, matrices de identificación de peligros, procedimientos y comité paritario de seguridad y salud ocupacional.</div>
+                  <div class="content-text">Provisión gratuita de equipos de protección personal (EPP) adecuados, y asignación de recursos para mantener la seguridad sin costos para el trabajador.</div>
+                  <div class="content-text">Capacitación obligatoria y documentada para trabajadores y terceros, con actas y firmas que acrediten la formación recibida.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1185" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.4</span>
+                  <span class="subsection-title">Responsabilidad penal y suspensión de operaciones por incumplimientos graves</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato de casos jurisprudenciales donde gerentes han sido encarcelados por faltas en la gestión de seguridad, mostrando que incumplimientos pueden constituir delitos penales.</div>
+                  <div class="content-text">Obligación de notificar e investigar incidentes y accidentes mortales dentro de 24 horas, determinar causas raíz y aplicar medidas correctivas.</div>
+                  <div class="content-text">Facultad de SUNAFIL para ordenar suspensión de actividades ante riesgo inminente y potestad del empleador para paralizar tareas peligrosas preventivamente.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1046" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Fiscalización práctica, poderes de los inspectores y acciones ante irregularidades</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Facultades de inspección y requerimientos legales por parte de SUNAFIL y SUNAT</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Facultades de los inspectores: ingreso libre a centros de trabajo, solicitud de documentación, entrevistas a trabajadores y orden de paralización inmediata ante riesgos graves.</div>
+                  <div class="content-text">Emisión de actas de infracción que inician procedimientos sancionadores con plazos para subsanar y posibles multas o cierre de operaciones en caso de incumplimiento.</div>
+                  <div class="content-text">Importancia de mantener documentación completa y disponible para evitar sanciones y demostrar cumplimiento ante auditorías.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1530" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:25:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Procedimiento sancionador y consecuencias operativas por incumplimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tipificación de infracciones y obligación del titular minero de remediar deficiencias dentro de plazos establecidos por la autoridad.</div>
+                  <div class="content-text">Posibles medidas: multas económicas, suspensión de actividades en áreas específicas o cierre total de operaciones por incumplimientos reiterados o graves.</div>
+                  <div class="content-text">Relevancia de la gestión documental y de formación para probar que la empresa cumplió con sus obligaciones preventivas y de control.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1607" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Coordinación interinstitucional y cadena de responsabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Capacidad de SUNAT para elevar expedientes al Ministerio Público si detecta indicios de ilícitos, y de coordinar con policía y fiscalías en operativos de incautación.</div>
+                  <div class="content-text">Reconocimiento de la cadena de responsabilidad que alcanza a productores, comercializadores, transportistas e importadores dentro del esquema de control integral.</div>
+                  <div class="content-text">Insistencia en que toda actividad fuera del circuito autorizado es presumida ilícita y debe ser evitada por las empresas que buscan cumplimiento normativo.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3173" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:52:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Control y fiscalización de insumos químicos y bienes fiscalizados</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Régimen dual de control: lucha antidrogas y minería ilegal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existencia de un doble régimen de control enfocado en impedir desvío de precursores químicos hacia producción de drogas y frenar abastecimiento a minería ilegal.</div>
+                  <div class="content-text">Competencias compartidas entre SUNAT (control administrativo) y entidades policiales y ministeriales para fiscalizaciones, incautaciones y medidas penales.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1639" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Obligaciones de registro, trazabilidad y reporting ante SUNAT</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inscripción obligatoria en el registro especial de control de bienes fiscalizados para cualquier actividad con estos insumos, con actualizaciones periódicas y renovaciones.</div>
+                  <div class="content-text">Registro diario de operaciones (entradas, salidas, consumo, mermas) y reporte mensual digital a la SUNAT mediante plataforma con claves (SOL) y documentación en PDF.</div>
+                  <div class="content-text">Necesidad de sistemas ERP y TI alineados con el registro digital para generar huella trazable por cada unidad de insumo y facilitar cruces de información por fiscalizadores.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1866" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Listado de insumos fiscalizados relevantes para minería y obligaciones operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inventario típico de insumos fiscalizados en minería: ácido sulfúrico, cianuro de sodio, mercurio, combustibles (gasolina, diésel), acetona, óxido de calcio, entre otros.</div>
+                  <div class="content-text">Gestión y control de combustibles y químicos al milímetro, con registros y trazabilidad que eviten indicios de desvío y posibles consecuencias administrativas, penales y reputacionales.</div>
+                  <div class="content-text">Responsabilidad del usuario minero de mantener cardex y registros detallados por establecimiento, con reportes que permitan auditar origen y destino.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1795" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.4</span>
+                  <span class="subsection-title">Facultades de SUNAT y mecanismos de fiscalización conjunta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Capacidad de SUNAT para realizar inspecciones, tomar muestras, incautar bienes y solicitar suspensión de registros en caso de irregularidades.</div>
+                  <div class="content-text">Coordinación operativa con Ministerio del Interior, Policía Nacional y Ministerio Público durante operaciones de fiscalización e incautación.</div>
+                  <div class="content-text">Riesgo de que inconsistencias en registros digitales desencadenen investigaciones administrativas y penales si se detectan indicios de desvío.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1723" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Control de explosivos, almacenamiento y cadena de custodia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Competencias de autoridad de explosivos y requisitos para almacenamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Autoridad competente (SUCAMEF / entidad de control de explosivos) emite licencias y autorizaciones para adquisición, almacenamiento, transporte y uso de explosivos.</div>
+                  <div class="content-text">Directivas y resoluciones establecen condiciones de seguridad, distancias, construcción técnica y tipos de polvorines (superficiales, subterráneos, móviles).</div>
+                  <div class="content-text">Obligación de llevar registros de ingresos y egresos de explosivos con reporte mensual y visitas de verificación periódicas por la autoridad.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2594" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:43:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Control en la cadena de suministro de explosivos y riesgos en contratistas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Exposición del riesgo de pérdida de control cuando explosivos son suministrados a contratistas y subcontratistas, generando posibles brechas en la trazabilidad.</div>
+                  <div class="content-text">Ejemplo de cómo las entregas de explosivos a contratistas pueden originar discrepancias entre cantidades suministradas y consumidas, creando huecos susceptibles de desvío.</div>
+                  <div class="content-text">Recomendación implícita de auditar, capacitar y supervisar a transportistas y contratistas bajo estándares del titular minero para evitar responsabilidades.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2163" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:36:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Modalidades de control, reportes y sanciones por irregularidades en explosivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Requisito de autorizaciones de traslado (guías de tránsito) que deben ser emitidas y controladas por empresas de seguridad o policiales autorizadas.</div>
+                  <div class="content-text">Posibilidad de visitas de inspección complementarias para instalaciones homologadas durante un periodo de hasta cinco años como incentivo a la inversión en infraestructura segura.</div>
+                  <div class="content-text">Sanciones administrativas, suspensión de operaciones y potenciales consecuencias penales ante fallas graves en el control y custodia de explosivos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2658" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:44:18)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Ejemplos, casos prácticos y herramientas de cumplimiento digital</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Material multimedia y demostraciones prácticas del sistema SUNAT</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación de videos instructivos producidos por SUNAT sobre el registro y control de bienes fiscalizados, con ejemplos de uso de la plataforma y procedimientos.</div>
+                  <div class="content-text">Disponibilidad de módulos audiovisuales para aprender a usar el registro nacional y cumplir con obligaciones de trazabilidad digital.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2713" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Definición de bienes fiscalizados y alcance de control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concepto de bienes fiscalizados: compuestos químicos y mezclas destinados a funciones industriales, sujetas a registro por su potencial uso ilícito.</div>
+                  <div class="content-text">Descripción de actividades gravadas: producción, envasado, comercialización, transporte, almacenamiento, transformación y uso, todas sujetas a registro y control.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2783" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Interconexión institucional y objetivos de la regulación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción de la interoperabilidad entre SUNAT, Ministerio del Interior, Ministerio de la Producción y Ministerio Público en la gestión y fiscalización de insumos.</div>
+                  <div class="content-text">Objetivos primarios: reducir producción de drogas ilícitas, combatir evasión tributaria y asegurar el tránsito por vías autorizadas que permitan control estatal.</div>
+                  <div class="content-text">Consecuencia normativa: cualquier operación fuera del circuito autorizado se presume ilícita y es susceptible de investigación y sanción.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2919" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Problemáticas operativas, casos ilustrativos y recomendaciones prácticas mencionadas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Casos reales y vulnerabilidades en control de inventarios y extracción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Narración de episodios históricos donde se detectaron pequeños lingotes o residuos de oro en instalaciones, demostrando fugas en controles internos de materiales valiosos.</div>
+                  <div class="content-text">Referencia a tecnologías de detección usadas en ferias mineras y controles físicos que revelan intentos de sacar material no declarado.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2388" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Mecanismos de ingreso de insumos a minería informal y vías de contrabando</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Identificación de rutas posibles de desvío: compras legales por grandes empresas que, al suministrar a contratistas, generan puntos de fuga en la cadena de distribución.</div>
+                  <div class="content-text">Mención del contrabando transfronterizo (por ejemplo desde Bolivia) como fuente potencial de insumos y explosivos para minería informal.</div>
+                  <div class="content-text">Observación sobre la existencia de producción artesanal limitada de explosivos y la mayor probabilidad de contrabando o desvío desde fuentes formales.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2163" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:36:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Importancia de la investigación y control de origen para cortar financiación ilícita</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Sugerencia de que investigar la cadena de suministro y los huecos operativos es esencial para cortar fuentes de financiamiento delictivo en minería ilegal.</div>
+                  <div class="content-text">Recomendación implícita de fortalecer auditorías internas, controles en contratistas y mecanismos de trazabilidad digital para detectar desviaciones.</div>
+                  <div class="content-text">Evaluación de la trazabilidad como clave para la detección temprana de anomalías en el flujo de insumos y explosivos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2508" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:41:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Cierre de la sesión, consultas y materiales complementarios sugeridos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Resolución de preguntas, interacción con alumnos y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Respuestas a preguntas sobre registros diarios y mensuales de insumos fiscalizados, cardex, y exigencias a proveedores para verificar el estatus registral ante SUNAT.</div>
+                  <div class="content-text">Intercambio sobre prácticas de control en grandes mineras versus riesgos en informales, y propuesta de investigar más a fondo la cadena de suministro como trabajo académico.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=1978" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:32:58)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Recursos adicionales y videos instructivos recomendados por el docente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicación de módulos y videos institucionales de SUNAT para comprender el uso del registro electrónico y procedimientos de control, disponibles para consulta posterior.</div>
+                  <div class="content-text">Recomendación de ver los materiales multimedia para reforzar conocimientos y conocer la operativa del sistema de control digital.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=2713" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Mensaje final sobre cumplimiento continuo y vigilancia regulatoria constante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reiteración de que el cumplimiento normativo en minería es un proceso continuo y dinámico que exige monitoreo regulatorio proactivo y adaptación permanente.</div>
+                  <div class="content-text">Llamado a invertir en funciones internas de cumplimiento, sistemas de TI y personal responsable para garantizar trazabilidad, seguridad y evitar sanciones administrativas o penales.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=508" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:08:28)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Sistema interinstitucional de control de bienes fiscalizados</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Coordinación entre SUNAT, Ministerio Público y otras entidades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">SUNAT administra el registro de bienes fiscalizados y comparte información con el Ministerio Público para derivar expedientes cuando detecta irregularidades administrativas o delitos.</div>
+                  <div class="content-text">Las fiscalizaciones de insumos químicos se realizan con apoyo del Ministerio del Interior y policías, incluyendo la posibilidad de incautaciones acompañadas por fiscales.</div>
+                  <div class="content-text">Todas las instituciones (Poder Judicial, Ministerio Público, SUNAT, Ministerio de Producción, Ministerio del Interior) están sistematizadas y trabajan en conjunto para control y trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3647" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Objetivos del sistema de control y sujetos fiscalizados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Objetivos principales: combatir el narcotráfico, evitar la evasión tributaria y proveer recursos al Estado mediante control y fiscalización.</div>
+                  <div class="content-text">Sujetos fiscalizados: toda la cadena productiva y comercial incluyendo productores, comercializadores, transportistas, importadores y exportadores.</div>
+                  <div class="content-text">El control es integral y abarca tanto responsabilidades administrativas como penales si procede.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3720" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Funciones específicas de instituciones en el comité de coordinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El Ministerio de Producción determina tablas, coeficientes de insumos, mermas y desmedros aplicables a la actividad productiva.</div>
+                  <div class="content-text">SUNAT administra el registro especial, realiza fiscalizaciones y puede sancionar administrativamente; además coordina derivaciones al Ministerio Público.</div>
+                  <div class="content-text">Entidades como la autoridad vial y seguridad forman parte del comité interinstitucional, integrando controles funcionales.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3769" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Procedimiento para el registro de bienes fiscalizados en SUNAT Virtual</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Acceso y navegación inicial en SUNAT Virtual para registro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ingresar a www.sunat.com.pe, elegir SUNAT Operaciones en Línea y acceder con usuario y Clave SOL para iniciar el trámite de registro para control de bienes fiscalizados.</div>
+                  <div class="content-text">Seleccionar la opción "empresas" y luego "registro para control de bienes fiscalizados", elegir "registro de la solicitud" y la opción "solicitud de inscripción".</div>
+                  <div class="content-text">Al iniciar una nueva solicitud aparece la declaración de entendimiento que debe leerse y aceptarse para continuar con el llenado del formulario.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3839" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Completar datos del solicitante y generar número de solicitud</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Llenar información del sector económico, tipo de minería y régimen al que pertenece la empresa, luego continuar para generar número de solicitud.</div>
+                  <div class="content-text">El sistema muestra cuatro pestañas: información general del RUC, características del bien, responsables del manejo y medios de contacto del usuario.</div>
+                  <div class="content-text">Guardar la información en cada pestaña conforme se completa y registrar el correo electrónico para recibir código de confirmación.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=3902" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Registro de actividades, establecimientos y bienes fiscalizados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Agregar actividades fiscalizadas seleccionando las denominaciones que correspondan a la operación de la empresa.</div>
+                  <div class="content-text">Registrar establecimientos indicando partida registral, área del terreno, área utilizada y espacio de almacenamiento; adjuntar documentos de autorización y declaraciones de entendimiento.</div>
+                  <div class="content-text">Agregar bienes fiscalizados, seleccionar tipo de bien e ítems, adjuntar informe técnico digitalizado y demás documentos sustentatorios para concluir la inscripción.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=4018" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:06:58)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.4</span>
+                  <span class="subsection-title">Inscripción de conductores y vehículos y presentación final</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Habilitar el rubro de conductores y vehículos cuando se realicen actividades de transporte, registrando datos del conductor, vehículo y número de registro del MTC.</div>
+                  <div class="content-text">Completar todos los rubros, enviar la solicitud de inscripción vía online y descargar la constancia de presentación como comprobante del trámite.</div>
+                  <div class="content-text">Confirmar conformidad en la ventana final del sistema para culminar el registro del bien fiscalizado.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=4159" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Regulación del transporte terrestre de materiales y residuos peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Marco normativo y obligaciones generales del reglamento del MTC</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El Reglamento del Ministerio de Transportes y Comunicaciones, aprobado por Decreto Supremo, es la norma base para el transporte de sustancias peligrosas en actividades mineras y otras.</div>
+                  <div class="content-text">Obligaciones fundamentales: clasificación y señalización según las nueve clases del Libro Naranja de la ONU, rotulación de vehículos, y cumplimiento de requisitos técnicos de contención.</div>
+                  <div class="content-text">Conductores deben contar con licencia especial y capacitación para manejo de materiales peligrosos; llevar documentación a bordo y póliza de seguros de responsabilidad civil.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=4712" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Capas regulatorias y ejemplo práctico con cianuro de sodio</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El transporte peligroso se gobierna por una superposición de normativas: reglamento del MTC, fiscalización de SUNAT, regulación de seguridad especial (SUCAME u otras) y reglamentos de seguridad y salud ocupacional.</div>
+                  <div class="content-text">Ejemplo: cianuro de sodio implica al menos tres capas (reglamento de transporte, trazabilidad y fiscalización por SUNAT, y normativa de seguridad ocupacional); si fuera explosivo, añadiría una capa más de control y custodia policial.</div>
+                  <div class="content-text">La gestión del transporte requiere integración multidisciplinaria entre logística, cumplimiento, seguridad, salud ocupacional y supervisión de contratistas.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=4806" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:20:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Requisitos técnicos, documentación y planes de contingencia para transportistas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Vehículos y unidades de carga deben cumplir requisitos técnicos específicos para garantizar contención segura y rotulación conforme a clases de riesgo.</div>
+                  <div class="content-text">Documentación obligatoria: guía de remisión del remitente, guía del transportista y hoja de resumen de seguridad (MSDS o ficha de seguridad).</div>
+                  <div class="content-text">Transportistas deben contar con póliza de seguro que cubra daños a personas, bienes y medio ambiente y disponer de planes de contingencia aprobados por la autoridad para responder a derrames y accidentes.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=4721" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Clasificación, manejo y respuesta ante materiales y residuos peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Definición y clasificación según Libro Naranja y normas internacionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mercancías peligrosas: materias y objetos que representan riesgo para salud, seguridad, ambiente o propiedades, normadas por el Libro Naranja de la ONU y estándares internacionales.</div>
+                  <div class="content-text">Transporte se divide en nueve clases: explosivos, gases, líquidos inflamables, sólidos inflamables, comburentes y peróxidos, venenos e infecciosos, radioactivos, corrosivos y misceláneos.</div>
+                  <div class="content-text">Cada clase tiene rótulos y pictogramas específicos que indican el tipo de riesgo, color y número de clase para identificación en transporte y almacenamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=5057" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Residuos peligrosos: características, clasificación y códigos de colores para gestión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Residuos peligrosos son desechos con propiedades intrínsecas que representan riesgo significativo para salud o ambiente, con características como inflamabilidad, toxicidad, corrosividad y reactividad.</div>
+                  <div class="content-text">Clasificación: residuos reaprovechables (reciclables mediante procesos industriales) y no reaprovechables (no susceptibles de reutilización o reciclaje).</div>
+                  <div class="content-text">Código de colores para manejo de residuos: vidrio (verde), orgánicos (marrón), metálicos (amarillo), plásticos (blanco), generales (negro), papel y cartón (azul), peligrosos (rojo).</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=5413" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:30:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Procedimientos de reconocimiento, identificación y acciones iniciales ante incidentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pasos básicos ante un incidente: reconocer la posible presencia de material peligroso mediante observación de contenedores, etiquetas, placas y rombos de riesgo; identificar con número ONU, nombre en contenedor, documento de transporte o MSDS.</div>
+                  <div class="content-text">Acciones iniciales: aproximarse siempre a favor del viento, mantener distancia de 100 a 150 metros, evaluar situación e informar a central de bomberos (116) con datos del contenedor y números visibles.</div>
+                  <div class="content-text">Delimitación de zonas por especialistas: zona caliente (mayor concentración), zona tibia (descontaminación) y zona fría (más segura), priorizando la seguridad de los primeros respondedores y esperando unidades especializadas.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=5795" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:36:35)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Regulación y seguridad en almacenamiento y transporte de hidrocarburos en sectores mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Marco legal de hidrocarburos y aplicación a almacenamiento para autoconsumo en minería</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ley Orgánica de Hidrocarburos y su texto único ordenado regulan que los hidrocarburos in situ son propiedad del Estado y que se otorgan derechos de exploración y explotación.</div>
+                  <div class="content-text">Artículo relevante permite a personas naturales o jurídicas construir, operar y mantener instalaciones de almacenamiento de hidrocarburos, sujetas a la normativa específica del sector hidrocarburos.</div>
+                  <div class="content-text">Para minería, el almacenamiento de combustibles para autoconsumo está regulado por el reglamento de seguridad de almacenamiento de hidrocarburos, con requisitos técnicos y de autorización.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=6546" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Requisitos técnicos de diseño, ubicación y contención en instalaciones de almacenamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La normativa clasifica líquidos combustibles según punto de inflamación para determinar niveles de riesgo y requisitos de seguridad aplicables.</div>
+                  <div class="content-text">Tipos de tanques: atmosféricos con techo fijo o flotante, enterrados y de baja presión, cada uno con normas de diseño y construcción específicas.</div>
+                  <div class="content-text">Obligatoriedad de áreas de contención (dique) capaces de retener el volumen del tanque mayor y construidas con materiales impermeables, además de distancias mínimas entre tanques y linderos, edificios o áreas de riesgo.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=6635" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:50:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Registro, informe técnico favorable y obligaciones administrativas para operar legalmente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las empresas mineras que almacenan combustibles deben inscribirse en el registro de hidrocarburos correspondiente (registro previo para operar legalmente).</div>
+                  <div class="content-text">Requisito previo: obtención de informe técnico favorable que certifique diseño y construcción conforme a normativa técnica vigente y seguridad de tuberías y surtidores.</div>
+                  <div class="content-text">Existe interconexión con el registro de bienes fiscalizados de SUNAT, implicando obligaciones duplicadas para combustibles considerados bienes fiscalizados, generando un frente regulatorio múltiple.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=6709" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:51:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Medidas de protección contra incendios en tanques de almacenamiento y recomendaciones finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Tipologías de tanques y criterios para protección contra incendios según normas internacionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tipos de tanques: atmosféricos verticales, tanques a presión (esféricos y horizontales) y tanques criogénicos; la protección depende del tipo de líquido, punto de inflamación, diámetro y configuración del tanque.</div>
+                  <div class="content-text">Normas aplicables como NFPA y recomendaciones técnicas (FPA, normas PEMEX) determinan método de protección: enfriamiento por sistemas de diluvio, monitores de agua y aplicaciones de espuma.</div>
+                  <div class="content-text">Diques (containment) juegan papel crítico para confinar derrames en tanques sin doble pared; cuando existe doble pared, la contención puede variar según diseño.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=6845" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:54:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Sistemas de mitigación y elementos de seguridad operativa para reducir riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Medidas de protección: sistemas de diluvio perimetrales, monitores de agua, salidas de descarga de espuma a bajo nivel, monitores de espuma fijos o portátiles, rociadores y mangueras especiales según el tipo de líquido.</div>
+                  <div class="content-text">Selección del tipo de protección debe realizarse mediante estudio de riesgo que determine número y capacidad de monitores y la estrategia de respuesta ante incendio o fuga.</div>
+                  <div class="content-text">Importancia de la ubicación respecto a áreas con presencia humana, condiciones ambientales y la planificación para evitar pérdidas fatales ante un incidente.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=6981" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Recomendaciones de concienciación, formación y contacto para más información</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se recomienda revisar con especialistas cómo proteger un tanque y establecer medidas concretas para prevenir incidentes y explosiones, con atención particular en la protección humana.</div>
+                  <div class="content-text">La formación y concienciación del personal involucrado en transporte y almacenamiento de materiales peligrosos son esenciales para reconocer, identificar y responder adecuadamente a incidentes.</div>
+                  <div class="content-text">Para información adicional y asesoría técnica, contactar a los organismos o empresas especializadas que aparecen en los materiales divulgativos y boletines técnicos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7128" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:58:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Presentación y elección de plataformas de IA para procesar documentos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Comparación de modelos y versiones de IA disponibles</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Exposición de varias plataformas de IA disponibles en el mercado, indicando que algunas ofrecen versión gratuita y otras de pago, con distintas limitaciones de uso por archivo y por contexto.</div>
+                  <div class="content-text">Señalamiento de que la plataforma escogida permite subir hasta diez archivos simultáneamente en la versión gratuita, frente a otras que limitan a uno o tres archivos, lo que facilita procesar múltiples memorias anuales.</div>
+                  <div class="content-text">Mención de las diferencias entre versiones gratuitas y Pro, donde la Pro aporta mayor contexto, capacidad de búsqueda y recursos adicionales para análisis más exhaustivos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7205" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Requisitos y preparación previa para usar la IA de forma eficiente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Insistencia en la necesidad de capacitarse y aprender a usar la IA de forma eficiente para mejorar la productividad en el trabajo de escritorio y profesional.</div>
+                  <div class="content-text">Afirmación de que el aprendizaje correcto de la herramienta permite que la IA sea un soporte real en tareas que consumen tiempo, como el tratamiento de documentos y análisis de datos financieros.</div>
+                  <div class="content-text">Recomendación general de iterar y validar los resultados generados por la IA antes de su uso final en informes o presentaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7268" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Configuración práctica de la cuenta y herramientas internas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Demostración del panel de la cuenta gratuita donde se seleccionan modelos, herramientas y modos de exportación, incluyendo la selección de un modelo Pro más avanzado para razonamiento y cálculos.</div>
+                  <div class="content-text">Activación de la herramienta Canvas para generar documentos separados (salidas en hojas independientes) que luego pueden exportarse a PDF o Word, facilitando la edición y presentación.</div>
+                  <div class="content-text">Descripción del proceso de carga de archivos, con el límite de diez archivos, y la preparación del prompt (instrucción) para que la IA genere el informe deseado.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7633" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Carga y procesamiento de memorias anuales de empresas mineras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Tipología y contenido de las memorias anuales utilizadas para el ejemplo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación de diez memorias anuales de compañías mineras con extensiones variables, desde cinco páginas hasta cerca de ciento ochenta páginas, incluyendo informes de compañías como Buenaventura, Volcán, Cerro Verde y Brocal.</div>
+                  <div class="content-text">Descripción general del contenido típico de una memoria anual: introducción, mensaje del presidente, operaciones, iniciativas, cuestiones medioambientales y, al final, los estados financieros completos.</div>
+                  <div class="content-text">Indicación de que los estados financieros contienen activos, patrimonio, resultados, flujo de efectivo y comparativos año actual vs año pasado.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7335" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Necesidad práctica del análisis financiero en evaluaciones técnicas-económicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de que, en evaluaciones técnicas-económicas o procesos de licitación, es necesario analizar los estados financieros de múltiples empresas para determinar su salud financiera y capacidad de participación.</div>
+                  <div class="content-text">Ejemplo práctico planteado: comparar los diez principales ratios financieros de las diez empresas para un comparativo uniforme y evaluar el tiempo requerido para realizar dicho análisis manualmente.</div>
+                  <div class="content-text">Testimonio de asistentes sobre el tiempo estimado (una semana o más) para completar manualmente el análisis de las diez empresas, destacando la carga laboral adicional.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7528" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Proceso de subida y verificación de los diez documentos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Demostración de la selección y subida de los diez archivos a la herramienta IA, comprobando que todos los documentos se cargan correctamente antes de solicitar el informe.</div>
+                  <div class="content-text">Observación del tiempo de procesamiento estimado por la IA para analizar documentos voluminosos, indicando que el análisis completo de diez memorias puede tardar unos pocos minutos en la plataforma mostrada.</div>
+                  <div class="content-text">Señalamiento de mensajes y estados que muestran que la IA está "pensando" y procesando la información, con retroalimentación visual del progreso.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7683" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:03)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Generación del informe financiero automatizado y resultados iniciales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Solicitud del informe y parámetros definidos en el prompt</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instrucción aplicada: generar un informe completo y uniforme con los diez principales ratios financieros de cada empresa, dirigido a la gerencia general o accionistas, manteniendo un formato claro y comprensible.</div>
+                  <div class="content-text">Elección de salida en Canvas para obtener un documento separado y bien estructurado que puede exportarse y editarse posteriormente.</div>
+                  <div class="content-text">Mención de la opción de ajustar tono, longitud y formato del informe (más formal, más breve, sugerir cambios) mediante iteraciones con la IA.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=7740" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Contenido generado por la IA: ratios, explicaciones y disponibilidad de datos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Listado de ratios calculados y explicados por la IA: ratios de liquidez con fórmulas, ratio ácido, solvencia, cobertura de intereses, ratios de rentabilidad como margen bruto y margen operativo.</div>
+                  <div class="content-text">Presentación de resultados por empresa, indicando que en algunos casos no hubo datos suficientes para ciertos ratios y la IA reportó "no disponible" cuando faltaba información.</div>
+                  <div class="content-text">Inclusión de análisis por categorías: solvencia, rentabilidad, gestión y eficiencia, con comentarios explicativos y conclusiones preliminares al final del informe.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8005" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Evaluación del tiempo y calidad del trabajo automatizado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Observación de que la IA redujo notablemente el tiempo requerido para producir un informe comparativo de diez empresas, comparado con una semana de trabajo manual.</div>
+                  <div class="content-text">Recomendación de realizar muestreos y revisiones manuales del informe generado para validar la calidad y corrección de los datos antes de su uso definitivo.</div>
+                  <div class="content-text">Notas sobre la posibilidad de ampliar el análisis con más ratios o mayor profundidad si se requiere, iterando con la IA para refinar resultados.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8072" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:32)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Conversación interactiva, creación de infografías y ajustes de presentación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Generación automática de infografías y presentación visual de resultados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Demostración de la capacidad de la herramienta para transformar el informe analítico en una infografía o presentación visual que resume los principales hallazgos y ratios.</div>
+                  <div class="content-text">Proceso de creación de la infografía desde los mismos datos analizados, mostrando que es posible obtener material listo para exponer ante una agencia o gerencia.</div>
+                  <div class="content-text">Observación de que la infografía es interactiva en contenido y puede ser ajustada visualmente (colores, temas) según preferencias del usuario.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8130" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Iteración con la IA para refinamiento y adaptación del formato visual</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación del flujo de trabajo conversacional con la IA: solicitar cambios, eliminar o añadir ratios, ajustar tono o formato y pedir validación paso a paso.</div>
+                  <div class="content-text">Ejemplos de comandos posibles: cambiar color a tema oscuro, extender o acortar la longitud del texto, transformar el lenguaje a un registro más formal, o pedir explicaciones detalladas de fórmulas.</div>
+                  <div class="content-text">Recomendación de validar los cambios y volver a solicitar ajustes hasta obtener la versión final deseada para presentación.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8173" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Demostración práctica de cambio de formato y explicaciones técnicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cambio de apariencia de la infografía (colores claros a oscuros) y visualización de la infografía en pantalla grande para facilitar la exposición.</div>
+                  <div class="content-text">Petición de explicaciones técnicas en vivo, como la diferencia entre margen neto y ROE, obteniendo definiciones y ejemplos sencillos sobre qué mide cada ratio y cómo interpretarlo.</div>
+                  <div class="content-text">Uso de la IA para pedir desgloses paso a paso de fórmulas (por ejemplo ROA, ROE), permitiendo que el usuario entienda y explique los cálculos en presentaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8288" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:18:08)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Recomendaciones finales, limitaciones y cierre de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Ventajas, recomendaciones de uso y limitaciones señaladas por el expositor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Afirmación de que, bien usada, la IA se convertirá en la nueva "oficina" que potencia productividad en tareas de oficina y análisis de datos, reduciendo significativamente tiempos de entrega.</div>
+                  <div class="content-text">Recomendación de usar la IA para tareas profesionales y de escritorio, priorizando su uso en análisis de documentos, datos y generación de presentaciones formales.</div>
+                  <div class="content-text">Advertencia sobre limitaciones: en casos de información muy compleja o rebuscada la IA puede requerir supervisión y validación manual adicional para asegurar precisión.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8368" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:19:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Comparativa práctica con otras herramientas y preferencia personal del expositor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mención de pruebas realizadas con otras plataformas (Meta, Pilot y otras) indicando que, en su experiencia, la herramienta mostrada ofrece mejor procesamiento de datos hasta el momento.</div>
+                  <div class="content-text">Comentario personal sobre preferencias y tests previos, apuntando que algunas plataformas no soportan tantos archivos o no procesan datos con la misma eficiencia.</div>
+                  <div class="content-text">Sugestión a los asistentes de probar varias herramientas y elegir la que mejor se adapte a su carga y tipo de documentos.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8430" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:20:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Cierre de la sesión, próximos pasos y despedida</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Invitación del expositor a la próxima sesión del jueves, indicando que será la última clase y ofreciendo preparar un tema especial si los asistentes llevan preguntas concretas o dudas para trabajar en vivo.</div>
+                  <div class="content-text">Anuncio de que se enviará la grabación de la clase a los alumnos para repasar puntos y recordatorio sobre la siguiente sesión en el mismo horario, recomendando conectarse antes.</div>
+                  <div class="content-text">Despedida final, agradecimientos y recordatorio de contactos de soporte para consultas durante la semana, concluyendo la sesión.</div>
+                  <a href="https://www.youtube.com/watch?v=qpWGlqwd8WM&start=8445" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:20:45)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 17: ESTRATEGIAS SOSTENIBLES Y RESPONSABILIDAD SOCIAL - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

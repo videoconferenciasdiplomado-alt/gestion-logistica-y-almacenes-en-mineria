@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Presentación e inicio de la sesión y objetivo general</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Bienvenida y apertura de la clase por la moderadora y profesor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se saluda a los asistentes y se anuncia el inicio de la sesión número 14 del diplomado gestión logística y almacenes en minería.</div>
+                  <div class="content-text">La moderadora indica canales para consultas: chat o micrófono, y cede la palabra al profesor Gonzalo para iniciar la clase.</div>
+                  <div class="content-text">Se informa que la clase integrará un video de refuerzo sobre FODA matemático antes del tema principal de evaluación de riesgos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=9" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:00:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Introducción del video sobre análisis FODA matemático por otro autor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se reproduce un video de Mario Héctor Bogel (Bogel) que describe problemas del FODA clásico y presenta una propuesta matemática.</div>
+                  <div class="content-text">El autor anuncia un ebook y su objetivo de complementar la enseñanza con metodología sistemática y herramientas en la nube.</div>
+                  <div class="content-text">Se plantea la agenda: problemas del FODA tradicional, solución FODA matemático, metodología de siete pasos y aplicaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=33" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:00:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Contextualización y motivación para un FODA matemático</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se cuestiona la subjetividad del FODA tradicional y la tendencia a listar fortalezas genéricas que no aportan valor real.</div>
+                  <div class="content-text">Se argumenta la necesidad de incorporar conceptos de la Teoría General de Sistemas y métodos cuantitativos para un análisis más objetivo.</div>
+                  <div class="content-text">Se menciona la influencia de autores como Robert Kaplan y Edgar Morín en el desarrollo del enfoque matemático.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=56" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:00:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Problemática del FODA clásico y nacimiento del FODA matemático</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Problemas detectados en el FODA tradicional y su subjetividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La elaboración de listas suele producir fortalezas y debilidades genéricas que no describen capacidades específicas y profundas.</div>
+                  <div class="content-text">El sistema clásico no reconoce la interconexión sistémica entre elementos de la empresa, separando variables que debieran analizarse juntas.</div>
+                  <div class="content-text">Las decisiones resultantes se basan en consensos verbales y brainstorming, sin justificación científica ni matemática.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=134" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:02:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Propuestas conceptuales y teóricas que motivan el FODA matemático</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se incorporan conceptos de la Teoría General de Sistemas para entender que la cualidad del sistema depende de la interconexión de sus partes.</div>
+                  <div class="content-text">Se refiere la experiencia formativa con Robert Kaplan y la influencia del enfoque sistémico y cibernético para formalizar un FODA cuantitativo.</div>
+                  <div class="content-text">El autor plantea la necesidad de una metodología que convierta el FODA en una herramienta profesional y reproducible.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=390" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:06:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Beneficios esperados del FODA matemático frente al FODA tradicional</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El FODA matemático busca identificar verdaderas fortalezas y oportunidades a partir de fuentes objetivas y sistemáticas.</div>
+                  <div class="content-text">Permite generar objetivos y estrategias con sustento cuantitativo, evitando decisiones arbitrarias o superficiales.</div>
+                  <div class="content-text">Su aplicación promueve informes útiles para alta dirección, consultores y docentes que desean presentar análisis más rigurosos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=492" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:08:12)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Metodología en siete pasos del análisis FODA matemático</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Paso 1: Acceso a cuatro fuentes objetivas para definir variables endógenas y exógenas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se solicita recurrir a cuatro fuentes serias y objetivas que permitan listar verdaderas fortalezas, debilidades, oportunidades y amenazas.</div>
+                  <div class="content-text">Las opiniones exclusivas de gerentes o colaboradores son insuficientes, por ser potencialmente superficiales o sesgadas.</div>
+                  <div class="content-text">El propósito es generar un listado robusto que sirva de base para el análisis matemático posterior.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=573" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Paso 2: Crear matriz de apareamiento matemático entre variables FODA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se construyen apareamientos FO, FA, DO y DA para analizar combinaciones entre fortalezas/debilidades y oportunidades/amenazas.</div>
+                  <div class="content-text">Cada enfrentamiento se trata como unidad de análisis que deberá ser valorada mediante criterios científicos y matemáticos.</div>
+                  <div class="content-text">La matriz permite identificar qué combinaciones poseen mayor impacto para orientar la priorización estratégica.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=636" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:36)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Paso 3: Selección de método de investigación científica para valorar impactos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se elige un método de indagación científica para estimar el nivel de impacto de cada enfrentamiento en la matriz.</div>
+                  <div class="content-text">La valoración debe seguir protocolos reproducibles, evitando juicios puramente subjetivos.</div>
+                  <div class="content-text">El autor sugiere métodos concretos desarrollados en su ebook para medir y comparar impactos entre apareamientos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=667" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.4</span>
+                  <span class="subsection-title">Paso 4: Creación de instrumento para registrar valoraciones de cada enfrentamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se diseña un instrumento o software para capturar y almacenar las valoraciones de cada apareamiento FODA.</div>
+                  <div class="content-text">El autor menciona haber desarrollado un software web que facilita el proceso y genera reportes rápidos.</div>
+                  <div class="content-text">El registro sistemático posibilita análisis comparativos y trazabilidad en la toma de decisiones.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=705" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.5</span>
+                  <span class="subsection-title">Paso 5: Análisis de resultados en los cuatro cuadrantes del FODA matemático</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se analizan los resultados obtenidos para cada cuadrante a partir de las valoraciones matemáticas.</div>
+                  <div class="content-text">El sistema genera cuadros con puntuaciones que permiten distinguir las variables de mayor impacto.</div>
+                  <div class="content-text">Ejemplo: seleccionar fortalezas y oportunidades que combinadas aporten mayor valor para definir objetivos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=738" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.6</span>
+                  <span class="subsection-title">Paso 6: Determinación del balance estratégico de los cuatro cuadrantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se determina matemáticamente el balance estratégico entre las áreas que resultan del análisis.</div>
+                  <div class="content-text">El cálculo orienta sobre la prioridad de intervención y la estrategia general a seguir en cada cuadrante.</div>
+                  <div class="content-text">El balance permite clasificar escenarios como estrategias de potenciación, transformación o supervivencia.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=755" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.7</span>
+                  <span class="subsection-title">Paso 7: Identificación matemática de la estrategia óptima por cuadrante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se identifica la estrategia óptima (por ejemplo minimizar o potenciar) según los puntajes obtenidos.</div>
+                  <div class="content-text">El sistema sugiere estrategias como mini-mini (minimizar debilidades y amenazas) y otras según el balance.</div>
+                  <div class="content-text">Resultados permiten crear objetivos concretos y priorizar acciones con justificación matemática.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=766" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:46)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Aplicaciones prácticas y ejemplos del FODA matemático</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Caso de ejemplo con listado reducido de variables y decisiones derivadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se ilustran cuadros con 4 fortalezas, 4 debilidades, 4 oportunidades y 4 amenazas para simplificar la explicación.</div>
+                  <div class="content-text">El ejemplo muestra cómo el apareamiento FO permitió identificar una fortaleza clave (experiencia en locales grandes) con una oportunidad valiosa (introducción de productos importados).</div>
+                  <div class="content-text">A partir de esas combinaciones se diseñaron decisiones como potenciar fortalezas y transformar debilidades con prioridad financiera.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=787" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:13:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Identificación matemática de prioridades y elementos estratégicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El análisis indica cuál es la oportunidad que más valor aporta a la organización para convertirla en objetivo prioritario.</div>
+                  <div class="content-text">También muestra cuál oportunidad aporta menos valor para evitar invertir recursos innecesarios.</div>
+                  <div class="content-text">Se identifican las fortalezas que más impulsan oportunidades y las amenazas que más daño pueden causar, todo con sustento numérico.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1034" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Resultados concretos y utilidad para alta dirección, consultores y docentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El reporte matemático ayuda a la alta dirección a recibir decisiones fundadas y priorizadas por impacto real.</div>
+                  <div class="content-text">Consultores pueden sorprender a clientes con objetivos diferentes y más efectivos derivados del análisis cuantitativo.</div>
+                  <div class="content-text">Docentes y universidades pueden actualizar contenidos y diferenciarse frente al FODA tradicional con herramientas matemáticas.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1269" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:09)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Introducción a evaluación de riesgos en la cadena de suministro y herramienta práctica</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Definición, objetivo y metodología básica de evaluación de riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La evaluación de riesgos cuantifica y prioriza riesgos identificados, analizando probabilidad de ocurrencia e impacto en operaciones logísticas.</div>
+                  <div class="content-text">Se emplea una matriz riesgo = probabilidad x impacto y se realizan análisis cualitativos y cuantitativos según la disponibilidad de datos.</div>
+                  <div class="content-text">El objetivo principal es priorizar riesgos que amenazan la continuidad del negocio y asignar recursos de mitigación.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1699" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Pasos para gestionar riesgos en la cadena de suministro y sus elementos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Paso 1: Identificar riesgos mediante lluvia de ideas, categorización y registro de características y alcance.</div>
+                  <div class="content-text">Paso 2: Valorar riesgos a través de análisis cuantitativos (probabilidad, impacto económico) y cualitativos (juicio experto).</div>
+                  <div class="content-text">Paso 3: Diseñar plan de acción con acciones concretas, presupuesto, responsables y calendario, seguido por ejecución y revisión periódica.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1742" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Tipos de riesgos en la cadena de suministro que deben considerarse</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Riesgos de abastecimiento relacionados con proveedores, calidad, plazos, transporte, aduanas y robo.</div>
+                  <div class="content-text">Riesgos de demanda asociados a errores de pronóstico, pérdidas de clientes, retrasos y variaciones de precios.</div>
+                  <div class="content-text">Riesgos internos de procesos vinculados a tecnología, seguridad informática, gestión de inventarios, capacidad y planeación.</div>
+                  <div class="content-text">Riesgos de entorno externos: inestabilidad política, infraestructura deficiente, cambios regulatorios, desastres naturales y huelgas.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1861" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Matriz de riesgos 5x5, escalas y priorización con ejemplos prácticos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Escalas recomendadas de gravedad y probabilidad en una matriz 5x5</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Escala de gravedad con cinco niveles: insignificante, menor, moderada, importante y catastrófica, y su descripción operacional.</div>
+                  <div class="content-text">Escala de probabilidad con cinco niveles: muy probable, probable, posible (50%), no probable y muy improbable.</div>
+                  <div class="content-text">La matriz 5x5 permite mayor granularidad frente a alternativas 3x3 o 7x7 recomendadas por el instructor.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=1980" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Cálculo de impacto de riesgo, rangos de priorización y colores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Impacto de riesgo calculado como multiplicación de probabilidad por gravedad, generando valores entre 1 y 25.</div>
+                  <div class="content-text">Clasificación en tres rangos: bajo (verde), medio (amarillo) y alto (rojo), con umbrales sugeridos para priorizar acciones.</div>
+                  <div class="content-text">Los riesgos altos (13 a 25) requieren planificación prioritaria por su probabilidad y consecuencias graves para operaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=2088" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:34:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Valor esperado monetario (EMV) para valoración cuantitativa cuando hay datos fiables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">EMV (expected monetary value) incorpora probabilidad, gravedad y costo económico esperado para expresar el riesgo en términos monetarios.</div>
+                  <div class="content-text">Su uso requiere datos históricos o estimaciones fiables para convertir impacto en una pérdida económica esperada.</div>
+                  <div class="content-text">Cuando no se dispone de datos monetarios se utiliza la escala estandarizada de probabilidad y gravedad sin conversión en costos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=2265" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:45)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Plan de acción, ejemplos de caso práctico y uso de herramientas IA para resumir y analizar información</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Componentes esenciales de un plan de acción para continuidad y recuperación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Debe incluir impacto real en costos, tiempo de recuperación, responsables, procesos alternativos y fuentes de suministro secundarias.</div>
+                  <div class="content-text">Incluir coberturas como seguros, fianzas y acuerdos contractuales, junto con planes de capacitación y simulacros regulares.</div>
+                  <div class="content-text">El plan es un proceso continuo que debe revisarse periódicamente cada 2 o 3 años para mantenerse vigente.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=2334" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:38:54)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Caso práctico: evaluación de riesgos en almacén minero con pasos completos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se plantea un caso donde los responsables del almacén deben identificar riesgos, valuar su gravedad y probabilidad, calcular impacto y priorizar acciones.</div>
+                  <div class="content-text">El ejercicio incluye elaborar la matriz 5x5, asignar valores y generar un plan de acción detallado para mitigar los riesgos más críticos.</div>
+                  <div class="content-text">El docente anuncia que realizará el ejemplo en Excel y proporcionará plantillas para que los alumnos lo desarrollen.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=2392" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Uso de IA para resumir videos y analizar grandes volúmenes de documentos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El profesor demuestra cómo usar herramientas de IA (ejemplo: Gemini) para resumir videos largos de YouTube y extraer capítulos y tiempos relevantes.</div>
+                  <div class="content-text">Se explica el procedimiento: copiar enlace, usar modelo Flash en la IA y obtener resumen con timestamps y puntos clave para ahorro de tiempo.</div>
+                  <div class="content-text">Se recomienda esta práctica para estudiantes y profesionales que disponen de poco tiempo para revisar material extenso.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=2424" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Uso avanzado de IA para análisis de documentos financieros y automatización de tareas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Ejemplo de carga y análisis de 10 memorias anuales con IA para crear informes comparativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente muestra la carga de 10 memorias anuales de empresas mineras (documentos de 30 a 187 páginas) para automatizar extracción de información.</div>
+                  <div class="content-text">Señala que el análisis manual de todos los documentos requeriría días o semanas, mientras que la IA permite procesarlos en menor tiempo.</div>
+                  <div class="content-text">Se plantea generar un informe comparativo con los 10 principales ratios financieros para presentar a la gerencia sin errores humanos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3142" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:52:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Procedimiento práctico para instruir a la IA y generar informes financieros comparativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se explica la importancia de construir prompts claros para indicar a la IA que genere un informe comparativo de las empresas cargadas.</div>
+                  <div class="content-text">El flujo incluye subir archivos, seleccionar modelo apropiado (Flash o Pro) y solicitar la extracción de ratios financieros y su explicación.</div>
+                  <div class="content-text">Se advierte que la calidad del resultado depende de la claridad de la instrucción y la disponibilidad de datos dentro de los documentos cargados.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3425" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Aplicaciones prácticas y beneficios en el trabajo profesional diario</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La IA facilita tareas rutinarias como resumir videos, comparar estados financieros y extraer datos relevantes para decisiones operativas.</div>
+                  <div class="content-text">Permite a profesionales ahorrar tiempo, enfocarse en análisis crítico y presentar reportes profesionales a la alta dirección o clientes.</div>
+                  <div class="content-text">El docente ofrece capacitación personalizada sobre uso de IA para análisis de datos, generación de dashboards y visualizaciones aplicadas a la minería.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3487" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:07)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Presentación de carga y resumen de documentos con IA</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Descripción del proceso de carga de archivos y generación automática de informes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de cómo se solicita un resumen efectivo y tablas comparativas dentro del prompt para que la IA genere un informe consolidado en minutos.</div>
+                  <div class="content-text">Indicación de que la interfaz crea un documento lateral (canvas) que permite exportar fácilmente el informe final a formatos editables.</div>
+                  <div class="content-text">Nota sobre la preferencia del expositor por herramientas que permiten subir múltiples documentos simultáneamente para análisis integrado.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3610" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Limitaciones y características de versiones gratuitas y de pago de distintas IA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comparativa informal de límites en versiones gratuitas: Yemin permite hasta 10 documentos, otras (ChatGPT, etc.) permiten entre uno y tres archivos máximo en la versión gratuita.</div>
+                  <div class="content-text">Mención de la versión de pago (Pro vs Flash) que ofrece más consultas, opciones y búsquedas ilimitadas en la versión Pro, con diferencias de velocidad y capacidad de razonamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3629" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Observaciones sobre tiempos de procesamiento y visualización del "pensamiento" del modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Demostración en tiempo real del proceso de carga y el tiempo que tarda la IA en "pensar" y procesar múltiples documentos extensos.</div>
+                  <div class="content-text">Comentario sobre la opción de pausar para que los asistentes observen el progreso y comprendan la utilidad para documentos largos como políticas y manuales.</div>
+                  <div class="content-text">Notas de que parte de la interfaz muestra pasos intermedios en inglés, aludiendo al idioma nativo del modelo.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3664" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:04)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Resultados del informe generado por la IA y personalización del contenido</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Estructura y contenido del informe comparativo financiero generado automáticamente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El informe incluye título sugerido, objetivo, definiciones y secciones como ratios financieros clave y su metodología de cálculo.</div>
+                  <div class="content-text">Presenta tablas comparativas con ratios por compañía (margen, ROA, ROE, liquidez, razón corriente, prueba ácida, solvencia) ordenadas por cada entidad minera analizada.</div>
+                  <div class="content-text">El documento contiene conclusiones agrupadas por categorías y recomendaciones estratégicas basadas en los datos comparados.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3814" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Opciones de ajuste de tono, extensión y detalle del informe</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La IA permite cambiar el tono del informe (formal, informal, muy formal, muy informal) y la longitud (más corto, más largo, muy largo) según la audiencia.</div>
+                  <div class="content-text">Al solicitar ampliaciones la IA revisa y duplica secciones, enriquece definiciones, contexto y conclusiones, mostrando los cambios realizados para trazabilidad.</div>
+                  <div class="content-text">El expositor da consejos sobre la importancia del prompt preciso para obtener resultados útiles y personalizados según necesidad gerencial.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=3889" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Fiabilidad, alucinaciones y buenas prácticas para verificación de resultados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pregunta de un asistente sobre la confiabilidad de la IA y explicación del fenómeno de "alucinaciones" (errores generados por el modelo).</div>
+                  <div class="content-text">Recomendación de verificar con muestreos aleatorios, contrastar algunos ratios o cifras manualmente para confirmar resultados.</div>
+                  <div class="content-text">Observación de que al alimentar al modelo con documentos propios la probabilidad de error disminuye, y que versiones más avanzadas tienden a alucinar menos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4159" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Exportación, copiado y manejo del informe generado</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Métodos para obtener el informe fuera de la herramienta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Opción 1: Exportar a Google Docs (crea un Google Doc desde la plataforma), luego descargar como Word si se desea.</div>
+                  <div class="content-text">Opción 2: Copiar contenido desde la interfaz y pegarlo en un documento Word o similar directamente.</div>
+                  <div class="content-text">Sugerencia práctica sobre uso del exportado para edición posterior y distribución entre el equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4305" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Importancia del prompt y enseñanza práctica en la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Discusión sobre la clave de un prompt bien instruido para que la IA genere resultados precisos y útiles; en las clases se enseña cómo formular prompts efectivos.</div>
+                  <div class="content-text">Mención de que se realizan ejemplos en clase y se trabajan los prompts con los documentos reales de los asistentes para aprendizaje aplicado.</div>
+                  <div class="content-text">Invitación a usar la herramienta para ser más productivos y a practicar para diferenciarse profesionalmente mediante habilidades en IA.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4343" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Pausa y logística para registro de participación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Anuncio de un breve descanso de 5 minutos para que los asistentes estiren las piernas y se envíe el enlace para registrar la participación en la sesión del día.</div>
+                  <div class="content-text">Mensión musical y retorno a la segunda parte de la sesión tras el descanso.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4356" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:36)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Confirmación de aprendizajes y transición a matriz de riesgos en Excel</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Revisión de lo aprendido sobre resúmenes de videos y documentos con IA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Preguntas a la audiencia sobre si entendieron cómo generar resúmenes de videos y documentos y confirmación general de comprensión por parte de los participantes.</div>
+                  <div class="content-text">Énfasis en la aplicabilidad de la técnica desde resumir libros hasta tareas diarias de trabajo para mejorar productividad.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4777" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:19:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Anuncio de la siguiente actividad: matriz de riesgos en Excel</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación del tema siguiente: uso de Excel para elaborar una matriz de riesgos basada en un flujo de almacén.</div>
+                  <div class="content-text">Explicación de metodología: identificar riesgos por flujo/proceso, valorarlos por gravedad y probabilidad, y calcular impacto mediante multiplicación.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4878" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Descripción del caso práctico de almacén y sus flujos principales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Flujo simple descrito: repartidor entrega mercadería, orden de despacho, auxiliar de recepción, registro en sistema, y firma de orden de despacho por encargado.</div>
+                  <div class="content-text">Identificación inicial de riesgos por cada paso del proceso como base para el ejercicio práctico en Excel.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4886" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Desarrollo de la valoración de riesgos y matriz 5x5</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Identificación de riesgos específicos del flujo de almacén y su justificación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ejemplos de riesgos identificados: proveedor con documentos incompletos, proveedor sin EPP, mercadería dañada, sistema que no funciona, personal no capacitado, falta de espacio en almacén, equipos de manipulación no operativos y ausencia del firmante encargado.</div>
+                  <div class="content-text">Aclaración de que el nivel de detalle puede variar según la profundidad del análisis deseado por el equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=4969" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:22:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Escala de valoración por gravedad y probabilidad y cálculo del impacto</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se define escala 1-5 para gravedad (1 insignificante, 5 catastrófico) y probabilidad (1 muy improbable, 5 muy probable).</div>
+                  <div class="content-text">El impacto del riesgo se calcula multiplicando gravedad por probabilidad, con rangos resultantes clasificados como bajo (1-6), medio (7-12) y alto (13-25).</div>
+                  <div class="content-text">Ejemplo práctico de asignación de puntajes y cálculo para cada riesgo identificado en el flujo.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5034" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:23:54)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Asignación de puntajes de ejemplo a riesgos concretos y su interpretación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Proveedor con documentos equivocados: gravedad moderada y probabilidad baja, resultado impacto 6 (bajo).</div>
+                  <div class="content-text">Proveedor sin EPP completos: gravedad menor y probabilidad baja, resultado impacto 4 (bajo).</div>
+                  <div class="content-text">Mercadería dañada: gravedad importante y probabilidad baja, resultado impacto 8 (medio).</div>
+                  <div class="content-text">Sistema no funciona: gravedad alta y probabilidad alta por contexto de apagones, impacto 16 (alto).</div>
+                  <div class="content-text">Personal no capacitado: gravedad alta pero probabilidad muy baja, impacto 4 (bajo).</div>
+                  <div class="content-text">Falta de espacio: gravedad menor y probabilidad baja, impacto 2 (bajo).</div>
+                  <div class="content-text">Equipos de manipulación no funcionan: gravedad catastrófica y probabilidad moderada, impacto 15 (alto).</div>
+                  <div class="content-text">Ausencia del firmante encargado: gravedad menor y probabilidad baja, impacto 2 (bajo).</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5080" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:40)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Construcción de la matriz visual y ubicación de riesgos en cuadrantes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Constitución de la matriz 5x5 con ejes probabilidad y gravedad y procedimiento de emplazamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instrucciones para construir la matriz con ejes de probabilidad y gravedad y ubicar cada riesgo según los puntajes asignados.</div>
+                  <div class="content-text">Ejemplo de cómo trasladar un puntaje (gravedad 3, probabilidad 2) a la celda correspondiente y marcar el impacto numérico.</div>
+                  <div class="content-text">Observación sobre casos donde varios riesgos comparten el mismo cuadrante y la representación con barras diagonales para distinguir duplicados.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5219" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Ejemplos prácticos de colocación de riesgos en la matriz con casos detallados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Proveedor con documentos equivocados colocado en la celda gravedad 3, probabilidad 2 con impacto 6.</div>
+                  <div class="content-text">Mercadería dañada ubicada en celda gravedad 4, probabilidad 2 con impacto 8.</div>
+                  <div class="content-text">Sistema no funciona ubicado en celda gravedad 4, probabilidad 4 con impacto 16.</div>
+                  <div class="content-text">Equipos de manipulación no funcionan ubicado en celda gravedad 5, probabilidad 3 con impacto 15.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5231" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:27:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Confirmación de comprensión y aclaraciones sobre la matriz</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Consulta al grupo para confirmar si la matriz y el método de emplazamiento quedaron claros y verificación de la comprensión por parte de asistentes.</div>
+                  <div class="content-text">Aclaración de dudas puntuales y reiteración de que la matriz refleja la clasificación basada en la valoración previa de gravedad y probabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5329" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:28:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Elaboración del plan de acción para mitigación de riesgos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Estructura del plan de acción: actividades, responsables y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Plantilla sugerida que incluye riesgo, puntaje/impacto, actividades de mitigación, responsable asignado, fecha programada, fecha real, avance, estado y observaciones.</div>
+                  <div class="content-text">Recomendación de definir una o varias actividades por riesgo para reducir probabilidad o gravedad según corresponda.</div>
+                  <div class="content-text">Indicaciones sobre registro de responsables y controles de seguimiento para asegurar ejecución y trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5360" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Ejemplos concretos de actividades de mitigación por riesgo identificado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para documentos incompletos: enviar comunicación masiva a proveedores solicitando documentación correcta y colgar carteles en entrada de almacén como recordatorio físico.</div>
+                  <div class="content-text">Para mercadería dañada: establecer revisión de calidad a la recepción y procedimiento de devolución documentado con responsable y cronograma.</div>
+                  <div class="content-text">Para equipos de manipulación: programar mantenimiento preventivo cada cierto periodo y definir responsables y cronograma para reducir probabilidad de falla.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5375" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Observaciones sobre duplicidad de riesgos y cómo manejar acciones relacionadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Nota de que algunos riesgos pueden aparecer duplicados en la matriz y en la planilla, por lo que es importante agrupar o vincular acciones cuando correspondan.</div>
+                  <div class="content-text">Recomendación de priorizar acciones en riesgos de impacto alto y documentar cambios de estado y evidencias de mitigación en la plantilla.</div>
+                  <div class="content-text">Indicación de que la plantilla será compartida con la monitora para que todos los asistentes la descarguen y trabajen en el caso.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5424" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:30:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Organización del ejercicio práctico en grupos y logística final</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Descripción del caso práctico asignado y pasos a seguir por los grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Caso práctico: proceso de compras con flujo de requerimiento, cotización, evaluación de propuestas, emisión de compra y seguimiento de orden de compra.</div>
+                  <div class="content-text">Indicaciones para los grupos: enumerar riesgos por cada actividad, valorar gravedad y probabilidad, construir matriz y completar plan de acción en la plantilla proporcionada.</div>
+                  <div class="content-text">Aclaración de que la plantilla Excel incluye todas las instrucciones y formatos necesarios para el ejercicio.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5486" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">División en grupos, tiempo asignado y envío de archivos a monitores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Anuncio de división en dos grupos con asignación aleatoria y 30-35 minutos para trabajar en la actividad en sus salas separadas.</div>
+                  <div class="content-text">Confirmación de que la monitora recibió y empezó a enviar la plantilla Excel al grupo, y que el profesor supervisará y pasará instrucciones adicionales si es necesario.</div>
+                  <div class="content-text">Solicitud final para que los participantes ingresen a sus respectivas salas de trabajo y realicen el ejercicio en el tiempo asignado.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=5504" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Cierre y transición a las sesiones de trabajo grupal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mensaje final convocando a los asistentes a entrar a la sala asignada para iniciar la actividad grupal de riesgo.</div>
+                  <div class="content-text">Recordatorio implícito de aplicar lo aprendido sobre identificación de riesgos, valoración, matrix y plan de acción utilizando la plantilla compartida.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=6026" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:40:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Reanudación y control de ingreso de participantes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Llamado a los participantes y verificación de asistencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se anuncia la reanudación de la sesión y se solicita que los participantes entren a la plataforma para continuar con la clase.</div>
+                  <div class="content-text">El moderador pide que ingresen el resto de asistentes antes de comenzar con el desarrollo planificado de la sesión.</div>
+                  <div class="content-text">Se enfatiza la importancia de que más personas se conecten para poder avanzar con la dinámica o los ejercicios programados.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7686" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Solicitud de progreso de los estudiantes en tareas o casos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se pide a los estudiantes presentes que avancen con algo del caso asignado y muestren lo que han hecho hasta el momento.</div>
+                  <div class="content-text">El moderador nombra a un estudiante (Rider/Medwin) para que muestre su avance y confirme si ha trabajado en el caso o en la transparencia asignada.</div>
+                  <div class="content-text">Se solicita una presentación rápida del progreso por cuestiones de tiempo y para evaluar el nivel de avance alcanzado.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7788" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Petición de compartir pantalla y comprobación técnica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se solicita explícitamente a quienes han avanzado que compartan su pantalla para mostrar el material trabajado y permitir su revisión en clase.</div>
+                  <div class="content-text">Se intenta coordinar quién va a compartir (si Rider u otro compañero) y se revisa si el archivo está en Excel u otro formato.</div>
+                  <div class="content-text">Se observan dificultades técnicas o falta de respuesta por parte del estudiante nombrado, impidiendo la demostración de avances.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7842" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:42)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Finalización de la sesión por límite de tiempo y agradecimientos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Decisión de concluir la actividad por falta de tiempo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ante la imposibilidad de visualizar avances y la llegada del final del horario, el moderador decide dar por concluida la sesión.</div>
+                  <div class="content-text">Se agradece a los participantes por su tiempo y se expresa la expectativa de que hayan aprendido algo utilizable con las herramientas presentadas.</div>
+                  <div class="content-text">Se informa que la próxima sesión será el martes (corrigiendo día inicialmente dicho), manteniendo la previsión del siguiente encuentro académico.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7874" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Mensajes de despedida y cortesía entre participantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se pronuncian saludos de despedida y se aconseja a todos que se cuiden hasta el próximo encuentro.</div>
+                  <div class="content-text">Se reconoce la presencia de un participante con la cámara apagada y se intercambian frases de despedida adicionales.</div>
+                  <div class="content-text">Finalizan los intercambios con expresiones de gratitud por la sesión y el cierre del encuentro sin más actividades programadas.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7887" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Instrucciones finales y recordatorios administrativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se informa a los estudiantes que en breve se les enviará la grabación de la sesión para repasar cualquier punto que no haya quedado claro.</div>
+                  <div class="content-text">Se comunica que se han proyectado (compartido) los números de contacto de Dumi (o similar) para consultas o dudas durante la semana.</div>
+                  <div class="content-text">Se recuerda la fecha y hora de la próxima sesión: martes a las 7:35 pm, y se sugiere conectarse unos minutos antes para no perder detalles.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7900" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:40)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Resumen logístico y cierre formal de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Confirmación del envío de materiales y canales de soporte</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se reafirma que la grabación de la sesión será enviada próximamente para que los estudiantes puedan repasar el contenido presentado.</div>
+                  <div class="content-text">Se reitera la disponibilidad de contactos para resolver dudas fuera del horario de clase, facilitando el apoyo continuo durante la semana.</div>
+                  <div class="content-text">Se recuerda a los estudiantes que utilicen esos recursos en caso de necesitar aclaraciones sobre tareas o contenidos vistos.</div>
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7920" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Recomendaciones para la próxima sesión y clausura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se insiste en la recomendación de conectarse anticipadamente a la próxima sesión para garantizar la atención desde el inicio.</div>
+                  <div class="content-text">La sesión se da por concluida formalmente, deseando a todos que tengan un buen tiempo hasta el reencuentro académico.</div>
+                  <div class="content-text">Se finaliza con agradecimientos y despedidas finales, cerrando la sesión y la comunicación en ese momento.</div>
+
+                  <a href="https://www.youtube.com/watch?v=2to0MHsJYLU&start=7925" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:05)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 14: TRANSFORMACIÓN DIGITAL EN LA CADENA LOGÍSTICA MINERA - 2dA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

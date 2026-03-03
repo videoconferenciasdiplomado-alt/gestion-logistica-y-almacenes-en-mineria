@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Apertura de la sesión y presentación del curso</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Bienvenida, presentación del docente y asesor académico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Saludo inicial a los alumnos y mención de los roles de Robo Gonzalo y Andana Urlich como asesora académica, con instrucciones para preguntas en chat o micrófono.</div>
+                  <div class="content-text">Indicación de que la sesión corresponde a la última clase del curso y ofrecimiento para revisar temas adicionales de interés logístico si los estudiantes lo desean.</div>
+                  <div class="content-text">Invitación a proponer temas concretos: currículum, proyectos, licitaciones, CAPEX, OPEX, compras, transporte o almacenes.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=422" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Consulta estudiantil sobre normativa de aceites peligrosos y logística inversa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Estudiante plantea consulta sobre resolución ministerial que prohíbe uso de aceites PCB en transformadores y el papel del área logística en su retiro.</div>
+                  <div class="content-text">Profesor introduce dos aristas: abastecimiento (compra conforme a norma) y desarme/disposición (logística inversa y gestión de residuos peligrosos).</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=549" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Explicación general del alcance de la logística en compras y disposición</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Logística participa en la compra conforme a normativa, requiriendo permisos especiales si proceden excepciones; alternativas y prohibiciones influyen en adquisiciones.</div>
+                  <div class="content-text">En disposición: necesidad de contratar empresas autorizadas para destrucción y transporte de residuos peligrosos, obtención de certificados, coordinación con contabilidad y registro para dar de baja activos.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=601" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Gestión de proveedores, contratación y logística inversa para productos peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Procedimientos para adquisición y restricciones según normativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Compras deben ajustarse a normas vigentes; si hay prohibiciones el área de compras no podrá adquirir fichas con sustancias prohibidas sin permisos especiales.</div>
+                  <div class="content-text">Alternativas tecnológicas y sustitución de insumos cuando se emiten restricciones regulatorias.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=608" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Logística inversa: contratación de empresas autorizadas para disposición segura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Disposición de transformadores y aceites peligrosos requiere empresas especializadas autorizadas por entidades competentes (ejemplo menciona SUNAT/SUNAFIL como referencias administrativas).</div>
+                  <div class="content-text">Estas empresas realizan transporte en condiciones especiales, procesos de destrucción, emisión de actas y certificados que sirven para baja contable y cumplimiento normativo.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=707" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Coordinación interdepartamental y registro documental del proceso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Logística debe buscar proveedores, preparar órdenes de compra, contratos, coordinar pagos y asegurar recepción de actas y certificados para contabilidad.</div>
+                  <div class="content-text">Presencia de un representante en la destrucción o retiro y entrega de documentación para acreditar disposición conforme.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=754" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Legislación aplicable, vigilancia regulatoria y responsabilidad empresarial</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Síntesis del marco normativo y su impacto en el sector minero</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El marco normativo peruano para minería es interconectado y un mismo producto puede sujetarse a múltiples normas (ejemplo: explosivos y sus múltiples regulaciones).</div>
+                  <div class="content-text">Relevancia de mantener vigilancia regulatoria activa para detectar decretos y resoluciones que afectan operaciones logísticas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1152" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Responsabilidad del titular minero y superposición regulatoria</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La responsabilidad del titular minero se extiende a toda la cadena de contratistas, especialmente transporte y actividades conexas.</div>
+                  <div class="content-text">Superposición de normas (MTC, SUNAT, MINEM, seguridad y salud ocupacional) exige gestión multidisciplinaria e integrada para cumplir requisitos concurrentes.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1215" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Herramientas y reportes obligatorios para cumplimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Listado de reportes y periodicidad: reportes mensuales a SUNAT, estadísticas mensuales al MINEM, declaración anual consolidada, informes de auditoría externa y notificaciones de accidentes por evento.</div>
+                  <div class="content-text">Necesidad de integrar sistemas para capturar y reportar datos necesarios, reducir errores y mantener consistencia en reportes regulatorios.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1304" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Herramientas de gestión integradas, sistemas y mejora continua</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Integración de sistemas de información y reportabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Integrar ERP (por ejemplo SAP) con WMS (Warehouse Management System) para capturar operaciones en tiempo real y generar reportes requeridos por SUNAT, SUCAME y MINEM.</div>
+                  <div class="content-text">Automatización reduce error humano y mejora consistencia de datos para reportes periódicos, trazabilidad y auditorías.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1380" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:23:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Gestión de contratistas basada en riesgo y cláusulas contractuales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Precalificación, due diligence, auditoría y supervisión continua de proveedores de transporte y logística; inclusión de cláusulas contractuales que reflejen obligaciones legales y permitan sanciones.</div>
+                  <div class="content-text">Homologación y control de cumplimiento como requisito de entrada a operaciones; verificación de documentación y aptitudes del personal.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1447" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Programas de vigilancia regulatoria y roles asignados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Establecer un proceso formal y recursos para monitorear cambios legislativos: publicaciones en diario oficial, portales ministeriales y criterios de agencias fiscales.</div>
+                  <div class="content-text">Designación de responsable de vigilancia regulatoria que centralice la recopilación de cambios, gestione registros y consolide reportes mensuales.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1373" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:22:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Cultura de cumplimiento, capacitación cruzada y control de comportamientos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Programas de capacitación y registro documentado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Desarrollar programas que no solo impartan conocimientos técnicos sino que sensibilicen sobre importancia del cumplimiento normativo y consecuencias de incumplimiento.</div>
+                  <div class="content-text">Registro con firmas y actas de asistencia para evidenciar formación ante auditorías y responsabilidades legales.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1530" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:25:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Enfoque de priorización por riesgo regulatorio y asignación de recursos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Identificar actividades de mayor impacto regulatorio (manejo de explosivos, QF, sustancias peligrosas) y priorizar controles y recursos humanos donde el riesgo e impacto sean mayores.</div>
+                  <div class="content-text">Implementar controles más estrictos en procesos críticos y asegurar trazabilidad y supervisión reforzada.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1682" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Observación directa y entrevistas como herramienta de diagnóstico cultural</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Combinar observación en terreno con entrevistas para triangular información entre documentos, comportamientos y declaraciones del personal.</div>
+                  <div class="content-text">Detectar brechas culturales que expliquen incumplimientos o prácticas no alineadas con procedimientos documentados.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3553" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Casos y ejemplos prácticos referidos en clase y lecciones aprendidas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Incidentes de seguridad y consecuencias legales y operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato de accidentes en mina: cortes por uso inadecuado de herramientas, atropellos por mala operación de vehículos, accidentes masivos por sobrecarga en transporte de personal.</div>
+                  <div class="content-text">Ejemplos muestran que incluso con inducción firmada, la práctica y supervisión efectiva resultan decisivas para evitar siniestros y sanciones legales.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1621" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Experiencias en homologación y ajustes técnicos de unidades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción del proceso por el cual las contratas deben adaptar unidades a requisitos de la minera: instalaciones, señalización y modificaciones técnicas para cumplir condiciones de acceso.</div>
+                  <div class="content-text">Importancia de la coordinación entre áreas comerciales, logística y talleres para garantizar adecuación previa a prestación del servicio.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1877" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Casos de inspección y exigencias de seguridad en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ejemplo de inspección por SUNAT solicitando MSDS, señalizaciones, delimitación y elementos de seguridad; almacenes deben anticipar documentación y medidas antes de recepción.</div>
+                  <div class="content-text">Requerimientos sobre iluminación, sistemas contraincendios y duchas lavaojos pueden implicar inversiones significativas y planeamiento de cumplimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=2437" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:37)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Cierre de la sesión y llamado a preguntas finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Invitación final a preguntas y continuidad del curso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Profesor solicita preguntas antes de continuar con el temario y anima a los estudiantes a aprovechar la última clase para aclarar dudas.</div>
+                  <div class="content-text">Oferta de revisar temas adicionales solicitados por los alumnos y apoyo en consultas sobre currículum y orientación profesional.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1764" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:24)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Transición a contenidos doctrinales y normativos siguientes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Anuncio de avance hacia normas ISO aplicables en minería (ISO 9001, ISO 14001, ISO 45001) y su relación con procesos logísticos, ambientales y de seguridad.</div>
+                  <div class="content-text">Preparación para explicar auditorías, metodologías y herramientas específicas que faciliten cumplimiento y mejora continua en operaciones logísticas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3051" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Gestión contractual de transporte, homologación de flotas y penalidades</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Proceso de licitación y especificaciones técnicas exigidas por la minera</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Logística debe recoger requisitos técnicos de operaciones para especificar en licitaciones: antigüedad máxima de unidades, equipos de seguridad, señalización, extintores y otros requerimientos.</div>
+                  <div class="content-text">Las bases técnicas deben incluir condiciones mínimas obligatorias que los postores deben demostrar con documentación al presentar ofertas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1805" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Validación, homologación y control posterior a la adjudicación del contrato</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tras adjudicar, el proveedor debe presentar evidencias técnicas y/o adaptar unidades a los requisitos (instalación de señalización, modificaciones mecánicas).</div>
+                  <div class="content-text">Logística coordina talleres o compras de insumos para adecuar las unidades antes de entrada a operaciones; seguimiento y registros técnicos.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1852" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Responsabilidades y penalidades frente a incumplimiento del proveedor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Si el proveedor incumple en campo (por ejemplo, falta de rombo de sustancias), el proveedor asume la responsabilidad contractual y/o sanciones estipuladas.</div>
+                  <div class="content-text">Logística debe demostrar haber exigido y verificado requisitos en el proceso de contratación; si hubo omisión en las bases, la responsabilidad administrativa puede recaer en logística.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=1984" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:04)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Gestión operativa de almacenes y seguridad laboral en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Requisitos de almacenes para sustancias peligrosas y documentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Almacenes deben contar con hojas MSDS (fichas de seguridad) visibles y actualizadas, rombos de señalización aplicados según normativa internacional (manual naranja ONU).</div>
+                  <div class="content-text">Delimitación de áreas, señalética visible, iluminación, sistemas de contención y cumplimiento de procedimientos documentados.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=2432" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Buenas prácticas de almacenamiento y separación de riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Separación física de sustancias incompatibles (ejemplo: oxidantes y combustibles), control de acceso y procedimientos de manipulación para evitar mezclas peligrosas.</div>
+                  <div class="content-text">Disponibilidad y mantenimiento de equipos de seguridad: extintores, duchas lavaojos, detectores y sistemas contraincendios cuando la normativa lo exige.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=2542" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Capacitación, formación y registro de personal en almacén</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Programas de capacitación periódica (inducción y anualidades) con firmas y actas que prueben la instrucción recibida por los trabajadores.</div>
+                  <div class="content-text">Capacitación específica según tareas: uso de extintores, certificación para soldadores, manejo seguro de equipos y restricción de pesos manuales conforme a ergonomía.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=2764" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:04)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Auditorías, inspecciones y control de cumplimiento logístico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Tipos de auditorías y su enfoque en cumplimiento legal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Auditorías de cumplimiento legal verifican alineamiento con normas de almacenamiento, transporte y manipulación de sustancias peligrosas, revisión documental y licencias vigentes.</div>
+                  <div class="content-text">Pueden ser realizadas por autoridades públicas o entidades acreditadas independientes; se revisan registros, permisos y conformidad con la inscripción minera ambiental.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3249" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Inspecciones de seguridad en almacenes y transporte</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Evaluación de integridad estructural, condiciones mecánicas de estanterías y vehículos, eficacia de sistemas de extinción, rutas de evacuación y mantenimiento de equipos de elevación.</div>
+                  <div class="content-text">Verificación del comportamiento operativo del personal: uso de EPP, cumplimiento de procedimientos y sanciones por incumplimientos repetidos.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3291" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Auditorías operativas y de procedimientos con verificación práctica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Evaluación de la implementación real de procedimientos documentados; revisión de mantenimiento preventivo, correctivo y predictivo de activos logísticos.</div>
+                  <div class="content-text">Comprobación de trazabilidad física y digital de materiales, correlación entre registros formales y prácticas empíricas, y verificación de conocimiento del personal sobre los procedimientos.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3424" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:04)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Herramientas prácticas para auditoría y control operacional</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Uso de checklist y parámetros cualitativos en auditorías</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Checklist diseñados por actividad y naturaleza de riesgo facilitan inspecciones replicables y clasifican niveles de cumplimiento según parámetros definidos.</div>
+                  <div class="content-text">Correlación de resultados de checklists con indicadores clave de desempeño para gestión y seguimiento de mejoras.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3486" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Checklists operativos previos al inicio de actividades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ejemplo de checklist pre-operacional para conductores que verifica presión de neumáticos, luces, niveles y estado general antes de iniciar ruta con carga.</div>
+                  <div class="content-text">Requisito de no operar si se identifican fallas críticas; herramienta clave para prevención de incidentes viales y pérdida de carga.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3512" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Inspección visual e imprevistos como método de verificación real</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inspección visual in situ permite detectar condiciones no registradas en documentación formal; requiere ser imprevista para evitar pulido temporal de áreas.</div>
+                  <div class="content-text">Complementar entrevistas con observación directa para validar cultura preventiva y cumplimiento práctico.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3553" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Tecnologías y herramientas aplicables a auditorías logísticas y de seguridad</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Uso de drones, sensores e IoT para inspección remota y monitorización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Drones multiespectrales para inspección de techos, zonas confinadas y ambientes hostiles, permitiendo detectar daños o anomalías sin exponer personal.</div>
+                  <div class="content-text">Sensores conectados a la red (IoT) para monitorización remota de variables ambientales y operativas en tiempo real, mejorando la detección temprana de riesgos.</div>
+                  <div class="content-text">Integración de cámaras y sensores con plataformas para generar alertas y facilitar la toma de decisiones operativas y de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3605" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Plataformas digitales para gestión de auditorías y generación automática de informes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Software de gestión digital que permite programación, recopilación, análisis y visado de datos de auditoría, generando informes automatizados y trazabilidad documental.</div>
+                  <div class="content-text">Uso de dashboards para visualizar KPIs, tendencias y estado de acciones correctivas, facilitando la rendición de cuentas y seguimiento.</div>
+                  <div class="content-text">Ventajas en productividad al centralizar toda la data de auditorías y facilitar comparativos y análisis longitudinales.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3628" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Aplicaciones de IA y analítica para resumir contenido y mejorar productividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Herramientas de IA para resumir videos, analizar estados financieros y generar scorecards o mapas geográficos para apoyar la toma de decisiones.</div>
+                  <div class="content-text">Clases particulares y formación en IA para personal que busca incrementar la eficiencia en análisis de datos logísticos y de seguridad.</div>
+                  <div class="content-text">Posibilidad de integrar modelos predictivos para anticipar fallas operativas o riesgos en la cadena logística.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=4973" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:22:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Tipos de auditoría y su enfoque en operaciones, compras e inventarios</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Diferenciación entre auditoría operativa de almacén y auditoría de seguridad o documental</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Auditorías operativas enfocadas en la funcionalidad del proceso de almacén: cumplimiento de procedimientos, operatividad y gestión del personal.</div>
+                  <div class="content-text">Auditorías documentarias o de cumplimiento que revisan licitaciones, órdenes de compra, contratos y evidencia legal y técnica.</div>
+                  <div class="content-text">No es recomendable mezclar enfoques; definir alcance y criterios antes de iniciar la auditoría para evitar confusiones.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3670" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Auditorías en compras, contrataciones y su relación con logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Auditorías de compras revisan lista anual de adquisiciones, procesos de licitación, contratos y evaluación técnico-económica de adquisiciones significativas.</div>
+                  <div class="content-text">En muchas organizaciones existe un área de contratos que centraliza licitaciones y adjudicaciones, pero sus funciones pertenecen al aprovisionamiento logístico.</div>
+                  <div class="content-text">Ejemplos prácticos: organizaciones que separan contratos de servicios y compras de bienes para generar mayor eficiencia y especialización.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3755" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Auditorías de control de inventarios y procesos de almacén</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Revisiones de codificación, proyección de demanda, gestión de inventarios y procedimientos de recepción y despacho.</div>
+                  <div class="content-text">Importancia de indicadores que midan exactitud de inventarios, rotación, puntos de pedido y anomalías operativas.</div>
+                  <div class="content-text">Almacén suele ser foco de auditorías por alto movimiento de bienes y exposición a riesgos de seguridad y pérdidas patrimoniales.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=3821" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Estructura funcional de logística y la cadena de valor de Porter aplicada</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Organigrama funcional y actividades principales y secundarias de logística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Actividades secundarias: indicadores y objetivos, sistemas de información (ERP), recursos humanos, análisis de costos y soporte administrativo.</div>
+                  <div class="content-text">Actividades primarias: gestión de la demanda, gestión de inventarios, aprovisionamiento, gestión de producción, gestión de almacenes y distribución.</div>
+                  <div class="content-text">Ejemplos de funciones concretas: recepción, ubicación, almacenamiento, picking, envío y gestión de flota.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=4166" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">La cadena de valor de Michael Porter y la posición de la logística en ella</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definición: descomposición de la empresa en actividades primarias y de soporte para identificar fuentes de ventaja competitiva y comportamiento de costos.</div>
+                  <div class="content-text">Actividades primarias relevantes: logística de entrada, operaciones, logística de salida, marketing y servicio postventa.</div>
+                  <div class="content-text">Actividades de soporte que afectan logística: infraestructura de la empresa, gestión de recursos humanos, desarrollo tecnológico y compras.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=4375" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Cómo la gestión logística eficiente se traduce en ventaja competitiva y ejemplos prácticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Efectos de una logística eficiente: reducción de costos operativos, mayor flujo de materiales, minimización de interrupciones y mejor servicio al cliente.</div>
+                  <div class="content-text">Casos de éxito citados: Amazon (innovación en logística de entrega), Zara (respuesta rápida en moda), Toyota (sistema Just-In-Time).</div>
+                  <div class="content-text">En minería, donde el precio del producto es externo, la eficiencia logística y operativa es clave para maximizar margen y competitividad.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=4732" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Implementación de medidas correctivas y seguimiento post-auditoría</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Diseño de planes de acción correctiva basados en análisis de causa raíz</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Diagnóstico etiológico utilizando metodologías como los cinco porqués, diagrama de Ishikawa (pescado) o análisis sistémico para identificar causas raíz.</div>
+                  <div class="content-text">Clasificación de acciones por prioridad y plazos según una matriz de riesgo, asignando responsables y recursos necesarios.</div>
+                  <div class="content-text">Inclusión de mecanismos de exigencia y evaluación cruzada por comités técnicos y organismos de control para validar acciones.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=5483" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Monitoreo, verificación y creación de indicadores de desempeño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Verificación mediante auditorías de seguimiento (follow-up), análisis comparativos de indicadores pre y post intervención y retroalimentación del personal.</div>
+                  <div class="content-text">Ejemplos de KPIs para auditoría y seguridad: índice de cierre oportuno de acciones correctivas, tasa de recurrencia por tipo de hallazgo y ratio de inversión vs reducción de incidentes.</div>
+                  <div class="content-text">Importancia de indicadores robustos para medir tendencias y la sostenibilidad de las mejoras implementadas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=5535" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:32:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Formatos de reporte, trazabilidad y comunicación a stakeholders</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Informe de auditoría como producto final que debe incluir objetivo, alcance, criterios, metodología, resumen ejecutivo y hallazgos con recomendaciones priorizadas.</div>
+                  <div class="content-text">Registro y codificación de hallazgos, generación de mapas y matrices de riesgo, y conservación de trazabilidad documental para auditorías comparativas.</div>
+                  <div class="content-text">Comunicación adaptada: dashboards para alta dirección, sesiones operativas, informes técnicos para reguladores y reportes públicos para rendición de cuentas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=5619" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:33:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Preparación estratégica y respuesta a emergencias en entornos logísticos y mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Identificación de amenazas y elaboración de matrices de riesgo para logística minera</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tipos de amenazas: naturales (sismos, inundaciones, meteorológicas), tecnológicas (incendios, fallas estructurales), antrópicas (conflictos laborales, sabotaje).</div>
+                  <div class="content-text">Metodologías de análisis de riesgos: AMFE (análisis modal de fallos y efectos), análisis de consecuencias y matrices multivariadas de riesgo.</div>
+                  <div class="content-text">Recomendación de elaborar mapas de riesgo logístico y correlacionar riesgos con procesos críticos para priorizar mitigaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=5863" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:37:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Comité de emergencia, roles, protocolos y capacidades operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comité de emergencia de alto nivel con autonomía operativa y capacidad de despliegue, integrado por seguridad industrial, operaciones logísticas, salud ocupacional, ingeniería, legal y comunicaciones.</div>
+                  <div class="content-text">Funciones: formular políticas, liderar protocolos interinstitucionales, monitorear vulnerabilidades emergentes y evaluar indicadores de preparación institucional.</div>
+                  <div class="content-text">Requisitos: asignación clara de responsabilidades, protocolos de comunicación y procedimientos de activación escalonada según tipo de incidente.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=5963" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:39:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Planes de respuesta, simulacros, capacitación y tecnologías de apoyo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Elementos de planes: simulaciones de colapso múltiple, modelado de flujo de evacuación en pánico, infraestructura con redundancia y protocolos de roles funcionales.</div>
+                  <div class="content-text">Programas de capacitación: soporte vital, manejo de traumas en condiciones extremas, rescate subterráneo y espacios confinados con certificación por entidades acreditadas.</div>
+                  <div class="content-text">Tecnologías útiles: plataformas digitales de gestión de crisis, comunicación crítica redundante, integración con sensores IoT, drones para reconocimiento y realidad aumentada o entornos virtuales para entrenamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=6030" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:40:30)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Elaboración práctica de una matriz de riesgos aplicada al flujo de almacén</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Identificación del flujo de procesos y riesgos en cada etapa del almacén</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ejemplo de flujo simplificado: recepción del proveedor, revisión de mercadería, ingreso al sistema, almacenamiento de inventarios, firma de orden de despacho y despacho final.</div>
+                  <div class="content-text">Por cada proceso se identifican riesgos que pueden interrumpir el flujo, por ejemplo documentos incompletos, mercadería dañada o sistemas inoperativos.</div>
+                  <div class="content-text">Enfoque: distinguir riesgos operativos que paralizan el flujo logístico de riesgos de seguridad ocupacional que deben manejar áreas especializadas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=6971" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Ejemplos concretos de riesgos asociados a cada proceso del flujo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Recepción de mercadería: proveedor presenta documentos equivocados o incompletos, impidiendo la correcta acreditación de entrega y trazabilidad.</div>
+                  <div class="content-text">Revisión de mercadería: recepción de mercancía dañada que requiere devolución o reclamo, interrumpiendo el proceso y afectando inventarios.</div>
+                  <div class="content-text">Ingreso al sistema y almacenamiento: fallas del sistema informático o falta de capacitación del personal que generan errores en registros y ubicaciones de inventario.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=6977" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Uso de la matriz de riesgo para priorizar acciones y mantener continuidad operativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La matriz debe listar procesos, riesgos, probabilidad y severidad, permitiendo clasificar acciones por prioridad y plazos de mitigación.</div>
+                  <div class="content-text">Identificar responsables para cada acción y recursos necesarios, asegurando mecanismos de control y verificación de cierre.</div>
+                  <div class="content-text">Aplicar la matriz periódicamente y tras incidencias para actualizar riesgos, lecciones aprendidas y mejorar la resiliencia del flujo logístico.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7130" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:58:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Introducción a la valoración de riesgos y variables principales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Definición de las dos variables usadas para valorar riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad: impacto que tendrá la ocurrencia del riesgo sobre el proceso evaluado, cualificado en cinco niveles según la escala propuesta.</div>
+                  <div class="content-text">Probabilidad: grado de ocurrencia del riesgo en el proceso, clasificado en cinco categorías que van desde muy improbable hasta muy probable.</div>
+                  <div class="content-text">Propósito: clasificar riesgos identificados previamente para obtener un puntaje final que permita priorizar acciones.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7222" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Escala de gravedad y su significado práctico para el flujo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Nivel 1 (insignificante): riesgo no grave para el proceso, sin impacto relevante esperado sobre la operación.</div>
+                  <div class="content-text">Nivel 2 (menor): impacto leve que puede causar pequeñas interrupciones o ajustes operativos.</div>
+                  <div class="content-text">Nivel 3 (moderado): interrumpe el flujo logístico y requiere atención operativa para corregir.</div>
+                  <div class="content-text">Nivel 4 (importante): afecta significativamente la operación, genera pérdidas o retrabajos notables.</div>
+                  <div class="content-text">Nivel 5 (catastrófico): provoca destrucción mayor del proceso o planta, ejemplo extremo como un terremoto.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7235" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Escala de probabilidad y su significado práctico para el flujo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Nivel 1 (muy improbable): casi no ocurrirá, histórico y controles indican baja frecuencia.</div>
+                  <div class="content-text">Nivel 2 (no es probable): rara vez ocurre, baja frecuencia según el historial.</div>
+                  <div class="content-text">Nivel 3 (posible): probabilidad aproximada 50% de ocurrencia, evento plausible.</div>
+                  <div class="content-text">Nivel 4 (probable): es bastante factible que ocurra en condiciones habituales.</div>
+                  <div class="content-text">Nivel 5 (muy probable): ocurrirá casi con certeza, alta frecuencia esperada.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7273" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Cálculo del impacto de riesgo y clasificación por rangos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Método para obtener el puntaje final del riesgo multiplicando las variables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Fórmula: impacto de riesgo = gravedad × probabilidad, ejemplo numérico 2 × 3 = 6.</div>
+                  <div class="content-text">Resultado numérico se utiliza para ubicar el riesgo dentro de rangos establecidos de impacto.</div>
+                  <div class="content-text">Este puntaje orienta la priorización y el diseño del plan de acción posterior.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7313" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:53)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Rango de impacto y códigos de color para priorización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Bajo impacto (1 a 6): identificado en color verde, menor prioridad de recursos inmediatos.</div>
+                  <div class="content-text">Impacto medio (7 a 12): identificado en color naranja, prioridad intermedia para mitigaciones.</div>
+                  <div class="content-text">Alto impacto (13 a 25): identificado en color rojo, foco principal de esfuerzos y recursos.</div>
+                  <div class="content-text">Objetivo: concentrar recursos limitados en los riesgos catalogados como alto impacto.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7320" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Aplicación práctica del cálculo a riesgos listados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Proceso: tomar cada riesgo identificado previamente y asignarle gravedad y probabilidad según histórico y contexto.</div>
+                  <div class="content-text">Ejemplo paso a paso: evaluar gravedad y probabilidad, multiplicar valores, ubicar resultado en el rango de impacto y codificar por color.</div>
+                  <div class="content-text">Uso de la matriz resultante para decidir si elaborar acciones simples o estrategias detalladas según prioridad.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7342" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:22)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Ejemplos de valoración de riesgos concretos identificados en el flujo de almacén</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Riesgo: proveedor llega con documentos equivocados o incompletos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 3 (moderado) porque corta el flujo logístico.</div>
+                  <div class="content-text">Probabilidad asignada: 2 (no es probable) por confianza y historial del proveedor.</div>
+                  <div class="content-text">Impacto calculado: 3 × 2 = 6; clasificado como bajo (verde) según la tabla.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7342" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Riesgo: proveedor no tiene los PS completos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 2 (menor) porque se pueden tomar medidas para recibir mercancía o organizarla.</div>
+                  <div class="content-text">Probabilidad asignada: 2 (no es probable) dada la homologación de proveedores y su seriedad.</div>
+                  <div class="content-text">Impacto calculado: 2 × 2 = 4; clasificado como bajo (verde) según la tabla.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7376" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:56)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Riesgo: la mercancía viene dañada</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 4 (importante) por perjuicio al usuario y necesidad de gestión de incidencias.</div>
+                  <div class="content-text">Probabilidad asignada: 2 (no es probable) basado en históricos de recepción.</div>
+                  <div class="content-text">Impacto calculado: 4 × 2 = 8; clasificado como medio (naranja) según la tabla.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7401" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.4</span>
+                  <span class="subsection-title">Riesgo: el sistema no funciona</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 4 (importante) porque impide ingresar datos y continuar procesos.</div>
+                  <div class="content-text">Probabilidad asignada: 4 (probable) por frecuentes cortes eléctricos en la zona.</div>
+                  <div class="content-text">Impacto calculado: 4 × 4 = 16; clasificado como alto (rojo) requiriendo intervención prioritaria.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7421" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:41)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.5</span>
+                  <span class="subsection-title">Riesgo: personal no debidamente capacitado en sistemas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 4 (importante) por errores operativos y fallas en la operación.</div>
+                  <div class="content-text">Probabilidad asignada: 1 (muy improbable) porque el personal sí está capacitado y certificado.</div>
+                  <div class="content-text">Impacto calculado: 4 × 1 = 4; clasificado como bajo (verde).</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7444" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.6</span>
+                  <span class="subsection-title">Riesgo: no hay espacio en almacén</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 1 (insignificante) porque se resuelve organizando espacio y cajas.</div>
+                  <div class="content-text">Probabilidad asignada: 2 (no es probable) dado que usualmente hay capacidad disponible.</div>
+                  <div class="content-text">Impacto calculado: 1 × 2 = 2; clasificado como bajo (verde).</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7463" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.7</span>
+                  <span class="subsection-title">Riesgo: equipos de manipulado no funcionan</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 5 (catastrófico) por paralización ante carga pesada y riesgo de detención del flujo.</div>
+                  <div class="content-text">Probabilidad asignada: 3 (moderada) porque equipos son antiguos y mantenimiento no es óptimo.</div>
+                  <div class="content-text">Impacto calculado: 5 × 3 = 15; clasificado como alto (rojo) y priorizado para mitigación.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7480" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.8</span>
+                  <span class="subsection-title">Riesgo: persona encargada para la firma no está presente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gravedad asignada: 1 (insignificante) porque siempre existe un suplente que puede firmar.</div>
+                  <div class="content-text">Probabilidad asignada: 2 (no es probable) por la disponibilidad de un segundo al mando.</div>
+                  <div class="content-text">Impacto calculado: 1 × 2 = 2; clasificado como bajo (verde).</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7501" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Construcción de la matriz 5×5 y ubicación de riesgos en la matriz</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Estructura de la matriz y ejes de gravedad y probabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Matriz 5×5: cinco niveles de gravedad en eje X y cinco niveles de probabilidad en eje Y.</div>
+                  <div class="content-text">Eje X (horizontal): gravedad de 1 a 5 con etiquetas significante, menor, moderado, importante, catastrófico.</div>
+                  <div class="content-text">Eje Y (vertical): probabilidad de 1 a 5 con etiquetas muy improbable, no probable, posible, probable, muy probable.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7591" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Método para posicionar cada riesgo en la matriz según sus valores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tomar valores asignados a gravedad y probabilidad por riesgo y marcar la celda correspondiente en la matriz.</div>
+                  <div class="content-text">Si dos riesgos coinciden en la misma celda, usar separación visual (barra vertical) para indicar duplicidad.</div>
+                  <div class="content-text">La matriz resultante visualiza concentración de riesgos y permite identificar áreas rojas, naranjas y verdes.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7621" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Interpretación visual y priorización basada en la matriz</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Riesgos en zonas rojas (alto impacto) requieren planes de mitigación detallados y recursos prioritarios.</div>
+                  <div class="content-text">Riesgos en zonas naranjas (impacto medio) necesitan acciones pero pueden recibir recursos según disponibilidad.</div>
+                  <div class="content-text">Riesgos en zonas verdes (bajo impacto) pueden manejarse con acciones simples o planeación a largo plazo.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7671" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Desarrollo del plan de acción y estrategias de mitigación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Propósito final del ejercicio y enfoque en riesgos altos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Objetivo: elaborar estrategias y un plan de acción que minimicen los riesgos, priorizando los de mayor impacto.</div>
+                  <div class="content-text">Enfoque inicial: concentrar esfuerzos y recursos en los riesgos catalogados como alto impacto (rojos).</div>
+                  <div class="content-text">Posibilidad: desarrollar también planes simples para riesgos medianos y bajos según recursos disponibles.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7698" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Estructura del plan de acción y ejemplos de actividades mitigantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Colocar en la tabla cada riesgo, puntaje obtenido y las acciones a ejecutar para mitigarlo.</div>
+                  <div class="content-text">Permitir múltiples actividades por riesgo, asignando un responsable distinto a cada acción para facilitar filtrado y seguimiento.</div>
+                  <div class="content-text">Ejemplos concretos:</div>
+                  <div class="content-text">- Para documentos incompletos: comunicar requisitos a proveedores y restringir ingreso sin documentación completa.</div>
+                  <div class="content-text">- Para sistema que no funciona: diseñar estrategia de redundancia con TI, compra de UPS o baterías, procedimientos de contingencia.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7729" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Organización del plan en herramienta (Excel) y ventajas operativas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Usar plantillas con fórmulas y cuadros desplegables para automatizar colores y cálculos de impacto.</div>
+                  <div class="content-text">Mantener acciones separadas en filas para permitir filtros por responsable, área o estado de ejecución.</div>
+                  <div class="content-text">Recomendación: emplear una herramienta ordenada que permita gestionar gran cantidad de riesgos (posibles decenas o cientos) y focalizar en los que importan.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=7978" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="21">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">21</span>
+              <span class="section-title">Aplicaciones prácticas, alcance y recomendaciones para implementar la gestión de riesgos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.1</span>
+                  <span class="subsection-title">Ámbitos de aplicación y escalabilidad del método</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Aplicable a procesos individuales, flujos de almacén, proyectos, áreas o la empresa completa.</div>
+                  <div class="content-text">Escalabilidad: desde un flujo pequeño con pocos riesgos hasta mapas de riesgos extensos con decenas o cientos de ítems.</div>
+                  <div class="content-text">Recomendación: agrupar por procesos o actividades según dimensión del análisis para mantener consistencia.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=8007" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.2</span>
+                  <span class="subsection-title">Consideraciones para definir el nivel de detalle y multidisciplinariedad del análisis</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Nivel de detalle: puede listar muchos riesgos si se desea exhaustividad, pero se debe filtrar y priorizar por impacto.</div>
+                  <div class="content-text">Multidisciplinariedad: involucrar áreas como seguridad y TI para identificar riesgos desde distintas perspectivas y mejorar la matriz.</div>
+                  <div class="content-text">Equilibrio: evitar ser innecesariamente estricto; enfocar recursos en riesgos con impacto real y probabilidad significativa.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=8049" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.3</span>
+                  <span class="subsection-title">Ciclo de mejora continua y entrega de herramientas al equipo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Repetir la evaluación periódicamente (anualmente) para verificar mitigaciones y actualizar la matriz.</div>
+                  <div class="content-text">Entregables: plantilla Excel con fórmulas como recurso para el equipo, facilitando la aplicación inmediata.</div>
+                  <div class="content-text">Supervisión: presentar la matriz y plan de acción a gerencia; usar el resultado para justificar inversiones y decisiones operativas.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=8117" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="22">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">22</span>
+              <span class="section-title">Cierre de la sesión, resoluciones y comunicaciones finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.1</span>
+                  <span class="subsection-title">Despedida, materiales disponibles y soporte posterior</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Profesor agradece asistencia y ofrece su correo personal para consultas adicionales.</div>
+                  <div class="content-text">Archivo de la matriz y plantillas será compartido por la monitora académica vía WhatsApp y/o plataforma.</div>
+                  <div class="content-text">Sesión grabada será compartida para repaso y resolución de dudas posteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=8205" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.2</span>
+                  <span class="subsection-title">Evaluaciones y seguimiento académico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Información de que habrá un examen relacionado con la materia en la plataforma próximamente.</div>
+                  <div class="content-text">Canales de soporte: números de contacto proyectados en pantalla y disponibilidad para aclaraciones durante la semana.</div>
+                  <a href="https://www.youtube.com/watch?v=MSrdUJ_vr8g&start=8248" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:17:28)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 18: ESTRATEGIAS SOSTENIBLES Y RESPONSABILIDAD SOCIAL - 2dA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

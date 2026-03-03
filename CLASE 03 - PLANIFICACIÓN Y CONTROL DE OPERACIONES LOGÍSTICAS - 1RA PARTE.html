@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y alcance</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Enfoque de la presentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La sesión se especializa en el planeamiento y la gestión de la demanda dentro del marco de la logística minera.</div>
+                  <div class="content-text">No se profundiza en el control operativo diario ni en las metodologías de mejora continua en este módulo.</div>
+                  <div class="content-text">La planificación se justifica como el eje central para garantizar la continuidad operativa y la reducción de costos estratégicos.</div>
+                  <div class="content-text">El énfasis práctico se sitúa en los planes de mediano plazo debido a su impacto directo en las finanzas y metas del negocio.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=579" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Niveles de planificación en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Planeamiento estratégico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El horizonte de largo plazo abarca desde los 5 hasta más de 12 años, con proyecciones que pueden llegar a los 60 años.</div>
+                  <div class="content-text">Incluye la definición de la misión, visión y objetivos corporativos, priorizando el uso racional de los recursos de la mina.</div>
+                  <div class="content-text">La estrategia corporativa depende de la licencia social y la aceptación comunitaria, considerando factores políticos y legales.</div>
+                  <div class="content-text">Abarca exploraciones, infraestructura mayor, adquisición de maquinaria pesada y alineamiento con la responsabilidad social.</div>
+                  <div class="content-text">Se enfoca en la inversión tecnológica como machine learning e inteligencia artificial aplicada a la eficiencia minera.</div>
+                  <div class="content-text">Requiere el establecimiento de objetivos medibles, programas específicos y una asignación clara de capital, personal y tiempo.</div>
+                  <div class="content-text">Gestiona la clasificación de proveedores críticos: materia prima, recursos humanos, transporte, explosivos, agua y alimentación.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=670" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Planeamiento táctico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Actúa como el traductor de los objetivos estratégicos en planes de acción concretos con metas anuales específicas.</div>
+                  <div class="content-text">Facilita la toma de decisiones sobre redes de distribución, optimización de inventarios y selección de proveedores alternativos.</div>
+                  <div class="content-text">Utiliza programas y políticas de abastecimiento como herramientas para el control táctico de la cadena de suministro.</div>
+                  <div class="content-text">Se recomienda la elaboración de metas por división para aumentar la producción, reducir mermas y alcanzar el objetivo de cero accidentes.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=769" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:12:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Planeamiento operativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El horizonte de corto plazo se enfoca en acciones inmediatas que van desde el día a día hasta el cumplimiento del año fiscal.</div>
+                  <div class="content-text">Incluye la definición detallada de procedimientos, métodos de trabajo y la ejecución directa por parte de los operarios.</div>
+                  <div class="content-text">Los supervisores son responsables de vigilar el cumplimiento de los procedimientos operativos y los indicadores clave de desempeño (KPIs).</div>
+                  <div class="content-text">Abarca la programación de turnos (12-12, 18-6 u 8-8-8) y la asignación de tareas específicas según la necesidad de la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=2142" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:35:42)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Programación, abastecimiento y optimización de inventarios</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Programas de abastecimiento y frecuencias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La programación de pedidos se define según el tipo de carga y las rutas, estableciendo frecuencias periódicas como los días 1 y 15.</div>
+                  <div class="content-text">La elección de rutas y modos de transporte impacta directamente en el kilometraje recorrido y los costos logísticos totales.</div>
+                  <div class="content-text">Es vital mantener un control documental estricto y el registro inmediato en sistemas ERP para asegurar la trazabilidad de las entradas.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1292" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Optimización de inventarios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El objetivo fundamental es evitar la ruptura de stock en recursos críticos necesarios para el proceso de extracción mineral.</div>
+                  <div class="content-text">El flujo incluye la recepción, una contabilización legible de los materiales y la actualización en tiempo real de los módulos de software.</div>
+                  <div class="content-text">Se controlan variables como periodicidad de pedidos, rutas de despacho, costos de combustible y desgaste por kilometraje.</div>
+                  <div class="content-text">Se aplican matrices ABC y de criticidad para priorizar el suministro de explosivos, combustible y repuestos de maquinaria.</div>
+                  <div class="content-text">La gestión utiliza métodos de pronóstico como medias móviles o regresión simple dependiendo de la calidad de los datos históricos.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1364" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:22:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Organización, roles y responsabilidades</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Estructura y funciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La organización cuenta con múltiples roles: compradores, almaceneros especializados por sector, planners, supervisores y jefes de área.</div>
+                  <div class="content-text">El planner de mantenimiento es una figura crítica en minería, responsable de gestionar fallas y asignar tareas correctivas.</div>
+                  <div class="content-text">Gran parte de las funciones operativas se tercerizan, lo que hace que la coordinación contractual y los tiempos de respuesta sean vitales.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1312" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Formación y gestión del personal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es obligatorio realizar inducciones y capacitaciones constantes en seguridad, salud ocupacional y procedimientos operativos.</div>
+                  <div class="content-text">Las herramientas y procedimientos claros buscan otorgar autonomía operativa al personal y evitar el micromanagement.</div>
+                  <div class="content-text">La asignación de turnos y condiciones laborales se ajusta al calendario productivo y a los cierres de año fiscal en diciembre.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=2301" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:38:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Logística de transporte y manejo de materiales peligrosos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Rutas, modos y normatividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La selección de rutas se basa en minimizar el kilometraje para reducir el gasto de combustible y el desgaste de la flota.</div>
+                  <div class="content-text">El transporte y apilamiento están regulados por la normativa del MTC, exigiendo condiciones específicas para el traslado de mineral.</div>
+                  <div class="content-text">El manejo de materiales peligrosos requiere permisos especiales y el uso de códigos internacionales como Libra Naranja y códigos N.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1408" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:23:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Políticas y patrones operativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las políticas de entrega y recepción varían entre empresas, adaptándose a los patrones de descarga y tiempos de espera de cada mina.</div>
+                  <div class="content-text">Existe una coordinación inmediata entre las áreas de producción y logística para evitar paros no programados por falta de insumos.</div>
+                  <div class="content-text">Se supervisan rigurosamente los horarios y programas continuos de recepción para mantener la fluidez de la cadena de suministro.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1464" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Resumen y mensajes clave finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Principales ideas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La planificación minera tiene como meta final extraer la mayor cantidad de mineral en el menor tiempo posible evitando errores costosos.</div>
+                  <div class="content-text">Los tres niveles de planeamiento (estratégico, táctico y operativo) deben articularse con la logística, el abastecimiento y la ley.</div>
+                  <div class="content-text">Se debe priorizar la gestión de insumos críticos como explosivos y combustible, anticipándose según los tiempos de reposición del mercado.</div>
+                  <div class="content-text">Para los pronósticos de demanda, se recomienda iniciar con métodos simples y validarlos con indicadores de error antes de escalar modelos.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1560" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:00)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Identificación de problemas y ciclo de decisión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Proceso de planificación de problemas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El ciclo de decisión incluye identificar el problema, establecer alternativas viables, elegir la más conveniente y ejecutar el plan.</div>
+                  <div class="content-text">Los problemas comunes abarcan desde el impacto de la lluvia ácida hasta la variabilidad en la calidad del mineral extraído.</div>
+                  <div class="content-text">El criterio principal de selección para cualquier alternativa es su viabilidad económica y la mejora medible del resultado operativo.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1622" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Implementación y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los planes deben contener acciones específicas para reducir las mermas de material y optimizar los procesos de extracción y refinación.</div>
+                  <div class="content-text">El monitoreo se realiza mediante matrices y ajustes continuos de la estrategia basados en comparativas con periodos de operación anteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1742" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Tipos de planes y su clasificación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Por marco temporal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los planes de corto plazo se limitan a acciones inmediatas o de un año; los de mediano plazo abarcan de 1 a 3 años de operación.</div>
+                  <div class="content-text">El largo plazo se reserva para proyectos de gran envergadura como expansión de la mina y zonificación, superando los 5 o 10 años.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1779" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:39)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Por especificidad y frecuencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los planes técnicos incluyen estudios geológicos, planos perimétricos y requerimientos específicos de materiales e inventarios.</div>
+                  <div class="content-text">Los planes permanentes son invariables y mantienen su vigencia por periodos definidos, ajustándose anualmente según las metas de producción.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1834" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Por amplitud y necesidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los planes estratégicos están orientados a los inversionistas y stakeholders, definiendo el rumbo de la compañía a largo plazo.</div>
+                  <div class="content-text">El nivel táctico es responsabilidad de jefes y supervisores para la gestión de programas de mantenimiento y capacitación continua.</div>
+                  <div class="content-text">El nivel operativo reside en la ejecución diaria por el personal en terreno, garantizando el cumplimiento estricto de los procedimientos.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=1955" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:32:35)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Medición y control (KPIs y monitoreo)</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">KPIs y su uso por nivel</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En el plan estratégico se mide el porcentaje de cumplimiento de los KPIs por dirección y gerencia mediante un scorecard.</div>
+                  <div class="content-text">El nivel operativo utiliza KPIs de producción, disponibilidad de equipos y cumplimiento estricto de los procedimientos de trabajo.</div>
+                  <div class="content-text">Los supervisores son los responsables directos de garantizar el cumplimiento de las metas operativas en la jornada diaria.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=2264" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Ajustes y gestión de desviaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La gestión de desvíos y reclamaciones permite revaluar recursos y plazos cuando la práctica diverge de la planificación teórica.</div>
+                  <div class="content-text">La estrategia minera debe ser dinámica para permitir reacciones rápidas frente a las contingencias que surjan en la operación.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=3283" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Normativa, salud y seguridad</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Reglas y protocolos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existen normas estrictas sobre el consumo de alcohol y drogas, cuya infracción conlleva la expulsión inmediata de la unidad minera.</div>
+                  <div class="content-text">Los conductores deben superar exigencias médicas rigurosas de peso, triglicéridos y salud general para ser autorizados a operar.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=2506" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:41:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Condiciones sanitarias básicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Problemas de salud básicos como las caries pueden restringir el trabajo en mina debido a la falta de servicios odontológicos en campamentos.</div>
+                  <div class="content-text">La normativa preventiva busca blindar tanto al personal como a los equipos frente a los riesgos intrínsecos del entorno minero.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=2662" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:44:22)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Componentes clave del planeamiento estratégico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Análisis y formulación estratégica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se emplean herramientas como el análisis FODA y el scorecard financiero para medir el cumplimiento de las metas a largo plazo.</div>
+                  <div class="content-text">El análisis del entorno evalúa concesiones, riesgos políticos y factores ambientales que podrían afectar el horizonte productivo de la mina.</div>
+                  <div class="content-text">La licencia social y la negociación con las comunidades son pilares críticos; sin su aceptación, los planes estratégicos fracasan.</div>
+                  <div class="content-text">La asignación de recursos debe ser integral, contemplando capital financiero, personal capacitado, tiempo y tecnología de vanguardia.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=3001" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Estrategias corporativas, de negocio y funcionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La estrategia corporativa define objetivos de alto nivel como la expansión a nuevos mercados o la apertura de nuevas unidades de negocio.</div>
+                  <div class="content-text">El núcleo del negocio se centra en la estrategia de extracción, buscando remover la mayor cantidad de mineral en el menor tiempo.</div>
+                  <div class="content-text">Las estrategias funcionales definen responsabilidades en áreas como legal y comercial, utilizando bonificaciones para alinear a los colaboradores.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=3365" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:05)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Proyectos y puestos de control</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Gestión de proyectos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se crean roles de ingeniería de proyectos para verificar el alcance, materiales, documentación y estados de múltiples iniciativas en curso.</div>
+                  <div class="content-text">Se aplican metodologías SMART y ágiles como Scrum para el seguimiento de tareas operativas y la coordinación de líderes de equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=3473" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:53)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Ejemplos y decisiones financieras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las decisiones de inversión en activos, como contenedores nuevos o usados, deben alinearse estrictamente con la estrategia de expansión.</div>
+                  <div class="content-text">El presupuesto se elabora mediante propuestas divisionales que el ingeniero de proyectos controla durante su ejecución.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=3374" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:14)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Demanda e identificación de insumos críticos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Concepto de demanda y coordinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La demanda comprende todos los recursos que la mina requiere para operar, lo cual exige una coordinación inmediata entre producción y logística.</div>
+                  <div class="content-text">Los insumos críticos típicos son los explosivos, el combustible y los repuestos esenciales; su ausencia paraliza totalmente la operación.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=5063" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Identificación y priorización de insumos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El proceso implica identificar insumos esenciales y clasificarlos por criticidad para generar planes que eviten paros no programados.</div>
+                  <div class="content-text">Es obligatorio el uso de fichas técnicas y hojas de seguridad MSDS para conocer códigos y contraindicaciones de químicos y ácidos.</div>
+                  <div class="content-text">Se deben considerar los largos tiempos de entrega en zonas remotas y evaluar alternativas tecnológicas como la impresión 3D de piezas.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=5473" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Gestión del riesgo de suministro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se prefiere mantener un margen de sobrante en stock crítico antes que enfrentar una ruptura de inventario durante la operación.</div>
+                  <div class="content-text">El punto de pedido se calcula en función del tiempo de reposición del proveedor frente al ritmo de consumo de la unidad minera.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=5804" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:36:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Métodos y herramientas para pronósticos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Pronósticos cuantitativos y cualitativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enfoques cuantitativos: series de tiempo, regresión (simple o exponencial), modelos econométricos; se recomiendan métodos sencillos (regresión simple, medias móviles) para uso operativo.</div>
+                  <div class="content-text">Uso cuando hay datos históricos, mercado estable y productos estandarizados; aplicable a expansiones y compras/importación con economista.</div>
+                  <div class="content-text">Enfoques cualitativos: juicio de expertos, Delphi, estudios de mercado y análisis de escenarios.</div>
+                  <div class="content-text">Útiles cuando faltan datos históricos, hay productos nuevos o mercados volátiles; subjetivos y basados en experiencia.</div>
+                  <div class="content-text">Recomendación práctica: empezar con métodos simples y emplear modelos más complejos cuando exista historial suficiente y necesidad de precisión.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=6290" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:44:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Técnicas y herramientas para pronóstico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Técnicas: medias móviles (for datos limitados), regresión (causas variables), proyección por historial de mantenimiento (predicción de fallas según horas de operación).</div>
+                  <div class="content-text">Ejemplo operativo: usar historial de mantenciones para estimar fallo a 5.000 horas y programar pedidos anticipados en mes 4 para evitar paros.</div>
+                  <div class="content-text">Cualitativos y software: simulaciones, Big Data, recopilación tercerizada; Delphi para consenso de expertos; análisis de escenarios para mercados inciertos.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=6704" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:51:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Pronóstico de series temporales mediante medias móviles</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Promedio móvil simple y aplicación práctica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El procedimiento implica elegir un valor n como tres o seis para calcular el promedio de los periodos anteriores y desplazar la ventana móvil mes a mes usando datos históricos para proyectar el futuro.</div>
+                  <div class="content-text">Las medidas de desempeño como el error medio y el error medio absoluto permiten evaluar el ajuste comparando diferentes valores de n para encontrar el equilibrio entre suavizado y reacción.</div>
+                  <div class="content-text">El uso operacional sugiere iniciar con métodos simples ajustando según la disponibilidad de datos y graficando las series reales frente a las pronosticadas para detectar visualmente cualquier desajuste.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=7204" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Herramientas de software y extensiones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La utilidad principal radica en detectar series y rellenar valores faltantes para generar pronósticos automáticos siempre que los datos cumplan con el formato de fecha y numérico requerido.</div>
+                  <div class="content-text">La configuración necesita conexión a un servidor de minería de datos para crear una base temporal y generar modelos que resultan en predicciones integradas en tablas de Excel.</div>
+                  <div class="content-text">Las limitaciones más comunes incluyen errores por la configuración del servidor o permisos de acceso que a menudo requieren ajustes técnicos en SQL para habilitar la minería de datos.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=7834" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Notas de cierre y continuación de la formación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Actividad práctica y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La próxima sesión incluirá un taller práctico de 20 minutos para aplicar los métodos de pronóstico a casos reales de los participantes.</div>
+                  <div class="content-text">Se recomienda la lectura previa sobre indicadores clave de desempeño (KPIs) y gestión estratégica para optimizar el aprendizaje del taller.</div>
+                  <div class="content-text">Los alumnos cuentan con acceso a la clase grabada y a los canales de consulta del equipo docente para resolver dudas posteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=e5oEMtZN_Lo&start=8653" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:24:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 03: PLANIFICACIÓN Y CONTROL DE OPERACIONES LOGÍSTICAS - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

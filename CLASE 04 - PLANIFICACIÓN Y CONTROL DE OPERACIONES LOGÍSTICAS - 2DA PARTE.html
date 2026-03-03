@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción a los indicadores</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">¿Qué es un indicador?</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un indicador es un ratio numérico cuantitativo o cualitativo que sirve para determinar el estado de una situación y fundamentar decisiones.</div>
+                  <div class="content-text">No debe verse como un número aislado; su valor real reside en la interpretación y en las acciones correctivas que genera para el usuario.</div>
+                  <div class="content-text">Por ejemplo, una tasa de lotes rechazados del 5% mensual que acumula un 20% en un trimestre indica una falla sistemática en la calidad.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=57" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:00:57)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Propósito y utilidad de los indicadores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los indicadores permiten realizar comparativas entre periodos o procesos para medir la magnitud de los cambios ejecutados.</div>
+                  <div class="content-text">Se recomienda el uso de indicadores sencillos y específicos que detallen con precisión el lugar, la fecha y el alcance de la medición.</div>
+                  <div class="content-text">Un KPI bien estructurado debe especificar, por ejemplo, el rendimiento de un área de minado en una zona y fecha determinadas.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=144" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:02:24)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Características y requisitos de los KPIs</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Cualidades esenciales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Deben ser específicos (qué, dónde y cuándo) y medibles numéricamente para permitir un rastreo efectivo de la información.</div>
+                  <div class="content-text">Es indispensable que los datos sean registrables y procesables, indicando siempre el departamento responsable de custodiar dicha información.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=235" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:03:55)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Flexibilidad y uso práctico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un buen KPI debe ser flexible para adaptarse a cambios operativos y debe utilizarse activamente para el seguimiento diario.</div>
+                  <div class="content-text">Se aconseja a los profesionales crear indicadores propios adaptados a su realidad operativa en lugar de copiar formatos genéricos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=414" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:06:54)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Indicadores aplicados a decisiones y mejoras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Justificación de inversiones y cambios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los KPIs se utilizan para justificar financieramente la compra de maquinaria nueva basándose en la reducción del tiempo de reposición.</div>
+                  <div class="content-text">Se debe cuantificar el beneficio económico antes de ejecutar cualquier inversión, como el ahorro por optimización de tiempos logísticos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=559" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:09:19)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Medición de cambios ejecutados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se comparan las metodologías actuales frente a propuestas como Lean Logistics para confirmar si la mejora es económicamente viable.</div>
+                  <div class="content-text">Es necesario contar con datos precisos del ciclo logístico para validar si el cambio en los procesos ha generado los resultados esperados.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=707" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:11:47)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Indicadores para gestión de personal y desempeño</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Evaluación del personal por KPIs</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se mide la eficiencia de las tareas del personal técnico, diferenciando entre rendimientos puntuales y mejoras sostenidas en el tiempo.</div>
+                  <div class="content-text">La evaluación busca identificar si un operario mantiene un estándar de eficiencia permanente durante toda su jornada laboral.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=861" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:14:21)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Capacitación y clima laboral</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se utiliza el indicador de horas de capacitación anual para fortalecer las competencias de almaceneros, coordinadores y jefes.</div>
+                  <div class="content-text">El clima laboral se mide cualitativamente para el personal en sistemas de turnos, evaluando sus expectativas y reconocimiento profesional.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=1616" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:26:56)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Tipos de indicadores y horizontes temporales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Corto plazo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Estos miden momentos inmediatos como la eficiencia por turno o la producción semanal, permitiendo un control operativo rápido.</div>
+                  <div class="content-text">Su principal desventaja es la alta variabilidad, por lo que no siempre representan la tendencia real a largo plazo del proyecto.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=1319" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:21:59)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Largo plazo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reflejan resultados agregados por trimestres o meses, siendo ideales para la toma de decisiones estratégicas y evaluación de proyectos.</div>
+                  <div class="content-text">Al ser resultados acumulados, son más difíciles de manipular y muestran las tendencias reales de la rentabilidad minera.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=1421" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:23:41)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Internos y externos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los indicadores externos miden los tiempos de respuesta de los proveedores, identificando cuellos de botella en el suministro.</div>
+                  <div class="content-text">Los indicadores internos evalúan el nivel de servicio y satisfacción de los clientes internos, como el personal operativo de la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=1479" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:24:39)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Clasificación por función y propósito</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Inductores y de consecuencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los inductores son variables que generan los cambios deseados y deben medirse en periodos mínimos mensuales para ser válidos.</div>
+                  <div class="content-text">Los de consecuencia son resultados derivados, como el volumen mensual de pedidos esperado a partir de la actividad logística diaria.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=1665" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:27:45)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Estratégicos y operacionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los indicadores estratégicos miden el rendimiento financiero de la compañía a través de métricas como el ROI o el BAN.</div>
+                  <div class="content-text">Los operacionales miden el cumplimiento de la estrategia en el terreno, como el número de reclamos o clientes atendidos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2240" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:37:20)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Buenas prácticas y recomendaciones finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Implementación y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es vital mantener indicadores bajo el esquema SMART: específicos, medibles, archivables, alcanzables, relevantes y temporales.</div>
+                  <div class="content-text">El registro de datos debe ser diario para poder procesarlos mediante promedios móviles y observar las variaciones operativas.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2281" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:38:01)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Ajustes operativos y planificación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La planificación de carga y la asignación inmediata de lugares de entrega permiten reducir drásticamente los costos distributivos.</div>
+                  <div class="content-text">Se debe evitar la fragmentación de entregas internas para equilibrar el nivel de servicio con los requisitos de control de inventario.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2507" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:41:47)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Finanzas y activos en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Indicadores financieros y de activos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se evalúa el resultado operativo antes de intereses e impuestos para medir la eficiencia real del negocio minero.</div>
+                  <div class="content-text">La decisión de alquilar activos, como flotas de camionetas, ayuda a evitar la carga financiera por depreciación y amortización.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2669" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:44:29)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Estado de pérdidas y ganancias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El margen bruto se obtiene restando el costo de ventas de los ingresos totales, impactando directamente en el reparto de utilidades.</div>
+                  <div class="content-text">El resultado operativo final se calcula tras descontar gastos de administración, provisiones y amortizaciones de activos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2817" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:46:57)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Indicadores específicos de logística y almacenes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Fórmulas y métricas comunes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El costo logístico por tonelada se determina dividiendo el gasto logístico total entre las toneladas producidas por la mina.</div>
+                  <div class="content-text">El nivel de servicio operativo mide el porcentaje de pedidos entregados de forma completa y a tiempo frente al total solicitado.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2957" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:49:17)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Rotación y obsolescencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La rotación de inventarios mide cuántas veces se renueva el stock; en minería un valor del 40% se considera excepcionalmente alto.</div>
+                  <div class="content-text">Es crítico identificar y liquidar ítems obsoletos o antiguos para liberar espacio en almacén y evitar la pérdida de valor del activo.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=2998" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:49:58)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Tiempo de ciclo logístico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El tiempo de ciclo abarca desde la emisión del pedido hasta su liberación final, incluyendo procesos de verificación y recepción.</div>
+                  <div class="content-text">Se clasifican los proveedores según sus retrasos históricos para ajustar el tiempo de ciclo efectivo en el planeamiento de la demanda.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3192" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:53:12)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Indicadores productivos y mineros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Métricas de producción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se monitorean los kilogramos de explosivo utilizados por cada tonelada de mineral y los metros cuadrados avanzados por guardia.</div>
+                  <div class="content-text">Otros KPIs clave incluyen las toneladas cargadas por hora de máquina y los metros cúbicos de mineral obtenidos por cada disparo.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3284" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:54:44)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Indicadores de transporte y energía</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se calcula el consumo de kilowatt-hora por tonelada y el gasto de galones de combustible por cada tonelada transportada.</div>
+                  <div class="content-text">Para seguridad, se mide el metro cúbico de aire por persona y por turno necesario para garantizar una ventilación adecuada.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3390" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:56:30)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Gestión ambiental y residuos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se mide la reducción de sólidos industriales y la gestión eficiente de residuos peligrosos como aceites y lubricantes usados.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3440" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:57:20)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Seguridad y frecuencia de incidentes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Índice de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El índice de frecuencia relaciona el número de accidentes con las horas hombre trabajadas, siendo el indicador más crítico del sector.</div>
+                  <div class="content-text">Este valor se utiliza para el monitoreo preventivo y la implementación de mejoras en los protocolos de seguridad operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3505" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:58:25)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Productividad por ciclo y KPIs operativos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">KPIs por proceso: perforación, voladura y carga</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En perforación se miden los metros perforados por día y el costo en dólares asociado a cada metro de avance técnico.</div>
+                  <div class="content-text">En voladura se evalúa el metro cúbico volado por disparo considerando el factor de esponjamiento para el cálculo del tonelaje real.</div>
+                  <div class="content-text">En carga se monitorea el consumo de kilowatts por hora de maquinaria y las toneladas movilizadas por cada hora de operación.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3915" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:05:15)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Transporte y acarreo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El desgaste de llantas y el consumo de galones por tonelada son métricas esenciales para controlar el costo del acarreo de mineral.</div>
+                  <div class="content-text">Se planifica el aumento de la flota tercerizada durante los picos estacionales para garantizar la disponibilidad de transporte.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4002" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:06:42)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Productividad en chancado y molienda</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">KPIs por etapa de planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En chancado se miden las toneladas procesadas por hora en relación al consumo energético de kilowatts y los kilogramos de acero usados.</div>
+                  <div class="content-text">En molienda se monitorea el consumo de kilogramos de bolas de acero por tonelada molida para optimizar el rendimiento de los suministros.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4072" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:07:52)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Cronología de tiempos operacionales y desgloses</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Tipos de horas y descomposición</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El control de tiempos se desglosa en horas operacionales (HOP), específicas planificadas (HEP), pérdidas operacionales (HPE) y mantenimiento (HPT).</div>
+                  <div class="content-text">Se consideran también las horas habilitadas (AVI), de reserva (HR) y el tiempo cronológico total (TCR) para una gestión integral.</div>
+                  <div class="content-text">El desglose abarca actividades críticas como perforación, cambios de guarda, inspecciones, traslados de equipo, fallas mecánicas y topografía.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4095" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:08:15)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Uso del detalle temporal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El registro de horas reales frente a las planificadas permite valorar con precisión los costos y tiempos desde el estudio hasta el mineral extraído.</div>
+                  <div class="content-text">Los acumulados temporales por fase sirven como referencia de control para detectar ineficiencias en el ciclo productivo.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4169" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:09:29)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">KPIs específicos de carguío y excavadores</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Indicadores de carguío</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se miden los galones de combustible consumidos por equipo en relación con las horas trabajadas para controlar la eficiencia energética.</div>
+                  <div class="content-text">Los KPIs clave incluyen las toneladas métricas producidas por hora de carguío y el costo operativo por tonelada movilizada.</div>
+                  <div class="content-text">Se monitorea la disponibilidad mecánica y el porcentaje de utilización para evaluar el rendimiento real de la flota de carguío.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4248" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:10:48)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">OE y planificación de mantenimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El indicador OE (Overall Equipment Efficiency) mide la confiabilidad y ayuda a estimar la vida útil del equipo basada en los manuales técnicos.</div>
+                  <div class="content-text">La logística debe anticipar los pedidos de repuestos según los pronósticos de fallo para evitar sobrecostos por compras de urgencia.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4270" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:11:10)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Control de combustible y aprovisionamiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Gestión de combustible</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se realiza un control diario del consumo por sistema para elaborar pronósticos precisos de disponibilidad de galones por jornada.</div>
+                  <div class="content-text">Es vital considerar que la logística de larga distancia para el aprovisionamiento de combustible puede tardar 48 horas o más hacia la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4529" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:15:29)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Riesgos y normativas de transporte</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El transporte de combustible exige el cumplimiento de restricciones de velocidad y normas de seguridad para el equilibrio del peso en ruta.</div>
+                  <div class="content-text">Una planificación adecuada evita los costos adicionales que generan las entregas urgentes desde centros logísticos alejados como Lima.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4610" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:16:50)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Indicadores de desempeño por máquina y ejemplos numéricos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Ejemplos de parámetros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para excavadoras como la PC 329, se registran galones por hora, toneladas por hora y el costo de carguío expresado en dólares.</div>
+                  <div class="content-text">Los valores estándar de operación suelen presentar una disponibilidad mecánica del 70-75% y un porcentaje de utilización cercano al 80%.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4675" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:17:55)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Límite de utilización y riesgo de forzado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Exceder la utilización recomendada incrementa la frecuencia de fallas; la planificación debe evitar la sobrecarga de las máquinas.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4710" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:18:30)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Seguridad: índices y mediciones</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Métricas de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El índice de frecuencia se calcula por cada millón de horas-hombre trabajadas para estandarizar el nivel de riesgo.</div>
+                  <div class="content-text">Se miden el índice de severidad y los días perdidos para clasificar la accidentabilidad general de la empresa minera.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4776" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:19:36)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Diseño de perforación y voladura subterránea</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Cálculo de taladros y parámetros de diseño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para una rampa de 3.5 x 3.5 m, se calcula el número de taladros necesarios ajustando la distancia según el tipo de roca (tenaz, intermedia o friable).</div>
+                  <div class="content-text">En roca tenaz, la distancia entre taladros es menor (0.50-0.55 m), resultando en una malla de aproximadamente 50 taladros para el diseño.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=4860" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:21:00)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Selección y distribución de explosivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El diseño de carga utiliza una proporción de dos tercios de explosivo y un tercio de taco, considerando cartuchos de potencias específicas.</div>
+                  <div class="content-text">Un disparo promedio puede movilizar 126.68 toneladas rotas, considerando el factor de esponjamiento y una eficiencia de perforación del 95%.</div>
+                  <div class="content-text">El cálculo final para un disparo típico arroja el uso de 85 kg de explosivo distribuidos en 44 taladros cargados y 6 de alivio.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=5098" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:24:58)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Control operativo y monitoreo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Definición y alcance del control operativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El control operativo monitorea y optimiza actividades desde el abastecimiento hasta la entrega final de repuestos y servicios de acarreo.</div>
+                  <div class="content-text">Su objetivo central es maximizar la rentabilidad y seguridad operativa mediante el análisis constante de la ejecución logística.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=5753" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:35:43)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Monitoreo en tiempo real y herramientas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se emplean sensores, Inteligencia Artificial y plataformas como Argus para analizar datos críticos y ajustar parámetros de desempeño.</div>
+                  <div class="content-text">Herramientas como el IoT y dashboards de SAP permiten predecir fallos mediante modelos de mantenimiento predictivo avanzados.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=5805" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:36:45)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Supervisión, documentación y trazabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La supervisión fiscaliza el cumplimiento de procedimientos para el manejo de ácidos, concentrados, residuos y el uso correcto de EPPs.</div>
+                  <div class="content-text">Toda entrada y salida de almacén debe documentarse con informes; las discrepancias no verificadas pueden derivar en responsabilidades administrativas.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=5990" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:39:50)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="21">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">21</span>
+              <span class="section-title">Prevención de paradas y planificación de paradas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.1</span>
+                  <span class="subsection-title">Planificación y coordinación de paradas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las paradas por mantenimiento se programan con antelación para asegurar que los inventarios necesarios estén disponibles en la fecha prevista.</div>
+                  <div class="content-text">El planner y el corredor logístico coordinan la llegada de suministros internacionales con meses de anticipación para evitar retrasos en la parada.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=6420" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:47:00)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.2</span>
+                  <span class="subsection-title">Prevención y mantenimiento predictivo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Usar monitoreo en tiempo real e IA para estimar probabilidad de fallo y programar mantenimiento predictivo.</div>
+                  <div class="content-text">Conocer máquinas, frecuencia de fallos y planificar repuestos y órdenes de compra según ciclo operativo.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=6484" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:48:04)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="22">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">22</span>
+              <span class="section-title">Control de inventarios y ciclo de pedidos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.1</span>
+                  <span class="subsection-title">Gestión anual y ciclos de pedido</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se define un calendario anual de pedidos basado en la estacionalidad del rubro minero para minimizar los costos de ordenar materiales.</div>
+                  <div class="content-text">Agrupar los pedidos en periodos planificados ayuda a reducir la frecuencia de compras y optimizar los costos logísticos de transporte.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=6516" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:48:36)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.2</span>
+                  <span class="subsection-title">Clasificación Kralik y repuestos estratégicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Matriz de Kralik: identificar repuestos estratégicos que deben mantenerse en inventario por ser indispensables.</div>
+                  <div class="content-text">Diferenciar entre artículos de producción masiva y estratégicos críticos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7182" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:59:42)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="23">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">23</span>
+              <span class="section-title">Optimización operativa y metodologías</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.1</span>
+                  <span class="subsection-title">Lean Logistics y Just in Time adaptados a minería</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Lean Logistics aplicado para reducir desperdicios y optimizar inventarios y tiempos de ciclo.</div>
+                  <div class="content-text">Técnicas: flujo continuo, reducción de merma, proformas y disposiciones de trabajo preparadas.</div>
+                  <div class="content-text">Just in Time adaptado: en minería muchos insumos son indispensables, no solo necesarios; usar Kralik para clasificar estratégicos vs reemplazables.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7031" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:57:11)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.2</span>
+                  <span class="subsection-title">Metodologías y especialización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Metodologías M1 Logistics y SIGSIC usadas en minería.</div>
+                  <div class="content-text">Supervisión requiere especialistas según área (transporte, inventarios, voladura) para optimizar operaciones y cumplimiento técnico.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7018" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(01:56:58)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="24">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">24</span>
+              <span class="section-title">Seis Sigma y mejora de la variabilidad de procesos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.1</span>
+                  <span class="subsection-title">Fundamentos y beneficios de Seis Sigma</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Seis Sigma es una metodología estadística avanzada cuyo objetivo primordial es eliminar ineficiencias y reducir la variabilidad en los procesos operativos.</div>
+                  <div class="content-text">En minería, la variabilidad es un riesgo crítico; por ejemplo, variaciones en la carga de dinamita según la dureza de la roca afectan directamente el costo y la fragmentación.</div>
+                  <div class="content-text">Los beneficios directos incluyen la mejora de los estándares de seguridad, la optimización de procesos de extracción y la maximización de la rentabilidad por guardia.</div>
+                  <div class="content-text">La metodología permite que los procesos mineros sean predecibles, lo que facilita el cumplimiento de los cronogramas de entrega de mineral a la planta concentradora.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7201" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:00:01)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.2</span>
+                  <span class="subsection-title">Metodología DMAIC y validación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El ciclo DMAIC se compone de cinco fases: Definir el problema, Medir el desempeño actual, Analizar las causas raíz, Mejorar el proceso y Controlar los resultados.</div>
+                  <div class="content-text">Para validar una mejora, el profesor indica el uso de hasta ocho herramientas de calidad: 2 para validación media, 3 para intermedia y 4 para avanzada.</div>
+                  <div class="content-text">La validación debe demostrar resultados tangibles en dos frentes: reducción de tiempos operativos y, sobre todo, impacto positivo en dólares.</div>
+                  <div class="content-text">Un proyecto de mejora se considera exitoso y prioritario cuando la reducción de la variabilidad se traduce en un ahorro monetario directo para la compañía.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7290" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:01:30)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.3</span>
+                  <span class="subsection-title">Aplicaciones prácticas y proyectos de titulación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Seis Sigma es un tema ideal para tesis o proyectos de titulación, ya que requiere datos históricos y mediciones estadísticas para demostrar resultados.</div>
+                  <div class="content-text">Un ejemplo práctico es la reducción del tiempo de ciclo de acarreo de 9.5 a 8.5 minutos, lo cual debe estar respaldado por una base de datos de mediciones reales.</div>
+                  <div class="content-text">Se combina con Lean Logistics para eliminar "muras" (variabilidad) y "mudas" (desperdicios), fundamentando la mejora en la estabilidad de los procesos críticos.</div>
+                  <div class="content-text">Es indispensable definir los requerimientos críticos del cliente interno para que la variabilidad medida tenga relevancia en la productividad final de la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7315" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:01:55)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="25">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">25</span>
+              <span class="section-title">Supervisión, monitoreo y cultura operativa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">25.1</span>
+                  <span class="subsection-title">Monitoreo continuo y tecnología</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Supervisión diaria con sensores y tecnología para detección proactiva de fallos.</div>
+                  <div class="content-text">Implementación de monitoreo tecnológico en tiempo real, gestión de riesgos y formación en cultura de seguridad.</div>
+                  <div class="content-text">Uso de dashboards y tableros para visualizar KPIs y tomar decisiones rápidas.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7621" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:07:01)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">25.2</span>
+                  <span class="subsection-title">Comunicación y control pos-implementación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Control post-implementación: formación, monitoreo y validación de que las acciones fueron efectivas.</div>
+                  <div class="content-text">Garantiza que la mejora se mantenga; si no cumple objetivos, la intervención no fue efectiva.</div>
+                  <div class="content-text">Priorizar resultados en dólares y/o tiempo según impacto económico y operativo.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7545" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:05:45)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="26">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">26</span>
+              <span class="section-title">Control y formatos operativos en mina</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">26.1</span>
+                  <span class="subsection-title">Reportes y checklists diarios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El reporte de paradas operativas es obligatorio para todos los turnos, detallando la causa y duración para evaluar la eficiencia de la labor.</div>
+                  <div class="content-text">Formatos como el checklist de Jumbo registran el inicio y fin de actividades por nivel, generando información accionable para el análisis de datos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7657" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:07:37)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">26.2</span>
+                  <span class="subsection-title">Checklists y verificación de equipos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las listas de verificación de maquinaria inspeccionan niveles de aceite, estado de llantas, horómetros y pines para prevenir fallas mecánicas.</div>
+                  <div class="content-text">Estos formatos operativos deben ser precisos y estar disponibles para investigaciones técnicas en caso de incidentes con los equipos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7770" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:09:30)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="27">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">27</span>
+              <span class="section-title">Cierre y notas del aula</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">27.1</span>
+                  <span class="subsection-title">Pausa y logística del curso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instructor anuncia pausa de 5 minutos y solicitud de link de asistencia por chat.</div>
+                  <div class="content-text">Recordatorio para alumnos de completar registro de asistencia.</div>
+                  <div class="content-text">Agradecimiento y cierre de la clase, invitación a próximos videos y continuación de la parte dos.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=3531" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(00:58:51)</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">27.2</span>
+                  <span class="subsection-title">Despedida y seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comunicaciones finales: enlace de la grabación y recordatorio de marcar asistencia correctamente (D8 y gestión logística y almacenes y minería).</div>
+                  <div class="content-text">Soporte disponible vía números de EDUMIN para dudas y confirmación de registro de asistencia.</div>
+                  <div class="content-text">Invitación a continuar con el curso y contacto para aclaraciones.</div>
+                  <a href="https://www.youtube.com/watch?v=2Ol0WsuXyGY&start=7954" class="youtube-link" target="_blank">Ver en YouTube <span class="timestamp">(02:12:34)</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 04: PLANIFICACIÓN Y CONTROL DE OPERACIONES LOGÍSTICAS - 2dA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y propósito de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación y dinámica de la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El profesor y el monitor inician la sesión explicando los canales de comunicación (chat y micrófono) para la resolución de dudas en tiempo real.</div>
+                  <div class="content-text">La jornada académica se extiende hasta las 21:45, con un receso programado a las 20:30, momento en el que se habilita el registro de asistencia.</div>
+                  <div class="content-text">El objetivo central es profundizar en el transporte y la logística de distribución, abarcando la tipología del transporte y la gestión de entradas/salidas (input/output).</div>
+                  <div class="content-text">Se anticipa que la próxima sesión abordará la seguridad, gestión de riesgos en materiales peligrosos y sistemas de trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=120" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:02:00)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Tipología del transporte minero: factores productivos y conceptos básicos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Factor productivo y operaciones mineras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El diseño del transporte debe centrarse en el problema productivo de la mina, analizando específicamente las operaciones que generan la carga y descarga del mineral.</div>
+                  <div class="content-text">Es vital diferenciar entre el bloque mineral "in situ" (en su estado natural) y el bloque esponjado tras la tronadura, ya que esto redefine la logística de movimiento.</div>
+                  <div class="content-text">La planificación de la carga debe priorizar tres variables fundamentales: el volumen resultante, la densidad del material y el peso total por viaje.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=268" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:04:28)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Esponjamiento y tipos de terreno</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El factor de esponjamiento es variable y depende directamente del tipo de terreno y el mineral extraído.</div>
+                  <div class="content-text">Se citan ejemplos técnicos de expansión: la arcilla presenta un ~20%, el carbón entre 30–45% y el mineral de cobre alcanza un 40–60%.</div>
+                  <div class="content-text">La implicancia logística es directa: un mayor volumen esponjado exige una flota con mayor capacidad de carga y superficies de manejo más amplias en los depósitos.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=416" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:06:56)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Índices operacionales y estructura de tiempos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Aplicación de índices mecánicos, de insumo, mineros y de resultados para estandarizar la medición de la productividad en el transporte.</div>
+                  <div class="content-text">La estructura de tiempos se divide en: tiempo efectivo, operacional, disponible, hábil y cronológico.</div>
+                  <div class="content-text">Este desglose temporal es esencial para planificar la disponibilidad de los equipos y programar los mantenimientos preventivos.</div>
+                  <div class="content-text">La gestión de estos tiempos impacta directamente en el cumplimiento de las metas de producción y en la reducción de cuellos de botella.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=477" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:07:57)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Disponibilidad de flota y mantenimiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Disponibilidad física y mecánica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La operatividad está condicionada por el estado del chasis, motor, dirección y sistemas hidráulicos, lo que exige una vigilancia constante.</div>
+                  <div class="content-text">Se requiere un equipo de mecánicos especializado y planes preventivos robustos para evitar "tiempos muertos" que paralicen el flujo de mineral.</div>
+                  <div class="content-text">La gestión se aborda desde dos frentes: la reducción de fallas físicas/mecánicas y la aplicación de un mantenimiento proporcional a la antigüedad del equipo.</div>
+                  <div class="content-text">El índice de mantenimiento se establece como el indicador clave para medir la eficiencia del equipo de soporte y la calidad de la flota.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=635" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:35)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Índice de resultados: utilización y aprovechamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La utilización se define mediante la fórmula: (tiempo operativo / tiempo real) × 100.</div>
+                  <div class="content-text">El aprovechamiento se mide como: (tiempo operativo / tiempo hipotético) × 100.</div>
+                  <div class="content-text">Estos índices son herramientas de auditoría para verificar si la flota contratada a terceros está rindiendo según los estándares de la compañía.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=782" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:13:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Factores que afectan rendimiento operacional del transporte</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Operador y experiencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La pericia del operador es determinante para estandarizar los tiempos de ciclo y reducir la tasa de errores operativos.</div>
+                  <div class="content-text">Se identifica que los operadores con una experiencia de entre 4 y 10 años ofrecen la mayor consistencia y confiabilidad en la ruta.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=897" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:57)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Cronometría, corrosión y custodia del material</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El uso de cronometría es vital para proteger el material metálico y asegurar que no sufra corrosión o adulteración durante el trayecto.</div>
+                  <div class="content-text">Es indispensable utilizar contenedores y sistemas de aislamiento específicos según la sensibilidad química del metal transportado.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=933" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:33)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Estado del frente de trabajo, puntos de descarga y pérdidas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los puntos de descarga sirven como nodos de referencia para auditar cantidades, tiempos de llegada y condiciones de entrega del mineral.</div>
+                  <div class="content-text">Estos puntos permiten verificar la integridad de los precintos de seguridad y garantizan la trazabilidad total del envío.</div>
+                  <div class="content-text">Se deben gestionar y prever las pérdidas operacionales que puedan ser causadas por factores sociales (bloqueos), naturales o externos a la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=978" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:18)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Ciclos operativos y tipos de máquinas en el transporte</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Ciclos de trabajo y secuencias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El transporte minero opera por ciclos cerrados con tiempos definidos por los turnos y la capacidad de las máquinas.</div>
+                  <div class="content-text">Ejemplo de rotación: una máquina opera en la ventana de 0–2h para luego entrar en descanso, mientras otra cubre el relevo de 4–6h.</div>
+                  <div class="content-text">La planificación debe alinearse con la disponibilidad del proyecto y el avance real del metrado de extracción.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1122" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:18:42)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Tipos de máquinas y funciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se clasifican los equipos según su rol: máquinas de maniobra, transporte pesado (camiones), carga (palas), descarga y unidades de retorno (transporte vacío).</div>
+                  <div class="content-text">La programación de esta maquinaria busca cumplir estrictamente con las cuotas de extracción diaria y transporte hacia la concentradora.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1159" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Transporte interno: sistemas de acarreo y fajas transportadoras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Sistema de acarreo: componentes y proceso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema se compone de equipos de carga (palas eléctricas e hidráulicas) y equipos de transporte (volquetes, camiones de alto tonelaje, vagones).</div>
+                  <div class="content-text">Las vías de acarreo, denominadas "Hall Rocks", deben ser diseñadas bajo criterios de ingeniería para maximizar la seguridad y la eficiencia del flujo.</div>
+                  <div class="content-text">El proceso operativo estándar sigue la secuencia: preparación del área, carga del material volado, transporte, descarga y retorno vacío al frente.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1270" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:10)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Fajas transportadoras: uso y beneficios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las fajas son el método preferido para mover volúmenes masivos de mineral hacia las plantas procesadoras de forma continua.</div>
+                  <div class="content-text">Están fabricadas con materiales de alta tecnología resistentes a la abrasión extrema y a las duras condiciones climáticas de la mina.</div>
+                  <div class="content-text">Beneficios clave: ahorro de tiempo operativo, sostenibilidad ambiental y gran adaptabilidad para procesos de molienda y clasificación.</div>
+                  <div class="content-text">Se distinguen dos categorías: fajas internas (vinculadas a la producción) y fajas externas (para alimentación de sistemas generales).</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1463" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Transporte externo y multimodalidad</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Medios multimodales usados en minería</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La minería moderna utiliza una combinación de modos: terrestre (camiones), ferroviario (trenes), mineroductos, marítimo y aéreo.</div>
+                  <div class="content-text">Ejemplos regionales destacados: mineroductos en la zona central y Cajamarca; trenes y camiones en el sur con estaciones de transferencia como Pillones.</div>
+                  <div class="content-text">La elección del modo óptimo depende de la ubicación del yacimiento, los costos operativos, la infraestructura disponible y el destino de exportación.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1611" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:51)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Ventajas y limitaciones por modo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Camiones: Destacan por su flexibilidad operativa e inmediatez, pero tienen altos costos en combustible, peajes y desgaste de neumáticos.</div>
+                  <div class="content-text">Trenes: Representan la opción más económica para grandes distancias a largo plazo, pero están limitados por la infraestructura ferroviaria fija.</div>
+                  <div class="content-text">Mineroductos: Permiten el transporte de concentrados en forma líquida ("slurry"), siendo una solución técnica eficiente para cobre y zinc.</div>
+                  <div class="content-text">Aéreo: Se reserva exclusivamente para productos de altísimo valor unitario (como lingotes de oro) o repuestos críticos de extrema urgencia.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=2036" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Ejemplos de rutas y casos prácticos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Ruta del concentrado de Las Bambas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Implementación de un sistema bimodal: camiones transportan desde la mina (Chalhuahuacho) hasta la estación Pillones, donde se transborda a trenes hacia Matarani.</div>
+                  <div class="content-text">El recorrido total supera los 730 km, atravesando altitudes de entre 3,000 y 5,000 metros, con una flota operativa de 125 camiones.</div>
+                  <div class="content-text">La gestión logística debe considerar el impacto social por el tránsito en comunidades, límites de velocidad locales y riesgos climáticos de altura.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=1749" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:09)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Ruta y logística de Quellaveco</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El transporte se realiza por carreteras públicas autorizadas utilizando camiones encapsulados para evitar la dispersión de concentrado.</div>
+                  <div class="content-text">La ruta conecta la planta de procesamiento directamente con muelles y puntos portuarios que cuentan con instalaciones propias de la empresa.</div>
+                  <div class="content-text">Se utiliza la contratación tercerizada (ej. Transaltiza) para la gestión de flotas, mantenimiento y señalética vial de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=2283" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:38:03)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Exportaciones mineras: destinos, volúmenes y formatos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Destinos principales y porcentajes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">China se consolida como el principal mercado con aproximadamente el 37.5% de las exportaciones.</div>
+                  <div class="content-text">Otros destinos clave incluyen: EE. UU. (9.4%), Suiza (8.9%), India (7.1%) y Corea del Sur.</div>
+                  <div class="content-text">La demanda global se concentra masivamente en Asia y Oceanía, con una participación menor de Norteamérica y Latinoamérica.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=2546" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:26)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Volúmenes y tipos de embarque</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se registran estadísticas de gran escala: ~182 naves anuales y movimientos de más de 1.5 millones de toneladas en diversas clasificaciones.</div>
+                  <div class="content-text">El cobre representa el ~51% de los balances de exportación, movilizándose principalmente como granel sólido mineral.</div>
+                  <div class="content-text">Formatos de exportación: granel sólido, contenedores dry, plataformas para material de alta pureza y palets para granulometrías específicas.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=3379" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:19)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Requisitos de pureza por mercado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El mercado estadounidense es exigente, requiriendo purezas de oro de entre 95–98%.</div>
+                  <div class="content-text">Otros mercados, como China, manejan estándares de pureza del 93–96% para concentrados de cobre, plata y zinc.</div>
+                  <div class="content-text">El modo de transporte y el tipo de empaque están directamente condicionados a estas exigencias de calidad y destino final.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=2773" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Puertos, infraestructura y logística de importación/exportación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Principales puertos utilizados en Perú</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Puerto del Callao: Actúa como el hub principal para la importación de maquinaria pesada y repuestos que llegan en contenedores desarmados.</div>
+                  <div class="content-text">Puerto de Matarani e Ilo: Son los puntos estratégicos para la salida de los concentrados de las mineras de la región sur del país.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=2922" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:42)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Operaciones portuarias y manejo de carga</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El uso de estaciones de transferencia (ej. Pillones) permite cargar el mineral en trenes hacia el puerto, reduciendo el costo del flete terrestre.</div>
+                  <div class="content-text">En el puerto, el mineral es custodiado en almacenes de alta seguridad antes de ser cargado en las naves.</div>
+                  <div class="content-text">La logística de importación requiere equipos especializados como grúas de gran tonelaje y plataformas hidráulicas para el manejo de maquinaria desarmada.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=3034" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Clasificación de concentrados y consideraciones finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Tipos de concentrados y su manejo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se identifican tres categorías principales para el despacho: granel sólido mineral, granel sólido general y formatos específicos adaptados a cada metal.</div>
+                  <div class="content-text">Los metales base como el zinc, cobre y plomo requieren un manejo logístico diferenciado según las exigencias del productor y el puerto de destino.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=3379" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:19)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Oro y rutas particulares de exportación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El oro no genera grandes volúmenes en la exportación formal comparado con los concentrados de cobre; una fracción importante proviene de la minería artesanal.</div>
+                  <div class="content-text">Se estima que un 45% del oro artesanal podría salir por vías informales no declaradas, mientras que las empresas formales consolidan entre el 10% y 20% del total exportado.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=3531" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Sistemas bimodales y operaciones ferroviarias</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Introducción al sistema bimodal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Empresas como Peru Rail implementan soluciones bimodales (combinación de camión y tren) para el transporte eficiente de concentrados.</div>
+                  <div class="content-text">Este sistema nace con el propósito de mitigar el impacto ambiental, reducir la congestión en carreteras públicas y mejorar la relación con las comunidades del corredor minero.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4164" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:24)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Cinco etapas del proceso bimodal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Carguillo en mina: Las palas frontales depositan el concentrado en bandejas de acopio; los camiones cargan contenedores de 15 toneladas diseñados específicamente para evitar derrames.</div>
+                  <div class="content-text">Transporte en camión y control: El llenado se automatiza mediante fajas y embudos hidráulicos controlados desde una sala; se aplican precintos de seguridad y validación mediante códigos de barras y fotochecks.</div>
+                  <div class="content-text">Transferencia en estación (La Joya): Puentes grúa de 20 toneladas transfieren los contenedores directamente del camión al carro plano del tren; cada convoy se compone de aproximadamente 16 carros.</div>
+                  <div class="content-text">Transporte en tren: Las locomotoras arrastran hasta 1,000 toneladas netas en convoyes de 16 carros (4 contenedores por carro), operando 24/7 con un tiempo de ruta estimado de 2.5 horas.</div>
+                  <div class="content-text">Descarga en puerto (Matarani): Un "track móvil" posiciona los carros en el almacén hermético; la descarga se realiza por gravedad bajo presión negativa para evitar la emisión de polvo, conectando con fajas hacia los buques.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4199" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:59)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Capacidades, resultados y beneficios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema permite mover entre 3,000 y 3,500 toneladas diarias sin necesidad de expandir la flota de camiones, logrando cifras de hasta 2.6 millones de toneladas en tres años.</div>
+                  <div class="content-text">Proporciona un ahorro de costos logísticos de entre el 10% y 20% en comparación con el transporte puramente terrestre.</div>
+                  <div class="content-text">Otros beneficios incluyen la reducción de la depreciación de los camiones, menor desgaste de la infraestructura vial y versatilidad para transportar también combustibles y carbón.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4453" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:14:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Criterios para elegir modo de transporte y criterios logísticos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Factores decisivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Volumen del material: Grandes volúmenes exigen transporte ferroviario o mineroductos; volúmenes pequeños o urgentes se desplazan por vía terrestre o aérea.</div>
+                  <div class="content-text">Distancia y geografía: Se recomienda evitar tramos terrestres superiores a los 300–500 km debido al incremento exponencial en costos de mantenimiento y fatiga de flota.</div>
+                  <div class="content-text">Tipo de operación: Mientras el tajo abierto facilita el uso de camiones de gran tonelaje, la minería subterránea suele requerir soluciones logísticas más compactas o ductos.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4748" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:19:08)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Consideraciones operativas y de costos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El combustible representa entre el 3% y 15% del gasto operativo total; su optimización es crítica para la rentabilidad.</div>
+                  <div class="content-text">La elección del modo debe considerar la eficiencia energética y la disponibilidad de repuestos para minimizar la depreciación acelerada de los activos.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4877" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Logística Input: abastecimiento, inventarios y gestión de proveedores</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Componentes de la logística Input</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Gestiona el flujo de materias primas, explosivos, reactivos (como el ácido clorhídrico), repuestos y suministros generales.</div>
+                  <div class="content-text">Es vital alinear los sistemas de alimentación (tolvas y fajas) con el mantenimiento preventivo para evitar paradas forzosas en la cadena de entrada.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=4962" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:22:42)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Gestión de compras y control de inventarios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las áreas críticas incluyen la recepción de materiales, el re-almacenamiento, el control de calidad alimentaria y la gestión de servicios en campamentos.</div>
+                  <div class="content-text">Se recomienda la participación de responsables de producción and mantenimiento para validar las especificaciones técnicas de las compras.</div>
+                  <div class="content-text">Se sugieren auditorías semestrales para actualizar la valorización de inventarios y mejorar la planificación fiscal y operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=5150" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:25:50)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Proveedores: selección, homologación y contratación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El ciclo de gestión debe seguir la secuencia: selección, registro, homologación técnica, evaluación de desempeño, negociación y contrato final.</div>
+                  <div class="content-text">Es fundamental proteger la información sensible durante las licitaciones para mantener la ventaja competitiva de la mina.</div>
+                  <div class="content-text">Los contratos deben ser rigurosos con proveedores de insumos críticos como neumáticos, fajas y combustibles.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=5914" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:38:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Logística interna y gestión de campamentos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Ubicación, manejo y riesgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El almacenamiento debe realizarse en lugares idóneos que consideren la peligrosidad de los materiales (ácidos, inflamables) y su accesibilidad operativa.</div>
+                  <div class="content-text">Se debe planificar la ubicación de los depósitos para minimizar las manipulaciones innecesarias y facilitar un uso seguro por parte del personal.</div>
+                  <div class="content-text">Los campamentos mineros exigen un abastecimiento constante y riguroso de alimentos, agua potable y energía para el personal.</div>
+                  <div class="content-text">Es indispensable implementar procesos de supervisión y automatización para el control del combustible, orientados a la reducción de pérdidas y mermas.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=5376" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:36)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Control de combustible y automatización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La implementación de sistemas de administración de combustible con sensores de nivel y radiofrecuencia permite un monitoreo preciso en tiempo real.</div>
+                  <div class="content-text">El uso de tecnologías de captura de datos "sin papel" (ej. sistemas como Total Power) está diseñado para resistir climas extremos y facilitar el acceso remoto a la información.</div>
+                  <div class="content-text">Las ventajas clave incluyen la reducción drástica del error humano, la detección temprana de fugas y la consolidación de reportes para flotas fijas y móviles.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=6071" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:41:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Desafíos y particularidades logísticas en minas remotas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Accesibilidad y tiempos de ciclo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La ubicación en zonas apartadas e inhóspitas obliga a una planificación logística de largo alcance para asegurar el flujo de entregas.</div>
+                  <div class="content-text">Existe una diferencia operativa marcada entre minas cercanas a núcleos urbanos (como Cerro Verde) y operaciones remotas (como Espinar o Copampa).</div>
+                  <div class="content-text">Los tiempos de reposición ("lead times") son específicos según el rubro: cemento (15–20 días) and gases industriales (10–15 días).</div>
+                  <div class="content-text">El conocimiento profundo de cada rubro es fundamental para mejorar la precisión en la generación de pedidos y la gestión de suministros.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=5431" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:30:31)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Riesgos operativos y control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se deben gestionar riesgos críticos como el robo o merma de combustible, fallas por mantenimiento insuficiente and errores humanos en el registro.</div>
+                  <div class="content-text">Los sistemas de control automatizado and el mantenimiento preventivo son las herramientas principales para reducir costos inesperados.</div>
+                  <div class="content-text">La coordinación con proveedores de servicios aduaneros, legales and financieros es indispensable para la vigilancia de las exportaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=5811" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:36:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Costos operativos y relevancia del acarreo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Peso relativo del carguillo y acarreo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El acarreo y el carguillo constituyen una de las fases más costosas del proceso de minado debido a la alta mecanización requerida.</div>
+                  <div class="content-text">El uso masivo de equipos y la operación ininterrumpida 24/7 obligan a una gestión minuciosa para no reducir el rendimiento por unidad.</div>
+                  <div class="content-text">El ciclo operativo típico (carga pala → transporte → descarga → retorno) debe optimizarse constantemente para mantener la rentabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=6183" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:03)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Logística Output: procesamiento, transporte a puerto y comercialización</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Proceso de salida y requisitos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Secuencia lógica de salida: extracción → planta concentradora (molienda/flotación) → transporte especializado → embarque en puerto.</div>
+                  <div class="content-text">Los concentrados minerales deben cumplir con niveles estrictos de pureza y humedad, adaptados a las exigencias del mercado y el modo de transporte.</div>
+                  <div class="content-text">Se seleccionan modos terrestres, férreos o mineroductos en función del volumen de producción, el destino y la viabilidad técnica.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=6802" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:53:22)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Comercialización y destinos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las modalidades de comercialización se dividen en venta directa a compradores finales o gestión a través de intermediarios estratégicos.</div>
+                  <div class="content-text">La exportación directa exige que el productor asuma la totalidad de los requisitos legales, aduaneros and logísticos internacionales.</div>
+                  <div class="content-text">Mercados principales: Cobre (China), Zinc/Plomo (España, Corea del Sur), Plata (EE. UU., Brasil), Hierro (China) and Oro (EAU, EE. UU.).</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=6965" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:56:05)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Comercialización y exportación de metales preciosos: enfoque en oro</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Rol del almacenamiento y puertos especializados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La infraestructura portuaria especializada facilita la gestión de grandes volúmenes, reduce costos operativos y asegura la protección ambiental.</div>
+                  <div class="content-text">El almacenamiento estratégico contribuye al cumplimiento de las normativas internacionales y a la eficiencia en el flujo de materiales.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7205" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:05)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Mercado, oferta y demanda del oro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Perú se posicionó como el décimo productor mundial hasta 2022, teniendo a Canadá e India como sus principales destinos de exportación en 2023.</div>
+                  <div class="content-text">La estrategia de venta y la elección del destino final dependen directamente de la comprensión de la demanda y la calidad del producto.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7284" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:24)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Modalidades de exportación: directa e indirecta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La exportación directa permite un contacto directo con el comprador final, pero requiere una alta capacidad logística y legal del productor.</div>
+                  <div class="content-text">La exportación indirecta a través de intermediarios facilita el acceso a economías de escala y reduce costos en fletes y seguros internacionales.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7367" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:47)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.4</span>
+                  <span class="subsection-title">Términos de negociación y cláusulas contractuales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El contrato estándar regula: material, calidad, INCOTERMS (FOB/CIF), peso, leyes minerales, precio ("fixing") and formas de pago.</div>
+                  <div class="content-text">Los elementos más críticos en la mesa de negociación son los descuentos aplicados, los plazos de pago and los procedimientos de ensayo.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7445" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:05)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.5</span>
+                  <span class="subsection-title">Formas de pago y timing</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las modalidades incluyen: pago contra entrega de guía aérea (AWB), pago al despegue del vuelo o pago al arribo total en el país de destino.</div>
+                  <div class="content-text">El factor tiempo es clave; por ejemplo, un traslado de Perú a la India toma aproximadamente 3 días, lo que influye en los riesgos de demora.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7561" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Protocolos de calidad, valoración y ensayos del oro</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Fixing y cierre de precios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los cierres de precio se ejecutan mediante órdenes London Fix (AM/PM) o precio Spot, utilizando sistemas formales o aplicativos de mensajería acordados.</div>
+                  <div class="content-text">Es vital que la forma de cierre quede estipulada con precisión en el contrato para evitar discrepancias financieras entre las partes.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7636" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:16)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Muestreo y ensayo del oro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Deep Sampling: Extracción de 3 submuestras con pipeta directamente desde el horno de fundición.</div>
+                  <div class="content-text">Fire Assay: Perforación de la barra de oro para obtener virutas metálicas para su análisis posterior.</div>
+                  <div class="content-text">El protocolo exige una muestra para el comprador, una para el vendedor and una tercera para dirimencia en un laboratorio pactado por ambos.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7694" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:14)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Pureza, granulometría y requisitos por país</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los mercados internacionales aplican normas de granulometría y pureza (ej. plata al 95% para China) bajo partidas arancelarias específicas.</div>
+                  <div class="content-text">Cada país regula códigos precisos (ej. 71.8x para el oro) que diferencian los metales preciosos de otros minerales y sus subproductos.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=7831" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:31)</span> </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.4</span>
+                  <span class="subsection-title">Impuestos, gravámenes y seguros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El oro y la plata suelen estar exentos de gravámenes "ad valorem", aunque el costo del seguro comercial ronda el 3% del valor.</div>
+                  <div class="content-text">Otros derechos, como las sobretasas o medidas anti-dumping, se aplican de forma específica a otros minerales según la normativa de cada país.</div>
+                  <a href="https://www.youtube.com/watch?v=sR71-YXYx54&start=8038" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 05: TRANSPORTE Y DISTRIBUCIÓN MINERA - 1ra PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

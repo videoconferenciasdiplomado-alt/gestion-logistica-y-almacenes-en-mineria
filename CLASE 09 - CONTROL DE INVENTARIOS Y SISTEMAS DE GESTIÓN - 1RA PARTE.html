@@ -1,0 +1,3657 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(
+          135deg,
+          var(--color-principal) 0%,
+          var(--color-secundario) 100%
+        );
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--fondo-body-inicio) 0%,
+          var(--fondo-body-fin) 100%
+        );
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          var(--fondo-oscuro-fuerte) 0%,
+          var(--fondo-oscuro-claro) 100%
+        );
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(
+          135deg,
+          var(--rojo-youtube-claro) 0%,
+          var(--rojo-youtube-fuerte) 100%
+        );
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(
+          135deg,
+          var(--fondo-oscuro-fuerte) 0%,
+          var(--fondo-oscuro-claro) 100%
+        );
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png"
+              alt="EDUMIN Logo"
+              class="logo"
+            />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png"
+              alt="EDUMIN Logo"
+              class="logo compact-logo"
+            />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Buscar en el resumen interactivo…"
+              autocomplete="off"
+            />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">
+                Buscar
+              </button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">
+              Mostrar todo
+            </button>
+            <button class="action-button" onclick="collapseAll()">
+              Colapsar todo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title"
+                >Introducción a la sesión y objetivos</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title"
+                    >Bienvenida, presentación del moderador y objetivos de la
+                    clase</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Saludo inicial del monitor académico, presentación de la asesora académica y canal de comunicación para dudas durante la clase."
+                  >
+                    Saludo inicial del monitor académico, presentación de la
+                    asesora académica y canal de comunicación para dudas durante
+                    la clase.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Entrega de la palabra al profesor Mario para iniciar la clase número nueve del diplomado en gestión logística y almacenes en minería."
+                  >
+                    Entrega de la palabra al profesor Mario para iniciar la
+                    clase número nueve del diplomado en gestión logística y
+                    almacenes en minería.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Señalamiento de los temas previstos: control de inventarios y sistemas de gestión como ejes de la semana."
+                  >
+                    Señalamiento de los temas previstos: control de inventarios
+                    y sistemas de gestión como ejes de la semana.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=88"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:01:28)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title"
+                    >Estructura de la semana y contenidos a tratar</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Desglose de actividades: métodos de control de inventarios el martes y otros puntos de medición el miércoles."
+                  >
+                    Desglose de actividades: métodos de control de inventarios
+                    el martes y otros puntos de medición el miércoles.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Enumeración de métodos a revisar: PEPS (FIFO), UEPS (LIFO), promedio móvil simple y políticas de reposición y niveles óptimos de stock."
+                  >
+                    Enumeración de métodos a revisar: PEPS (FIFO), UEPS (LIFO),
+                    promedio móvil simple y políticas de reposición y niveles
+                    óptimos de stock.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Enfoque en aplicaciones específicas al sector minero y diferencias frente a otros sectores industriales o comerciales."
+                  >
+                    Enfoque en aplicaciones específicas al sector minero y
+                    diferencias frente a otros sectores industriales o
+                    comerciales.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=123"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:02:03)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title"
+                    >Variables adicionales críticas en minería para
+                    inventarios</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Consideración obligatoria de la disponibilidad tecnológica del material y la información geográfica para la planificación de inventarios."
+                  >
+                    Consideración obligatoria de la disponibilidad tecnológica
+                    del material y la información geográfica para la
+                    planificación de inventarios.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Impacto del transporte y la localización remota de las minas en la imposibilidad de adquisiciones inmediatas, pese a altos costos o disponibilidad."
+                  >
+                    Impacto del transporte y la localización remota de las minas
+                    en la imposibilidad de adquisiciones inmediatas, pese a
+                    altos costos o disponibilidad.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Condiciones especiales para materiales peligrosos (explosivos): normativas, requisitos de transporte y coordinación con seguridad y flota."
+                  >
+                    Condiciones especiales para materiales peligrosos
+                    (explosivos): normativas, requisitos de transporte y
+                    coordinación con seguridad y flota.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=226"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:03:46)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title"
+                >Aplicación de inventarios en minería: tipos de materiales y
+                necesidades estratégicas</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title"
+                    >Clasificación de materiales en minería y su gestión de
+                    inventario</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Identificación de insumos críticos: repuestos de maquinaria, brocas, discos de corte y otros materiales de mantenimiento."
+                  >
+                    Identificación de insumos críticos: repuestos de maquinaria,
+                    brocas, discos de corte y otros materiales de mantenimiento.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Concepto de materiales estratégicos: repuestos críticos que requieren control de inventario mayor para evitar paradas productivas."
+                  >
+                    Concepto de materiales estratégicos: repuestos críticos que
+                    requieren control de inventario mayor para evitar paradas
+                    productivas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Inclusión de la roca extraída y materiales de alimentación en la planificación y su impacto sobre procesos como la lixiviación."
+                  >
+                    Inclusión de la roca extraída y materiales de alimentación
+                    en la planificación y su impacto sobre procesos como la
+                    lixiviación.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=340"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:05:40)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title"
+                    >Sistemas de registro: inventario periódico y perpetuo, y su
+                    aplicación minera</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Definición del inventario periódico como conteos físicos en intervalos de tiempo y del inventario perpetuo por registro continuo de entradas y salidas."
+                  >
+                    Definición del inventario periódico como conteos físicos en
+                    intervalos de tiempo y del inventario perpetuo por registro
+                    continuo de entradas y salidas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Aplicaciones típicas en minería: insumos, repuestos y herramientas cuyo registro requiere detalle diario y cotejo con almacén físico."
+                  >
+                    Aplicaciones típicas en minería: insumos, repuestos y
+                    herramientas cuyo registro requiere detalle diario y cotejo
+                    con almacén físico.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Mención de la tarjeta de almacén (kardex) con fecha de ingreso, tipo de operación, unidades y existencia para el control documental."
+                  >
+                    Mención de la tarjeta de almacén (kardex) con fecha de
+                    ingreso, tipo de operación, unidades y existencia para el
+                    control documental.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=476"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:07:56)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title"
+                    >Objetivos logísticos y productivos del mantenimiento de
+                    inventarios</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Prevención de paradas productivas mediante disponibilidad de herramientas y repuestos, y uso de métodos tipo PEPS y UEPS según caso."
+                  >
+                    Prevención de paradas productivas mediante disponibilidad de
+                    herramientas y repuestos, y uso de métodos tipo PEPS y UEPS
+                    según caso.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Coordinación logística para manejar la predisposición de la flota y la carga, especialmente de materiales peligrosos o voluminosos."
+                  >
+                    Coordinación logística para manejar la predisposición de la
+                    flota y la carga, especialmente de materiales peligrosos o
+                    voluminosos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Importancia de políticas de inventario por tipo de producto (A, B, C) adaptadas a cada empresa minera y a las características de rotación."
+                  >
+                    Importancia de políticas de inventario por tipo de producto
+                    (A, B, C) adaptadas a cada empresa minera y a las
+                    características de rotación.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=517"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:08:37)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title"
+                >Métodos de valoración de inventarios: PEPS (FIFO), UEPS (LIFO)
+                y promedio</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title"
+                    >Método primero en entrar, primero en salir (PEPS / FIFO) y
+                    su funcionamiento</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Descripción del método PEPS donde las mercancías se ordenan por ingreso y las primeras entradas son las primeras salidas."
+                  >
+                    Descripción del método PEPS donde las mercancías se ordenan
+                    por ingreso y las primeras entradas son las primeras
+                    salidas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Uso de la tarjeta de almacén para registrar fecha de ingreso, operaciones, unidades y existencia; valorización basada en costos históricos."
+                  >
+                    Uso de la tarjeta de almacén para registrar fecha de
+                    ingreso, operaciones, unidades y existencia; valorización
+                    basada en costos históricos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplo numérico breve: cómo se reduce existencia y cómo se calcula el costo unitario afectado y el impacto en utilidades y valorización de inventario."
+                  >
+                    Ejemplo numérico breve: cómo se reduce existencia y cómo se
+                    calcula el costo unitario afectado y el impacto en
+                    utilidades y valorización de inventario.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=588"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:09:48)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title"
+                    >Método último en entrar, primero en salir (UEPS / LIFO) y
+                    ventajas en minería</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Explicación del método UEPS donde las primeras salidas corresponden a las últimas entradas, favoreciendo que costos actuales afecten el costo de ventas."
+                  >
+                    Explicación del método UEPS donde las primeras salidas
+                    corresponden a las últimas entradas, favoreciendo que costos
+                    actuales afecten el costo de ventas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ventaja contable: refleja utilidades más actuales y puede ser más rentable desde el punto de vista de recuperación de costos de mantenimiento."
+                  >
+                    Ventaja contable: refleja utilidades más actuales y puede
+                    ser más rentable desde el punto de vista de recuperación de
+                    costos de mantenimiento.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Consideraciones prácticas: valorización en dólares, selección por precio menor o por criterios operativos, y preferencia del profesor para el sector minero."
+                  >
+                    Consideraciones prácticas: valorización en dólares,
+                    selección por precio menor o por criterios operativos, y
+                    preferencia del profesor para el sector minero.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=1137"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:18:57)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title"
+                    >Método de costo promedio móvil y su efecto en costos y
+                    utilidades</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Definición del promedio móvil: al ingresar mercancías se calcula un nuevo costo promedio que sirve para valorizar salidas subsecuentes."
+                  >
+                    Definición del promedio móvil: al ingresar mercancías se
+                    calcula un nuevo costo promedio que sirve para valorizar
+                    salidas subsecuentes.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Objetivo de homogeneizar precios para simplificar gestión, recomendado en sectores con múltiples obras o materiales con alta variabilidad de precios."
+                  >
+                    Objetivo de homogeneizar precios para simplificar gestión,
+                    recomendado en sectores con múltiples obras o materiales con
+                    alta variabilidad de precios.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Efectos: pérdida de visibilidad del costo histórico, posible subvalorización del inventario y reducción de la utilidad aparente por mezcla de costos antiguos y nuevos."
+                  >
+                    Efectos: pérdida de visibilidad del costo histórico, posible
+                    subvalorización del inventario y reducción de la utilidad
+                    aparente por mezcla de costos antiguos y nuevos.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=1432"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:23:52)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title"
+                >Comparación práctica de los tres métodos con ejemplos numéricos
+                y efectos contables</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title"
+                    >Ejemplos didácticos y diferencias en costeo, inventario
+                    final y utilidad</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Presentación comparativa de resultados entre PEPS, UEPS y promedio respecto a unidades vendidas, costo unitario afectado y valorización final del inventario."
+                  >
+                    Presentación comparativa de resultados entre PEPS, UEPS y
+                    promedio respecto a unidades vendidas, costo unitario
+                    afectado y valorización final del inventario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Observación de cómo PEPS y UEPS mantienen unidades vendidas por peso; el promedio modifica el costo unitario hacia valores intermedios o reducidos."
+                  >
+                    Observación de cómo PEPS y UEPS mantienen unidades vendidas
+                    por peso; el promedio modifica el costo unitario hacia
+                    valores intermedios o reducidos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Consecuencia práctica: variaciones en la utilidad bruta y el inventario final que afectan impuestos y decisiones gerenciales."
+                  >
+                    Consecuencia práctica: variaciones en la utilidad bruta y el
+                    inventario final que afectan impuestos y decisiones
+                    gerenciales.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=1756"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:29:16)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title"
+                    >Caso práctico detallado con PEPS: cronología de compras y
+                    ventas y resultados</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text='Ejercicio de empresa ficticia "Ay qué rico" con caja de chocolates: saldo inicial, compras periódicas, ventas y movimientos aplicando PEPS.'
+                  >
+                    Ejercicio de empresa ficticia "Ay qué rico" con caja de
+                    chocolates: saldo inicial, compras periódicas, ventas y
+                    movimientos aplicando PEPS.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Cálculo paso a paso del costo de ventas total, inventario final en unidades y valor monetario, y traslado al estado de resultados."
+                  >
+                    Cálculo paso a paso del costo de ventas total, inventario
+                    final en unidades y valor monetario, y traslado al estado de
+                    resultados.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ilustración de cómo PEPS determina el costo de ventas (36.800) y la utilidad bruta resultante, con posterior cálculo de gastos, participaciones e impuesto a la renta."
+                  >
+                    Ilustración de cómo PEPS determina el costo de ventas
+                    (36.800) y la utilidad bruta resultante, con posterior
+                    cálculo de gastos, participaciones e impuesto a la renta.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=2821"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:47:01)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title"
+                    >Interpretación contable y logística de la elección de
+                    método</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Importancia de elegir método según objetivos: desde la logística (optimización de inventarios) o desde la contabilización y carga impositiva."
+                  >
+                    Importancia de elegir método según objetivos: desde la
+                    logística (optimización de inventarios) o desde la
+                    contabilización y carga impositiva.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Impacto en utilidades, distribución de participaciones a trabajadores y planificación financiera dependiendo del método elegido."
+                  >
+                    Impacto en utilidades, distribución de participaciones a
+                    trabajadores y planificación financiera dependiendo del
+                    método elegido.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Consideración del efecto de la tercerización en la estructura de costos y cómo cambia la aplicabilidad de políticas de inventario en minería."
+                  >
+                    Consideración del efecto de la tercerización en la
+                    estructura de costos y cómo cambia la aplicabilidad de
+                    políticas de inventario en minería.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=3503"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:58:23)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title"
+                >Políticas de inventario, documentación y control administrativo
+                aplicado a minería</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title"
+                    >Registros y documentación necesarios para la declaración y
+                    control de inventarios</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Elementos imprescindibles: facturas, guías de remisión, boletas y registro de series, montos y saldos iniciales para conciliación contable."
+                  >
+                    Elementos imprescindibles: facturas, guías de remisión,
+                    boletas y registro de series, montos y saldos iniciales para
+                    conciliación contable.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Procedimiento para presentar documentación a contabilidad: entregas mensuales, cotejo de boletas y facturas para la declaración de inventarios."
+                  >
+                    Procedimiento para presentar documentación a contabilidad:
+                    entregas mensuales, cotejo de boletas y facturas para la
+                    declaración de inventarios.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Gestión de casos excepcionales: guías sin factura, declaraciones complementarias y tiempos de recuperación cuando proveedores carecen de sistema electrónico."
+                  >
+                    Gestión de casos excepcionales: guías sin factura,
+                    declaraciones complementarias y tiempos de recuperación
+                    cuando proveedores carecen de sistema electrónico.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=2162"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:36:02)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title"
+                    >Manejo de facturas a crédito y su registro en
+                    inventarios</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Problemática de facturas con pago a 30, 60 o 90 días y la necesidad de registrar existencias y precios aun cuando factura se emite con retraso."
+                  >
+                    Problemática de facturas con pago a 30, 60 o 90 días y la
+                    necesidad de registrar existencias y precios aun cuando
+                    factura se emite con retraso.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Dos enfoques prácticos: anotaciones o comentarios en registros indicando la falta de factura y creación de cuadros separados por plazos para control y planificación."
+                  >
+                    Dos enfoques prácticos: anotaciones o comentarios en
+                    registros indicando la falta de factura y creación de
+                    cuadros separados por plazos para control y planificación.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Procedimiento sugerido: generar registros por periodos (valor actual, 30, 60, 90 días) para control de pagos y validación contable posterior."
+                  >
+                    Procedimiento sugerido: generar registros por periodos
+                    (valor actual, 30, 60, 90 días) para control de pagos y
+                    validación contable posterior.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=2316"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:38:36)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title"
+                    >Recomendaciones operativas y políticas según ubicación y
+                    tipo de mina</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Adaptación de políticas según proximidad a centros urbanos: minas cercanas pueden aplicar inventario reducido; minas remotas requieren mayores niveles de stock."
+                  >
+                    Adaptación de políticas según proximidad a centros urbanos:
+                    minas cercanas pueden aplicar inventario reducido; minas
+                    remotas requieren mayores niveles de stock.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Estrategias de proveedores confiables y contratos claros para minimizar riesgos cuando se opera con política de inventario bajo o inventario cero."
+                  >
+                    Estrategias de proveedores confiables y contratos claros
+                    para minimizar riesgos cuando se opera con política de
+                    inventario bajo o inventario cero.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Aplicabilidad de cada método según tipo de material: PEPS para perecederos o tecnologías con rápida obsolescencia; promedio para obras y múltiples proyectos simultáneos."
+                  >
+                    Aplicabilidad de cada método según tipo de material: PEPS
+                    para perecederos o tecnologías con rápida obsolescencia;
+                    promedio para obras y múltiples proyectos simultáneos.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=2033"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:33:53)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title"
+                >Conclusión de la sesión y pasos siguientes</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title"
+                    >Recapitulación de contenidos y cierre temporal de la
+                    clase</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Síntesis de los métodos vistos (PEPS, UEPS, promedio), su aplicación práctica, ejemplos numéricos y efectos contables en minería."
+                  >
+                    Síntesis de los métodos vistos (PEPS, UEPS, promedio), su
+                    aplicación práctica, ejemplos numéricos y efectos contables
+                    en minería.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Recordatorio sobre la influencia de variables geográficas, transporte y normativas de materiales peligrosos en la gestión logística minera."
+                  >
+                    Recordatorio sobre la influencia de variables geográficas,
+                    transporte y normativas de materiales peligrosos en la
+                    gestión logística minera.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Indicación de continuar en la siguiente parte con políticas de inventario y profundización en mediciones la próxima sesión, cerrando la clase número nueve."
+                  >
+                    Indicación de continuar en la siguiente parte con políticas
+                    de inventario y profundización en mediciones la próxima
+                    sesión, cerrando la clase número nueve.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=3586"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(00:59:46)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title"
+                >Introducción y contexto sobre costo de inventario y decisiones
+                estratégicas</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title"
+                    >Importancia del costo de inventario en operaciones mineras
+                    y continuidad del negocio</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Mantener inventarios estratégicos puede garantizar continuidad operativa y evitar paradas costosas que superen el costo de tener inventario."
+                  >
+                    Mantener inventarios estratégicos puede garantizar
+                    continuidad operativa y evitar paradas costosas que superen
+                    el costo de tener inventario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Discusión sobre trade-off entre mantener inventario elevado versus los costos y oportunidades perdidas por capital inmovilizado."
+                  >
+                    Discusión sobre trade-off entre mantener inventario elevado
+                    versus los costos y oportunidades perdidas por capital
+                    inmovilizado.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Propuesta de asignar una persona encargada de la inversión y gestión de activos para seguimiento del inventario estratégico."
+                  >
+                    Propuesta de asignar una persona encargada de la inversión y
+                    gestión de activos para seguimiento del inventario
+                    estratégico.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4057"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:07:37)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title"
+                    >Enfoques contrapuestos sobre niveles de inventario y
+                    límites mínimos y máximos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Postura a favor de inventarios altos por seguridad frente a rupturas de stock frente a postura de evitar cantidades absurdas."
+                  >
+                    Postura a favor de inventarios altos por seguridad frente a
+                    rupturas de stock frente a postura de evitar cantidades
+                    absurdas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Uso de cantidades mínimas y máximas fijadas por política para evitar sobrestock y pérdidas por exceso."
+                  >
+                    Uso de cantidades mínimas y máximas fijadas por política
+                    para evitar sobrestock y pérdidas por exceso.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Relación con la cantidad económica de pedido (EOQ) para determinar cuándo reponer en función del stock mínimo y tiempo de entrega."
+                  >
+                    Relación con la cantidad económica de pedido (EOQ) para
+                    determinar cuándo reponer en función del stock mínimo y
+                    tiempo de entrega.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4092"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:08:12)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title"
+                    >Consideraciones geográficas y tecnológicas en la logística
+                    minera</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Futuro potencial de IA y drones para gestionar órdenes y transporte en tiempo real en minería, aunque actualmente limitado en territorio peruano."
+                  >
+                    Futuro potencial de IA y drones para gestionar órdenes y
+                    transporte en tiempo real en minería, aunque actualmente
+                    limitado en territorio peruano.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Limitaciones actuales en sistemas integrados y seguimiento con inteligencia artificial; por ahora decisiones tomadas por grupos de especialistas y stakeholders."
+                  >
+                    Limitaciones actuales en sistemas integrados y seguimiento
+                    con inteligencia artificial; por ahora decisiones tomadas
+                    por grupos de especialistas y stakeholders.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Importancia de acuerdos entre áreas (logística, operaciones, dirección) para definir productos de seguridad y políticas de stock."
+                  >
+                    Importancia de acuerdos entre áreas (logística, operaciones,
+                    dirección) para definir productos de seguridad y políticas
+                    de stock.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4214"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:10:14)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title"
+                >Políticas y categorías de reposición aplicables en minería y
+                diferencias con industria</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title"
+                    >Políticas especiales para ítems críticos como explosivos y
+                    repuestos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Algunos productos, como explosivos y repuestos críticos, tienen categoría especial que permite reposición inmediata para evitar paradas operativas."
+                  >
+                    Algunos productos, como explosivos y repuestos críticos,
+                    tienen categoría especial que permite reposición inmediata
+                    para evitar paradas operativas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Políticas establecidas consideran el impacto en balance y el costo de parar operación frente a costo de mantener inventario."
+                  >
+                    Políticas establecidas consideran el impacto en balance y el
+                    costo de parar operación frente a costo de mantener
+                    inventario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplo numérico: preferir perder 30.000 USD en inventario antes que incurrir en 60.000 USD por paradas y reposición tardía."
+                  >
+                    Ejemplo numérico: preferir perder 30.000 USD en inventario
+                    antes que incurrir en 60.000 USD por paradas y reposición
+                    tardía.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4264"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:11:04)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title"
+                    >Métodos de optimización: revisión periódica y punto de
+                    pedido</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Reposición periódica usada para regularizar inventarios en intervalos definidos; punto de pedido se utiliza para emitir orden cuando inventario cae por debajo del umbral."
+                  >
+                    Reposición periódica usada para regularizar inventarios en
+                    intervalos definidos; punto de pedido se utiliza para emitir
+                    orden cuando inventario cae por debajo del umbral.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="En minería se distinguen inventarios operativos y reservas minerales; en industria usualmente existe un único enfoque."
+                  >
+                    En minería se distinguen inventarios operativos y reservas
+                    minerales; en industria usualmente existe un único enfoque.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Para repuestos críticos se categorizan consumibles y no consumibles y se define política específica de seguridad y stop."
+                  >
+                    Para repuestos críticos se categorizan consumibles y no
+                    consumibles y se define política específica de seguridad y
+                    stop.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4346"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:12:26)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title"
+                    >Reposición de reservas minerales y planificación de
+                    proyectos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Reposición de reservas implica mantener capacidad productiva mediante desarrollo de nuevos yacimientos y proyectos en paralelo."
+                  >
+                    Reposición de reservas implica mantener capacidad productiva
+                    mediante desarrollo de nuevos yacimientos y proyectos en
+                    paralelo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Políticas consideran compras en grandes cantidades por economía de escala cuando se planifican expansiones a largo plazo."
+                  >
+                    Políticas consideran compras en grandes cantidades por
+                    economía de escala cuando se planifican expansiones a largo
+                    plazo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Distinción entre proyectos de producción, proyectos de optimización y proyectos de exploración para asegurar producción futura."
+                  >
+                    Distinción entre proyectos de producción, proyectos de
+                    optimización y proyectos de exploración para asegurar
+                    producción futura.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4411"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:13:31)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title"
+                >Cantidad económica de pedido (EOQ): definición, supuestos y
+                fórmula</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title"
+                    >Objetivo del EOQ y beneficios para la logística
+                    minera</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="EOQ busca minimizar costos totales asociados a pedido y mantenimiento, manteniendo inventarios equilibrados y planificación anticipada."
+                  >
+                    EOQ busca minimizar costos totales asociados a pedido y
+                    mantenimiento, manteniendo inventarios equilibrados y
+                    planificación anticipada.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ventajas: reducción de costos de transporte, mejora del flujo de caja, ahorro por economía de escala y mejor índice de rotación."
+                  >
+                    Ventajas: reducción de costos de transporte, mejora del
+                    flujo de caja, ahorro por economía de escala y mejor índice
+                    de rotación.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Importancia de planificar con anticipación y evitar compras urgentes que aumentan costos y merma."
+                  >
+                    Importancia de planificar con anticipación y evitar compras
+                    urgentes que aumentan costos y merma.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4513"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:15:13)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title"
+                    >Supuestos del modelo EOQ y limitaciones en minería</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Supuestos: demanda constante, recepción de lotes en un solo envío, costo fijo por emisión constante y tiempo de entrega conocido."
+                  >
+                    Supuestos: demanda constante, recepción de lotes en un solo
+                    envío, costo fijo por emisión constante y tiempo de entrega
+                    conocido.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Limitaciones: variaciones estacionales o globales (conflictos, bloqueos marítimos) pueden alterar tiempos de entrega y disponibilidad."
+                  >
+                    Limitaciones: variaciones estacionales o globales
+                    (conflictos, bloqueos marítimos) pueden alterar tiempos de
+                    entrega y disponibilidad.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="En minería la demanda suele ser constante para ítems operativos, pero hay productos con alta rotación y otros con compras intermitentes."
+                  >
+                    En minería la demanda suele ser constante para ítems
+                    operativos, pero hay productos con alta rotación y otros con
+                    compras intermitentes.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=5139"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:25:39)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title"
+                    >Fórmula EOQ y variables principales explicadas</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="EOQ = raíz cuadrada de (2 * D * S / H), donde D es demanda, S costo por ordenar, H costo de mantener por unidad."
+                  >
+                    EOQ = raíz cuadrada de (2 * D * S / H), donde D es demanda,
+                    S costo por ordenar, H costo de mantener por unidad.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Variables: Q (cantidad por orden), D demanda anual, c costo por unidad, S costo de emisión, h tasa de mantenimiento porcentual aplicada al costo unitario."
+                  >
+                    Variables: Q (cantidad por orden), D demanda anual, c costo
+                    por unidad, S costo de emisión, h tasa de mantenimiento
+                    porcentual aplicada al costo unitario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplos y ajuste de decimales: Q debe redondearse a unidades enteras por restricciones físicas y de empaquetado."
+                  >
+                    Ejemplos y ajuste de decimales: Q debe redondearse a
+                    unidades enteras por restricciones físicas y de empaquetado.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=5455"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:30:55)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title"
+                >Ejemplo práctico EOQ con cálculo de punto de reorden y ajustes
+                por tiempo de entrega</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title"
+                    >Ejemplo 1: datos, cálculo de EOQ y punto de reorden para
+                    1.000 unidades anuales</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Datos: demanda anual 1.000 unidades, costo por emitir orden 10 USD, costo anual de mantenimiento 2,5 USD por unidad, tiempo de entrega 7 días."
+                  >
+                    Datos: demanda anual 1.000 unidades, costo por emitir orden
+                    10 USD, costo anual de mantenimiento 2,5 USD por unidad,
+                    tiempo de entrega 7 días.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Cálculo EOQ: raíz cuadrada de (2DS/H) resulta aproximadamente Q = 90 unidades, redondeado a 90 unidades enteras."
+                  >
+                    Cálculo EOQ: raíz cuadrada de (2DS/H) resulta
+                    aproximadamente Q = 90 unidades, redondeado a 90 unidades
+                    enteras.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Punto de reorden: demanda diaria = 1.000/365 = 2,74 unidades/día; reorden = demanda diaria * tiempo de entrega (7 días) ≈ 20 unidades."
+                  >
+                    Punto de reorden: demanda diaria = 1.000/365 = 2,74
+                    unidades/día; reorden = demanda diaria * tiempo de entrega
+                    (7 días) ≈ 20 unidades.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=5496"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:31:36)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title"
+                    >Interpretación práctica y ajustes por estacionalidad o
+                    picos de demanda</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="En periodos de alta demanda podría aumentarse el punto de reorden en un porcentaje (ej. 30-50%) para evitar quiebres."
+                  >
+                    En periodos de alta demanda podría aumentarse el punto de
+                    reorden en un porcentaje (ej. 30-50%) para evitar quiebres.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplo aplicado a dinamita y materiales de control de calidad donde no es posible tratar stock de manera flexible."
+                  >
+                    Ejemplo aplicado a dinamita y materiales de control de
+                    calidad donde no es posible tratar stock de manera flexible.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Recomendación de ajustar según histórico y margen de error; mantener mayor seguridad cuando variabilidad es alta."
+                  >
+                    Recomendación de ajustar según histórico y margen de error;
+                    mantener mayor seguridad cuando variabilidad es alta.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=5764"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:36:04)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title"
+                    >Consideraciones sobre costos de orden y mantenimiento en el
+                    ejemplo</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Costo de pedir incluye preparación de documentos, validaciones, inspección, trámites de facturas y pagos; tiempo y recursos humanos implicados."
+                  >
+                    Costo de pedir incluye preparación de documentos,
+                    validaciones, inspección, trámites de facturas y pagos;
+                    tiempo y recursos humanos implicados.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Costo de mantener incluye almacenamiento, seguros más altos por traslado en zonas mineras y posible imputación de alquiler aunque el espacio sea dentro de la concesión."
+                  >
+                    Costo de mantener incluye almacenamiento, seguros más altos
+                    por traslado en zonas mineras y posible imputación de
+                    alquiler aunque el espacio sea dentro de la concesión.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Merma y desorden en almacenes afectan costos; proponer considerar coste de alquiler mínimo para gestión y responsabilidad del espacio."
+                  >
+                    Merma y desorden en almacenes afectan costos; proponer
+                    considerar coste de alquiler mínimo para gestión y
+                    responsabilidad del espacio.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4843"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:20:43)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title"
+                >Segundo ejemplo práctico: empresa de iluminación y cálculo EOQ
+                con días laborales</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title"
+                    >Datos del ejercicio y determinación de EOQ con días de
+                    trabajo distintos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Datos: demanda anual 1.200 unidades, costo por orden 20, costo anual de mantenimiento 0,3 por unidad, días laborales 240."
+                  >
+                    Datos: demanda anual 1.200 unidades, costo por orden 20,
+                    costo anual de mantenimiento 0,3 por unidad, días laborales
+                    240.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Fórmulas aplicadas: EOQ = raíz(2DS/H) para calcular Q; número de órdenes = D / Q; periodo entre órdenes = días laborales / número de órdenes."
+                  >
+                    Fórmulas aplicadas: EOQ = raíz(2DS/H) para calcular Q;
+                    número de órdenes = D / Q; periodo entre órdenes = días
+                    laborales / número de órdenes.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Resultado: EOQ = 400 unidades, número de órdenes anuales = 1.200/400 = 3 órdenes, periodo entre órdenes = 240/3 = 80 días."
+                  >
+                    Resultado: EOQ = 400 unidades, número de órdenes anuales =
+                    1.200/400 = 3 órdenes, periodo entre órdenes = 240/3 = 80
+                    días.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=5990"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:39:50)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title"
+                    >Cálculo de costos de ordenar y mantener para el ejemplo
+                    práctico</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Costo de ordenar anual = (D/Q) * S = (1.200/400) * 20 = 60 USD por orden multiplicado por número de órdenes da costo anual."
+                  >
+                    Costo de ordenar anual = (D/Q) * S = (1.200/400) * 20 = 60
+                    USD por orden multiplicado por número de órdenes da costo
+                    anual.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Costo de mantener anual = (Q/2) * h = (400/2) * 0,3 = 60 USD, con costos de ordenar y mantener equilibrados en EOQ."
+                  >
+                    Costo de mantener anual = (Q/2) * h = (400/2) * 0,3 = 60
+                    USD, con costos de ordenar y mantener equilibrados en EOQ.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Costo total del inventario suma demanda por costo unitario más costos de ordenar y mantener; ejemplo indica ahorro frente a pedidos frecuentes."
+                  >
+                    Costo total del inventario suma demanda por costo unitario
+                    más costos de ordenar y mantener; ejemplo indica ahorro
+                    frente a pedidos frecuentes.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=6275"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:44:35)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title"
+                    >Uso de Excel y automatización para visualizar variaciones y
+                    sensibilidad</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Presentación de una hoja Excel automatizada con EOQ, número de ordenes, tiempo entre órdenes, punto de reorden, costo total y gráficas."
+                  >
+                    Presentación de una hoja Excel automatizada con EOQ, número
+                    de ordenes, tiempo entre órdenes, punto de reorden, costo
+                    total y gráficas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Posibilidad de simular cambios en días de trabajo, demanda y costos para ver impacto en costo total y en número de órdenes."
+                  >
+                    Posibilidad de simular cambios en días de trabajo, demanda y
+                    costos para ver impacto en costo total y en número de
+                    órdenes.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplo de variación: cambiar días de trabajo a 360 reduce costo total; aumentar demanda incrementa costo total."
+                  >
+                    Ejemplo de variación: cambiar días de trabajo a 360 reduce
+                    costo total; aumentar demanda incrementa costo total.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=6389"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:46:29)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title"
+                >Caso avanzado: EOQ con descuentos por volumen y evaluación de
+                escenarios de costo total</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title"
+                    >Planteamiento de escenarios de precio por tramos de volumen
+                    y dependencia de H en el costo unitario</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Escenarios: precio unitario depende del tamaño del lote pedido: 1-750 unidades precio 15, 751-999 precio 14, >=1000 precio 13."
+                  >
+                    Escenarios: precio unitario depende del tamaño del lote
+                    pedido: 1-750 unidades precio 15, 751-999 precio 14, >=1000
+                    precio 13.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Costo fijo de preparación K = 40 unidades monetarias; H = porcentaje del costo unitario (ej. 20%)."
+                  >
+                    Costo fijo de preparación K = 40 unidades monetarias; H =
+                    porcentaje del costo unitario (ej. 20%).
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="La demanda es constante (25.000 unidades anuales) y el costo unitario varía según el tramo, afectando H y EOQ."
+                  >
+                    La demanda es constante (25.000 unidades anuales) y el costo
+                    unitario varía según el tramo, afectando H y EOQ.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=6583"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:49:43)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title"
+                    >Método de cálculo iterativo y ajuste del tamaño de lote a
+                    los tramos permitidos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Calcular EOQ para cada tramo usando H derivado del costo unitario correspondiente; verificar si EOQ cae dentro del tramo."
+                  >
+                    Calcular EOQ para cada tramo usando H derivado del costo
+                    unitario correspondiente; verificar si EOQ cae dentro del
+                    tramo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Si EOQ cae fuera del tramo, ajustar Q al límite del tramo (por ejemplo, ajustar a 750 o 1.000) y recalcular costos."
+                  >
+                    Si EOQ cae fuera del tramo, ajustar Q al límite del tramo
+                    (por ejemplo, ajustar a 750 o 1.000) y recalcular costos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Ejemplo: EOQ calculado dio valores 845 (entre 751 y 999), 877 (>=1000) y se ajustaron a 750 y 1000 según pertenencia al tramo."
+                  >
+                    Ejemplo: EOQ calculado dio valores 845 (entre 751 y 999),
+                    877 (>=1000) y se ajustaron a 750 y 1000 según pertenencia
+                    al tramo.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=6752"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:52:32)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title"
+                    >Cálculo del costo total de inventario para cada escenario y
+                    selección del lote óptimo</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Costo total de inventario = demanda * costo unitario + (D/Q)*K + (Q/2)*H, donde costos unitarios y H varían por escenario."
+                  >
+                    Costo total de inventario = demanda * costo unitario +
+                    (D/Q)*K + (Q/2)*H, donde costos unitarios y H varían por
+                    escenario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Para cada Q ajustada (750, 845, 1000) calcular demanda por costo unitario, costo de preparación y costo de mantenimiento para comparar totales."
+                  >
+                    Para cada Q ajustada (750, 845, 1000) calcular demanda por
+                    costo unitario, costo de preparación y costo de
+                    mantenimiento para comparar totales.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Seleccionar el escenario con menor costo total de inventario y adoptar tamaño de lote óptimo correspondiente tras evaluación comparativa."
+                  >
+                    Seleccionar el escenario con menor costo total de inventario
+                    y adoptar tamaño de lote óptimo correspondiente tras
+                    evaluación comparativa.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=6945"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:55:45)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title"
+                >Consideraciones operativas, recomendaciones prácticas y cierre
+                del tema</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title"
+                    >Gestión operativa: inspección, proveedores y
+                    recepción</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Necesidad de inspección en recepción, especialmente con proveedores emergentes no homologados; trámites y validaciones consumen tiempo."
+                  >
+                    Necesidad de inspección en recepción, especialmente con
+                    proveedores emergentes no homologados; trámites y
+                    validaciones consumen tiempo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Importancia de generar sistemas de inspección robustos incluso con proveedores certificados para garantizar calidad y evitar fallos."
+                  >
+                    Importancia de generar sistemas de inspección robustos
+                    incluso con proveedores certificados para garantizar calidad
+                    y evitar fallos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Tramitación de facturas y gestión de pagos también parte del costo de pedido y deben considerarse en las políticas."
+                  >
+                    Tramitación de facturas y gestión de pagos también parte del
+                    costo de pedido y deben considerarse en las políticas.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4908"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:21:48)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title"
+                    >Costos específicos en zonas mineras y recomendaciones para
+                    contabilización</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Seguros por traslado más elevados en minería (2-3%) y consideraciones sobre alquiler de almacenes dentro de concesiones; recomendar imputar un costo de alquiler mínimo."
+                  >
+                    Seguros por traslado más elevados en minería (2-3%) y
+                    consideraciones sobre alquiler de almacenes dentro de
+                    concesiones; recomendar imputar un costo de alquiler mínimo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Recomendación de ordenar y clasificar almacenes periódicamente para evitar desorden y merma; controles semestrales o anuales sugeridos."
+                  >
+                    Recomendación de ordenar y clasificar almacenes
+                    periódicamente para evitar desorden y merma; controles
+                    semestrales o anuales sugeridos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Mantener registros y automatizar cálculos (hojas Excel o sistemas ERP) para facilitar toma de decisiones y análisis de sensibilidad."
+                  >
+                    Mantener registros y automatizar cálculos (hojas Excel o
+                    sistemas ERP) para facilitar toma de decisiones y análisis
+                    de sensibilidad.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=4964"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:22:44)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title"
+                    >Resumen final de buenas prácticas y uso de
+                    herramientas</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Usar EOQ como herramienta para minimizar costos de pedido y mantenimiento, pero adaptar parámetros a la realidad minera: tiempo de entrega, seguros, geografía y estacionalidad."
+                  >
+                    Usar EOQ como herramienta para minimizar costos de pedido y
+                    mantenimiento, pero adaptar parámetros a la realidad minera:
+                    tiempo de entrega, seguros, geografía y estacionalidad.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Aplicar análisis por escenarios cuando existan descuentos por volumen, variabilidad en demanda o restricciones logísticas."
+                  >
+                    Aplicar análisis por escenarios cuando existan descuentos
+                    por volumen, variabilidad en demanda o restricciones
+                    logísticas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Automatizar con Excel o sistemas para simular cambios y apoyar decisiones de stock, reorden y planificación a mediano y largo plazo."
+                  >
+                    Automatizar con Excel o sistemas para simular cambios y
+                    apoyar decisiones de stock, reorden y planificación a
+                    mediano y largo plazo.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7191"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(01:59:51)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title"
+                >Determinación de lote óptimo y parámetros del EOQ con
+                descuento</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title"
+                    >Selección del lote óptimo y ejemplo de 1000 unidades</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Se indica que en el caso práctico deben pedirse lotes de 1000 unidades como alternativa a evaluar en el modelo EOQ con descuento."
+                  >
+                    Se indica que en el caso práctico deben pedirse lotes de
+                    1000 unidades como alternativa a evaluar en el modelo EOQ
+                    con descuento.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text='La elección entre alternativas busca el coste óptimo, considerando que una opción fue calificada como "óptimo" frente a "más barato".'
+                  >
+                    La elección entre alternativas busca el coste óptimo,
+                    considerando que una opción fue calificada como "óptimo"
+                    frente a "más barato".
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El inventario se modela como EOQ y asume parámetros constantes en el horizonte de tiempo del ejercicio."
+                  >
+                    El inventario se modela como EOQ y asume parámetros
+                    constantes en el horizonte de tiempo del ejercicio.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7218"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:00:18)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title"
+                    >Parámetros constantes del modelo EOQ con descuento</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El modelo asume demanda, costo por preparación (pedido) y costo por almacenamiento constantes durante el horizonte del ejercicio."
+                  >
+                    El modelo asume demanda, costo por preparación (pedido) y
+                    costo por almacenamiento constantes durante el horizonte del
+                    ejercicio.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se aclara que esto corresponde a un ejercicio teórico de EOQ con descuento, no necesariamente reflejo de variaciones reales continuas."
+                  >
+                    Se aclara que esto corresponde a un ejercicio teórico de EOQ
+                    con descuento, no necesariamente reflejo de variaciones
+                    reales continuas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Estos parámetros son la base para calcular lotes y comparar costos totales asociados a distintas políticas de pedido."
+                  >
+                    Estos parámetros son la base para calcular lotes y comparar
+                    costos totales asociados a distintas políticas de pedido.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7245"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:00:45)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title"
+                    >Preferencia por solución óptima frente a simplemente
+                    &quot;más barata&quot;</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text='Se resalta la preferencia del instructor por seleccionar la alternativa denominada "óptimo" en lugar de solo la más barata.'
+                  >
+                    Se resalta la preferencia del instructor por seleccionar la
+                    alternativa denominada "óptimo" en lugar de solo la más
+                    barata.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El criterio óptimo busca equilibrio entre costos de pedido y de almacenamiento, más allá del precio unitario inmediato."
+                  >
+                    El criterio óptimo busca equilibrio entre costos de pedido y
+                    de almacenamiento, más allá del precio unitario inmediato.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Esta preferencia se aplica al ejercicio y al análisis práctico de inventarios dentro del curso."
+                  >
+                    Esta preferencia se aplica al ejercicio y al análisis
+                    práctico de inventarios dentro del curso.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7225"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:00:25)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title"
+                >Concepto y aplicación del estudio de seguridad en minería</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title"
+                    >Definición y finalidad del estado (stock) de seguridad en
+                    operaciones mineras</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El estudio de seguridad trata de la cobertura ante imprevistos y de mantener un colchón de inventario adicional para variabilidad de la demanda."
+                  >
+                    El estudio de seguridad trata de la cobertura ante
+                    imprevistos y de mantener un colchón de inventario adicional
+                    para variabilidad de la demanda.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El stock de seguridad protege frente a fallos en suministro, variaciones en demanda y demoras en lead times."
+                  >
+                    El stock de seguridad protege frente a fallos en suministro,
+                    variaciones en demanda y demoras en lead times.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="En minería se enfatiza su uso para garantizar continuidad operativa y evitar paralizaciones por falta de repuestos, reactivos o explosivos."
+                  >
+                    En minería se enfatiza su uso para garantizar continuidad
+                    operativa y evitar paralizaciones por falta de repuestos,
+                    reactivos o explosivos.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7289"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:01:29)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title"
+                    >Factores que influyen en la necesidad de stock de seguridad
+                    en minería</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Se considera la variabilidad cambiaria (por ejemplo dólar) y la importación de muchos productos como factores que aumentan incertidumbre."
+                  >
+                    Se considera la variabilidad cambiaria (por ejemplo dólar) y
+                    la importación de muchos productos como factores que
+                    aumentan incertidumbre.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El tiempo de entrega (lead time) y la criticidad del insumo determinan el nivel de stock de seguridad requerido."
+                  >
+                    El tiempo de entrega (lead time) y la criticidad del insumo
+                    determinan el nivel de stock de seguridad requerido.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Situaciones como proyectos nuevos, evaluación de yacimientos y estudios ambientales pueden justificar niveles distintos o nulos de stock de seguridad."
+                  >
+                    Situaciones como proyectos nuevos, evaluación de yacimientos
+                    y estudios ambientales pueden justificar niveles distintos o
+                    nulos de stock de seguridad.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7331"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:02:11)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title"
+                    >Usos prácticos y limitaciones del colchón de
+                    inventario</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El colchón funciona como salvaguarda temporal, no como solución permanente ni acción concreta para todas las circunstancias."
+                  >
+                    El colchón funciona como salvaguarda temporal, no como
+                    solución permanente ni acción concreta para todas las
+                    circunstancias.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Puede retirarse, por ejemplo, si la producción baja y ya no se requiere la misma cobertura de inventario."
+                  >
+                    Puede retirarse, por ejemplo, si la producción baja y ya no
+                    se requiere la misma cobertura de inventario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="En la práctica, promociones u otros eventos suelen aumentar demanda, por lo que es raro observar disminuciones abruptas que permitan eliminar el stock de seguridad."
+                  >
+                    En la práctica, promociones u otros eventos suelen aumentar
+                    demanda, por lo que es raro observar disminuciones abruptas
+                    que permitan eliminar el stock de seguridad.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7355"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:02:35)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.4</span>
+                  <span class="subsection-title"
+                    >Beneficios operativos del estudio de seguridad y su efecto
+                    en planificación</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Permite planificar con más holgura y reduce la necesidad de ajustes de último minuto al suavizar variaciones en pedidos y demoras."
+                  >
+                    Permite planificar con más holgura y reduce la necesidad de
+                    ajustes de último minuto al suavizar variaciones en pedidos
+                    y demoras.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Mejora la satisfacción interna al prevenir rupturas de stock y garantizar continuidad en operaciones críticas."
+                  >
+                    Mejora la satisfacción interna al prevenir rupturas de stock
+                    y garantizar continuidad en operaciones críticas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Facilita la anticipación de requerimientos y reduce el impacto de cambios de turno, retrasos administrativos o fallos logísticos."
+                  >
+                    Facilita la anticipación de requerimientos y reduce el
+                    impacto de cambios de turno, retrasos administrativos o
+                    fallos logísticos.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7436"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:03:56)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title"
+                >Estado óptimo de inventario y distinción entre materiales y
+                repuestos</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title"
+                    >Concepto de stock óptimo para piezas y materiales</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El stock óptimo es la cantidad ideal de inventario para satisfacer demanda de piezas manteniendo costos de almacenamiento mínimos y evitando escasez."
+                  >
+                    El stock óptimo es la cantidad ideal de inventario para
+                    satisfacer demanda de piezas manteniendo costos de
+                    almacenamiento mínimos y evitando escasez.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se diferencia entre materiales de suministro para explotación y piezas de mantenimiento, que tienen características y criticidades distintas."
+                  >
+                    Se diferencia entre materiales de suministro para
+                    explotación y piezas de mantenimiento, que tienen
+                    características y criticidades distintas.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El objetivo es equilibrar demanda esperada, tiempos de entrega y costos para definir niveles óptimos de inventario."
+                  >
+                    El objetivo es equilibrar demanda esperada, tiempos de
+                    entrega y costos para definir niveles óptimos de inventario.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7533"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:05:33)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title"
+                    >Aplicación práctica del estado óptimo en proyectos mineros
+                    y plazos temporales</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="En proyectos mineros temporales se establece un almacenamiento mínimo que cubra operaciones por períodos limitados, por ejemplo uno o dos meses como máximo."
+                  >
+                    En proyectos mineros temporales se establece un
+                    almacenamiento mínimo que cubra operaciones por períodos
+                    limitados, por ejemplo uno o dos meses como máximo.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El inventario temporal debe ser suficiente sin generar excesos; plazos superiores a dos meses dejan de considerarse óptimos en este contexto."
+                  >
+                    El inventario temporal debe ser suficiente sin generar
+                    excesos; plazos superiores a dos meses dejan de considerarse
+                    óptimos en este contexto.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="La reducción de stock busca minimizar costos y mantener la operatividad necesaria durante el horizonte temporal definido."
+                  >
+                    La reducción de stock busca minimizar costos y mantener la
+                    operatividad necesaria durante el horizonte temporal
+                    definido.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7570"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:06:10)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title"
+                    >Relación entre el estado óptimo, rentabilidad y métodos de
+                    gestión</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El estado óptimo contribuye a maximizar rentabilidad al reducir costos de almacenamiento y evitar escasez que afecte producción."
+                  >
+                    El estado óptimo contribuye a maximizar rentabilidad al
+                    reducir costos de almacenamiento y evitar escasez que afecte
+                    producción.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se menciona la comparación con otros métodos de control de inventario para encontrar un punto de equilibrio entre costo y servicio."
+                  >
+                    Se menciona la comparación con otros métodos de control de
+                    inventario para encontrar un punto de equilibrio entre costo
+                    y servicio.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El instructor expresa preferencia por usar el EOQ en este caso y comenta sobre la idoneidad o limitaciones de métodos como ABC en contextos mineros."
+                  >
+                    El instructor expresa preferencia por usar el EOQ en este
+                    caso y comenta sobre la idoneidad o limitaciones de métodos
+                    como ABC en contextos mineros.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7609"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:06:49)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.4</span>
+                  <span class="subsection-title"
+                    >Diferenciación operativa entre materiales estratégicos y
+                    repuestos</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Productos altamente estratégicos o con precios muy volátiles merecen consideración particular como colchón propio dentro del stock de seguridad."
+                  >
+                    Productos altamente estratégicos o con precios muy volátiles
+                    merecen consideración particular como colchón propio dentro
+                    del stock de seguridad.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Los materiales de explotación son indispensables para la operativa directa del yacimiento, mientras que las piezas de mantenimiento son críticas para la continuidad de equipos."
+                  >
+                    Los materiales de explotación son indispensables para la
+                    operativa directa del yacimiento, mientras que las piezas de
+                    mantenimiento son críticas para la continuidad de equipos.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Estas distinciones guían las políticas de inventario y la priorización de niveles de stock de seguridad y óptimos."
+                  >
+                    Estas distinciones guían las políticas de inventario y la
+                    priorización de niveles de stock de seguridad y óptimos.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7451"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:04:11)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title"
+                >Control, seguimiento académico y próximas sesiones del
+                curso</span
+              >
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title"
+                    >Indicaciones sobre continuidad del curso y temas
+                    pendientes</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Se informa que el jueves se avanzarán dos puntos pendientes relacionados con los temas presentados en la sesión."
+                  >
+                    Se informa que el jueves se avanzarán dos puntos pendientes
+                    relacionados con los temas presentados en la sesión.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El docente recuerda que en la próxima clase se completará el bloque temático y se continuará con otros temas de control de inventario."
+                  >
+                    El docente recuerda que en la próxima clase se completará el
+                    bloque temático y se continuará con otros temas de control
+                    de inventario.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se solicitó a los estudiantes conectarse minutos antes y se ofreció el cronograma para la próxima sesión."
+                  >
+                    Se solicitó a los estudiantes conectarse minutos antes y se
+                    ofreció el cronograma para la próxima sesión.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7720"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:08:40)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title"
+                    >Comunicación de recursos y grabación de la clase</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="El monitor académico anunció que enviará el enlace para visualizar la clase grabada a los alumnos en breve."
+                  >
+                    El monitor académico anunció que enviará el enlace para
+                    visualizar la clase grabada a los alumnos en breve.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se proporcionarán canales de atención para coordinación académica, atención a diplomados y contacto vía correo electrónico."
+                  >
+                    Se proporcionarán canales de atención para coordinación
+                    académica, atención a diplomados y contacto vía correo
+                    electrónico.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se cierra la sesión con agradecimientos y la indicación de que la clase se da por concluida, deseando buenas noches a los participantes."
+                  >
+                    Se cierra la sesión con agradecimientos y la indicación de
+                    que la clase se da por concluida, deseando buenas noches a
+                    los participantes.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7762"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:09:22)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title"
+                    >Cierre y confirmación de ausencia de dudas inmediatas</span
+                  >
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div
+                    class="content-text"
+                    data-original-text="Tras la explicación, se consultó por dudas y en ese momento no hubo preguntas, dejando dudas para la siguiente sesión."
+                  >
+                    Tras la explicación, se consultó por dudas y en ese momento
+                    no hubo preguntas, dejando dudas para la siguiente sesión.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="El monitor y el docente confirmaron el control de la sesión y la continuidad del curso en la fecha señalada."
+                  >
+                    El monitor y el docente confirmaron el control de la sesión
+                    y la continuidad del curso en la fecha señalada.
+                  </div>
+                  <div
+                    class="content-text"
+                    data-original-text="Se dio por finalizada la clase con instrucciones administrativas y recordatorios sobre la próxima sesión."
+                  >
+                    Se dio por finalizada la clase con instrucciones
+                    administrativas y recordatorios sobre la próxima sesión.
+                  </div>
+                  <a
+                    href="https://www.youtube.com/watch?v=lkW47pGKdtU&start=7726"
+                    class="youtube-link"
+                    target="_blank"
+                  >
+                    Ver en YouTube <span class="timestamp">(02:08:46)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png"
+          alt="EDUMIN Logo"
+          class="footer-logo"
+        />
+      </a>
+      <p class="footer-text">
+        <b
+          >Contenido desarrollado por EDUMIN - Centro de Capacitación
+          Especializado en Minería, Industria y Negocios</b
+        ><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a
+          href="https://www.edumin.pe/"
+          target="_blank"
+          style="color: var(--color-principal); text-decoration: none"
+          >https://www.edumin.pe/</a
+        >
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO =
+        "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE =
+        "CLASE 09: CONTROL DE INVENTARIOS Y SISTEMAS DE GESTIÓN - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(
+          ".search-actions .clear-search"
+        );
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(
+          ".content-text, .section-title, .subsection-title"
+        );
+        let found = false;
+        let firstMatchElement = null;
+
+        document
+          .querySelectorAll(".section.active")
+          .forEach((el) => el.classList.remove("active"));
+        document
+          .querySelectorAll(".subsection.active")
+          .forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML =
+            element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText =
+            element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(
+              searchRegex,
+              `<span class="highlight">$1</span>`
+            );
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          const clearBtn = document.querySelector(
+            ".search-actions .clear-search"
+          );
+          clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+          debouncedSearch();
+        });
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            clearTimeout(this._timeoutId);
+            searchContent();
+          }
+        });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+/* Estilos de balanceo de texto */
+.header-content-box,
+.header-compact-title,
+.footer,
+.section-title,
+.subsection-title {
+    text-wrap: balance;
+}
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+  <h1>
+    <div>DIPLOMADO DE ALTA ESPECIALIZACIÓN EN</div>
+    <strong id="tituloDiplomado" style="display: block;"></strong>
+  </h1>
+  <p id="tituloPrincipal"></p>
+</div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y apertura de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Saludo inicial, presentación del profesor y moderadora</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Bienvenida a los alumnos conectados y presentación de la asesora académica y del profesor para dar inicio a la sesión.</div>
+                  <div class="content-text">Indicaciones sobre cómo realizar consultas: uso del chat o del micrófono para preguntas logísticas o de contenido.</div>
+                  <div class="content-text">Invitación a preguntar dudas de clases anteriores antes de comenzar la sesión práctica programada.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=823" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:13:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Verificación de asistencia y participación inicial de alumnos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Interacción con estudiantes presentes: nombres mencionados y chequeo de estado.</div>
+                  <div class="content-text">Petición de preguntas sobre contenidos previos o aspectos logísticos antes de avanzar con la clase de hoy.</div>
+                  <div class="content-text">Confirmación de que la sesión incluirá un caso práctico para desarrollar en equipo.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=842" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Inicio formal de la clase y compartición de material</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comunicación del plan de clase: exposición teórica seguida de videos y caso práctico.</div>
+                  <div class="content-text">Inicio de la presentación sobre innovaciones tecnológicas aplicadas a la logística y automatización de procesos.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=917" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Uso de drones y visión artificial en inspección y control de inventarios</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Drones para auditorías de almacén y escaneo con RFD y visión computacional</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los drones permiten auditorías automatizadas recorriendo grandes superficies y reduciendo el tiempo de inspección manual.</div>
+                  <div class="content-text">Integración de sensores y cámaras de alta resolución para escaneo y captura de datos de inventario.</div>
+                  <div class="content-text">Capacidades para mapear en 3D la distribución de materiales dentro del almacén y detectar desajustes en existencias.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=940" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Ventajas económicas y operativas del uso de drones en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reducción de costos operativos asociados a verificaciones manuales y menor necesidad de mano de obra para inventarios.</div>
+                  <div class="content-text">Casos de éxito en minería y empresas con presupuestos elevados donde se logra reducción de tiempos de auditoría y mejora de trazabilidad.</div>
+                  <div class="content-text">Mejora de la visibilidad de inventarios y optimización de la trazabilidad de insumos críticos.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=989" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Monitoreo en tiempo real y ajuste proactivo de espacio y niveles de stock</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los drones y sensores permiten monitoreo continuo en tiempo real sobre las condiciones y ubicación de mercancías.</div>
+                  <div class="content-text">Detección automática de desviaciones en el inventario que facilita ajustes proactivos en la gestión de espacio y reposición.</div>
+                  <div class="content-text">Uso complementario de tecnologías RFID y visión artificial para confirmar cantidades y ubicaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=975" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:15)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Inteligencia artificial y machine learning aplicados a la logística</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Predicción de consumo y planificación de abastecimiento basada en datos históricos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Modelos de machine learning analizan grandes volúmenes de datos históricos para prever la demanda futura de insumos.</div>
+                  <div class="content-text">Permite planificación precisa del abastecimiento y reducción de interrupciones en la producción por faltantes.</div>
+                  <div class="content-text">Aplicación en insumos críticos para minimizar riesgos operativos y garantizar continuidad.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1028" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Optimización de recursos, selección de proveedores y reducción de costos logísticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Algoritmos avanzados optimizan la asignación de recursos y tiempos en la cadena logística.</div>
+                  <div class="content-text">Identificación de proveedores eficientes mediante análisis de datos y evaluación de desempeño histórico.</div>
+                  <div class="content-text">Mejora en la planificación de rutas y tiempos de entrega como reducción directa de costos logísticos.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1046" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Reorganización dinámica de almacenes y gestión de stocks con WMS</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Integración con sistemas WMS para reorganizar la disposición de materiales según frecuencia de uso y criticidad.</div>
+                  <div class="content-text">Mejora de tiempos de acceso y despacho mediante disposiciones dinámicas en el almacén.</div>
+                  <div class="content-text">Reducción de mermas y ajuste dinámico de niveles de stock en función de demanda real y proyectada.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1063" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Tecnologías de interacción por voz y automatización de picking</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Sistemas "por voz" integrados con WMS para operaciones manos libres</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Operadores usan dispositivos de voz para recibir instrucciones habladas del WMS sobre ubicación y cantidad de picking.</div>
+                  <div class="content-text">Comunicación en lenguaje cotidiano para enviar actualizaciones en tiempo real sin uso de papel ni pantallas.</div>
+                  <div class="content-text">Confirmaciones de tareas completadas y trazabilidad instantánea en el sistema de gestión.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1100" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:18:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Beneficios en precisión, productividad y reducción de errores de preparación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Disminución significativa de errores en la preparación de pedidos gracias a la verificación por voz.</div>
+                  <div class="content-text">Incremento de productividad en operaciones de picking por oleadas y en reposición por conocimiento del sistema.</div>
+                  <div class="content-text">Casos de implantación: más de 140 empresas en España utilizan soluciones de voz para ejecutar cientos de transacciones por hora.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1581" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Retorno de inversión y ejemplos prácticos de implementación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cálculo de ROI sobre 100 transacciones por turno: ahorro de tiempo estimado por turno y mejora operativa.</div>
+                  <div class="content-text">Implementación rápida y escalable de soluciones de voz como Boocollect, con referencias a su facilidad de adopción.</div>
+                  <div class="content-text">Ejemplos de procesos: llegada de mercancías, almacenamiento correcto, picking y carga en vehículos siguiendo secuencia.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1833" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:33)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Automatización completa de almacenes y robótica colaborativa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Diferencia entre informatización y automatización en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Informatización: gestión de procesos internos mediante software para reducir errores y controlar ubicaciones.</div>
+                  <div class="content-text">Automatización: máquinas ejecutan movimientos y procesos sin intervención humana directa, aumentando productividad.</div>
+                  <div class="content-text">Combinación de ambas reduce superficie y personal necesario, mejorando eficiencia y control.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1196" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:56)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Casos de uso por sectores y mejores prácticas globales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Sectores más punteros en automatización: farmacéutico, alimentación y automoción con centros de distribución automatizados.</div>
+                  <div class="content-text">Ejemplo: centros farmacéuticos que entregan directamente a farmacias miles de unidades diariamente con mínima intervención humana.</div>
+                  <div class="content-text">Empresas locales y regionales que implementan soluciones como multishuttles de palés y sistemas Pick-to-Light en retail.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1264" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Flujo automatizado desde recepción hasta salida de camión y requisitos de diseño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción del flujo automatizado: carretillas autoguiadas, bandejas, bandas transportadoras, envoltura automática y secuenciación de carga.</div>
+                  <div class="content-text">Requisito de análisis detallado: líneas, movimientos, referencias, estacionalidad y formatos para diseñar la solución hardware adecuada.</div>
+                  <div class="content-text">Beneficios: ahorro en almacenaje, mejor gestión de pedidos, reducción de errores y entrega en cantidad y orden requerido.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1342" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:22:22)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Ejemplos reales: Amazon, Fetch Robotics y experiencias internacionales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Primer almacén robotizado de Amazon en España y su impacto operativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Robots tipo Drive mueven hasta 1,300 kg en estanterías especiales llamadas Pod, acelerando preparación de pedidos.</div>
+                  <div class="content-text">Reducción de pasillos y aumento de espacio de almacenamiento por metro cuadrado.</div>
+                  <div class="content-text">Debate sobre impacto en empleo: reemplazo parcial y necesidad de nuevo personal para mantenimiento y operación de robots.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=1863" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Entrevista y experiencia de Fetch Robotics desde Silicon Valley</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato del trabajo en Fetch Robotics y el desarrollo de robots para centros de distribución y manejo de bodegas.</div>
+                  <div class="content-text">Enfoque en robótica colaborativa para ayudar a trabajadores a caminar menos y facilitar tareas recurrentes.</div>
+                  <div class="content-text">Balance entre automatización y trabajo humano: riesgos de sobreautomatización (caso Tesla) y necesidad de mantener tareas donde el humano aporta valor.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=2015" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Recomendaciones para aprender robótica y eventos relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Importancia de la pasión por la tecnología como motor inicial para aprender electrónica y robótica.</div>
+                  <div class="content-text">Sugerencias de formación: electrónica básica, programación, microcontroladores y recursos como FPGAs y comunidades como Alambra.</div>
+                  <div class="content-text">Eventos y espacios de aprendizaje: Maker Faire, RoboGames y actividades locales o reuniones de makers para aprender, compartir y competir.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=2376" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:36)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Visualizaciones prácticas y discusión con alumnos sobre videos mostrados</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Clips demostrativos del funcionamiento de robots y sistemas de voz en almacenes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Simulaciones y reproducción de interacción entre robots y sistemas de control en picks y entregas.</div>
+                  <div class="content-text">Ejemplos de diálogo máquina-robot para confirmación de picking, detección de fallos y procedimientos de mantenimiento.</div>
+                  <div class="content-text">Vídeos que muestran alarmas, lecturas de voltaje, instrucciones y procesos de orden y finalización de tarea.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=2845" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:47:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Reacción y retroalimentación de alumnos sobre los contenidos audiovisuales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comentarios de estudiantes sobre la percepción del futuro y comparación con la formación universitaria previa.</div>
+                  <div class="content-text">Debate sobre impacto social y laboral, y observaciones sobre la rapidez de adopción tecnológica en distintos países.</div>
+                  <div class="content-text">Compartición de experiencias personales de inventarios manuales frente a soluciones automatizadas y discusión sobre la realidad local.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3006" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Preparación del caso práctico y organización de trabajo en grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instrucciones para el caso simple a desarrollar por los alumnos usando cualquier herramienta, internet o IA.</div>
+                  <div class="content-text">Formación de dos grupos y tiempo de 5 minutos de descanso antes de iniciar la sesión práctica.</div>
+                  <div class="content-text">Envío del link de asistencia para registrar la participación del día y orientación para capturar pantalla del caso.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3191" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Cierre de la primera parte y transición a la segunda parte de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Pausa breve y reanudación de la clase para trabajo práctico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Invitación a estirarse y volver en cinco minutos; confirmación de la monitor académica sobre la pausa.</div>
+                  <div class="content-text">Recordatorio de la dinámica: uso libre de recursos, colaboración entre estudiantes y enfoque en la solución del caso.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3214" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Inicio de la parte dos y disposición para el caso en grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Verificación del regreso de los participantes y aviso para tomar captura de pantalla del enunciado del caso.</div>
+                  <div class="content-text">Organización final de grupos y comienzo formal de la actividad práctica que se desarrollará en la segunda parte de la sesión.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3583" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:43)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Introducción a la actividad práctica y objetivos de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Presentación de la tarea práctica y rol asignado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se indica que los estudiantes actúan como jefes de logística responsables de determinar la distribución en la mina conforme a principios de separación por tipo de materiales y productos.</div>
+                  <div class="content-text">Se pide realizar la distribución interna del almacén atendiendo a la rotación de stock y evaluación por familias de almacén, con libertad para decidir el modelo interno.</div>
+                  <div class="content-text">Se exige documentar cómo un sistema WMS (Warehouse Management System) ayudaría en cada etapa del ciclo de almacenamiento y proponer soluciones que optimicen el modelo.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3600" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Entrega de información base y capturas obligatorias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se proporciona información sobre rotación de stock y evaluación de stock por familia que debe ser utilizada para tomar decisiones y justificar distribuciones.</div>
+                  <div class="content-text">El docente solicita capturas de pantalla del ciclo de almacenamiento y del plano del almacén para incluir en el trabajo y como referencia para la distribución propuesta.</div>
+                  <div class="content-text">Se enfatiza que la captura del plano incluye perímetro, área y ubicación de accesos que los estudiantes deben considerar en su diseño.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3611" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Libertad de asunción y búsqueda de datos complementarios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se concede libertad total para asumir detalles del almacén dentro del área indicada, permitiendo ajustes en el diseño interno según criterio del equipo.</div>
+                  <div class="content-text">Los estudiantes deben investigar presentaciones comerciales de los artículos (volumen, peso, medidas) utilizando fuentes externas como Google, IA o normas técnicas.</div>
+                  <div class="content-text">El docente insiste en que los estudiantes justifiquen las decisiones usando estándares encontrados en internet y referencias o estudios aplicables.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3618" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:18)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Detalles del plano de almacén, perímetro y consideraciones físicas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Visualización del plano y elementos físicos relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se muestra un plano real del almacén donde el perímetro, metros cuadrados y áreas específicas están indicados y deben capturarse en pantalla.</div>
+                  <div class="content-text">La entrada principal y las vías de circulación aparecen en el plano; los estudiantes deben identificarlas y considerarlas para la ubicación de familias de producto.</div>
+                  <div class="content-text">Se permite a los equipos asumir detalles adicionales sobre zonas internas siempre que se documenten las decisiones basadas en el plano mostrado.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3666" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Consideraciones de accesibilidad y circulación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se pone atención en las rutas y caminos que indican la ubicación de la entrada principal, lo que influye en la asignación de productos según frecuencia de movimiento.</div>
+                  <div class="content-text">El docente sugiere observar las ruedas (posibles zonas de tráfico) y caminos para determinar zonas de carga/descarga y flujo interno.</div>
+                  <div class="content-text">La distribución interna deberá respetar el perímetro y las dimensiones del plano, optimizando áreas de alto tránsito para productos de alta rotación.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3672" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Requerimiento de documentación visual del plano</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se solicita tomar captura de pantalla del plano para adjuntar en el trabajo y fundamentar la propuesta de distribución física.</div>
+                  <div class="content-text">Los estudiantes deben usar dicha captura para marcar ubicaciones de familias de material, zonas de seguridad y áreas de almacenamiento especializado.</div>
+                  <div class="content-text">La captura servirá también para justificar decisiones relativas a la separación por presentación y riesgo de ciertos materiales.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3684" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Inventario de artículos, presentaciones y requisitos de búsqueda</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Lista de artículos y necesidad de definir presentaciones comerciales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se presentan ejemplos de artículos presentes en el almacén, incluyendo petróleo, dinamita y anfos, entre otros, que deben ubicarse en el diseño.</div>
+                  <div class="content-text">El docente solicita que cada equipo busque y defina la presentación comercial de estos artículos (galones, cilindros, cartuchos, cajas) para estimar volumen y ocupación.</div>
+                  <div class="content-text">Los estudiantes deben estimar dimensiones, pesos y embalajes basándose en búsquedas externas y justificar las decisiones adoptadas.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3698" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Uso de fuentes externas y criterios de estandarización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se permite el uso de Google, herramientas de IA (por ejemplo ChatGPT) y otras fuentes para obtener especificaciones técnicas de los artículos.</div>
+                  <div class="content-text">El docente recomienda buscar estándares o estudios previos y citar la referencia que respalde la presentación y dimensiones elegidas para cada material.</div>
+                  <div class="content-text">Es obligatorio que cada artículo tenga asociado presentación, cantidad promedio en almacén, volumen y peso estimado para el cálculo de espacios.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3710" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Integración de rotación de stock en la estimación de cantidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se proporciona información sobre rotación promedio para estimar las cantidades medias que permanecerán en el almacén y planificar ubicación por criterio FIFO/LIFO.</div>
+                  <div class="content-text">Los estudiantes deben usar la rotación como base para decidir asignaciones de espacio, prioridades de ubicación y almacenamiento por familia.</div>
+                  <div class="content-text">La rotación ayuda a identificar productos de alta frecuencia que requieren acceso rápido y productos de baja rotación que pueden ubicarse en zonas menos accesibles.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3733" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:13)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Requerimientos del entregable: ciclo de almacenamiento y uso del sistema WMS</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Documentación del ciclo de almacenamiento y relación con el WMS</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente solicita capturar el ciclo de almacenamiento mostrado y describir cómo un WMS apoyaría en cada etapa del ciclo, desde recepción hasta despacho.</div>
+                  <div class="content-text">Los estudiantes deben detallar funcionalidades del WMS aplicadas a las etapas: recepción, inspección, ubicación, almacenaje, picking, control de inventario y despacho.</div>
+                  <div class="content-text">Se espera que cada etapa incluya cómo el sistema reduce errores, mejora trazabilidad y optimiza tiempos operativos.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3757" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Propuestas de soluciones que simplifiquen y optimicen el modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Además de describir el apoyo del WMS, se requiere proponer soluciones concretas (tecnológicas o de proceso) que simplifiquen operaciones y optimicen el modelo de almacenamiento.</div>
+                  <div class="content-text">Entre las soluciones a considerar se sugieren: zonificación por rotación, codificación por familias, estanterías especializadas, señalización, y políticas de seguridad para materiales peligrosos.</div>
+                  <div class="content-text">Los equipos deben explicar cómo estas soluciones interactúan con el WMS y cómo benefician la gestión de espacio, seguridad y eficiencia operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3763" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Requisitos de entregables visuales y texto explicativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las capturas de pantalla del ciclo de almacenamiento, del plano del almacén y de la lista de artículos deben incluirse en el trabajo final como evidencia.</div>
+                  <div class="content-text">Se solicita que la propuesta contenga el plano con la distribución propuesta, fichas de artículos con dimensiones y presentaciones, y la descripción de funciones del WMS.</div>
+                  <div class="content-text">La presentación debe permitir verificar que cada decisión esté sustentada por los datos de rotación, dimensiones estimadas y consideraciones de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3770" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Trabajo colaborativo, uso de herramientas y dinámica de grupos en la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Formación de grupos y asignación de tiempo para la actividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente organiza la clase en dos grupos o salas separadas para desarrollar el caso de forma colaborativa y práctica.</div>
+                  <div class="content-text">Se indica que habrá tiempo suficiente y se anima a trabajar con paciencia para cumplir con la investigación requerida por el ejercicio.</div>
+                  <div class="content-text">La duración de la sesión y el temporizador se emplearán para asegurar que los equipos dispongan del tiempo necesario para investigar y consolidar la propuesta.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3790" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Libertad de herramientas y métodos de búsqueda</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se autoriza a los estudiantes a usar cualquier herramienta: buscadores web, inteligencia artificial, estándares técnicos, y otras fuentes libres para recolectar información.</div>
+                  <div class="content-text">El docente menciona explícitamente herramientas como Google y ChatGPT para apoyar en la búsqueda de presentaciones, dimensiones y normas aplicables.</div>
+                  <div class="content-text">La intención es evaluar cómo los estudiantes buscan, trabajan y presentan la información, por lo que se fomenta el uso de múltiples fuentes y el diálogo dentro del grupo.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3803" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Organización interna de los grupos y roles sugeridos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se forman dos salas con aproximadamente seis integrantes por grupo, y se espera que se organicen internamente para abordar la investigación, el diseño del plano y la justificación técnica.</div>
+                  <div class="content-text">El docente menciona la libertad de conversar y distribuir tareas entre miembros, por ejemplo: investigador de presentaciones, diseñador del plano, encargado del WMS y responsable de documentación.</div>
+                  <div class="content-text">Se registran nombres de participantes en las salas para control y seguimiento de la actividad práctica por parte del docente.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3814" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Indicaciones finales, inicio de trabajo en salas y control de la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Inicio de la actividad en salas virtuales y supervisión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se da la instrucción para que los estudiantes entren en sus respectivas salas y desarrollen el caso conforme al criterio del equipo.</div>
+                  <div class="content-text">El docente anuncia que la actividad se grabará y que supervisará el trabajo, proporcionando libertad para usar las herramientas necesarias.</div>
+                  <div class="content-text">Se subraya la expectativa de ver el proceso de búsqueda y trabajo de los estudiantes para evaluar su capacidad de integración de información.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3826" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Recomendaciones finales y cierre de la convocatoria</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se reitera que la actividad es totalmente libre en cuanto a fuentes y métodos, y que el docente evaluará tanto el resultado como el proceso de trabajo colaborativo.</div>
+                  <div class="content-text">Se pide tomar capturas de pantalla de todos los elementos solicitados y prepararse para consolidar la propuesta con las evidencias requeridas.</div>
+                  <div class="content-text">La sesión concluye con la distribución de participantes en salas y la puesta en marcha del temporizador para la realización de la práctica.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3831" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Registro de participantes y control de accesos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se mencionan nombres de algunos participantes asignados a salas específicas para tener control del grupo y confirmar asistencia.</div>
+                  <div class="content-text">El docente verifica la entrada de los estudiantes a las salas y ajusta la configuración de grabación mientras inicia la actividad.</div>
+                  <div class="content-text">El control nominal permite al docente gestionar el desarrollo y la supervisión de cada grupo durante la ejecución del caso.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=3865" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:25)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Organización del trabajo grupal y asignación de salas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Notificación de actividad grupal y envío de invitaciones a sala</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente informa sobre la existencia de un trabajo grupal para los estudiantes y comunica que ha enviado a los participantes a entrar en una sala para realizar la actividad correspondiente.</div>
+                  <div class="content-text">Se indica de manera explícita que los estudiantes deben acceder a la sala designada, implicando una dinámica de trabajo por grupos y la utilización de salas virtuales para la coordinación.</div>
+                  <div class="content-text">La comunicación establece el inicio formal de la actividad grupal y sirve como llamado a la participación activa de los alumnos en la tarea asignada.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=7935" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Espera y verificación de la entrada de los participantes a la sala</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se solicita que todos los asistentes regresen y entren a la sala indicada, con un llamado a reunir a los estudiantes presentes en el espacio virtual destinado al trabajo.</div>
+                  <div class="content-text">Hay una espera implícita para confirmar la entrada de todos los integrantes, mostrando la intención de asegurar la presencia colectiva antes de continuar.</div>
+                  <div class="content-text">La petición sugiere la organización temporal de la actividad, donde la agrupación y presencia simultánea son necesarias para avanzar en el trabajo propuesto.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8078" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Detección de ausencias o entradas incompletas en grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se menciona que aún hay personas que no han entrado a la sala, lo que indica un seguimiento por parte del docente sobre la participación y la asistencia a la actividad grupal.</div>
+                  <div class="content-text">La constatación de ausencias implica la posibilidad de que algunos estudiantes no hayan podido integrarse a su grupo o sala asignada en el momento señalado.</div>
+                  <div class="content-text">La observación sirve como punto de control para ajustar tiempos o dar indicaciones adicionales a quienes no han ingresado.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8111" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Observación del avance en los casos prácticos y estado de los grupos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Identificación de estudiantes en diferentes grupos y su progreso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se reconoce a estudiantes concretos (Henry y Reer) y se plantea la sospecha de que cada uno está en un grupo diferente, enfatizando la atención personalizada sobre el avance individual dentro de la dinámica grupal.</div>
+                  <div class="content-text">La comunicación busca confirmar si los mencionados han podido trabajar en el caso asignado y si han logrado avances tangibles en la resolución.</div>
+                  <div class="content-text">El seguimiento individualizado permite al docente evaluar la distribución del trabajo y detectar posibles dificultades en la coordinación entre integrantes.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8117" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Consulta sobre el avance realizado en el caso práctico por los grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se pregunta directamente si los grupos han podido avanzar con el caso, buscando una evaluación rápida del progreso colectivo y la efectividad del trabajo en sala.</div>
+                  <div class="content-text">La pregunta está orientada a obtener retroalimentación inmediata que informe al docente sobre el estado de cumplimiento de la actividad.</div>
+                  <div class="content-text">Esto facilita identificar grupos que requieren apoyo adicional o más tiempo para completar la tarea asignada.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8128" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Confirmación parcial del avance y observación de dificultades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se escucha una respuesta indicando que algunos han podido avanzar mientras que otros no han logrado avanzar significativamente en el caso, lo que evidencia heterogeneidad en el progreso.</div>
+                  <div class="content-text">Se reconoce que, pese a intentos, algunos estudiantes no han podido desarrollar lo esperado, sugiriendo posibles limitaciones técnicas, de tiempo o de comprensión del caso práctico.</div>
+                  <div class="content-text">El docente admite la situación sin penalización inmediata, lo que muestra flexibilidad y comprensión respecto a las diferencias en el ritmo de trabajo entre los grupos.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8134" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Cierre de la sesión, comunicación de seguimiento y despedida</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Decisión de concluir la clase y convocación para la siguiente semana</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente señala que la hora ha concluido y comunica el fin de la sesión, proponiendo retomar en la próxima semana para continuar con las actividades pendientes.</div>
+                  <div class="content-text">La indicación implica que las tareas no concluidas podrán retomarse en la siguiente sesión, manteniendo la continuidad académica del curso.</div>
+                  <div class="content-text">Se establece un cierre formal que respeta los tiempos y marca la pauta para el reencuentro en la fecha programada.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8141" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:41)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Mensaje de gratitud y expectativas de seguimiento por parte del docente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El docente expresa esperanza de que los estudiantes hayan seguido la clase y ofrece una despedida cordial, deseando a todos que se cuiden hasta la próxima clase.</div>
+                  <div class="content-text">Este mensaje refuerza el cierre afectuoso y la intención de mantener un vínculo positivo entre docente y estudiantes fuera del tiempo de clase.</div>
+                  <div class="content-text">La despedida también funciona como señal de conclusión y transición hacia actividades externas o individuales.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8148" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Comunicación de envío de grabación y disponibilidad de contactos para dudas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se informa a los estudiantes que en breve recibirán la grabación de la clase para que puedan repasar cualquier punto que consideren necesario, asegurando recursos para el estudio autónomo y la revisión.</div>
+                  <div class="content-text">Se indican los números de contacto (proyectados) de Dumí para consultas o dudas durante la semana, ofreciendo canales de comunicación para soporte fuera del horario de clase.</div>
+                  <div class="content-text">La acción de enviar la grabación y ofrecer contactos demuestra un seguimiento administrativo y académico orientado a facilitar el aprendizaje y la resolución de dudas posteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8161" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.4</span>
+                  <span class="subsection-title">Formalización del cierre de la sesión por el moderador o asistente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El moderador o asistente da por concluida la sesión de manera oficial, reiterando el deseo de que todos tengan una buena noche y cerrando la interacción sin dejar tareas nuevas inmediatas.</div>
+                  <div class="content-text">La formalización asegura que los participantes conocen el fin de la sesión y las acciones siguientes esperadas (revisión de grabación, consultas por los canales indicados).</div>
+                  <div class="content-text">El mensaje finaliza con un tono de cortesía y despedida, consolidando el cierre administrativo y humano del encuentro.</div>
+                  <a href="https://www.youtube.com/watch?v=PMXsj8LxF7E&start=8181" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+  <span style="display: block; font-weight: bold;">Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</span>
+  <span style="display: block; font-style: italic;">Material exclusivo para estudiantes de EDUMIN</span>
+  <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none; display: block;">https://www.edumin.pe/</a>
+</p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GESTIÓN LOGÍSTICA Y ALMACENES EN MINERÍA".toUpperCase();
+      const TITULO_CLASE = "CLASE 16: GESTIÓN DEL RIESGO Y CONTINUIDAD OPERATIVA - 2DA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>
