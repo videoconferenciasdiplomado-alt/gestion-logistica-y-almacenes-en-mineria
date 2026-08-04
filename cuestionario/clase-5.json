@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es la distancia promedio aproximada de abastecimiento que suelen enfrentar las unidades en la gran minería respecto a sus centros de suministro?",
+      "answerOptions": [
+        {
+          "text": "Más de 500 km",
+          "isCorrect": true,
+          "rationale": "Esta distancia representa el desafío geográfico crítico que obliga a una gestión de inventarios extremadamente rigurosa para evitar paralizaciones."
+        },
+        {
+          "text": "Entre 100 y 200 km",
+          "isCorrect": false,
+          "rationale": "Aunque es una distancia considerable, no refleja la complejidad logística extrema de las operaciones mineras remotas mencionadas."
+        },
+        {
+          "text": "Menos de 50 km",
+          "isCorrect": false,
+          "rationale": "Esta distancia es típica de una operación urbana, lo cual invalidaría la necesidad de estrategias logísticas de supervivencia operativa."
+        },
+        {
+          "text": "Aproximadamente 300 km",
+          "isCorrect": false,
+          "rationale": "Es una distancia significativa, pero el estándar de riesgo geográfico en gran minería se sitúa en un umbral superior."
+        }
+      ],
+      "hint": "Considere la magnitud del aislamiento geográfico en proyectos de gran envergadura."
+    },
+    {
+      "question": "En un contexto inflacionario, ¿qué impacto financiero tiene la aplicación del método PEPS (Primero en entrar, primero en salir)?",
+      "answerOptions": [
+        {
+          "text": "Subvalúa el costo de reposición e infla la utilidad contable.",
+          "isCorrect": true,
+          "rationale": "Al registrar salidas con precios antiguos más bajos, la ganancia en papel parece mayor, lo que aumenta la carga impositiva."
+        },
+        {
+          "text": "Sincera los costos operativos frente al valor de mercado actual.",
+          "isCorrect": false,
+          "rationale": "Esta es una característica del método UEPS, no del PEPS, ya que el PEPS utiliza valores históricos más rezagados."
+        },
+        {
+          "text": "Reduce drásticamente el pago de impuestos sobre la renta.",
+          "isCorrect": false,
+          "rationale": "Al reportar utilidades ficticiamente altas debido a costos bajos, la carga tributaria en realidad aumenta significativamente."
+        },
+        {
+          "text": "Protege el flujo de caja operativo de forma inmediata.",
+          "isCorrect": false,
+          "rationale": "Al pagar más impuestos por utilidades infladas, el flujo de caja disponible para la operación se ve perjudicado."
+        }
+      ],
+      "hint": "Piense en la relación entre los precios antiguos de entrada y los precios de venta actuales."
+    },
+    {
+      "question": "¿Por qué se recomienda el método UEPS (Último en entrar, primero en salir) como la opción más estratégica desde la ingeniería financiera?",
+      "answerOptions": [
+        {
+          "text": "Permite emparejar los ingresos actuales con los costos de mercado actuales.",
+          "isCorrect": true,
+          "rationale": "Este método utiliza los precios más recientes para las salidas, reflejando mejor la realidad económica y optimizando la carga impositiva."
+        },
+        {
+          "text": "Facilita la salida de productos con fecha de vencimiento próxima.",
+          "isCorrect": false,
+          "rationale": "El manejo de productos perecederos es una función característica del método PEPS, no del UEPS."
+        },
+        {
+          "text": "Simplifica la administración logística al promediar todos los precios.",
+          "isCorrect": false,
+          "rationale": "La simplificación administrativa mediante la homogeneización de precios es propia del método de promedio móvil."
+        },
+        {
+          "text": "Garantiza que el inventario antiguo no genere costos de almacenamiento.",
+          "isCorrect": false,
+          "rationale": "Al priorizar lo nuevo, el inventario antiguo permanece más tiempo, lo que podría aumentar los costos de almacenamiento si no se gestiona bien."
+        }
+      ],
+      "hint": "Considere cómo este método reacciona ante la actualización constante de precios."
+    },
+    {
+      "question": "¿Cuál es el principal riesgo o 'costo oculto' al utilizar el método de promedio móvil para la valoración de inventarios?",
+      "answerOptions": [
+        {
+          "text": "Genera un punto ciego sobre el costo de mantener inventario antiguo e ineficiente.",
+          "isCorrect": true,
+          "rationale": "Al homogeneizar los precios, no se visualiza el impacto financiero real de los activos que acumulan polvo y recursos de almacenamiento."
+        },
+        {
+          "text": "Incrementa excesivamente la carga administrativa en comparación con otros métodos.",
+          "isCorrect": false,
+          "rationale": "Por el contrario, el promedio móvil suele facilitar la vida administrativa al evitar el seguimiento individual de lotes de precios."
+        },
+        {
+          "text": "Obliga a reportar las utilidades más bajas posibles ante el fisco.",
+          "isCorrect": false,
+          "rationale": "El promedio móvil sitúa la utilidad en un punto medio, no es el método que más optimiza la carga impositiva."
+        },
+        {
+          "text": "Impide la salida de materiales de tecnología obsoleta.",
+          "isCorrect": false,
+          "rationale": "El método contable no impide físicamente la salida, pero sí enmascara el costo real de haber tenido ese material estancado."
+        }
+      ],
+      "hint": "Reflexione sobre lo que sucede cuando se mezclan precios de productos nuevos con productos que llevan mucho tiempo guardados."
+    },
+    {
+      "question": "En un ejercicio comparativo, ¿cuál fue la diferencia exacta en la utilidad reportada al usar PEPS frente a UEPS?",
+      "answerOptions": [
+        {
+          "text": "$40,000$ soles",
+          "isCorrect": true,
+          "rationale": "Esta cifra demuestra el impacto contable significativo que tiene la elección del método de valoración en los estados financieros."
+        },
+        {
+          "text": "$170,000$ soles",
+          "isCorrect": false,
+          "rationale": "Este valor corresponde a la utilidad bruta total reportada bajo el método PEPS, no a la diferencia entre métodos."
+        },
+        {
+          "text": "$130,000$ soles",
+          "isCorrect": false,
+          "rationale": "Esta es la utilidad reportada usando el método UEPS, pero no representa la brecha comparativa."
+        },
+        {
+          "text": "$146,000$ soles",
+          "isCorrect": false,
+          "rationale": "Este es el valor de la utilidad bruta cuando se aplica el método de promedio móvil."
+        }
+      ],
+      "hint": "Es la resta entre la utilidad más alta y la más baja de la tabla comparativa."
+    },
+    {
+      "question": "¿Qué rol específico cumple el sistema WMS en comparación con un ERP (como SAP)?",
+      "answerOptions": [
+        {
+          "text": "Es el cerebro operativo que ejecuta la planificación en el mundo físico del almacén.",
+          "isCorrect": true,
+          "rationale": "Mientras el ERP mira la planificación macro y de compras, el WMS controla el movimiento, ubicación y algoritmos en tiempo real."
+        },
+        {
+          "text": "Se encarga exclusivamente de la planificación de la demanda a nivel macro.",
+          "isCorrect": false,
+          "rationale": "La planificación macro de la demanda es una función típica de módulos del ERP como el módulo PP."
+        },
+        {
+          "text": "Maneja únicamente las compras y la contabilidad general de la empresa.",
+          "isCorrect": false,
+          "rationale": "Las compras y finanzas son responsabilidades de los módulos corporativos del ERP (como MM o FI)."
+        },
+        {
+          "text": "Sirve para realizar auditorías externas de los estados financieros.",
+          "isCorrect": false,
+          "rationale": "El WMS es una herramienta operativa de gestión de inventarios, no una plataforma de auditoría financiera."
+        }
+      ],
+      "hint": "Diferencie entre la planificación estratégica de oficina y la ejecución táctica en el piso del almacén."
+    },
+    {
+      "question": "¿Cuál es la principal ventaja de utilizar RFID (Identificación por Radiofrecuencia) en almacenes mineros colosales?",
+      "answerOptions": [
+        {
+          "text": "Permite rastrear activos en tiempo real sin necesidad de contacto visual con la etiqueta.",
+          "isCorrect": true,
+          "rationale": "Esto facilita inventarios masivos y rápidos en operaciones remotas y extensas donde la inspección manual es inviable."
+        },
+        {
+          "text": "Garantiza que el operario tenga las manos libres mediante comandos de voz.",
+          "isCorrect": false,
+          "rationale": "Esa es la función del 'Voice Picking', no de la tecnología de identificación por radiofrecuencia (RFID)."
+        },
+        {
+          "text": "Reduce automáticamente los costos de los materiales adquiridos.",
+          "isCorrect": false,
+          "rationale": "El RFID es una tecnología de trazabilidad y visibilidad, no tiene impacto directo en el precio de compra de los insumos."
+        },
+        {
+          "text": "Sustituye por completo la necesidad de un sistema WMS.",
+          "isCorrect": false,
+          "rationale": "El RFID es una herramienta de captura de datos que alimenta al WMS, no lo reemplaza."
+        }
+      ],
+      "hint": "Piense en la diferencia entre escanear manualmente un código de barras y detectar un chip a distancia."
+    },
+    {
+      "question": "¿Qué beneficio de productividad se puede alcanzar al implementar sistemas de Voice Picking en las operaciones de almacén?",
+      "answerOptions": [
+        {
+          "text": "Un incremento de hasta el $40\\%$",
+          "isCorrect": true,
+          "rationale": "Al dejar las manos y la vista libres, se eliminan errores por cansancio y se agiliza significativamente el proceso de preparación."
+        },
+        {
+          "text": "Una reducción del $80\\%$ en los costos de transporte",
+          "isCorrect": false,
+          "rationale": "El Voice Picking optimiza la labor interna del almacén, pero no impacta de esa forma en el transporte externo."
+        },
+        {
+          "text": "Un aumento del $10\\%$ en la precisión del inventario",
+          "isCorrect": false,
+          "rationale": "Aunque mejora la precisión, el impacto más notable y citado es el salto drástico en la productividad operativa del personal."
+        },
+        {
+          "text": "Cero errores humanos de forma absoluta",
+          "isCorrect": false,
+          "rationale": "Aunque reduce drásticamente los errores, ninguna tecnología puede garantizar la eliminación total del error humano."
+        }
+      ],
+      "hint": "Considere la eficiencia que se gana al permitir que el operario se enfoque solo en el movimiento físico."
+    },
+    {
+      "question": "¿Cuál es la diferencia en el tiempo de implementación entre un modelo WMS tradicional (On-Premise) y uno basado en la nube (SaaS)?",
+      "answerOptions": [
+        {
+          "text": "El modelo SaaS toma de 1 a 3 meses, frente a los 8 meses del tradicional.",
+          "isCorrect": true,
+          "rationale": "La agilidad del modelo SaaS permite despliegues rápidos al no requerir la instalación de servidores físicos complejos en la empresa."
+        },
+        {
+          "text": "Ambos modelos requieren aproximadamente un año para su puesta en marcha.",
+          "isCorrect": false,
+          "rationale": "El modelo de software como servicio (SaaS) ha roto la barrera del tiempo, siendo mucho más rápido que el modelo tradicional."
+        },
+        {
+          "text": "El modelo On-Premise es más rápido porque no depende de la conexión a internet.",
+          "isCorrect": false,
+          "rationale": "La instalación física, configuración de hardware y servidores locales del On-Premise suele ser mucho más lenta que la nube."
+        },
+        {
+          "text": "El modelo SaaS es más lento debido a las configuraciones de seguridad externa.",
+          "isCorrect": false,
+          "rationale": "A pesar de la seguridad, la infraestructura ya existente en la nube permite que la implementación sea significativamente más veloz."
+        }
+      ],
+      "hint": "Piense en la rapidez de activar una suscripción digital frente a construir una infraestructura física."
+    },
+    {
+      "question": "¿Qué ocurre en el paso de 'Gestión' dentro del mapa de ruta técnica de un sistema WMS?",
+      "answerOptions": [
+        {
+          "text": "Se optimiza la volumetría del almacén y se monitorean los niveles de stock segundo a segundo.",
+          "isCorrect": true,
+          "rationale": "En esta etapa intermedia, el sistema se enfoca en el aprovechamiento del espacio y el control constante de las existencias internas."
+        },
+        {
+          "text": "Se configuran los protocolos de calidad para la recepción de materiales.",
+          "isCorrect": false,
+          "rationale": "Esta actividad pertenece a la fase de 'Input' o entrada, previa a la gestión del almacenamiento."
+        },
+        {
+          "text": "Se planifican los despachos milimétricos para asegurar la llegada al destino.",
+          "isCorrect": false,
+          "rationale": "La planificación de despachos y salidas corresponde a la fase final de 'Output' o salida."
+        },
+        {
+          "text": "Se realiza la compra de servidores físicos para el alojamiento de datos.",
+          "isCorrect": false,
+          "rationale": "La infraestructura de servidores es parte del modelo de implementación, no de la gestión operativa diaria del WMS."
+        }
+      ],
+      "hint": "Considere lo que sucede una vez que el material ya ha sido recibido y está guardado en los estantes."
+    },
+    {
+      "question": "¿Cuál es la función crítica de la matriz IPRC en la gestión de un almacén minero?",
+      "answerOptions": [
+        {
+          "text": "Identificar peligros, evaluar riesgos y establecer controles obligatorios para cada movimiento.",
+          "isCorrect": true,
+          "rationale": "Es el mapa de seguridad fundamental que guía la operación para proteger la integridad de las personas y el sistema."
+        },
+        {
+          "text": "Calcular la rentabilidad financiera de cada producto almacenado.",
+          "isCorrect": false,
+          "rationale": "La rentabilidad se analiza mediante métodos de valoración y KPIs financieros, no mediante la matriz IPRC."
+        },
+        {
+          "text": "Determinar el método de valoración (PEPS o UEPS) más conveniente.",
+          "isCorrect": false,
+          "rationale": "La elección del método de valoración es una decisión estratégica financiera, independiente de la matriz de riesgos operativos."
+        },
+        {
+          "text": "Medir exclusivamente el tiempo que tarda un proveedor en entregar un pedido.",
+          "isCorrect": false,
+          "rationale": "El tiempo de entrega se mide a través del Lead Time, mientras que la IPRC se enfoca en seguridad y prevención."
+        }
+      ],
+      "hint": "Relacione las siglas con los conceptos de seguridad y prevención de accidentes."
+    },
+    {
+      "question": "En el contexto minero, ¿qué consecuencia inmediata genera la inoperatividad de un equipo crítico como una faja transportadora?",
+      "answerOptions": [
+        {
+          "text": "Pérdidas financieras millonarias en cuestión de pocas horas.",
+          "isCorrect": true,
+          "rationale": "La detención de la producción desata una 'hemorragia financiera' debido a los altísimos costos de parada en minería."
+        },
+        {
+          "text": "Una mejora automática en la precisión del registro de inventario (ERI).",
+          "isCorrect": false,
+          "rationale": "La falla de un equipo no mejora la precisión del sistema lógico; de hecho, suele causar caos operativo."
+        },
+        {
+          "text": "Un aumento inmediato en el nivel de cobertura de materiales.",
+          "isCorrect": false,
+          "rationale": "La inoperatividad por falta de repuestos indica precisamente una falla en la planificación de la cobertura."
+        },
+        {
+          "text": "La reducción de la carga impositiva de la empresa.",
+          "isCorrect": false,
+          "rationale": "Aunque las pérdidas reducen la utilidad, una parada no planificada nunca es una estrategia de optimización fiscal."
+        }
+      ],
+      "hint": "Piense en el impacto económico de detener una cadena de producción masiva."
+    },
+    {
+      "question": "¿Cuál es una de las causas más frecuentes de las discrepancias en el inventario dentro de un entorno de alta presión?",
+      "answerOptions": [
+        {
+          "text": "Fatiga del personal durante la realización de los conteos físicos.",
+          "isCorrect": true,
+          "rationale": "El agotamiento humano es un factor crítico que induce a errores en los registros, afectando la confiabilidad del sistema."
+        },
+        {
+          "text": "El uso excesivo de sistemas de registro digital en tiempo real.",
+          "isCorrect": false,
+          "rationale": "Los sistemas digitales están diseñados para reducir discrepancias, no para provocarlas."
+        },
+        {
+          "text": "La aplicación rigurosa de mantenimientos preventivos en los anaqueles.",
+          "isCorrect": false,
+          "rationale": "El mantenimiento preventivo asegura la infraestructura y no debería causar desajustes en las cantidades de inventario."
+        },
+        {
+          "text": "La excesiva distancia de $500$ km respecto a los centros de abastecimiento.",
+          "isCorrect": false,
+          "rationale": "La distancia afecta el tiempo de reposición, pero las discrepancias internas suelen originarse por fallas en los procesos de conteo y registro."
+        }
+      ],
+      "hint": "Considere el factor humano en tareas repetitivas y agotadoras."
+    },
+    {
+      "question": "¿Qué diferencia al indicador ERI (Exactitud del Registro de Inventario) del indicador ERU (Exactitud de Registro de Ubicaciones)?",
+      "answerOptions": [
+        {
+          "text": "El ERI mide la confiabilidad de las cantidades totales, mientras que el ERU mide la precisión de la ubicación física.",
+          "isCorrect": true,
+          "rationale": "El ERI cruza el sistema lógico con el físico en volumen, pero el ERU es vital para la productividad del picking al asegurar dónde está cada pieza."
+        },
+        {
+          "text": "El ERI se mide en porcentajes de tiempo y el ERU en valores monetarios.",
+          "isCorrect": false,
+          "rationale": "Ambos indicadores suelen expresarse en porcentajes de exactitud respecto a una base de datos lógica."
+        },
+        {
+          "text": "El ERU es exclusivo para la alta gerencia y el ERI para el personal de piso.",
+          "isCorrect": false,
+          "rationale": "Ambos son herramientas operativas, aunque el ERU impacta más directamente en la labor diaria del operario de picking."
+        },
+        {
+          "text": "Un ERI alto garantiza automáticamente un ERU perfecto.",
+          "isCorrect": false,
+          "rationale": "Es posible tener la cantidad correcta (ERI) pero tener el producto en el estante equivocado (ERU bajo)."
+        }
+      ],
+      "hint": "Piense en la diferencia entre saber 'cuánto tengo' y 'dónde está exactamente'."
+    },
+    {
+      "question": "¿Qué acción se debe tomar si al evaluar la exactitud del registro de inventario (ERI) se obtiene un valor del $50\\%$?",
+      "answerOptions": [
+        {
+          "text": "Declarar una emergencia y reestructurar la operación de inmediato.",
+          "isCorrect": true,
+          "rationale": "Un ERI tan bajo indica una falla operativa crítica; el sistema es totalmente poco confiable y pone en riesgo la operación."
+        },
+        {
+          "text": "Mantener la operación normal, ya que es un promedio aceptable en minería.",
+          "isCorrect": false,
+          "rationale": "El $50\\%$ es un valor inaceptable y peligroso que sugiere que la mitad de la información del sistema es falsa."
+        },
+        {
+          "text": "Implementar únicamente el método UEPS para compensar el error.",
+          "isCorrect": false,
+          "rationale": "El método de valoración no soluciona el problema de integridad de datos que representa un ERI bajo."
+        },
+        {
+          "text": "Reducir el stock de seguridad para evitar mermas adicionales.",
+          "isCorrect": false,
+          "rationale": "Reducir stock con datos inciertos aumentaría drásticamente el riesgo de un rompimiento de stock devastador."
+        }
+      ],
+      "hint": "Considere la gravedad de que la mitad de los datos de su sistema sean incorrectos."
+    },
+    {
+      "question": "¿Cómo se define matemáticamente la 'Cobertura de Materiales' en la gestión de inventarios?",
+      "answerOptions": [
+        {
+          "text": "Dividiendo el stock disponible entre el consumo medio diario.",
+          "isCorrect": true,
+          "rationale": "Esta fórmula permite proyectar cuántos días de operación puede sostener el inventario actual antes de agotarse."
+        },
+        {
+          "text": "Multiplicando la utilidad bruta por la carga impositiva actual.",
+          "isCorrect": false,
+          "rationale": "Esa operación se refiere al cálculo de impuestos, no tiene relación con la cobertura logística."
+        },
+        {
+          "text": "Sumando el tiempo de importación al tiempo de picking interno.",
+          "isCorrect": false,
+          "rationale": "Esta suma podría ser parte del Lead Time total, pero no define la cobertura de existencias."
+        },
+        {
+          "text": "Restando las mermas físicas al inventario lógico del sistema.",
+          "isCorrect": false,
+          "rationale": "Esa operación se utiliza para ajustar el inventario, no para medir la cobertura operativa futura."
+        }
+      ],
+      "hint": "Relacione lo que tiene en estante con el ritmo de uso cotidiano de la mina."
+    },
+    {
+      "question": "Si una operación tiene cobertura para $20$ días pero su 'Lead Time' de importación es de $90$ días, ¿cuál es el estado de riesgo?",
+      "answerOptions": [
+        {
+          "text": "Se encuentra operando al borde del abismo con alto riesgo de desabastecimiento.",
+          "isCorrect": true,
+          "rationale": "Si el repuesto tarda $90$ días en llegar y solo hay para $20$, habrá un periodo de $70$ días sin material."
+        },
+        {
+          "text": "La operación es eficiente gracias a la baja inversión en stock.",
+          "isCorrect": false,
+          "rationale": "Tener poco stock sin considerar el tiempo de reposición no es eficiencia, es una falta de planificación crítica."
+        },
+        {
+          "text": "El riesgo es nulo siempre que se cuente con suficiente dinero para fletes aéreos.",
+          "isCorrect": false,
+          "rationale": "El dinero no puede comprar tiempo cuando las distancias y los procesos de importación son masivos y rígidos."
+        },
+        {
+          "text": "Es la situación ideal para maximizar la rotación de inventarios.",
+          "isCorrect": false,
+          "rationale": "La rotación es buena, pero un quiebre de stock por falta de previsión del Lead Time detiene la producción."
+        }
+      ],
+      "hint": "Compare el tiempo que dura lo que tiene contra el tiempo que tardará en recibir más."
+    },
+    {
+      "question": "¿Qué representa la métrica OTIF (On Time In Full) en la logística de excelencia?",
+      "answerOptions": [
+        {
+          "text": "Que la entrega llegue puntualmente y con el pedido completo y sin daños.",
+          "isCorrect": true,
+          "rationale": "Es el estándar de oro porque exige cumplir con el tiempo y con la integridad total de la orden simultáneamente."
+        },
+        {
+          "text": "Que el costo de transporte sea el más bajo posible independientemente del tiempo.",
+          "isCorrect": false,
+          "rationale": "El OTIF prioriza el nivel de servicio y la puntualidad sobre el ahorro de costos de transporte."
+        },
+        {
+          "text": "Que el inventario lógico coincida exactamente con el inventario físico.",
+          "isCorrect": false,
+          "rationale": "Esta es la definición del ERI (Exactitud de Registro de Inventario), no del OTIF."
+        },
+        {
+          "text": "Que el sistema de voz guíe al operario por la ruta más corta del almacén.",
+          "isCorrect": false,
+          "rationale": "La optimización de rutas es una función del WMS, pero no es lo que mide el indicador OTIF."
+        }
+      ],
+      "hint": "Analice el significado de las siglas en inglés: 'A tiempo, Completo'."
+    },
+    {
+      "question": "¿Cuál es un beneficio estratégico de monitorear un OTIF bajo?",
+      "answerOptions": [
+        {
+          "text": "Funciona como una herramienta de diagnóstico para detectar cuellos de botella internos o externos.",
+          "isCorrect": true,
+          "rationale": "Analizar por qué falló la entrega permite identificar si el problema es del transportista o de la preparación interna."
+        },
+        {
+          "text": "Permite reducir automáticamente el pago de impuestos anuales.",
+          "isCorrect": false,
+          "rationale": "El OTIF es un indicador de servicio logístico y no tiene un impacto directo o automático en la contabilidad tributaria."
+        },
+        {
+          "text": "Ayuda a elegir entre los métodos de valoración PEPS o UEPS.",
+          "isCorrect": false,
+          "rationale": "La valoración de inventario es un tema contable-financiero, mientras que el OTIF es un tema de desempeño de despacho."
+        },
+        {
+          "text": "Garantiza que no ocurran accidentes geomecánicos en la mina.",
+          "isCorrect": false,
+          "rationale": "El OTIF mide la eficiencia del despacho, no la estabilidad física o geológica del terreno minero."
+        }
+      ],
+      "hint": "Piense en el OTIF como una 'radiografía' que revela dónde se está trabando el proceso."
+    },
+    {
+      "question": "De acuerdo con las conclusiones, ¿cuál es el 'gran aprendizaje' sobre la función del almacén en la minería?",
+      "answerOptions": [
+        {
+          "text": "Es un motor de rentabilidad y no un gasto oculto.",
+          "isCorrect": true,
+          "rationale": "Una gestión eficiente transforma el almacenamiento en una ventaja competitiva que protege el flujo de caja y la continuidad operativa."
+        },
+        {
+          "text": "Es un mal necesario que debe minimizarse a cualquier costo.",
+          "isCorrect": false,
+          "rationale": "Considerar el almacén como un 'mal' ignora su papel vital en la supervivencia y rentabilidad de la mina."
+        },
+        {
+          "text": "Es una unidad secundaria que no impacta en la supervivencia operativa.",
+          "isCorrect": false,
+          "rationale": "La logística es el núcleo absoluto de supervivencia en minería debido a los riesgos geográficos y de acceso."
+        },
+        {
+          "text": "Su única función es cumplir con las normas contables de valoración.",
+          "isCorrect": false,
+          "rationale": "Aunque cumple funciones contables, su rol principal es garantizar la operatividad y la rentabilidad estratégica."
+        }
+      ],
+      "hint": "Considere si el almacén solo quita dinero o si, bien gestionado, ayuda a generarlo y protegerlo."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Logística minera y desafíos geográficos",
+      "Métodos de valoración de inventarios (PEPS, UEPS, Promedio Móvil)",
+      "Sistemas de gestión de almacenes (WMS vs ERP)",
+      "Tecnologías de captura de datos (RFID, Voice Picking)",
+      "Indicadores de desempeño logístico (ERI, ERU, OTIF)",
+      "Gestión de riesgos y seguridad (Matriz IPRC, MATPEL)"
+    ],
+    "followUp": [
+      "Optimización de costos operativos mediante UEPS en minería",
+      "Arquitectura de integración SAP y WMS",
+      "Modelos de implementación SaaS para logística remota",
+      "Cálculo avanzado de cobertura y Lead Time de importación",
+      "Estrategias de prevención de pérdidas por fatiga humana"
+    ]
+  }
+}

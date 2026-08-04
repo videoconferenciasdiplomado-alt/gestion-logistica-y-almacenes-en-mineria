@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es la función actual de la logística en la industria extractiva moderna?",
+      "answerOptions": [
+        {
+          "text": "Un nodo estratégico de altísima criticidad para la operación.",
+          "isCorrect": true,
+          "rationale": "La logística ha evolucionado de ser un simple soporte a convertirse en un componente vital para la resiliencia y estrategia del negocio."
+        },
+        {
+          "text": "Un simple centro de soporte transaccional y operativo.",
+          "isCorrect": false,
+          "rationale": "Este concepto corresponde al modelo antiguo de logística que ha sido superado por la necesidad de integración estratégica."
+        },
+        {
+          "text": "Una unidad administrativa dedicada exclusivamente al control de inventarios.",
+          "isCorrect": false,
+          "rationale": "Aunque controla inventarios, su alcance actual es mucho más amplio e incluye seguridad, sostenibilidad y cumplimiento normativo."
+        },
+        {
+          "text": "Un área de apoyo encargada únicamente de la reducción de costos de transporte.",
+          "isCorrect": false,
+          "rationale": "La visión moderna prioriza la seguridad y la continuidad operativa sobre la simple reducción de costos aislada."
+        }
+      ],
+      "hint": "Piense en cómo se define hoy la logística para garantizar que la operación se mantenga a flote frente a desafíos legales."
+    },
+    {
+      "question": "¿Qué normativa legal peruana representa el principal mecanismo preventivo para la gestión de seguridad y salud en minería?",
+      "answerOptions": [
+        {
+          "text": "Decreto Supremo $024/2016-EM$ y su modificatoria $023/2017-EM$.",
+          "isCorrect": true,
+          "rationale": "Estas normas establecen los estándares técnicos obligatorios para proteger el capital humano y evitar paradas operativas."
+        },
+        {
+          "text": "Norma ISO $45001:2018$ de sistemas de gestión de seguridad.",
+          "isCorrect": false,
+          "rationale": "Aunque es un estándar internacional adoptado, no es el marco legal específico emitido por el Estado peruano para el sector minero."
+        },
+        {
+          "text": "Ley General de Minería y el Código del Medio Ambiente.",
+          "isCorrect": false,
+          "rationale": "Estas son leyes generales, pero el mecanismo preventivo operativo específico se detalla en los decretos supremos de seguridad minera."
+        },
+        {
+          "text": "Manual de Seguridad Basada en el Comportamiento ($SBC$).",
+          "isCorrect": false,
+          "rationale": "El $SBC$ es una metodología de gestión, no un pilar legal normativo como lo es un decreto supremo."
+        }
+      ],
+      "hint": "Identifique los decretos específicos que regulan la seguridad y salud ocupacional en el sector minero peruano."
+    },
+    {
+      "question": "¿Cuál es la diferencia fundamental en el enfoque de riesgos entre la antigua OHSAS $18001$ y la actual ISO $45001$?",
+      "answerOptions": [
+        {
+          "text": "La ISO $45001$ exige una identificación sistémica de peligros basada en procesos reales.",
+          "isCorrect": true,
+          "rationale": "A diferencia del modelo reactivo anterior, la ISO $45001$ promueve una cultura de anticipación integrada en el día a día operativo."
+        },
+        {
+          "text": "La ISO $45001$ se enfoca exclusivamente en peligros químicos y biológicos.",
+          "isCorrect": false,
+          "rationale": "La norma es integral y cubre peligros físicos, ergonómicos y mecánicos, no solo químicos o biológicos."
+        },
+        {
+          "text": "La OHSAS $18001$ era más rigurosa en la identificación de riesgos ergonómicos.",
+          "isCorrect": false,
+          "rationale": "En realidad, la ISO $45001$ proporciona un marco más robusto y preventivo para todo tipo de riesgos laborales."
+        },
+        {
+          "text": "La ISO $45001$ elimina la necesidad de realizar auditorías internas constantes.",
+          "isCorrect": false,
+          "rationale": "Al contrario, la ISO $45001$ refuerza el ciclo de mejora continua, el cual incluye auditorías y revisión gerencial."
+        }
+      ],
+      "hint": "Considere qué norma promueve una cultura operativa de anticipación frente a un modelo más reactivo."
+    },
+    {
+      "question": "En la logística de minería subterránea, ¿cuál es el enemigo invisible asociado al riesgo crítico de incendios?",
+      "answerOptions": [
+        {
+          "text": "Asfixia por monóxido de carbono ($CO$).",
+          "isCorrect": true,
+          "rationale": "Debido a los espacios confinados, el monóxido de carbono generado por incendios representa un peligro mortal inmediato."
+        },
+        {
+          "text": "Desprendimiento repentino de bloques de roca.",
+          "isCorrect": false,
+          "rationale": "Aunque es un riesgo en minería subterránea, no es la consecuencia química invisible directa de un incendio."
+        },
+        {
+          "text": "Explosión por acumulación de nitrógeno.",
+          "isCorrect": false,
+          "rationale": "El riesgo principal en incendios subterráneos es la toxicidad de los gases de combustión como el monóxido de carbono."
+        },
+        {
+          "text": "Inundación por falla de bombas de drenaje.",
+          "isCorrect": false,
+          "rationale": "La inundación es un riesgo operativo, pero no está directamente causada por el sobrecalentamiento eléctrico o autoignición."
+        }
+      ],
+      "hint": "Piense en el gas tóxico que se produce durante la combustión incompleta en espacios cerrados."
+    },
+    {
+      "question": "¿Qué medida técnica es indispensable para mitigar el riesgo de desprendimiento de rocas en áreas de almacenamiento subterráneo?",
+      "answerOptions": [
+        {
+          "text": "Refuerzo estructural mediante el uso de mallas y pernos.",
+          "isCorrect": true,
+          "rationale": "El sostenimiento de labores mineras es una regla innegociable para garantizar la integridad física en el subsuelo."
+        },
+        {
+          "text": "Instalación de bandejas de contención para químicos.",
+          "isCorrect": false,
+          "rationale": "Las bandejas de contención son para prevenir derrames de líquidos, no para estabilizar estructuras geológicas."
+        },
+        {
+          "text": "Segregación total entre hombre y máquina mediante sensores.",
+          "isCorrect": false,
+          "rationale": "Esta medida se aplica para evitar colisiones, pero no evita que el techo de una galería colapse."
+        },
+        {
+          "text": "Uso exclusivo de señalización estandarizada NFPA.",
+          "isCorrect": false,
+          "rationale": "La señalización alerta sobre peligros, pero no proporciona el soporte físico necesario para evitar desprendimientos."
+        }
+      ],
+      "hint": "Enfoque su respuesta en los elementos físicos de soporte utilizados para estabilizar los techos y paredes de las minas."
+    },
+    {
+      "question": "¿Cuál fue la herramienta clave utilizada en el caso de la unidad Inmaculada para vencer la resistencia al cambio de las jefaturas?",
+      "answerOptions": [
+        {
+          "text": "Liderazgo empático.",
+          "isCorrect": true,
+          "rationale": "El liderazgo empático permitió desarmar los egos profesionales y alinear a las jefaturas con los nuevos estándares de innovación."
+        },
+        {
+          "text": "Sanciones administrativas severas.",
+          "isCorrect": false,
+          "rationale": "El caso de estudio destaca el cambio cultural a través del liderazgo, no a través de medidas punitivas."
+        },
+        {
+          "text": "Aumento de bonos por cumplimiento de metas.",
+          "isCorrect": false,
+          "rationale": "Aunque los incentivos existen, la clave para superar la resistencia institucional fue el enfoque en el factor humano y liderazgo."
+        },
+        {
+          "text": "Sustitución inmediata del personal reacio.",
+          "isCorrect": false,
+          "rationale": "La implementación exitosa se basó en la capacitación y transformación del equipo existente, no en su despido."
+        }
+      ],
+      "hint": "Considere el estilo de gestión que prioriza entender las motivaciones del personal para lograr una transformación cultural."
+    },
+    {
+      "question": "¿Qué documento internacional define los criterios obligatorios para la clasificación de sustancias peligrosas ($MATPEL$)?",
+      "answerOptions": [
+        {
+          "text": "El Libro Naranja.",
+          "isCorrect": true,
+          "rationale": "Este documento de las Naciones Unidas establece la clasificación global para el transporte y almacenamiento de materiales peligrosos."
+        },
+        {
+          "text": "La norma ISO $14001$.",
+          "isCorrect": false,
+          "rationale": "ISO $14001$ es para gestión ambiental general, no es el catálogo específico de clasificación de sustancias tóxicas."
+        },
+        {
+          "text": "El manual de procedimientos de Las Bambas.",
+          "isCorrect": false,
+          "rationale": "Las empresas mineras siguen el Libro Naranja, pero este último es el estándar internacional que dicta las reglas básicas."
+        },
+        {
+          "text": "El Código NFPA $704$.",
+          "isCorrect": false,
+          "rationale": "NFPA $704$ es un sistema de etiquetado visual para respuesta a emergencias, no el marco de clasificación integral de sustancias."
+        }
+      ],
+      "hint": "Se trata de un documento de las Naciones Unidas cuyo nombre hace referencia a un color específico."
+    },
+    {
+      "question": "En el contexto de materiales peligrosos, ¿qué evalúan los criterios de toxicidad y patogenicidad?",
+      "answerOptions": [
+        {
+          "text": "La capacidad de un material para causar enfermedades o la muerte.",
+          "isCorrect": true,
+          "rationale": "Estos criterios miden el riesgo biológico y químico directo sobre la salud de las personas expuestas."
+        },
+        {
+          "text": "El potencial de un material para corroer estructuras metálicas.",
+          "isCorrect": false,
+          "rationale": "Eso corresponde al criterio de corrosividad, que mide daños a materiales y tejidos vivos por contacto químico."
+        },
+        {
+          "text": "La cantidad de radiación ionizante que emite una sustancia.",
+          "isCorrect": false,
+          "rationale": "Esa es la definición de radioactividad, un criterio distinto dentro de la clasificación MATPEL."
+        },
+        {
+          "text": "La temperatura mínima a la que un líquido desprende vapores inflamables.",
+          "isCorrect": false,
+          "rationale": "Esto se refiere a la inflamabilidad, específicamente al punto de inflamación, no a la toxicidad."
+        }
+      ],
+      "hint": "Piense en los efectos biológicos directos de sustancias que pueden ser letales o infecciosas."
+    },
+    {
+      "question": "¿Cuál es el nivel máximo de riesgo de inflamabilidad para sustancias como el hidrógeno o el $GLP$?",
+      "answerOptions": [
+        {
+          "text": "$4$",
+          "isCorrect": true,
+          "rationale": "El nivel $4$ representa el riesgo extremo de inflamabilidad, requiriendo protocolos de almacenamiento casi paranoicos."
+        },
+        {
+          "text": "$1$",
+          "isCorrect": false,
+          "rationale": "El nivel $1$ indica una inflamabilidad muy baja, lo cual no corresponde a gases altamente combustibles como el hidrógeno."
+        },
+        {
+          "text": "$10$",
+          "isCorrect": false,
+          "rationale": "Las escalas comunes de riesgo, como la de NFPA $704$, suelen llegar hasta el número $4$."
+        },
+        {
+          "text": "$0$",
+          "isCorrect": false,
+          "rationale": "El nivel $0$ significa que el material no es combustible bajo condiciones normales."
+        }
+      ],
+      "hint": "Considere la escala estándar utilizada en el diamante de seguridad para materiales con peligro de incendio extremo."
+    },
+    {
+      "question": "¿Qué sección de la Hoja de Datos de Seguridad ($MSDS/SDS$) es considerada la 'Biblia' para el personal a cargo de la custodia en almacenes?",
+      "answerOptions": [
+        {
+          "text": "Sección $7$: Manipulación y almacenamiento.",
+          "isCorrect": true,
+          "rationale": "Esta sección proporciona las instrucciones críticas sobre cómo mover y guardar los materiales de forma segura."
+        },
+        {
+          "text": "Sección $4$: Primeros auxilios.",
+          "isCorrect": false,
+          "rationale": "Aunque es vital en emergencias médicas, no es la guía principal para la gestión logística preventiva del día a día."
+        },
+        {
+          "text": "Sección $1$: Identificación de la sustancia.",
+          "isCorrect": false,
+          "rationale": "Esta sección solo nombra el producto, pero no ofrece directrices sobre su custodia técnica."
+        },
+        {
+          "text": "Sección $16$: Otras informaciones.",
+          "isCorrect": false,
+          "rationale": "Suele contener información suplementaria o de revisión, no las normas operativas centrales de almacenamiento."
+        }
+      ],
+      "hint": "Busque la sección que detalla los procedimientos específicos para el manejo físico y las condiciones de guarda del producto."
+    },
+    {
+      "question": "¿Qué ventaja operativa ofrece el uso del diamante NFPA $704$ en comparación con el sistema SGA/GHS?",
+      "answerOptions": [
+        {
+          "text": "Permite realizar una evaluación rápida del peligro desde la distancia.",
+          "isCorrect": true,
+          "rationale": "Su diseño basado en colores y números facilita que los brigadistas identifiquen riesgos sin necesidad de leer etiquetas detalladas."
+        },
+        {
+          "text": "Proporciona palabras de advertencia específicas como 'Peligro' o 'Atención'.",
+          "isCorrect": false,
+          "rationale": "Esa es una característica propia del sistema SGA/GHS, diseñado para una comunicación más detallada."
+        },
+        {
+          "text": "Incluye pictogramas que muestran el tipo de daño al medio ambiente.",
+          "isCorrect": false,
+          "rationale": "Los pictogramas ambientales son exclusivos del SGA; el NFPA se enfoca en riesgos inmediatos a la salud, inflamabilidad y reactividad."
+        },
+        {
+          "text": "Es el único sistema legalmente permitido para el transporte internacional.",
+          "isCorrect": false,
+          "rationale": "Para el transporte se utilizan predominantemente los sistemas basados en las recomendaciones de la ONU (Libro Naranja) y el SGA."
+        }
+      ],
+      "hint": "Piense en cuál de los dos sistemas está diseñado para ser interpretado visualmente de manera casi instantánea en una emergencia."
+    },
+    {
+      "question": "De acuerdo con directrices operativas como las de Las Bambas, ¿con qué frecuencia debe actualizarse una hoja $MSDS$?",
+      "answerOptions": [
+        {
+          "text": "Si tiene más de un año de antigüedad.",
+          "isCorrect": true,
+          "rationale": "Mantener información actualizada es crítico para garantizar que los protocolos de emergencia correspondan a las fórmulas químicas vigentes."
+        },
+        {
+          "text": "Solo cuando cambie el nombre comercial del producto.",
+          "isCorrect": false,
+          "rationale": "La seguridad exige actualizaciones periódicas (anuales) independientemente de si el nombre del producto se mantiene igual."
+        },
+        {
+          "text": "Cada cinco años, según el estándar ISO.",
+          "isCorrect": false,
+          "rationale": "En la industria minera de alta criticidad, los plazos suelen ser mucho más cortos (un año) para mitigar riesgos."
+        },
+        {
+          "text": "Solo si ocurre un accidente grave con el material.",
+          "isCorrect": false,
+          "rationale": "La gestión debe ser proactiva y preventiva; esperar a un incidente para actualizar la información es un riesgo inaceptable."
+        }
+      ],
+      "hint": "Considere un período de tiempo corto que asegure que la información técnica no quede obsoleta para las brigadas de emergencia."
+    },
+    {
+      "question": "¿Cómo impacta la implementación de inteligencia artificial (ej. Simply Route) en la sostenibilidad de la flota logística?",
+      "answerOptions": [
+        {
+          "text": "Permite reducir las emisiones de $CO_2$ hasta en un $30\\%$.",
+          "isCorrect": true,
+          "rationale": "La optimización de rutas en tiempo real minimiza el recorrido innecesario y el consumo de combustible fósil."
+        },
+        {
+          "text": "Elimina totalmente la necesidad de conductores humanos.",
+          "isCorrect": false,
+          "rationale": "La tecnología Simply Route optimiza trayectos, pero no implica necesariamente la autonomía total de los vehículos."
+        },
+        {
+          "text": "Sustituye automáticamente los camiones diesel por camiones eléctricos.",
+          "isCorrect": false,
+          "rationale": "La IA optimiza el uso de la flota actual, pero el cambio de motores es una inversión en activos físicos distinta."
+        },
+        {
+          "text": "Reduce la cantidad de materiales que deben transportarse al almacén.",
+          "isCorrect": false,
+          "rationale": "La IA influye en la eficiencia del movimiento (transporte), no directamente en el volumen de demanda de los materiales mineros."
+        }
+      ],
+      "hint": "Relacione la optimización de trayectos con la disminución directa de los gases de efecto invernadero."
+    },
+    {
+      "question": "¿Qué hito tecnológico permitió a la unidad Antapaccay reducir su consumo energético en un $20\\%$?",
+      "answerOptions": [
+        {
+          "text": "Implementación de celdas fotovoltaicas y monitoreo digital.",
+          "isCorrect": true,
+          "rationale": "El uso de paneles solares permitió transformar su matriz energética hacia fuentes renovables y más eficientes."
+        },
+        {
+          "text": "Uso de biocombustibles en toda su flota pesada.",
+          "isCorrect": false,
+          "rationale": "El caso específico de Antapaccay destaca la energía solar (fotovoltaica) como el motor de su ahorro energético masivo."
+        },
+        {
+          "text": "Instalación de una planta nuclear de pequeña escala.",
+          "isCorrect": false,
+          "rationale": "La minería moderna está apostando por energías renovables como la solar y eólica, no por energía nuclear en sitio."
+        },
+        {
+          "text": "Reducción de las horas de operación del almacén.",
+          "isCorrect": false,
+          "rationale": "El ahorro se logró mediante eficiencia y transición energética, no paralizando o reduciendo el tiempo de trabajo."
+        }
+      ],
+      "hint": "Piense en una fuente de energía renovable que aprovecha la radiación solar disponible en las zonas altoandinas."
+    },
+    {
+      "question": "¿En qué etapa del ciclo de vida minero es obligatoria la presentación de una Declaración de Impacto Ambiental ($DIA$)?",
+      "answerOptions": [
+        {
+          "text": "Etapas tempranas de prospección y exploración.",
+          "isCorrect": true,
+          "rationale": "La $DIA$ es el instrumento para proyectos con impactos leves que se presentan al inicio del ciclo de vida minero."
+        },
+        {
+          "text": "Durante la fase de explotación masiva a tajo abierto.",
+          "isCorrect": false,
+          "rationale": "Para la explotación masiva se requieren estudios de impacto ambiental mucho más detallados ($EIA-d$)."
+        },
+        {
+          "text": "Únicamente en la fase de postcierre y remediación.",
+          "isCorrect": false,
+          "rationale": "En el postcierre se aplican Planes de Cierre de Minas específicos, no una $DIA$ de inicio de proyecto."
+        },
+        {
+          "text": "Cuando se decide cambiar el gerente de logística.",
+          "isCorrect": false,
+          "rationale": "Los instrumentos de gestión ambiental se aplican a los impactos del proyecto sobre el entorno, no a cambios de personal administrativo."
+        }
+      ],
+      "hint": "Considere los permisos necesarios antes de que una operación minera alcance su máxima capacidad de producción."
+    },
+    {
+      "question": "¿Cuál es el rango de $pH$ que deben mantener los efluentes mineros para evitar contingencias legales?",
+      "answerOptions": [
+        {
+          "text": "Entre $6$ y $9$.",
+          "isCorrect": true,
+          "rationale": "Este rango asegura que el agua descargada no sea ni demasiado ácida ni demasiado alcalina para los cuerpos receptores."
+        },
+        {
+          "text": "Entre $1$ y $5$.",
+          "isCorrect": false,
+          "rationale": "Este rango es altamente ácido y causaría daños severos al ecosistema y sanciones legales inmediatas."
+        },
+        {
+          "text": "Exactamente $7$ (neutralidad absoluta).",
+          "isCorrect": false,
+          "rationale": "Aunque el $7$ es neutro, la ley permite un margen de tolerancia entre $6$ y $9$ para la operación industrial."
+        },
+        {
+          "text": "Entre $10$ y $14$.",
+          "isCorrect": false,
+          "rationale": "Un $pH$ por encima de $9$ se considera demasiado básico o alcalino, lo cual también es perjudicial para el medio ambiente."
+        }
+      ],
+      "hint": "Busque el rango estándar que rodea la neutralidad química permitida por la normativa ambiental."
+    },
+    {
+      "question": "¿Cuál es el límite máximo permitido de cianuro total en las descargas de agua de una operación minera?",
+      "answerOptions": [
+        {
+          "text": "$1\\text{ mg/L}$",
+          "isCorrect": true,
+          "rationale": "Superar este tope de un miligramo por litro puede desencadenar delitos ambientales y paralizaciones severas."
+        },
+        {
+          "text": "$10\\text{ mg/L}$",
+          "isCorrect": false,
+          "rationale": "Un nivel de $10\\text{ mg/L}$ sería extremadamente tóxico y está muy por encima de lo permitido legalmente."
+        },
+        {
+          "text": "$0.001\\text{ mg/L}$",
+          "isCorrect": false,
+          "rationale": "Aunque niveles más bajos son deseables, el límite máximo de control normativo mencionado es de $1\\text{ mg/L}$."
+        },
+        {
+          "text": "$5\\text{ mg/L}$",
+          "isCorrect": false,
+          "rationale": "Cinco miligramos es cinco veces el límite legal permitido, lo cual resultaría en sanciones graves."
+        }
+      ],
+      "hint": "Identifique el valor numérico unitario que representa la frontera de la supervivencia ambiental para este químico."
+    },
+    {
+      "question": "Si una operación minera genera una descarga de efluentes superior a los $300\\text{ m}^3$ al día, ¿cuál es su obligación de muestreo?",
+      "answerOptions": [
+        {
+          "text": "Muestreos semanales con reportes trimestrales.",
+          "isCorrect": true,
+          "rationale": "A mayor volumen de descarga, la ley exige una frecuencia de vigilancia mucho más agresiva y constante."
+        },
+        {
+          "text": "Muestreos semestrales únicamente.",
+          "isCorrect": false,
+          "rationale": "Los muestreos semestrales son para descargas muy pequeñas, menores a los $50\\text{ m}^3$ diarios."
+        },
+        {
+          "text": "Un solo muestreo anual durante la temporada de lluvias.",
+          "isCorrect": false,
+          "rationale": "El monitoreo debe ser continuo y periódico; un solo muestreo anual es insuficiente para el cumplimiento normativo."
+        },
+        {
+          "text": "Muestreos trimestrales sin obligación de reporte.",
+          "isCorrect": false,
+          "rationale": "La norma exige tanto la ejecución del muestreo como la entrega formal de reportes a la autoridad."
+        }
+      ],
+      "hint": "Recuerde que el escrutinio se vuelve exponencialmente más severo a medida que aumenta el volumen de agua descargada."
+    },
+    {
+      "question": "¿Qué color de contenedor es de prioridad absoluta en el almacén para el aislamiento de residuos tóxicos?",
+      "answerOptions": [
+        {
+          "text": "Rojo",
+          "isCorrect": true,
+          "rationale": "El contenedor rojo es exclusivo para materiales peligrosos ($MATPEL$), garantizando que no contaminen otros flujos de residuos."
+        },
+        {
+          "text": "Negro",
+          "isCorrect": false,
+          "rationale": "El negro se utiliza para residuos no aprovechables o comunes que no tienen características de peligrosidad."
+        },
+        {
+          "text": "Amarillo",
+          "isCorrect": false,
+          "rationale": "El color amarillo está destinado a la segregación de metales, no de sustancias tóxicas o peligrosas."
+        },
+        {
+          "text": "Azul",
+          "isCorrect": false,
+          "rationale": "El azul es el estándar para la segregación de papel y cartón limpios."
+        }
+      ],
+      "hint": "Asocie el color que universalmente indica peligro o alerta máxima con el manejo de sustancias químicas tóxicas."
+    },
+    {
+      "question": "¿Qué beneficio colateral se obtiene al implementar prácticas de logística verde además de la protección ambiental?",
+      "answerOptions": [
+        {
+          "text": "Aumento del rendimiento de las entregas en un $25\\%$.",
+          "isCorrect": true,
+          "rationale": "La eficiencia tecnológica que reduce emisiones también optimiza los tiempos de entrega y mejora la productividad general."
+        },
+        {
+          "text": "Eliminación total del pago de impuestos a la renta.",
+          "isCorrect": false,
+          "rationale": "Si bien hay beneficios tributarios por sostenibilidad en algunos países, no implica la eliminación de impuestos corporativos."
+        },
+        {
+          "text": "Reducción automática de la profundidad de las minas.",
+          "isCorrect": false,
+          "rationale": "La profundidad de la mina depende de la geología y el plan de minado, no de la gestión de sostenibilidad logística."
+        },
+        {
+          "text": "Aumento en el precio internacional de los metales extraídos.",
+          "isCorrect": false,
+          "rationale": "Los precios de los metales (commodities) se fijan en los mercados internacionales y no dependen de la logística interna de una mina."
+        }
+      ],
+      "hint": "Considere cómo la inteligencia artificial impacta positivamente en las métricas de tiempo y cumplimiento de la cadena de suministro."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Normativa de Seguridad Minera ($DS\\ 024/2016-EM$)",
+      "Gestión de Riesgos Críticos en Minería Subterránea",
+      "Sistema de Gestión ISO $45001$",
+      "Gestión de Materiales Peligrosos ($MATPEL$)",
+      "Logística Verde y Sostenibilidad Operativa",
+      "Control Ambiental de Efluentes y Residuos"
+    ],
+    "followUp": [
+      "Tecnologías Disruptivas aplicadas a la Logística Minera",
+      "Liderazgo Empático y Cambio Cultural en Organizaciones",
+      "Instrumentos de Gestión Ambiental ($DIA$, $EIA$)",
+      "Protocolos de Respuesta a Emergencias Químicas"
+    ]
+  }
+}
+

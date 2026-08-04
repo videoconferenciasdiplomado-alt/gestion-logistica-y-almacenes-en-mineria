@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el documento legal fundacional que establece que los recursos minerales pertenecen a la Nación y regula el sistema de concesiones?",
+      "answerOptions": [
+        {
+          "text": "Decreto Supremo 014-92-EM (Texto Único Ordenado de la Ley General de Minería)",
+          "isCorrect": true,
+          "rationale": "Este documento es la piedra angular que otorga al Estado la soberanía sobre los recursos y define el sistema de concesiones para exploración, explotación, beneficio y transporte."
+        },
+        {
+          "text": "Decreto Supremo 024-2016-EM",
+          "isCorrect": false,
+          "rationale": "Este decreto se enfoca específicamente en la seguridad y salud ocupacional, no en la propiedad de los recursos ni en el sistema general de concesiones."
+        },
+        {
+          "text": "Decreto Legislativo 1103",
+          "isCorrect": false,
+          "rationale": "Esta norma está dirigida al control de insumos químicos para evitar su desvío a la minería ilegal, no es el marco general del sector minero."
+        },
+        {
+          "text": "Decreto Supremo 034-2023",
+          "isCorrect": false,
+          "rationale": "Este decreto regula aspectos de responsabilidad administrativa y civil ante incidentes, pero no constituye la base de la Ley General de Minería."
+        }
+      ],
+      "hint": "Se trata del texto único ordenado que emana de la ley base del sector extractivo."
+    },
+    {
+      "question": "¿Qué entidad estatal es la encargada de supervisar técnicamente las infraestructuras críticas, como relaves y polvorines?",
+      "answerOptions": [
+        {
+          "text": "MINEM",
+          "isCorrect": false,
+          "rationale": "El Ministerio de Energía y Minas actúa como el ente rector que dicta las políticas generales, pero no realiza la supervisión técnica detallada de infraestructura."
+        },
+        {
+          "text": "OSINERGMIN",
+          "isCorrect": true,
+          "rationale": "Es el organismo supervisor encargado de verificar la integridad técnica de las instalaciones críticas y el cumplimiento de normas de seguridad en infraestructura."
+        },
+        {
+          "text": "SUNAFIL",
+          "isCorrect": false,
+          "rationale": "Su función principal es la vigilancia del cumplimiento de las normas laborales y de seguridad y salud en el trabajo, no la integridad de relaves o polvorines."
+        },
+        {
+          "text": "SUCAMEC",
+          "isCorrect": false,
+          "rationale": "Aunque supervisa polvorines por el contenido de explosivos, su competencia se limita a los materiales controlados y no a la infraestructura crítica general de la mina."
+        }
+      ],
+      "hint": "Esta institución se enfoca en la supervisión de la inversión en energía y minería desde un punto de vista técnico."
+    },
+    {
+      "question": "En el marco de la seguridad y salud ocupacional, ¿cuántas capacitaciones anuales como mínimo debe asegurar el titular minero para sus trabajadores?",
+      "answerOptions": [
+        {
+          "text": "6 capacitaciones",
+          "isCorrect": false,
+          "rationale": "Este número es insuficiente frente a los estándares legales mínimos exigidos para una formación robusta en el sector minero."
+        },
+        {
+          "text": "12 capacitaciones",
+          "isCorrect": true,
+          "rationale": "La normativa vigente establece un mínimo de 12 capacitaciones anuales para garantizar que el personal esté actualizado en prevención de riesgos."
+        },
+        {
+          "text": "24 capacitaciones",
+          "isCorrect": false,
+          "rationale": "Aunque es una buena práctica superar el mínimo legal, la ley exige específicamente 12 sesiones como base obligatoria."
+        },
+        {
+          "text": "4 capacitaciones",
+          "isCorrect": false,
+          "rationale": "Este es el estándar para empresas de sectores generales bajo la Ley de Seguridad y Salud en el Trabajo, pero la minería tiene una exigencia mayor."
+        }
+      ],
+      "hint": "El número requerido equivale a un promedio de una sesión formativa por cada mes del año."
+    },
+    {
+      "question": "¿Cuál es la herramienta de seguridad que se utiliza específicamente para analizar tareas que no son parte de la rutina diaria?",
+      "answerOptions": [
+        {
+          "text": "IPERC (Identificación de Peligros y Evaluación de Riesgos y Controles)",
+          "isCorrect": false,
+          "rationale": "El IPERC es una herramienta de planeamiento base para peligros conocidos, no está diseñada exclusivamente para la excepcionalidad de lo no rutinario."
+        },
+        {
+          "text": "PETS (Procedimientos Escritos de Trabajo Seguro)",
+          "isCorrect": false,
+          "rationale": "Los PETS son guías paso a paso para tareas estandarizadas y comunes dentro de la operación."
+        },
+        {
+          "text": "ATS (Análisis de Trabajo Seguro)",
+          "isCorrect": true,
+          "rationale": "El ATS es la herramienta dinámica diseñada para evaluar riesgos en actividades que se salen de la rutina operativa habitual."
+        },
+        {
+          "text": "SGS (Sistema de Gestión de Seguridad)",
+          "isCorrect": false,
+          "rationale": "El SGS es el marco macro que engloba todas las herramientas, no es un formato de análisis de campo para una tarea específica."
+        }
+      ],
+      "hint": "Son las siglas de un análisis que se realiza antes de iniciar una labor inusual."
+    },
+    {
+      "question": "Bajo el principio de responsabilidad absoluta (DS 034-2023), ¿qué sucede si un contratista sufre un accidente realizando una 'actividad conexa' como el transporte de personal?",
+      "answerOptions": [
+        {
+          "text": "El titular minero es legal y plenamente responsable del incidente.",
+          "isCorrect": true,
+          "rationale": "La ley establece que las actividades conexas son responsabilidad del titular, neutralizando el argumento de que la culpa fue exclusivamente del tercero."
+        },
+        {
+          "text": "La responsabilidad recae únicamente en la empresa contratista de transporte.",
+          "isCorrect": false,
+          "rationale": "La normativa actual impide que el titular minero delegue la responsabilidad final en terceros cuando se trata de actividades ligadas a la operación."
+        },
+        {
+          "text": "El titular minero solo responde si el accidente ocurre dentro del tajo abierto.",
+          "isCorrect": false,
+          "rationale": "La responsabilidad se extiende a las vías de acceso y cualquier zona donde se desarrolle la actividad conexa, no solo al área de extracción."
+        },
+        {
+          "text": "No existe responsabilidad penal para el gerente general si hubo negligencia de la víctima.",
+          "isCorrect": false,
+          "rationale": "Precedentes legales muestran que la justicia puede condenar a la alta dirección independientemente de la negligencia de la víctima si no se acreditó supervisión."
+        }
+      ],
+      "hint": "La normativa busca que el dueño de la operación actúe como garante final de toda la cadena."
+    },
+    {
+      "question": "¿Qué entidad fiscaliza el uso de insumos químicos como el ácido sulfúrico para combatir el narcotráfico y el mercurio para frenar la minería ilegal?",
+      "answerOptions": [
+        {
+          "text": "MINEM",
+          "isCorrect": false,
+          "rationale": "El MINEM no tiene funciones de control policial o tributario sobre el desvío de insumos químicos a actividades ilícitas."
+        },
+        {
+          "text": "SUNAT",
+          "isCorrect": true,
+          "rationale": "La SUNAT gestiona el Registro para el Control de Bienes Fiscalizados y supervisa que sustancias como el mercurio o el ácido sulfúrico no se desvíen hacia el crimen."
+        },
+        {
+          "text": "MTC",
+          "isCorrect": false,
+          "rationale": "El MTC regula cómo se transportan los materiales, pero no tiene la potestad de fiscalizar el uso o destino final de los insumos químicos."
+        },
+        {
+          "text": "OSINERGMIN",
+          "isCorrect": false,
+          "rationale": "Se enfoca en la seguridad de la infraestructura y almacenamiento, no en la trazabilidad para evitar delitos como el narcotráfico."
+        }
+      ],
+      "hint": "Esta institución maneja el control aduanero y tributario en todo el territorio nacional."
+    },
+    {
+      "question": "¿Cuál es el requisito técnico indispensable para que los tanques y surtidores de combustible de una mina puedan operar legalmente?",
+      "answerOptions": [
+        {
+          "text": "El ITF (Informe Técnico Favorable) de OSINERGMIN.",
+          "isCorrect": true,
+          "rationale": "Es el documento que certifica que la infraestructura de hidrocarburos cumple con todas las medidas de seguridad técnica para operar."
+        },
+        {
+          "text": "La licencia de transporte de materiales peligrosos.",
+          "isCorrect": false,
+          "rationale": "Esta licencia es para el vehículo y el conductor en ruta, no para la operación de tanques estáticos de almacenamiento."
+        },
+        {
+          "text": "El registro de SUNAT para bienes fiscalizados.",
+          "isCorrect": false,
+          "rationale": "Aunque es necesario para el control del insumo, no reemplaza la aprobación técnica de seguridad de la infraestructura física."
+        },
+        {
+          "text": "La certificación ISO 45001.",
+          "isCorrect": false,
+          "rationale": "Las normas ISO son estándares internacionales voluntarios que complementan la gestión, pero el permiso habilitante es el ITF estatal."
+        }
+      ],
+      "hint": "Son tres letras que representan un informe emitido por el supervisor de energía."
+    },
+    {
+      "question": "En el almacenamiento de hidrocarburos, ¿qué capacidad volumétrica deben tener los diques de contención?",
+      "answerOptions": [
+        {
+          "text": "El $50\\%$ del volumen total de todos los tanques juntos.",
+          "isCorrect": false,
+          "rationale": "Esta capacidad sería insuficiente ante un colapso total, poniendo en riesgo el medio ambiente por derrame de exceso."
+        },
+        {
+          "text": "Capacidad para contener el líquido del tanque más grande si este colapsara.",
+          "isCorrect": true,
+          "rationale": "La normativa exige que el dique pueda albergar la totalidad del contenido del tanque de mayor volumen para prevenir desastres ambientales."
+        },
+        {
+          "text": "Capacidad equivalente a un mes de consumo de la operación minera.",
+          "isCorrect": false,
+          "rationale": "El diseño de seguridad física no se basa en el consumo operativo, sino en el volumen máximo almacenado en un recipiente individual."
+        },
+        {
+          "text": "El $110\\%$ del volumen de la cisterna de transporte.",
+          "isCorrect": false,
+          "rationale": "Aunque el margen de seguridad suele ser alto, la norma se define específicamente respecto al tanque estacionario más grande del recinto."
+        }
+      ],
+      "hint": "Debe ser capaz de retener todo el fluido del contenedor de mayor tamaño en el área."
+    },
+    {
+      "question": "¿Cuál es el estándar internacional que clasifica los materiales peligrosos en nueve clases de riesgo para su transporte?",
+      "answerOptions": [
+        {
+          "text": "El Libro Naranja de la ONU.",
+          "isCorrect": true,
+          "rationale": "Es la guía internacional que establece los criterios de clasificación, etiquetado y embalaje de mercancías peligrosas (MATPEL) a nivel global."
+        },
+        {
+          "text": "El Libro Blanco del MTC.",
+          "isCorrect": false,
+          "rationale": "No existe un 'Libro Blanco' como estándar de clasificación de riesgos; el MTC adopta las recomendaciones internacionales de la ONU."
+        },
+        {
+          "text": "El Código Marítimo de Mercancías.",
+          "isCorrect": false,
+          "rationale": "Aunque regula riesgos similares, la minería terrestre utiliza el Libro Naranja como marco general para su logística multimodal."
+        },
+        {
+          "text": "La Norma ISO 14001.",
+          "isCorrect": false,
+          "rationale": "Esta norma se refiere a sistemas de gestión ambiental en general, no a la clasificación técnica de materiales peligrosos en ruta."
+        }
+      ],
+      "hint": "Se identifica por el color de su cubierta y es emitido por las Naciones Unidas."
+    },
+    {
+      "question": "¿Qué concepto describe el riesgo de desvío de explosivos cuando el titular minero entrega el material a contratistas en el frente de trabajo?",
+      "answerOptions": [
+        {
+          "text": "Contractor Leakage (Brecha del contratista).",
+          "isCorrect": true,
+          "rationale": "Este término describe el momento crítico donde se puede perder la visibilidad y el control del material al pasar de la custodia principal al uso operativo por terceros."
+        },
+        {
+          "text": "Merma Operativa.",
+          "isCorrect": false,
+          "rationale": "La merma se refiere a la pérdida física por uso o evaporación, no al riesgo de desvío de materiales controlados hacia actividades ilegales."
+        },
+        {
+          "text": "Trazabilidad Digital.",
+          "isCorrect": false,
+          "rationale": "Este es el método para prevenir el riesgo, pero no es el nombre del fenómeno de vulnerabilidad en sí mismo."
+        },
+        {
+          "text": "Pasamano de Riesgo.",
+          "isCorrect": false,
+          "rationale": "Aunque describe la acción, el término técnico utilizado para esta vulnerabilidad logística específica es 'contractor leakage'."
+        }
+      ],
+      "hint": "Se refiere a una 'fuga' de control que ocurre durante la subcontratación."
+    },
+    {
+      "question": "¿Cuál es la herramienta más implacable para asegurar que los explosivos no se desvíen durante la operación diaria?",
+      "answerOptions": [
+        {
+          "text": "El registro diario de consumo cruzado (Mineral vs. Explosivo).",
+          "isCorrect": true,
+          "rationale": "Este cruce matemático verifica que la cantidad de explosivo detonado sea proporcional a la cantidad de roca movida, evitando 'sobrantes' no declarados."
+        },
+        {
+          "text": "El uso de cámaras de vigilancia en el tajo.",
+          "isCorrect": false,
+          "rationale": "Aunque ayudan, las cámaras no pueden garantizar la contabilidad exacta de cada gramo de explosivo dentro de las perforaciones."
+        },
+        {
+          "text": "La renovación del carnet de SUCAMEC del operario.",
+          "isCorrect": false,
+          "rationale": "El carnet acredita la aptitud del personal, pero no controla el movimiento físico ni el consumo real del material en el terreno."
+        },
+        {
+          "text": "La firma de una declaración jurada del contratista.",
+          "isCorrect": false,
+          "rationale": "Un documento estático no ofrece el control en tiempo real que proporciona la conciliación matemática de la producción."
+        }
+      ],
+      "hint": "Es un cálculo que hace coincidir la producción de mineral con los insumos utilizados."
+    },
+    {
+      "question": "En la analogía del 'Sándwich de Cumplimiento' para transportar cianuro, ¿qué capa representa la responsabilidad legal del titular sobre el conductor?",
+      "answerOptions": [
+        {
+          "text": "Capa de Seguridad y Salud Ocupacional.",
+          "isCorrect": true,
+          "rationale": "El titular minero es el garante final de la seguridad del conductor y del entorno, sin importar si el transporte es tercerizado."
+        },
+        {
+          "text": "Capa del MTC.",
+          "isCorrect": false,
+          "rationale": "Esta capa se refiere a la parte técnica del vehículo (homologación y señalización), no a la relación de garantía legal del titular."
+        },
+        {
+          "text": "Capa de la SUNAT.",
+          "isCorrect": false,
+          "rationale": "Esta capa controla la ruta fiscal y la trazabilidad del bien mediante GPS para evitar desvíos comerciales."
+        },
+        {
+          "text": "Capa de SUCAMEC.",
+          "isCorrect": false,
+          "rationale": "SUCAMEC no interviene en el transporte de cianuro, ya que su competencia específica son los explosivos y armas."
+        }
+      ],
+      "hint": "Tiene que ver con la protección de la vida humana y la prevención de riesgos en el trabajo."
+    },
+    {
+      "question": "¿Cada cuánto tiempo se debe renovar obligatoriamente la inscripción en el registro de bienes fiscalizados?",
+      "answerOptions": [
+        {
+          "text": "Cada 2 años.",
+          "isCorrect": true,
+          "rationale": "La normativa de la SUNAT exige una renovación bienal con un rigor técnico y documental absoluto para mantener vigente el permiso."
+        },
+        {
+          "text": "Cada 5 años.",
+          "isCorrect": false,
+          "rationale": "Un periodo tan largo no permitiría un control eficiente sobre la evolución y cambios en las operaciones de manejo de insumos químicos."
+        },
+        {
+          "text": "Anualmente.",
+          "isCorrect": false,
+          "rationale": "Aunque el monitoreo es diario, el proceso formal de renovación del registro no es anual, sino cada dos periodos."
+        },
+        {
+          "text": "No tiene fecha de vencimiento.",
+          "isCorrect": false,
+          "rationale": "El registro es temporal y está sujeto a fiscalización constante; dejarlo sin vencimiento anularía la capacidad de depuración del sistema."
+        }
+      ],
+      "hint": "Es un periodo de tiempo par que no llega al lustro."
+    },
+    {
+      "question": "¿Qué requisito es fundamental para el transporte de materiales peligrosos (MATPEL) en relación con los riesgos ambientales?",
+      "answerOptions": [
+        {
+          "text": "Pólizas de seguros que cubran explícitamente la remediación ambiental.",
+          "isCorrect": true,
+          "rationale": "Ante un derrame, no basta cubrir daños a terceros; se requiere asegurar financieramente la limpieza y restauración del ecosistema afectado."
+        },
+        {
+          "text": "Contar con un sistema de aire acondicionado en la cabina.",
+          "isCorrect": false,
+          "rationale": "Es un elemento de confort o salud ocupacional menor frente al riesgo mayor de contaminación por derrame."
+        },
+        {
+          "text": "Tener un vehículo de menos de 2 años de antigüedad.",
+          "isCorrect": false,
+          "rationale": "La norma exige buen estado y homologación, pero la antigüedad no es el factor determinante para la cobertura de riesgos ambientales."
+        },
+        {
+          "text": "El uso obligatorio de uniformes de color naranja.",
+          "isCorrect": false,
+          "rationale": "Aunque la señalización es clave, el color del uniforme del chofer no constituye la garantía de respuesta ante un impacto ambiental."
+        }
+      ],
+      "hint": "Se trata de un respaldo financiero obligatorio para mitigar daños a la naturaleza."
+    },
+    {
+      "question": "Dentro de la gestión de suministros, ¿qué implica la 'integración digital' mencionada para el cumplimiento normativo?",
+      "answerOptions": [
+        {
+          "text": "Sincronizar el sistema ERP de la empresa con la plataforma SOL de la SUNAT.",
+          "isCorrect": true,
+          "rationale": "La trazabilidad moderna exige que los movimientos de materiales dejen una huella digital en tiempo real en los servidores del Estado."
+        },
+        {
+          "text": "Enviar correos electrónicos semanales a los supervisores.",
+          "isCorrect": false,
+          "rationale": "El uso de correo no constituye una integración de sistemas ni garantiza la trazabilidad minuto a minuto que exigen los reguladores."
+        },
+        {
+          "text": "Tener un sitio web actualizado con las políticas de la empresa.",
+          "isCorrect": false,
+          "rationale": "La presencia web es corporativa, pero la integración digital se refiere a los flujos de datos operativos y contables."
+        },
+        {
+          "text": "Eliminar todos los archivos físicos de la oficina.",
+          "isCorrect": false,
+          "rationale": "Digitalizar no es lo mismo que integrar sistemas operativos con entes reguladores para reportar consumos."
+        }
+      ],
+      "hint": "Busca conectar el software de gestión interno con la oficina virtual de la autoridad tributaria."
+    },
+    {
+      "question": "¿Cuál es la consecuencia más grave mencionada para la alta gerencia ante el incumplimiento de la normativa de seguridad y el fallecimiento de un tercero?",
+      "answerOptions": [
+        {
+          "text": "Pena de cárcel efectiva para el gerente general.",
+          "isCorrect": true,
+          "rationale": "Existen precedentes donde la justicia dictaminó prisión por no agotar los medios de supervisión, independientemente de la negligencia de la víctima."
+        },
+        {
+          "text": "Una amonestación verbal por parte del Ministerio de Trabajo.",
+          "isCorrect": false,
+          "rationale": "Las fatalidades en minería bajo responsabilidad absoluta trascienden lo administrativo y entran en el ámbito penal."
+        },
+        {
+          "text": "El pago de una multa equivalente a un día de producción.",
+          "isCorrect": false,
+          "rationale": "Aunque hay multas, la implicancia más severa es la pérdida de la libertad personal de los líderes de la organización."
+        },
+        {
+          "text": "La suspensión temporal de la membresía en la Sociedad de Minería.",
+          "isCorrect": false,
+          "rationale": "Esta sería una consecuencia gremial menor, no comparable con las implicancias legales penales y civiles que establece la ley."
+        }
+      ],
+      "hint": "Se refiere a la privación de la libertad física como medida judicial."
+    },
+    {
+      "question": "En el ecosistema de fiscalización, ¿cuál es la función principal de la SUNAFIL?",
+      "answerOptions": [
+        {
+          "text": "Vigilar el aspecto laboral y la salud ocupacional de los trabajadores.",
+          "isCorrect": true,
+          "rationale": "SUNAFIL es la superintendencia encargada de inspeccionar las condiciones de trabajo y el cumplimiento de la normativa de seguridad laboral."
+        },
+        {
+          "text": "Autorizar el uso de explosivos en las voladuras.",
+          "isCorrect": false,
+          "rationale": "Esa es una competencia exclusiva de SUCAMEC, no tiene relación con la inspección laboral de SUNAFIL."
+        },
+        {
+          "text": "Controlar el ingreso de camiones en las fronteras.",
+          "isCorrect": false,
+          "rationale": "El control aduanero y de fronteras corresponde a la SUNAT, no a la entidad de inspección laboral."
+        },
+        {
+          "text": "Dictar la política minera nacional.",
+          "isCorrect": false,
+          "rationale": "La rectoría de las políticas del sector recae en el MINEM, no en un organismo de fiscalización laboral."
+        }
+      ],
+      "hint": "Sus siglas significan Superintendencia Nacional de Fiscalización Laboral."
+    },
+    {
+      "question": "¿Qué caracteriza a los equipos de protección personal (EPP) según los deberes del titular minero?",
+      "answerOptions": [
+        {
+          "text": "Deben ser certificados y proporcionados de forma 100% gratuita.",
+          "isCorrect": true,
+          "rationale": "La ley prohíbe cobrar por los EPP y exige que cumplan con estándares de certificación para asegurar la protección real."
+        },
+        {
+          "text": "Pueden ser alquilados al personal mediante descuentos en nómina.",
+          "isCorrect": false,
+          "rationale": "El costo del EPP no puede ser transferido al trabajador bajo ninguna circunstancia según la legislación minera."
+        },
+        {
+          "text": "El trabajador es responsable de comprarlos si se pierden.",
+          "isCorrect": false,
+          "rationale": "La provisión y reposición de equipos certificados es un deber indelegable y gratuito del empleador."
+        },
+        {
+          "text": "Son opcionales para los contratistas externos.",
+          "isCorrect": false,
+          "rationale": "El estándar de protección debe ser igual para todos en la operación, independientemente de su vínculo contractual."
+        }
+      ],
+      "hint": "El costo de estos implementos de seguridad nunca debe ser asumido por el empleado."
+    },
+    {
+      "question": "¿Cuál es la función del MTC en la cadena de suministro minera?",
+      "answerOptions": [
+        {
+          "text": "Regular de cerca el transporte terrestre de materiales peligrosos.",
+          "isCorrect": true,
+          "rationale": "El Ministerio de Transportes y Comunicaciones establece las reglas para el movimiento de carga crítica por las carreteras nacionales."
+        },
+        {
+          "text": "Fiscalizar el pago de impuestos por la venta de concentrados.",
+          "isCorrect": false,
+          "rationale": "La fiscalización tributaria es competencia de la SUNAT, no del ministerio encargado de la infraestructura vial."
+        },
+        {
+          "text": "Supervisar la estabilidad física de las presas de relaves.",
+          "isCorrect": false,
+          "rationale": "Esta es una tarea técnica de supervisión minera que corresponde a OSINERGMIN."
+        },
+        {
+          "text": "Gestionar los conflictos sociales con las comunidades.",
+          "isCorrect": false,
+          "rationale": "Aunque puede participar, la gestión de la política y el entorno minero es tarea del MINEM y otras oficinas de diálogo."
+        }
+      ],
+      "hint": "Es el ente encargado de las vías, comunicaciones y el tránsito de vehículos."
+    },
+    {
+      "question": "¿Por qué se afirma que el cumplimiento normativo en minería es un 'pilar estratégico' y no simple papeleo?",
+      "answerOptions": [
+        {
+          "text": "Porque garantiza la supervivencia del negocio y protege la libertad legal de los líderes.",
+          "isCorrect": true,
+          "rationale": "Evitar paralizaciones y procesos penales convierte a la norma en una herramienta de continuidad operativa y protección personal."
+        },
+        {
+          "text": "Porque permite ahorrar costos en el pago de salarios.",
+          "isCorrect": false,
+          "rationale": "El cumplimiento normativo suele requerir inversión y no está diseñado como una estrategia de reducción salarial."
+        },
+        {
+          "text": "Porque es una forma de publicidad para atraer inversionistas extranjeros.",
+          "isCorrect": false,
+          "rationale": "Aunque mejora la reputación, su función primaria es operativa y legal, no meramente publicitaria."
+        },
+        {
+          "text": "Porque las leyes mineras nunca cambian y son fáciles de seguir.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el marco normativo es un 'ente vivo' con actualizaciones constantes que requieren monitoreo diario."
+        }
+      ],
+      "hint": "Piense en la prevención de crisis de reputación y responsabilidades legales masivas."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Marco Normativo Minero (TUO DS 014-92-EM)",
+      "Seguridad y Salud Ocupacional (DS 024-2016-EM)",
+      "Responsabilidad Civil y Penal en Minería (DS 034-2023)",
+      "Control de Insumos Químicos y Bienes Fiscalizados (SUNAT)",
+      "Gestión Logística de Hidrocarburos y Explosivos",
+      "Transporte de Materiales Peligrosos (MATPEL)"
+    ],
+    "followUp": [
+      "Implementación de Sistemas ERP para Trazabilidad Minera",
+      "Auditoría y Gestión de Riesgos de Terceros en Cadena de Suministro",
+      "Procedimientos Técnicos para Almacenamiento de Sustancias Peligrosas",
+      "Protocolos de Respuesta ante Emergencias Ambientales en Ruta",
+      "Normas ISO (9001, 14001, 45001) Aplicadas a Logística Extractiva"
+    ]
+  }
+}

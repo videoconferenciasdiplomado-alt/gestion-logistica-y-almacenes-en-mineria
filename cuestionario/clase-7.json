@@ -1,0 +1,540 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el pilar fundamental para garantizar la continuidad operativa en la industria minera?",
+      "answerOptions": [
+        {
+          "text": "La gestión de riesgos en la cadena de suministro.",
+          "isCorrect": true,
+          "rationale": "La gestión de riesgos previene que contratiempos logísticos se transformen en desastres económicos sistémicos que afecten la operatividad."
+        },
+        {
+          "text": "El incremento constante de la inversión en activos fijos.",
+          "isCorrect": false,
+          "rationale": "Aunque la inversión es masiva, sin una gestión de riesgos adecuada, el capital no garantiza por sí solo la continuidad."
+        },
+        {
+          "text": "La reducción agresiva de costos de adquisición.",
+          "isCorrect": false,
+          "rationale": "Enfocarse solo en costos puede aumentar la vulnerabilidad ante fallas de calidad o de proveedores."
+        },
+        {
+          "text": "La automatización total de los almacenes.",
+          "isCorrect": false,
+          "rationale": "La automatización es una herramienta, pero el pilar estratégico es la gestión integral de las amenazas al flujo."
+        }
+      ],
+      "hint": "Se refiere a la capacidad de anticipar y mitigar interrupciones en el flujo de bienes y servicios."
+    },
+    {
+      "question": "¿Qué dimensiones comprende el flujo de la cadena de suministro que debe ser protegido?",
+      "answerOptions": [
+        {
+          "text": "Bienes, servicios, información y recursos financieros.",
+          "isCorrect": true,
+          "rationale": "La cadena de suministro es multidimensional y requiere la gestión coordinada de estos cuatro elementos clave."
+        },
+        {
+          "text": "Maquinaria pesada y personal operativo únicamente.",
+          "isCorrect": false,
+          "rationale": "Esta visión es limitada, ya que ignora los flujos de información y financieros esenciales para la operación."
+        },
+        {
+          "text": "Producción de mineral y logística de exportación.",
+          "isCorrect": false,
+          "rationale": "Estos son procesos específicos, pero la cadena de suministro abarca el flujo completo desde el proveedor hasta el consumo."
+        },
+        {
+          "text": "Mantenimiento preventivo y gestión de activos.",
+          "isCorrect": false,
+          "rationale": "Aunque están relacionados, no definen la totalidad de las dimensiones del flujo logístico mencionadas."
+        }
+      ],
+      "hint": "Considere que no solo se mueven objetos físicos, sino también datos y capital."
+    },
+    {
+      "question": "¿Por qué es crucial categorizar las amenazas mediante una taxonomía de riesgos logísticos?",
+      "answerOptions": [
+        {
+          "text": "Para optimizar recursos limitados y diseñar respuestas proporcionales.",
+          "isCorrect": true,
+          "rationale": "Dado que no se puede proteger todo con la misma intensidad, la clasificación permite dirigir esfuerzos a los riesgos más críticos."
+        },
+        {
+          "text": "Para eliminar por completo la necesidad de seguros operativos.",
+          "isCorrect": false,
+          "rationale": "La taxonomía ayuda a mitigar riesgos, pero no elimina la necesidad de transferir riesgos mediante seguros."
+        },
+        {
+          "text": "Para cumplir únicamente con requisitos de auditoría externa.",
+          "isCorrect": false,
+          "rationale": "Es una herramienta de gestión estratégica para la continuidad, no solo un formalismo administrativo."
+        },
+        {
+          "text": "Para delegar la responsabilidad total al área de finanzas.",
+          "isCorrect": false,
+          "rationale": "La gestión de riesgos es una responsabilidad compartida y no se limita al área financiera."
+        }
+      ],
+      "hint": "Piense en la limitación de los recursos operativos y la necesidad de priorizar."
+    },
+    {
+      "question": "¿Cuál es la mayor vulnerabilidad interna en la cadena de suministro minera según el análisis de fallas sistémicas?",
+      "answerOptions": [
+        {
+          "text": "La fractura de comunicación entre el usuario técnico y logística.",
+          "isCorrect": true,
+          "rationale": "El error humano en la transmisión de requerimientos técnicos es el punto de quiebre más frecuente y catastrófico."
+        },
+        {
+          "text": "La falta de infraestructura de almacenamiento moderna.",
+          "isCorrect": false,
+          "rationale": "Aunque es un riesgo interno, la comunicación técnica es identificada como la vulnerabilidad más crítica."
+        },
+        {
+          "text": "La obsolescencia de los sistemas informáticos (ERP).",
+          "isCorrect": false,
+          "rationale": "Los sistemas pueden fallar, pero el origen humano de la mala especificación tiene un impacto más directo en los activos."
+        },
+        {
+          "text": "El incumplimiento de los horarios de entrega de proveedores.",
+          "isCorrect": false,
+          "rationale": "Esto suele considerarse un factor externo o de ejecución, no la vulnerabilidad interna principal."
+        }
+      ],
+      "hint": "Se trata de un problema de interacción humana al momento de solicitar un componente."
+    },
+    {
+      "question": "En el caso de estudio de la máquina de soldar, ¿cuál fue el error de origen que causó la destrucción del activo?",
+      "answerOptions": [
+        {
+          "text": "Insistir en una especificación de $220$ V cuando se requería $440$ V.",
+          "isCorrect": true,
+          "rationale": "El usuario técnico ignoró las advertencias de logística y del proveedor, resultando en un equipo fundido por incompatibilidad eléctrica."
+        },
+        {
+          "text": "La falta de capacitación del operario que encendió el equipo.",
+          "isCorrect": false,
+          "rationale": "El problema no fue la operación, sino la adquisición de un equipo con voltaje incorrecto."
+        },
+        {
+          "text": "Un defecto de fábrica no detectado durante la recepción.",
+          "isCorrect": false,
+          "rationale": "El equipo funcionaba correctamente bajo sus especificaciones, pero estas no eran las que la operación necesitaba."
+        },
+        {
+          "text": "La demora en la entrega del transformador de potencia.",
+          "isCorrect": false,
+          "rationale": "El caso se centra en el error de especificación técnica, no en tiempos de entrega."
+        }
+      ],
+      "hint": "Recuerde la discrepancia entre el voltaje solicitado y el voltaje operativo de la unidad."
+    },
+    {
+      "question": "¿Qué factor externo se menciona como capaz de colapsar la infraestructura esencial y detener una operación multimillonaria?",
+      "answerOptions": [
+        {
+          "text": "Desastres naturales como huaicos e inundaciones.",
+          "isCorrect": true,
+          "rationale": "Estos eventos exógenos pueden destruir puentes y vías, bloqueando el tránsito de materiales críticos de forma absoluta."
+        },
+        {
+          "text": "La fluctuación diaria del tipo de cambio.",
+          "isCorrect": false,
+          "rationale": "Es un riesgo financiero, pero no tiene el poder de paralizar físicamente el flujo de materiales como un desastre natural."
+        },
+        {
+          "text": "La rotación de personal en las empresas contratistas.",
+          "isCorrect": false,
+          "rationale": "Aunque afecta la productividad, no representa un colapso de infraestructura a nivel geográfico."
+        },
+        {
+          "text": "La actualización de las leyes laborales vigentes.",
+          "isCorrect": false,
+          "rationale": "Es un factor social/legal, pero el colapso físico mencionado está ligado al entorno geográfico."
+        }
+      ],
+      "hint": "Piense en eventos climáticos severos que afectan la conectividad geográfica."
+    },
+    {
+      "question": "¿Cuál es el riesgo financiero más severo durante la ejecución de un contrato de suministro?",
+      "answerOptions": [
+        {
+          "text": "La insolvencia de los proveedores.",
+          "isCorrect": true,
+          "rationale": "Si un contratista se queda sin liquidez, la parálisis operativa y el riesgo jurídico son masivos para la empresa."
+        },
+        {
+          "text": "El incremento inesperado en el precio de los combustibles.",
+          "isCorrect": false,
+          "rationale": "Es un riesgo de mercado común, pero la insolvencia total de un socio clave es más catastrófica para el contrato."
+        },
+        {
+          "text": "La variación en las tasas de interés bancarias.",
+          "isCorrect": false,
+          "rationale": "Afecta los costos financieros, pero no detiene la ejecución física de la obra o suministro de forma inmediata."
+        },
+        {
+          "text": "La demora en el pago de facturas por parte de la minera.",
+          "isCorrect": false,
+          "rationale": "Aunque genera fricción, el riesgo crítico analizado es la incapacidad del proveedor para cumplir por falta de fondos."
+        }
+      ],
+      "hint": "Se refiere a la falta de liquidez del contratista para cumplir sus obligaciones."
+    },
+    {
+      "question": "En el caso del contratista de tanques en Buenaventura, ¿qué acción irregular tomó el proveedor por su insolvencia?",
+      "answerOptions": [
+        {
+          "text": "Desvió el adelanto financiero para pagar sus propias nóminas.",
+          "isCorrect": true,
+          "rationale": "En lugar de comprar materia prima, el proveedor usó los fondos de la minera para cubrir gastos operativos internos."
+        },
+        {
+          "text": "Subcontrató la fabricación a una empresa de menor calidad.",
+          "isCorrect": false,
+          "rationale": "El problema principal fue el uso indebido de los fondos recibidos, lo que detuvo la adquisición de materiales."
+        },
+        {
+          "text": "Declaró fuerza mayor debido a conflictos sociales inexistentes.",
+          "isCorrect": false,
+          "rationale": "El caso destaca una falla financiera interna del proveedor, no una excusa externa."
+        },
+        {
+          "text": "Vendió los materiales ya comprados a otra compañía minera.",
+          "isCorrect": false,
+          "rationale": "El retraso ocurrió porque los materiales ni siquiera se compraron debido al desvío de capital."
+        }
+      ],
+      "hint": "Considere qué hizo el contratista con el dinero que debía destinarse a la materia prima."
+    },
+    {
+      "question": "¿Cómo impacta la geología de la operación en el riesgo operativo logístico?",
+      "answerOptions": [
+        {
+          "text": "Provoca variabilidad abrupta en la demanda de materiales de sostenimiento.",
+          "isCorrect": true,
+          "rationale": "Pasar de roca dura a roca débil incrementa exponencialmente el consumo de refuerzos, presionando a la logística."
+        },
+        {
+          "text": "Determina el precio internacional de los metales extraídos.",
+          "isCorrect": false,
+          "rationale": "La geología local afecta la extracción, pero el precio es un factor de mercado global."
+        },
+        {
+          "text": "Define el tipo de combustible que deben usar los camiones.",
+          "isCorrect": false,
+          "rationale": "El combustible depende del motor de la maquinaria, no directamente de las características de la roca."
+        },
+        {
+          "text": "Reduce la necesidad de realizar mantenimiento preventivo.",
+          "isCorrect": false,
+          "rationale": "La geología compleja suele aumentar, no reducir, el desgaste de los equipos y la necesidad de mantenimiento."
+        }
+      ],
+      "hint": "Piense en la relación entre el tipo de terreno y los materiales necesarios para asegurar los túneles."
+    },
+    {
+      "question": "¿Qué concepto describe el inventario inmovilizado generado por especificaciones técnicas deficientes?",
+      "answerOptions": [
+        {
+          "text": "Muertos logísticos.",
+          "isCorrect": true,
+          "rationale": "Es el término industrial para productos adquiridos que no sirven al usuario final y no pueden devolverse."
+        },
+        {
+          "text": "Activos circulantes.",
+          "isCorrect": false,
+          "rationale": "Los muertos logísticos son lo opuesto a un activo circulante sano, pues no tienen rotación ni liquidez."
+        },
+        {
+          "text": "Pasivos contingentes.",
+          "isCorrect": false,
+          "rationale": "Aunque representan un problema financiero, el término específico para este inventario es 'muertos logísticos'."
+        },
+        {
+          "text": "Stock de seguridad.",
+          "isCorrect": false,
+          "rationale": "El stock de seguridad es planeado para evitar quiebres, no es el resultado de un error de compra."
+        }
+      ],
+      "hint": "Es un término que evoca algo que no tiene vida o movimiento en el almacén."
+    },
+    {
+      "question": "En el caso de Orcopampa, ¿qué detalle minúsculo causó un estancamiento financiero por más de un año?",
+      "answerOptions": [
+        {
+          "text": "La falta de aloe vera en el papel higiénico solicitado.",
+          "isCorrect": true,
+          "rationale": "Un requerimiento técnico omitido por logística llevó al rechazo del producto por el usuario final, inmovilizando el capital."
+        },
+        {
+          "text": "El diámetro incorrecto de los pernos para los molinos.",
+          "isCorrect": false,
+          "rationale": "Aunque es un error técnico plausible, el caso específico narrado trata sobre un insumo de higiene personal."
+        },
+        {
+          "text": "El color del equipo de protección personal (EPP).",
+          "isCorrect": false,
+          "rationale": "El problema en Orcopampa se derivó de una característica específica de confort en un producto genérico."
+        },
+        {
+          "text": "La fecha de vencimiento de los reactivos químicos.",
+          "isCorrect": false,
+          "rationale": "El estancamiento fue por rechazo de especificación, no por caducidad del producto."
+        }
+      ],
+      "hint": "Se trata de una característica cosmética en un insumo de uso cotidiano."
+    },
+    {
+      "question": "¿Cuál es el factor de riesgo más dominante y agresivo en megaproyectos de inversión tipo CAPEX?",
+      "answerOptions": [
+        {
+          "text": "El tiempo.",
+          "isCorrect": true,
+          "rationale": "En proyectos de gran escala, los retrasos iniciales generan un efecto dominó que compromete toda la logística global."
+        },
+        {
+          "text": "La ubicación geográfica de la mina.",
+          "isCorrect": false,
+          "rationale": "Es un desafío, pero el tiempo es el factor que amplifica todos los demás riesgos en inversiones masivas."
+        },
+        {
+          "text": "El idioma de los proveedores internacionales.",
+          "isCorrect": false,
+          "rationale": "Es una barrera de comunicación, pero no tiene la magnitud del impacto crítico que representa el factor tiempo."
+        },
+        {
+          "text": "La calidad de los materiales de oficina.",
+          "isCorrect": false,
+          "rationale": "Este es un factor insignificante comparado con la escala y complejidad de un proyecto CAPEX."
+        }
+      ],
+      "hint": "Piense en el recurso que, una vez perdido, genera una cascada de retrasos imposibles de recuperar."
+    },
+    {
+      "question": "Dentro de la 'cascada de vulnerabilidad', ¿qué evento suele detonar el caos en la fase de adquisición de activos críticos?",
+      "answerOptions": [
+        {
+          "text": "La entrega tardía de la ingeniería conceptual por terceros.",
+          "isCorrect": true,
+          "rationale": "Un retraso en la ingeniería obliga a realizar licitaciones apresuradas y omitir la debida diligencia."
+        },
+        {
+          "text": "La falta de espacio en el puerto de llegada.",
+          "isCorrect": false,
+          "rationale": "Esto es una consecuencia logística posterior, no el detonante inicial en la fase de diseño y planificación."
+        },
+        {
+          "text": "La renuncia del gerente de finanzas de la minera.",
+          "isCorrect": false,
+          "rationale": "Aunque afecta, la cascada técnica se origina específicamente en los retrasos de las definiciones de ingeniería."
+        },
+        {
+          "text": "El cambio en la normativa tributaria del país.",
+          "isCorrect": false,
+          "rationale": "Es un riesgo externo, pero el modelo de cascada descrito se enfoca en la interdependencia de las fases del proyecto."
+        }
+      ],
+      "hint": "Se refiere a la primera fase donde se definen los parámetros técnicos del proyecto."
+    },
+    {
+      "question": "¿Cuál es la función crítica de un comité licitador multidisciplinario?",
+      "answerOptions": [
+        {
+          "text": "Auditar la solvencia financiera del postor y validar requerimientos técnicos.",
+          "isCorrect": true,
+          "rationale": "Busca proteger a la compañía de contratar proveedores que puedan quebrar o no cumplir con la complejidad operativa."
+        },
+        {
+          "text": "Seleccionar siempre la oferta con el precio más bajo del mercado.",
+          "isCorrect": false,
+          "rationale": "Su enfoque es integral y de riesgo; a veces la oferta más barata es la que representa mayor peligro financiero."
+        },
+        {
+          "text": "Reducir la cantidad de proveedores con los que trabaja la empresa.",
+          "isCorrect": false,
+          "rationale": "Su función no es reducir proveedores, sino asegurar que los seleccionados sean capaces y solventes."
+        },
+        {
+          "text": "Aprobar los presupuestos de marketing de la organización.",
+          "isCorrect": false,
+          "rationale": "El comité está enfocado en la contratación y mitigación de riesgos en proyectos y suministros."
+        }
+      ],
+      "hint": "Considere la diversidad de áreas (legal, financiera, técnica) que deben validar a un contratista."
+    },
+    {
+      "question": "En la metodología cuantitativa, ¿qué objetivo tiene la matriz de comparación de pares?",
+      "answerOptions": [
+        {
+          "text": "Establecer una ponderación técnica de factores libre de sesgos personales.",
+          "isCorrect": true,
+          "rationale": "Al enfrentar factores entre sí, se objetiva la importancia de cada uno basándose en victorias matemáticas."
+        },
+        {
+          "text": "Calcular el tiempo exacto de entrega de un equipo crítico.",
+          "isCorrect": false,
+          "rationale": "Ese es un cálculo de 'lead time', no el propósito de una matriz de comparación de criticidad."
+        },
+        {
+          "text": "Determinar el costo total de propiedad de un activo.",
+          "isCorrect": false,
+          "rationale": "La matriz sirve para priorizar riesgos o fortalezas, no para análisis de costos contables."
+        },
+        {
+          "text": "Evaluar el desempeño individual del personal de compras.",
+          "isCorrect": false,
+          "rationale": "Se aplica a factores estratégicos y riesgos, no a la gestión de recursos humanos."
+        }
+      ],
+      "hint": "Piense en cómo se transforman las corazonadas en números para una junta directiva."
+    },
+    {
+      "question": "En una matriz de comparación con 5 factores críticos, ¿cuántas comparaciones totales se realizan en la diagonal superior?",
+      "answerOptions": [
+        {
+          "text": "$10$ comparaciones.",
+          "isCorrect": true,
+          "rationale": "Matemáticamente, para 5 factores, la diagonal superior de la matriz resulta en exactamente 10 interacciones únicas."
+        },
+        {
+          "text": "$5$ comparaciones.",
+          "isCorrect": false,
+          "rationale": "Cinco sería solo una comparación por factor, lo cual no cubriría todas las interacciones posibles entre ellos."
+        },
+        {
+          "text": "$25$ comparaciones.",
+          "isCorrect": false,
+          "rationale": "Esto implicaría llenar toda la matriz, incluyendo la diagonal principal y duplicados, lo cual se evita por regla."
+        },
+        {
+          "text": "$15$ comparaciones.",
+          "isCorrect": false,
+          "rationale": "El cálculo para las combinaciones únicas en la diagonal superior de una matriz de $5 \\times 5$ es de 10."
+        }
+      ],
+      "hint": "Es el número total de 'combates' necesarios para enfrentar todos los factores entre sí sin repetir."
+    },
+    {
+      "question": "¿Cómo se calcula el puntaje ponderado final de una amenaza o capacidad?",
+      "answerOptions": [
+        {
+          "text": "Multiplicando la ponderación base por la calificación de impacto ($1$ a $5$).",
+          "isCorrect": true,
+          "rationale": "Esta fórmula amplifica la relevancia técnica del factor según la magnitud de su efecto en la operación."
+        },
+        {
+          "text": "Sumando todos los costos asociados al riesgo identificado.",
+          "isCorrect": false,
+          "rationale": "El puntaje ponderado es una medida de criticidad estratégica, no una suma contable de costos."
+        },
+        {
+          "text": "Dividiendo el número de riesgos entre el presupuesto disponible.",
+          "isCorrect": false,
+          "rationale": "Esta operación no tendría sentido lógico para priorizar la importancia de una vulnerabilidad específica."
+        },
+        {
+          "text": "Restando las debilidades a las fortalezas de la empresa.",
+          "isCorrect": false,
+          "rationale": "El cálculo se basa en la intensidad del impacto de un factor individual, no en un balance neto de categorías."
+        }
+      ],
+      "hint": "Considere la combinación entre el peso matemático obtenido y la escala de desastre o beneficio."
+    },
+    {
+      "question": "¿Qué representa un ejemplo de estrategia DO (Debilidades y Oportunidades) en la gestión logística?",
+      "answerOptions": [
+        {
+          "text": "Usar Inteligencia Artificial externa para auditar estados financieros de proveedores.",
+          "isCorrect": true,
+          "rationale": "Se aprovecha una oportunidad tecnológica externa para superar una debilidad interna (falta de especialistas)."
+        },
+        {
+          "text": "Utilizar la marca corporativa para intimidar a la competencia.",
+          "isCorrect": false,
+          "rationale": "Esto sería una estrategia FA (Fortalezas contra Amenazas), usando un activo interno contra el entorno."
+        },
+        {
+          "text": "Diversificar la cartera de proveedores ante un posible desastre.",
+          "isCorrect": false,
+          "rationale": "Esta es una estrategia DA (Debilidades y Amenazas) enfocada en la supervivencia y mitigación de parálisis."
+        },
+        {
+          "text": "Expandirse a nuevos mercados regionales usando una red logística propia invencible.",
+          "isCorrect": false,
+          "rationale": "Es una estrategia FO (Fortalezas y Oportunidades) de tipo ofensivo."
+        }
+      ],
+      "hint": "Piense en una mejora interna lograda gracias a herramientas disponibles en el mercado."
+    },
+    {
+      "question": "¿Cuál es el objetivo primordial de las estrategias DA (Debilidades y Amenazas) en la matriz MAF?",
+      "answerOptions": [
+        {
+          "text": "La supervivencia mediante acciones defensivas.",
+          "isCorrect": true,
+          "rationale": "Buscan minimizar debilidades y evitar amenazas para prevenir una parálisis operativa total."
+        },
+        {
+          "text": "La expansión agresiva hacia nuevos territorios mineros.",
+          "isCorrect": false,
+          "rationale": "La expansión es propia de las estrategias ofensivas (FO), no de las de supervivencia."
+        },
+        {
+          "text": "La reducción de la inversión tecnológica para ahorrar capital.",
+          "isCorrect": false,
+          "rationale": "Ahorrar capital no es el fin; el fin es blindar la operación contra riesgos críticos que amenazan la continuidad."
+        },
+        {
+          "text": "El fortalecimiento de la cultura organizacional interna.",
+          "isCorrect": false,
+          "rationale": "Aunque es valioso, las estrategias DA son tácticas operativas contra vulnerabilidades y peligros externos."
+        }
+      ],
+      "hint": "Se trata de la postura más conservadora y protectora de la matriz."
+    },
+    {
+      "question": "¿Qué medida es vital en la logística actual para evitar la creación de pasivos de inventario?",
+      "answerOptions": [
+        {
+          "text": "Garantizar una codificación técnica exacta de los requerimientos.",
+          "isCorrect": true,
+          "rationale": "La precisión en la descripción técnica asegura que logística compre exactamente lo que la operación necesita."
+        },
+        {
+          "text": "Comprar solo a proveedores que acepten devoluciones ilimitadas.",
+          "isCorrect": false,
+          "rationale": "Esto es comercialmente difícil y no resuelve el problema de raíz, que es el error en la especificación."
+        },
+        {
+          "text": "Mantener los almacenes al mínimo nivel posible de existencias.",
+          "isCorrect": false,
+          "rationale": "Tener poco stock no evita que lo poco que se compre sea incorrecto por una mala especificación."
+        },
+        {
+          "text": "Delegar la compra de suministros críticos a los operarios de campo.",
+          "isCorrect": false,
+          "rationale": "Esto podría aumentar el descontrol; la solución es la comunicación técnica integrada y profesional."
+        }
+      ],
+      "hint": "Piense en la defensa contra los 'muertos logísticos' mencionada en las conclusiones."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Taxonomía de riesgos logísticos",
+      "Interacción funcional entre ingeniería y logística",
+      "Metodologías cuantitativas de análisis de riesgos",
+      "Estrategias de mitigación en la cadena de suministro (Matriz MAF)",
+      "Gestión de proyectos CAPEX y activos críticos"
+    ],
+    "followUp": [
+      "Debida diligencia tecnológica y auditoría de proveedores con IA",
+      "Control de pasivos e inventarios inmovilizados en minería",
+      "Impacto de la variabilidad geológica en la planificación logística",
+      "Formación de comités licitadores multidisciplinarios"
+    ]
+  }
+}

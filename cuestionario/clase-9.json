@@ -1,0 +1,544 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Por qué la logística ha pasado de ser un simple soporte a un pilar estratégico en la industria minera moderna?",
+      "answerOptions": [
+        {
+          "text": "Debido a la necesidad de gestionar operaciones en condiciones geográficas extremas y garantizar el flujo de insumos críticos.",
+          "isCorrect": true,
+          "rationale": "La complejidad de los entornos mineros exige una cadena de suministro robusta para mitigar la incertidumbre climática y geográfica."
+        },
+        {
+          "text": "Por la reducción global de los precios de los metales que obliga a eliminar todos los almacenes físicos.",
+          "isCorrect": false,
+          "rationale": "Aunque los costos son importantes, la estrategia se centra en la continuidad operativa ante condiciones adversas, no en eliminar almacenes."
+        },
+        {
+          "text": "Únicamente para cumplir con las normativas internacionales de transporte de personal.",
+          "isCorrect": false,
+          "rationale": "La logística abarca mucho más que el transporte de personal, centrándose especialmente en el abastecimiento técnico y operativo."
+        },
+        {
+          "text": "Para sustituir completamente la mano de obra humana por sistemas robóticos autónomos en el corto plazo.",
+          "isCorrect": false,
+          "rationale": "La tecnología se presenta como un potenciador del talento humano, no como un reemplazo total e inmediato de la fuerza laboral."
+        }
+      ],
+      "hint": "Considera los desafíos del entorno físico donde se desarrollan las minas."
+    },
+    {
+      "question": "¿Qué función principal cumple un sistema de gestión de almacenes (WMS) en el ecosistema minero?",
+      "answerOptions": [
+        {
+          "text": "Actuar como un sistema nervioso central que transforma datos aislados en inteligencia operativa accionable.",
+          "isCorrect": true,
+          "rationale": "El WMS orquesta los movimientos de inventario con precisión matemática basándose en la integración de datos de diversas áreas."
+        },
+        {
+          "text": "Funcionar como una base de datos estática para registrar únicamente las compras anuales.",
+          "isCorrect": false,
+          "rationale": "Un WMS es dinámico y operativo, no simplemente un registro contable estático de adquisiciones."
+        },
+        {
+          "text": "Reemplazar la necesidad de cualquier tipo de infraestructura física o racks de almacenamiento.",
+          "isCorrect": false,
+          "rationale": "El software gestiona la infraestructura física, pero no la elimina; de hecho, requiere un layout optimizado para funcionar."
+        },
+        {
+          "text": "Gestionar exclusivamente el pago de nóminas del personal de limpieza del almacén.",
+          "isCorrect": false,
+          "rationale": "El WMS se enfoca en el control de inventarios y flujos logísticos, no en tareas administrativas de recursos humanos ajenas a la carga."
+        }
+      ],
+      "hint": "Imagina cómo una plataforma digital coordina múltiples movimientos dispersos."
+    },
+    {
+      "question": "¿Cuál es una de las ventajas críticas de utilizar tecnologías de captura de datos como sensores RFID o visión computacional en la minería?",
+      "answerOptions": [
+        {
+          "text": "Permitir la asignación dinámica de posiciones y prevenir la mezcla accidental de materiales químicos incompatibles.",
+          "isCorrect": true,
+          "rationale": "La captura de datos precisa alimenta la lógica del sistema para evitar desastres operativos mediante la segregación segura."
+        },
+        {
+          "text": "Eliminar la necesidad de realizar cualquier auditoría de seguridad física en las instalaciones.",
+          "isCorrect": false,
+          "rationale": "La tecnología apoya la seguridad, pero los protocolos de auditoría física siguen siendo fundamentales para validar el sistema."
+        },
+        {
+          "text": "Reducir la velocidad de procesamiento de entrada para asegurar que el personal trabaje más lento.",
+          "isCorrect": false,
+          "rationale": "El objetivo de estas tecnologías es precisamente lo contrario: agilizar los procesos y aumentar la eficiencia."
+        },
+        {
+          "text": "Garantizar que todos los materiales se ubiquen siempre en el mismo estante sin importar su rotación.",
+          "isCorrect": false,
+          "rationale": "La tecnología permite una ubicación dinámica, lo que significa que las posiciones pueden cambiar según la eficiencia y necesidad."
+        }
+      ],
+      "hint": "Piensa en la seguridad operacional al manejar sustancias peligrosas."
+    },
+    {
+      "question": "¿Cómo impacta la optimización de rutas dentro del almacén en la eficiencia energética?",
+      "answerOptions": [
+        {
+          "text": "Reduce el consumo innecesario de energía y combustible al acortar los recorridos de maquinaria pesada y operadores.",
+          "isCorrect": true,
+          "rationale": "Rutas más directas y lógicas minimizan el tiempo de operación de los equipos, lo que se traduce directamente en ahorro de recursos."
+        },
+        {
+          "text": "Aumenta la fatiga del personal para asegurar que se utilicen más baterías eléctricas.",
+          "isCorrect": false,
+          "rationale": "La optimización busca reducir la fatiga humana y el desgaste de equipos, no incrementarlos."
+        },
+        {
+          "text": "Permite que los vehículos circulen a mayor velocidad sin respetar las señales de seguridad.",
+          "isCorrect": false,
+          "rationale": "La optimización se refiere a la distancia y secuencia del recorrido, no a la violación de límites de velocidad de seguridad."
+        },
+        {
+          "text": "Obliga a que todos los movimientos se realicen de forma manual sin apoyo de maquinaria.",
+          "isCorrect": false,
+          "rationale": "La optimización de rutas es aplicable tanto a personas como a maquinaria pesada para mejorar el flujo general."
+        }
+      ],
+      "hint": "Menos distancia recorrida suele significar menos recursos utilizados."
+    },
+    {
+      "question": "Desde una perspectiva financiera, ¿cuál es una característica distintiva de los sistemas WMS alojados en la nube (SaaS)?",
+      "answerOptions": [
+        {
+          "text": "Transforman el alto costo inicial de capital (CAPEX) en un gasto operativo recurrente (OPEX).",
+          "isCorrect": true,
+          "rationale": "El modelo de suscripción permite escalabilidad y rapidez de implementación sin requerir una inversión masiva en servidores locales."
+        },
+        {
+          "text": "Exigen una inversión inicial extremadamente alta en servidores físicos propiedad de la mina.",
+          "isCorrect": false,
+          "rationale": "Esa es la característica de los sistemas On-Premise (locales), no de los modelos en la nube."
+        },
+        {
+          "text": "Eliminan por completo cualquier costo relacionado con el soporte técnico o la implementación.",
+          "isCorrect": false,
+          "rationale": "Incluso en la nube, existen costos ocultos como tarifas de implementación y paquetes de soporte mensual."
+        },
+        {
+          "text": "Son exclusivamente para empresas que no manejan datos sensibles o confidenciales.",
+          "isCorrect": false,
+          "rationale": "Aunque el control es diferente, las soluciones en la nube son utilizadas masivamente por industrias con altos estándares de seguridad."
+        }
+      ],
+      "hint": "Relaciona el modelo de pago por servicio con los términos contables."
+    },
+    {
+      "question": "¿Qué desventaja operativa suelen presentar los módulos logísticos nativos de un ERP corporativo generalista?",
+      "answerOptions": [
+        {
+          "text": "Pueden carecer de la especialización profunda necesaria para procesos logísticos mineros extremos y específicos.",
+          "isCorrect": true,
+          "rationale": "Las suites generales priorizan la integración financiera, pero a menudo no tienen las funciones detalladas de un WMS dedicado."
+        },
+        {
+          "text": "No permiten ninguna comunicación con las áreas de finanzas o contabilidad de la empresa.",
+          "isCorrect": false,
+          "rationale": "Al contrario, su mayor ventaja es la transparencia total e instantánea con las finanzas y la contabilidad."
+        },
+        {
+          "text": "Son mucho más caros que comprar un software especializado de nicho.",
+          "isCorrect": false,
+          "rationale": "Generalmente, al ser módulos ya incluidos o integrados, pueden resultar más económicos, pero menos funcionales en el piso del almacén."
+        },
+        {
+          "text": "Requieren que el almacén se ubique físicamente dentro de las oficinas corporativas.",
+          "isCorrect": false,
+          "rationale": "La ubicación física es independiente de si el sistema es un módulo ERP o un WMS independiente."
+        }
+      ],
+      "hint": "Considera la diferencia entre una herramienta multiusos y una herramienta de alta precisión."
+    },
+    {
+      "question": "¿Cuál es el costo estimado que puede enfrentar una operación minera por una parada de planta no planificada debido a la falta de un repuesto crítico?",
+      "answerOptions": [
+        {
+          "text": "$50,000$ por hora.",
+          "isCorrect": true,
+          "rationale": "Esta cifra impactante subraya por qué el control logístico absoluto es una cuestión de supervivencia financiera en el sector."
+        },
+        {
+          "text": "$5,000$ por día.",
+          "isCorrect": false,
+          "rationale": "El costo real es significativamente mayor y se mide por hora debido a la alta productividad de la extracción minera."
+        },
+        {
+          "text": "$50,000$ por mes.",
+          "isCorrect": false,
+          "rationale": "La pérdida financiera de una parada de planta es mucho más inmediata y severa que un cargo mensual de esa magnitud."
+        },
+        {
+          "text": "$1,000$ por minuto.",
+          "isCorrect": false,
+          "rationale": "Aunque elevado, la cifra específica destacada para ilustrar la gravedad de la falta de suministros es de $50,000$ por hora."
+        }
+      ],
+      "hint": "Es una cifra redonda que representa una pérdida masiva en un periodo de tiempo muy corto."
+    },
+    {
+      "question": "¿De qué manera el control digital del inventario facilita la metodología Just in Time (JIT) en la minería?",
+      "answerOptions": [
+        {
+          "text": "Al dar certeza absoluta sobre la ubicación de repuestos estratégicos, permitiendo reducir inventarios de seguridad costosos.",
+          "isCorrect": true,
+          "rationale": "La visibilidad en tiempo real elimina la necesidad de almacenar excesos 'por si acaso', optimizando el capital de trabajo."
+        },
+        {
+          "text": "Obligando a comprar todos los suministros del año en un solo pedido para evitar fletes.",
+          "isCorrect": false,
+          "rationale": "El JIT busca justamente lo contrario a la acumulación masiva de inventarios."
+        },
+        {
+          "text": "Eliminando la necesidad de comunicación entre el almacén y el frente de trabajo.",
+          "isCorrect": false,
+          "rationale": "El JIT requiere una comunicación y sincronización digital perfecta, no la ausencia de la misma."
+        },
+        {
+          "text": "Priorizando siempre el transporte más lento para ahorrar en costos de envío urgentes.",
+          "isCorrect": false,
+          "rationale": "El JIT se enfoca en tener el material exacto en el momento exacto, lo que a menudo requiere agilidad logística."
+        }
+      ],
+      "hint": "Menos 'colchón' de inventario requiere más precisión en la información."
+    },
+    {
+      "question": "¿Qué pilar de la sostenibilidad (ESG) se ve directamente beneficiado por el control de caducidad en un WMS?",
+      "answerOptions": [
+        {
+          "text": "La reducción de residuos químicos peligrosos al evitar que los reactivos expiren en el estante.",
+          "isCorrect": true,
+          "rationale": "Un control implacable sobre las fechas de vencimiento asegura que los productos se usen antes de convertirse en desperdicio contaminante."
+        },
+        {
+          "text": "La mejora de las relaciones públicas con las comunidades locales únicamente.",
+          "isCorrect": false,
+          "rationale": "Aunque impacta indirectamente, el beneficio directo es técnico-ambiental sobre la gestión de residuos químicos."
+        },
+        {
+          "text": "El aumento de la contratación de personal sin experiencia en logística.",
+          "isCorrect": false,
+          "rationale": "El control de caducidad es una función operativa técnica que no está relacionada con las políticas de contratación básica."
+        },
+        {
+          "text": "La eliminación de la necesidad de iluminación eléctrica en el almacén.",
+          "isCorrect": false,
+          "rationale": "El control de caducidad gestiona la vida útil de los materiales, no el consumo eléctrico de las luminarias."
+        }
+      ],
+      "hint": "Piensa en lo que sucede cuando un reactivo químico ya no puede ser utilizado."
+    },
+    {
+      "question": "¿Cuál es el propósito de utilizar la clasificación ABC en el diseño del layout de un almacén?",
+      "answerOptions": [
+        {
+          "text": "Ubicar estratégicamente los productos con mayor rotación en los lugares más accesibles para agilizar el flujo.",
+          "isCorrect": true,
+          "rationale": "Esta metodología prioriza el espacio físico en función de la frecuencia de movimiento de los artículos."
+        },
+        {
+          "text": "Agrupar los productos estrictamente por el orden alfabético de sus nombres técnicos.",
+          "isCorrect": false,
+          "rationale": "La clasificación ABC se basa en la importancia o rotación de los materiales, no necesariamente en su nombre."
+        },
+        {
+          "text": "Separar los materiales según el país de origen de los proveedores.",
+          "isCorrect": false,
+          "rationale": "El origen del proveedor no suele ser el criterio principal para la eficiencia del flujo de picking interno."
+        },
+        {
+          "text": "Garantizar que todos los estantes tengan exactamente la misma cantidad de cajas.",
+          "isCorrect": false,
+          "rationale": "El layout busca eficiencia de movimiento, no una simetría estética o de volumen de carga uniforme."
+        }
+      ],
+      "hint": "Tiene que ver con la frecuencia con la que se necesita un artículo."
+    },
+    {
+      "question": "¿Qué ventaja ofrece el mapeo 3D con drones para la gestión del layout físico comparado con la visión de un operario a nivel de piso?",
+      "answerOptions": [
+        {
+          "text": "Permite detectar desajustes en el inventario y espacios subutilizados que no son visibles con precisión desde el suelo.",
+          "isCorrect": true,
+          "rationale": "La perspectiva aérea y la tecnología de mapeo detectan anomalías en el aprovechamiento del espacio físico de forma proactiva."
+        },
+        {
+          "text": "Sustituye la necesidad de que los operarios usen calzado de seguridad en el almacén.",
+          "isCorrect": false,
+          "rationale": "El uso de drones no elimina los riesgos físicos para los humanos que siguen trabajando en el sitio."
+        },
+        {
+          "text": "Aumenta el tiempo necesario para realizar un inventario al requerir permisos de vuelo.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el uso de drones agiliza significativamente el proceso de auditoría y mapeo."
+        },
+        {
+          "text": "Sirve principalmente para tomar fotografías decorativas para los informes anuales.",
+          "isCorrect": false,
+          "rationale": "Su función es operativa y analítica, enfocada en la eficiencia del espacio y la detección de riesgos."
+        }
+      ],
+      "hint": "Considera la diferencia de perspectiva entre estar abajo y estar arriba."
+    },
+    {
+      "question": "¿Cuáles son las cuatro fases metódicas del ciclo de almacenamiento?",
+      "answerOptions": [
+        {
+          "text": "Gestión de entrada, gestión de almacenamiento, preparación de pedidos (picking) y despacho/auditoría de salida.",
+          "isCorrect": true,
+          "rationale": "Estas fases representan el flujo lógico y científico desde que el material llega hasta que abandona el almacén."
+        },
+        {
+          "text": "Compra de materiales, venta al público, transporte externo y reciclaje final.",
+          "isCorrect": false,
+          "rationale": "Estas son etapas de la cadena de suministro general, no las fases internas del ciclo específico de almacenamiento descrito."
+        },
+        {
+          "text": "Limpieza de racks, pintura de pasillos, revisión de luces y mantenimiento de camiones.",
+          "isCorrect": false,
+          "rationale": "Estas son tareas de mantenimiento, no las fases operativas centrales del almacenamiento."
+        },
+        {
+          "text": "Recepción de personal, capacitación, evaluación de desempeño y retiro.",
+          "isCorrect": false,
+          "rationale": "Este es el ciclo de vida del empleado, no el ciclo de gestión de materiales."
+        }
+      ],
+      "hint": "Sigue el recorrido físico de un producto desde que entra hasta que sale del depósito."
+    },
+    {
+      "question": "¿En qué consiste la técnica de 'mirroring' o espejado durante la fase de despacho?",
+      "answerOptions": [
+        {
+          "text": "Contrastar el peso teórico calculado por el sistema contra el peso real obtenido en una balanza industrial.",
+          "isCorrect": true,
+          "rationale": "Esta validación estricta permite detectar discrepancias que podrían indicar robos o errores en la carga."
+        },
+        {
+          "text": "Colocar espejos en los camiones para que los conductores vean mejor los puntos ciegos.",
+          "isCorrect": false,
+          "rationale": "Aunque útil para la seguridad vial, el espejado logístico es un proceso de auditoría de datos y pesos."
+        },
+        {
+          "text": "Duplicar físicamente cada pedido para tener un respaldo en caso de pérdida en el camino.",
+          "isCorrect": false,
+          "rationale": "Esto sería ineficiente y costoso; el mirroring busca precisión en el envío original, no duplicación de mercancía."
+        },
+        {
+          "text": "Verificar que el operario del almacén se parezca físicamente al conductor del camión.",
+          "isCorrect": false,
+          "rationale": "La técnica se basa en la validación de activos y datos, no en características físicas del personal."
+        }
+      ],
+      "hint": "Es una forma de auditoría cruzada entre lo digital y lo físico."
+    },
+    {
+      "question": "¿Cuál es el beneficio de seguridad más significativo al implementar drones para auditorías en estanterías altas?",
+      "answerOptions": [
+        {
+          "text": "Eliminan la necesidad de movilizar montacargas y reducen la exposición del personal a trabajos en altura.",
+          "isCorrect": true,
+          "rationale": "Al usar drones, el personal evita subir a zonas elevadas, minimizando el riesgo de caídas y accidentes graves."
+        },
+        {
+          "text": "Permiten que el almacén funcione sin necesidad de iluminación durante la noche.",
+          "isCorrect": false,
+          "rationale": "Aunque los drones pueden tener sensores, el beneficio de seguridad clave es el riesgo humano por altura."
+        },
+        {
+          "text": "Aseguran que los drones vigilen que los trabajadores no tomen descansos.",
+          "isCorrect": false,
+          "rationale": "La tecnología busca elevar el rol del humano a la supervisión estratégica, no actuar como un sistema de vigilancia punitivo."
+        },
+        {
+          "text": "Garantizan que las etiquetas de los productos nunca se llenen de polvo.",
+          "isCorrect": false,
+          "rationale": "Los drones escanean datos, pero no realizan tareas de limpieza física de las etiquetas."
+        }
+      ],
+      "hint": "Enfócate en la prevención de riesgos laborales comunes en almacenes gigantes."
+    },
+    {
+      "question": "¿Qué diferencia fundamental existe entre la logística reactiva y la logística predictiva impulsada por IA?",
+      "answerOptions": [
+        {
+          "text": "La logística predictiva anticipa la necesidad de repuestos antes de que ocurra una falla, optimizando el capital de trabajo.",
+          "isCorrect": true,
+          "rationale": "La IA permite pasar de 'esperar a que algo se rompa' a 'tener la pieza lista' basándose en patrones de datos."
+        },
+        {
+          "text": "La logística reactiva es más moderna porque responde más rápido a las emergencias extremas.",
+          "isCorrect": false,
+          "rationale": "La logística reactiva se considera anticuada porque implica mayores costos por paradas de planta imprevistas."
+        },
+        {
+          "text": "La logística predictiva solo funciona para productos perecederos como alimentos.",
+          "isCorrect": false,
+          "rationale": "Es especialmente crítica en minería para componentes mecánicos y reactivos industriales de alto valor."
+        },
+        {
+          "text": "No existe diferencia, ambos términos se refieren al uso manual de hojas de cálculo.",
+          "isCorrect": false,
+          "rationale": "La diferencia es tecnológica y estratégica, alejándose de los flujos puramente manuales hacia los algorítmicos."
+        }
+      ],
+      "hint": "Una espera a que el problema aparezca, la otra se adelanta a él."
+    },
+    {
+      "question": "¿Cuál es la principal ventaja operativa del sistema 'Voice Picking' para el trabajador?",
+      "answerOptions": [
+        {
+          "text": "Mantiene las manos y los ojos del operario libres para maniobrar cargas pesadas de forma segura.",
+          "isCorrect": true,
+          "rationale": "Al recibir instrucciones por audio, el operario no tiene que distraerse mirando pantallas o papeles mientras manipula materiales."
+        },
+        {
+          "text": "Permite que el trabajador escuche música y programas de radio durante su jornada.",
+          "isCorrect": false,
+          "rationale": "El sistema se utiliza para instrucciones operativas precisas, no para entretenimiento personal."
+        },
+        {
+          "text": "Obliga al operario a hablar en idiomas extranjeros para mejorar su perfil profesional.",
+          "isCorrect": false,
+          "rationale": "El sistema suele configurarse en el idioma nativo del operario para asegurar claridad y evitar errores."
+        },
+        {
+          "text": "Elimina la necesidad de que el trabajador camine por los pasillos del almacén.",
+          "isCorrect": false,
+          "rationale": "El operario sigue desplazándose, pero lo hace con mayor seguridad y eficiencia al tener sus sentidos enfocados en la carga."
+        }
+      ],
+      "hint": "Considera cómo la atención visual y manual impacta en la seguridad."
+    },
+    {
+      "question": "¿Cómo funcionan los sistemas 'Pick to Light' en las estanterías del almacén?",
+      "answerOptions": [
+        {
+          "text": "Utilizan señales luminosas para indicar al operario de qué ubicación exacta debe extraer o colocar un artículo.",
+          "isCorrect": true,
+          "rationale": "Este sistema visual reduce el error humano a niveles cercanos a cero al eliminar la ambigüedad en la búsqueda."
+        },
+        {
+          "text": "Son potentes reflectores que iluminan todo el almacén para ahorrar en bombillas convencionales.",
+          "isCorrect": false,
+          "rationale": "Son luces de señalización específicas en los racks, no un sistema de iluminación general del edificio."
+        },
+        {
+          "text": "Detectan la presencia de humo para activar los rociadores de incendios automáticamente.",
+          "isCorrect": false,
+          "rationale": "Aunque son dispositivos electrónicos, su función es logística y no de detección de incendios."
+        },
+        {
+          "text": "Cambian el color de los productos para que se vean más atractivos en el inventario.",
+          "isCorrect": false,
+          "rationale": "La luz solo indica una posición física, no altera las características visuales del producto en sí."
+        }
+      ],
+      "hint": "Se trata de un sistema de guía visual para el operario."
+    },
+    {
+      "question": "¿Qué caracteriza a los sistemas AMR (Autonomous Mobile Robots) en la gestión de almacenes modernos?",
+      "answerOptions": [
+        {
+          "text": "Mueven de forma autónoma estanterías y pallets pesados para optimizar el transporte interno sin intervención humana constante.",
+          "isCorrect": true,
+          "rationale": "Similares a los usados por Amazon, estos robots agilizan el flujo interno de materiales masivos de forma independiente."
+        },
+        {
+          "text": "Son drones que vuelan fuera del almacén para entregar pedidos a las ciudades cercanas.",
+          "isCorrect": false,
+          "rationale": "Los AMR son vehículos terrestres diseñados para el movimiento interno dentro de las instalaciones logísticas."
+        },
+        {
+          "text": "Requieren que un operario los empuje manualmente para que puedan funcionar.",
+          "isCorrect": false,
+          "rationale": "Son 'autónomos', lo que significa que se desplazan por sí mismos siguiendo rutas programadas o inteligentes."
+        },
+        {
+          "text": "Se encargan exclusivamente de la limpieza y desinfección de las oficinas de gerencia.",
+          "isCorrect": false,
+          "rationale": "Su enfoque principal es la carga y movimiento de inventario en el área operativa del almacén."
+        }
+      ],
+      "hint": "Piensa en robots terrestres que cargan estantes enteros."
+    },
+    {
+      "question": "¿Qué representa el concepto de 'Gemelo Digital' en una operación minera integrada?",
+      "answerOptions": [
+        {
+          "text": "Un espejo virtual generado por la integración de sistemas WMS y ERP que brinda visibilidad exacta de la mina.",
+          "isCorrect": true,
+          "rationale": "Este modelo digital permite simular y supervisar la operación real en tiempo real para mejorar la toma de decisiones."
+        },
+        {
+          "text": "Tener dos almacenes exactamente iguales en la misma ubicación por si uno se incendia.",
+          "isCorrect": false,
+          "rationale": "El gemelo digital es una representación virtual de datos, no una duplicación física de infraestructura."
+        },
+        {
+          "text": "Contratar a dos gerentes de logística que tengan el mismo perfil profesional.",
+          "isCorrect": false,
+          "rationale": "Se refiere a una herramienta tecnológica de modelado de datos, no a una estrategia de recursos humanos."
+        },
+        {
+          "text": "Un sistema que imprime copias en papel de cada transacción realizada en el almacén.",
+          "isCorrect": false,
+          "rationale": "Al contrario, busca la digitalización total para alejarse del uso de registros manuales en papel."
+        }
+      ],
+      "hint": "Es una representación virtual de un activo o proceso físico."
+    },
+    {
+      "question": "De acuerdo con la visión del futuro logístico presentada, ¿cuál debe ser la principal cualidad de quienes lideren esta área?",
+      "answerOptions": [
+        {
+          "text": "Ser sumamente adaptables para guiar la evolución tecnológica y potenciar el talento humano.",
+          "isCorrect": true,
+          "rationale": "La adaptabilidad es clave para integrar las nuevas herramientas digitales sin perder el enfoque en la seguridad y el personal."
+        },
+        {
+          "text": "Mantener estrictamente los procesos manuales del pasado para evitar errores de software.",
+          "isCorrect": false,
+          "rationale": "La modernización es indispensable para la supervivencia financiera, por lo que aferrarse al pasado es contraproducente."
+        },
+        {
+          "text": "Priorizar el ahorro de costos eliminando todos los protocolos de seguridad digital.",
+          "isCorrect": false,
+          "rationale": "La seguridad de los datos es innegociable; sin información precisa, no hay resultados automatizados seguros."
+        },
+        {
+          "text": "Especializarse únicamente en la reparación mecánica de montacargas antiguos.",
+          "isCorrect": false,
+          "rationale": "El líder del futuro debe enfocarse en la gestión estratégica de sistemas complejos y tecnologías disruptivas."
+        }
+      ],
+      "hint": "Tiene que ver con la capacidad de cambiar y mejorar ante las nuevas tendencias."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Sistemas de Gestión de Almacenes (WMS)",
+      "Tecnologías de Captura de Datos (RFID, Visión)",
+      "Arquitecturas de Software Logístico (CAPEX/OPEX)",
+      "Eficiencia Operativa y Financiera en Minería",
+      "Sostenibilidad y ESG en Logística",
+      "Optimización de Layout y Clasificación ABC",
+      "Logística 4.0 (IA, Drones, Robótica Colaborativa)",
+      "Ciclo de Almacenamiento y Auditoría"
+    ],
+    "followUp": [
+      "Implementación de Gemelos Digitales en Minería",
+      "Gestión de Sustancias Peligrosas y Segregación Química",
+      "Integración Profunda entre ERP y WMS Especializados",
+      "Mantenimiento Predictivo de Activos mediante IA",
+      "Estrategias de Reducción de Huella de Carbono en Flotas Logísticas"
+    ]
+  }
+}

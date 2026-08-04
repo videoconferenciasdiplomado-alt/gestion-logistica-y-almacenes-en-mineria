@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es la visión estratégica moderna que debe tenerse sobre un almacén en una operación minera?",
+      "answerOptions": [
+        {
+          "text": "Un simple depósito de materiales",
+          "isCorrect": false,
+          "rationale": "Considerarlo un simple depósito ignora su papel crítico en la rentabilidad y la continuidad operativa 24/7."
+        },
+        {
+          "text": "Una inversión estratégica crítica",
+          "isCorrect": true,
+          "rationale": "El almacén se define como el eslabón vital que garantiza el funcionamiento ininterrumpido de la mina y protege la liquidez."
+        },
+        {
+          "text": "Un centro de costo secundario",
+          "isCorrect": false,
+          "rationale": "Tratarlo como secundario es un error, ya que un fallo en el suministro de repuestos puede paralizar toda la producción."
+        },
+        {
+          "text": "Un área de archivo documental",
+          "isCorrect": false,
+          "rationale": "Aunque gestiona documentos, su función principal es la gestión física de activos y la optimización del capital."
+        }
+      ],
+      "hint": "Piense en cómo el almacén afecta la continuidad de las operaciones que funcionan sin parar."
+    },
+    {
+      "question": "¿Cuáles son las cuatro funciones clave en la gestión estratégica de almacenes?",
+      "answerOptions": [
+        {
+          "text": "Compra, transporte, venta y postventa",
+          "isCorrect": false,
+          "rationale": "Estas funciones pertenecen más al ciclo comercial general que a la gestión interna específica del almacén minero."
+        },
+        {
+          "text": "Recepción, almacenamiento, preparación y expedición",
+          "isCorrect": true,
+          "rationale": "Estas cuatro etapas constituyen el ciclo operativo fundamental para dominar el flujo de materiales en la mina."
+        },
+        {
+          "text": "Exploración, extracción, fundición y refinación",
+          "isCorrect": false,
+          "rationale": "Estos son procesos de la cadena de valor minera, no funciones específicas de la gestión de almacenes."
+        },
+        {
+          "text": "Auditoría, limpieza, seguridad y mantenimiento",
+          "isCorrect": false,
+          "rationale": "Aunque son actividades de apoyo, no representan el núcleo de las funciones operativas del flujo de materiales."
+        }
+      ],
+      "hint": "Considere el camino que sigue un material desde que llega hasta que sale hacia el frente de trabajo."
+    },
+    {
+      "question": "¿Qué tipo de almacén es indispensable para resguardar componentes sensibles a la humedad o al sol extremo?",
+      "answerOptions": [
+        {
+          "text": "Almacenes al aire libre",
+          "isCorrect": false,
+          "rationale": "Los espacios abiertos se reservan para materiales a granel o estructuras masivas que resisten la intemperie."
+        },
+        {
+          "text": "Almacenes de tránsito",
+          "isCorrect": false,
+          "rationale": "El término se refiere al tiempo de permanencia, no necesariamente a la protección física contra el clima."
+        },
+        {
+          "text": "Centros de ruptura",
+          "isCorrect": false,
+          "rationale": "Esta es una clasificación basada en el flujo de carga, no en la infraestructura de protección climática."
+        },
+        {
+          "text": "Almacenes cubiertos",
+          "isCorrect": true,
+          "rationale": "La protección física techada es crítica para evitar la degradación de materiales sensibles por factores ambientales."
+        }
+      ],
+      "hint": "Piense en la estructura necesaria para bloquear los rayos UV y el agua."
+    },
+    {
+      "question": "¿Cómo se clasifican los lingotes de cobre que están en pausa esperando su siguiente fase metalúrgica?",
+      "answerOptions": [
+        {
+          "text": "Materias primas",
+          "isCorrect": false,
+          "rationale": "Las materias primas son la base inicial del proceso, no materiales que ya han pasado por una transformación previa."
+        },
+        {
+          "text": "Productos en curso",
+          "isCorrect": true,
+          "rationale": "Estos materiales se encuentran en un estado intermedio o 'standby' dentro del proceso de transformación logística."
+        },
+        {
+          "text": "Materiales auxiliares",
+          "isCorrect": false,
+          "rationale": "Los materiales auxiliares son insumos para que la maquinaria funcione, pero no forman parte del producto final."
+        },
+        {
+          "text": "Residuos peligrosos",
+          "isCorrect": false,
+          "rationale": "Los lingotes de metal precioso son activos valiosos en proceso, no desechos para eliminación."
+        }
+      ],
+      "hint": "Se trata de materiales que aún no han terminado su ciclo de procesamiento total."
+    },
+    {
+      "question": "¿Cuál es la consecuencia crítica de un derrame de materiales peligrosos (MAPEL) como el ácido sulfúrico ($H_{2}SO_{4}$)?",
+      "answerOptions": [
+        {
+          "text": "Solo un retraso administrativo menor",
+          "isCorrect": false,
+          "rationale": "Minimizar un derrame químico ignora los graves riesgos de seguridad y ambientales inherentes a la minería."
+        },
+        {
+          "text": "Aumento de la humedad en el almacén",
+          "isCorrect": false,
+          "rationale": "Aunque son líquidos, su peligrosidad no radica en la humedad, sino en su toxicidad y corrosividad."
+        },
+        {
+          "text": "Impactos operativos y ambientales drásticos",
+          "isCorrect": true,
+          "rationale": "Debido a su naturaleza, cualquier error con MAPEL tiene consecuencias severas que no permiten margen de error."
+        },
+        {
+          "text": "Mejora en la limpieza de los suelos",
+          "isCorrect": false,
+          "rationale": "El ácido sulfúrico es altamente corrosivo y destructivo, no es un agente de limpieza para el mantenimiento."
+        }
+      ],
+      "hint": "Considere la peligrosidad de los químicos corrosivos en un entorno natural."
+    },
+    {
+      "question": "¿Qué objetivo principal persigue la implementación de sistemas inteligentes de almacenamiento de alta densidad?",
+      "answerOptions": [
+        {
+          "text": "Aumentar el número de empleados",
+          "isCorrect": false,
+          "rationale": "La automatización suele optimizar la eficiencia, no necesariamente incrementar la cantidad de personal operativo."
+        },
+        {
+          "text": "Reducir radicalmente el riesgo y la exposición del personal",
+          "isCorrect": true,
+          "rationale": "Además de ahorrar espacio, la mecanización busca alejar a los humanos de zonas de alto riesgo de accidentes."
+        },
+        {
+          "text": "Eliminar por completo el uso de computadoras",
+          "isCorrect": false,
+          "rationale": "Los sistemas inteligentes dependen profundamente de la tecnología informática para su funcionamiento."
+        },
+        {
+          "text": "Fomentar el uso de almacenamiento al aire libre",
+          "isCorrect": false,
+          "rationale": "La alta densidad y automatización se aplican generalmente en almacenes cubiertos y estructuras verticales."
+        }
+      ],
+      "hint": "Piense en la seguridad del trabajador al interactuar con cargas pesadas o alturas."
+    },
+    {
+      "question": "¿Cuál es la función de los centros de consolidación en la logística minera?",
+      "answerOptions": [
+        {
+          "text": "Desglosar lotes masivos en pedidos pequeños",
+          "isCorrect": false,
+          "rationale": "Esta es la función de los centros de ruptura, no de los de consolidación."
+        },
+        {
+          "text": "Almacenar exclusivamente explosivos",
+          "isCorrect": false,
+          "rationale": "Los centros de consolidación manejan diversos tipos de carga de distintos proveedores."
+        },
+        {
+          "text": "Agrupar cargas de distintos proveedores para reducir costos de transporte",
+          "isCorrect": true,
+          "rationale": "Permiten reunir repuestos y suministros en un solo punto para optimizar el flete final hacia la mina."
+        },
+        {
+          "text": "Procesar el mineral antes de su exportación",
+          "isCorrect": false,
+          "rationale": "Esa es una función de la planta metalúrgica, no de un centro logístico de suministros."
+        }
+      ],
+      "hint": "Piense en el verbo 'unificar' para hacer el transporte más eficiente."
+    },
+    {
+      "question": "¿Cuál es una ventaja clave del modelo de operador logístico (3PL)?",
+      "answerOptions": [
+        {
+          "text": "Elimina la necesidad de auditorías",
+          "isCorrect": false,
+          "rationale": "Al contrario, este modelo facilita que un tercero audite el proceso, brindando mayor transparencia."
+        },
+        {
+          "text": "Permite implementar sistemas Just in Time (JIT)",
+          "isCorrect": true,
+          "rationale": "La especialización del operador externo facilita la entrega de materiales exactamente cuando se necesitan."
+        },
+        {
+          "text": "Garantiza el control total y directo de la propiedad",
+          "isCorrect": false,
+          "rationale": "El control directo es característico del modelo de almacén propio, no del tercerizado."
+        },
+        {
+          "text": "Requiere la inversión inicial más alta de todos los modelos",
+          "isCorrect": false,
+          "rationale": "El modelo 3PL suele reducir la inversión inicial al delegar la infraestructura al operador."
+        }
+      ],
+      "hint": "Considere la eficiencia en los tiempos de entrega sin mantener grandes inventarios propios."
+    },
+    {
+      "question": "En el protocolo de recepción física, ¿cuál es el segundo paso secuencial obligatorio?",
+      "answerOptions": [
+        {
+          "text": "Realizar una inspección física en el muelle",
+          "isCorrect": false,
+          "rationale": "Este es el paso número uno del proceso de recepción antes de cualquier comparación documental."
+        },
+        {
+          "text": "Notificar instantáneamente las no conformidades",
+          "isCorrect": false,
+          "rationale": "La notificación es el tercer paso, que se realiza tras detectar errores en la comparación."
+        },
+        {
+          "text": "Comparar los bienes físicos contra la orden de compra original",
+          "isCorrect": true,
+          "rationale": "Una vez inspeccionado el material, se debe validar que lo recibido coincida exactamente con lo solicitado legalmente."
+        },
+        {
+          "text": "Enviar el material directamente al tajo minero",
+          "isCorrect": false,
+          "rationale": "El material no puede enviarse a operación sin antes completar todos los controles de recepción y documentación."
+        }
+      ],
+      "hint": "Es el momento en que se verifica si lo que llegó es lo que se pidió."
+    },
+    {
+      "question": "¿Por qué son innegociables los certificados de calidad de fábrica en la recepción de materiales?",
+      "answerOptions": [
+        {
+          "text": "Para conocer el nombre del transportista",
+          "isCorrect": false,
+          "rationale": "Los datos del transporte suelen estar en el albarán, no en los certificados de calidad técnica."
+        },
+        {
+          "text": "Para validar la resistencia estructural o pureza del material",
+          "isCorrect": true,
+          "rationale": "Aseguran que insumos como el acero o reactivos químicos cumplan con las especificaciones técnicas críticas."
+        },
+        {
+          "text": "Para evitar el pago de impuestos locales",
+          "isCorrect": false,
+          "rationale": "Su función es técnica y de seguridad operativa, no está relacionada con la evasión fiscal."
+        },
+        {
+          "text": "Para determinar el color del contenedor de basura",
+          "isCorrect": false,
+          "rationale": "La segregación de residuos es una normativa posterior al uso del material, no parte de su certificación de fábrica."
+        }
+      ],
+      "hint": "Piense en las propiedades físicas del material que garantizan que no fallará bajo presión."
+    },
+    {
+      "question": "¿Cómo se calculan las categorías en la metodología ABC para la gestión de inventarios?",
+      "answerOptions": [
+        {
+          "text": "Dividiendo el peso total entre el número de estanterías",
+          "isCorrect": false,
+          "rationale": "El peso físico es un factor de almacenamiento, pero no define la importancia financiera del ABC."
+        },
+        {
+          "text": "Multiplicando el consumo anual por el precio unitario y ordenando de mayor a menor",
+          "isCorrect": true,
+          "rationale": "Este cálculo permite identificar qué artículos representan el mayor peso financiero en el almacén."
+        },
+        {
+          "text": "Sumando la cantidad de cajas sin importar su valor monetario",
+          "isCorrect": false,
+          "rationale": "Contar unidades sin considerar su valor es un error que no refleja el impacto en la liquidez."
+        },
+        {
+          "text": "Restando los productos vencidos del stock de seguridad",
+          "isCorrect": false,
+          "rationale": "Esa es una tarea de depuración de inventario, no la base de la clasificación estratégica ABC."
+        }
+      ],
+      "hint": "Relacione el volumen de uso con el costo individual de cada artículo."
+    },
+    {
+      "question": "En la metodología ABC, ¿qué porcentaje del valor total del inventario suelen representar los artículos de Clase A?",
+      "answerOptions": [
+        {
+          "text": "Entre el $5\\%$ y el $10\\%$",
+          "isCorrect": false,
+          "rationale": "Este porcentaje suele representar la cantidad de ítems, no su valor financiero acumulado."
+        },
+        {
+          "text": "Entre el $20\\%$ y el $30\\%$",
+          "isCorrect": false,
+          "rationale": "Este rango es más típico de la categoría B en términos de valor acumulado."
+        },
+        {
+          "text": "Entre el $80\\%$ y el $85\\%$",
+          "isCorrect": true,
+          "rationale": "La categoría A concentra la gran mayoría de la inversión financiera del almacén en pocos artículos críticos."
+        },
+        {
+          "text": "Exactamente el $100\\%$",
+          "isCorrect": false,
+          "rationale": "Es imposible que una sola categoría represente todo el valor si existen otras clasificaciones (B y C)."
+        }
+      ],
+      "hint": "Es la categoría donde se encuentra la mayor parte del capital inmovilizado."
+    },
+    {
+      "question": "¿Qué porcentaje de stock de seguridad se recomienda para minerales estratégicos con el fin de evitar demoras en importaciones?",
+      "answerOptions": [
+        {
+          "text": "Un $0\\%$ debido a la reposición local",
+          "isCorrect": false,
+          "rationale": "El stock cero se aplica a artículos Clase C de fácil acceso, no a minerales estratégicos críticos."
+        },
+        {
+          "text": "Entre un $2\\%$ y un $4\\%$",
+          "isCorrect": false,
+          "rationale": "Este margen es más adecuado para artículos de rotación media (Clase B) con menor riesgo de suministro."
+        },
+        {
+          "text": "Un $14\\%$",
+          "isCorrect": true,
+          "rationale": "Ante la criticidad y las demoras internacionales, se eleva el margen de seguridad para blindar la operación."
+        },
+        {
+          "text": "Más del $50\\%$ del inventario",
+          "isCorrect": false,
+          "rationale": "Un stock de seguridad tan alto drenaría excesivamente la liquidez y sería ineficiente financieramente."
+        }
+      ],
+      "hint": "Es un valor superior al estándar de $5-8\\%$ para compensar riesgos globales."
+    },
+    {
+      "question": "¿Cuál es la característica principal de los artículos tipo C en el inventario minero?",
+      "answerOptions": [
+        {
+          "text": "Son repuestos de altísimo costo, como motores eléctricos",
+          "isCorrect": false,
+          "rationale": "Los componentes de alto valor son característicos de la Clase A, no de la Clase C."
+        },
+        {
+          "text": "Requieren auditorías semanales por parte de la gerencia",
+          "isCorrect": false,
+          "rationale": "Debido a su bajo valor, el esfuerzo de supervisión es mínimo comparado con las otras categorías."
+        },
+        {
+          "text": "Son materiales baratos que se pueden reponer localmente muy rápido",
+          "isCorrect": true,
+          "rationale": "Su baja criticidad financiera permite manejarlos con flexibilidad o incluso sin stock de seguridad."
+        },
+        {
+          "text": "Representan el $80\\%$ del capital inmovilizado",
+          "isCorrect": false,
+          "rationale": "La Clase C representa un valor financiero muy bajo, aunque suele tener la mayor cantidad de ítems."
+        }
+      ],
+      "hint": "Piense en suministros comunes y de bajo costo que se encuentran fácilmente en el mercado cercano."
+    },
+    {
+      "question": "¿Por qué se recomienda el flujo en 'U' en el diseño del layout de un almacén?",
+      "answerOptions": [
+        {
+          "text": "Porque obliga a que la entrada y la salida estén en lados opuestos",
+          "isCorrect": false,
+          "rationale": "Esa descripción corresponde al flujo en línea recta, no al flujo en 'U'."
+        },
+        {
+          "text": "Debido a su tremenda flexibilidad y unificación de muelles",
+          "isCorrect": true,
+          "rationale": "Al compartir la zona de carga y descarga, facilita el control y la adaptación a distintos volúmenes de trabajo."
+        },
+        {
+          "text": "Porque es el único que permite el uso de estanterías",
+          "isCorrect": false,
+          "rationale": "Las estanterías pueden utilizarse en cualquier configuración de flujo de almacén."
+        },
+        {
+          "text": "Para aumentar la distancia que deben recorrer los operarios",
+          "isCorrect": false,
+          "rationale": "El objetivo de un buen layout es reducir las distancias para mejorar la eficiencia y seguridad."
+        }
+      ],
+      "hint": "Considere la ventaja de tener la recepción y la expedición en la misma zona física."
+    },
+    {
+      "question": "En un caso técnico mencionado, ¿cuántos metros cuadrados ($ \\text{m}^2 $) de espacio útil se recuperaron mediante la optimización del layout?",
+      "answerOptions": [
+        {
+          "text": "$10 \\text{ m}^2$",
+          "isCorrect": false,
+          "rationale": "Esta cifra es inferior a los resultados logrados en el caso técnico de alta exigencia logística expuesto."
+        },
+        {
+          "text": "$44 \\text{ m}^2$",
+          "isCorrect": true,
+          "rationale": "Mediante estanterías escalonadas, se liberó esta área vital para zonas de cross docking y buffers de materiales."
+        },
+        {
+          "text": "$100 \\text{ m}^2$",
+          "isCorrect": false,
+          "rationale": "Aunque es una meta deseable, el caso específico documentó una recuperación menor pero muy significativa de $44 \\text{ m}^2$."
+        },
+        {
+          "text": "$500 \\text{ m}^2$",
+          "isCorrect": false,
+          "rationale": "Esta cifra excedería significativamente el resultado reportado en la implementación de estanterías mencionada."
+        }
+      ],
+      "hint": "Es un número de dos dígitos que suma ocho."
+    },
+    {
+      "question": "Según la normativa técnica NTP 900.058, ¿qué color de contenedor se utiliza exclusivamente para materiales peligrosos (MAPEL)?",
+      "answerOptions": [
+        {
+          "text": "Azul",
+          "isCorrect": false,
+          "rationale": "El contenedor azul está destinado para papel y cartón, no para sustancias peligrosas."
+        },
+        {
+          "text": "Verde",
+          "isCorrect": false,
+          "rationale": "El verde suele usarse para vidrio, mientras que el rojo es para el riesgo químico o biológico."
+        },
+        {
+          "text": "Rojo",
+          "isCorrect": true,
+          "rationale": "El rojo es el código universal de peligro para segregar hidrocarburos, trapos con aceite y otros químicos."
+        },
+        {
+          "text": "Blanco",
+          "isCorrect": false,
+          "rationale": "El blanco se utiliza específicamente para la segregación de plásticos."
+        }
+      ],
+      "hint": "Asocie el color con las señales de advertencia y peligro extremo."
+    },
+    {
+      "question": "¿Para qué tipo de residuos está reservado el contenedor de color marrón?",
+      "answerOptions": [
+        {
+          "text": "Metales y chatarra",
+          "isCorrect": false,
+          "rationale": "Los metales y la chatarra deben segregarse en el contenedor de color amarillo."
+        },
+        {
+          "text": "Residuos orgánicos",
+          "isCorrect": true,
+          "rationale": "El color marrón identifica los desechos biológicos o restos de alimentos en el sistema de gestión ambiental."
+        },
+        {
+          "text": "Papel y cartón",
+          "isCorrect": false,
+          "rationale": "Estos materiales se depositan en el contenedor azul para facilitar su reciclaje."
+        },
+        {
+          "text": "Vidrio",
+          "isCorrect": false,
+          "rationale": "El vidrio se segrega en el contenedor gris según la normativa técnica de colores."
+        }
+      ],
+      "hint": "Piense en el color de la tierra y los desechos biológicos naturales."
+    },
+    {
+      "question": "¿Cuál es un ejemplo de sostenibilidad que transforma un gasto en rentabilidad dentro del almacén minero?",
+      "answerOptions": [
+        {
+          "text": "Desechar los aceites quemados en el río más cercano",
+          "isCorrect": false,
+          "rationale": "Esto es un delito ambiental grave y no genera ninguna rentabilidad ni sostenibilidad."
+        },
+        {
+          "text": "Reaprovechar aceites quemados para grupos electrógenos",
+          "isCorrect": true,
+          "rationale": "Darle un segundo uso a un residuo peligroso reduce los costos operativos de energía y el impacto ambiental."
+        },
+        {
+          "text": "Comprar herramientas nuevas cada vez que se ensucian",
+          "isCorrect": false,
+          "rationale": "El reemplazo innecesario es un desperdicio de capital y contradice los principios de eficiencia."
+        },
+        {
+          "text": "Eliminar el reciclaje para ahorrar tiempo",
+          "isCorrect": false,
+          "rationale": "Ignorar la gestión de residuos aumenta los riesgos de multas y accidentes, dañando la rentabilidad."
+        }
+      ],
+      "hint": "Busque una acción que convierta un desecho en una fuente de energía."
+    },
+    {
+      "question": "¿Qué práctica de inspección operativa ayuda a reducir accidentes y evitar la pérdida de herramientas esenciales?",
+      "answerOptions": [
+        {
+          "text": "Ocultar las herramientas dañadas",
+          "isCorrect": false,
+          "rationale": "Esconder fallos aumenta el riesgo de accidentes laborales por el uso de equipo defectuoso."
+        },
+        {
+          "text": "Control exhaustivo y evidencia fotográfica de las cajas de herramientas",
+          "isCorrect": true,
+          "rationale": "Este protocolo garantiza el orden (5S) y permite auditar continuamente el estado y presencia del equipo."
+        },
+        {
+          "text": "Permitir que cada operario guarde las herramientas en su casa",
+          "isCorrect": false,
+          "rationale": "La falta de control centralizado sobre los activos críticos de mantenimiento provoca pérdidas financieras masivas."
+        },
+        {
+          "text": "No categorizar el riesgo de las herramientas",
+          "isCorrect": false,
+          "rationale": "No distinguir niveles de riesgo impide priorizar el mantenimiento y la seguridad de los operarios."
+        }
+      ],
+      "hint": "Piense en un método visual para verificar el orden y la limpieza según las normas 5S."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Gestión estratégica de almacenes mineros",
+      "Infraestructura y clasificación de materiales",
+      "Modelos de flujo y propiedad (3PL, Consolidadoras)",
+      "Protocolos de recepción y documentación técnica (MSDS)",
+      "Metodología ABC de inventarios",
+      "Optimización de layout y diseño físico",
+      "Sostenibilidad y normativa ambiental (NTP 900.058)"
+    ],
+    "followUp": [
+      "Aplicación de metodología Lean 5S en talleres de mantenimiento",
+      "Sistemas inteligentes de automatización en minería peruana",
+      "Gestión de materiales peligrosos (MAPEL) y protocolos de contención",
+      "Impacto financiero de la rotura de stock en minería de tajo abierto"
+    ]
+  }
+}

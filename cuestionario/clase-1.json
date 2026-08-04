@@ -1,0 +1,544 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el papel fundamental de la logística integrada en la industria minera moderna?",
+      "answerOptions": [
+        {
+          "text": "Actuar como un soporte administrativo secundario para las finanzas.",
+          "isCorrect": false,
+          "rationale": "La logística ha evolucionado de ser un simple apoyo a convertirse en el núcleo estratégico de la operación."
+        },
+        {
+          "text": "Constituir el núcleo estratégico que garantiza la rentabilidad y mitiga riesgos.",
+          "isCorrect": true,
+          "rationale": "En geografías complejas, la logística integrada es vital para asegurar el flujo constante de insumos y la viabilidad económica."
+        },
+        {
+          "text": "Limitarse exclusivamente al transporte de maquinaria pesada entre sedes.",
+          "isCorrect": false,
+          "rationale": "Aunque el movimiento de maquinaria es importante, la logística integrada abarca la gestión total de la cadena y flujos técnicos."
+        },
+        {
+          "text": "Gestionar únicamente la contratación de personal operativo local.",
+          "isCorrect": false,
+          "rationale": "La contratación de personal es parte de la gestión humana o de licencia social, no el alcance total de la logística integrada."
+        }
+      ],
+      "hint": "Considera si su función es periférica o central para la supervivencia financiera del proyecto."
+    },
+    {
+      "question": "¿Por qué las operaciones mineras mantienen un régimen de continuidad de 24 horas al día, los 365 días del año?",
+      "answerOptions": [
+        {
+          "text": "Debido a las masivas inversiones de capital y la complejidad de las extracciones.",
+          "isCorrect": true,
+          "rationale": "La magnitud de la inversión exige que los activos produzcan sin parar para asegurar el retorno financiero."
+        },
+        {
+          "text": "Para evitar el deterioro natural de la maquinaria pesada por falta de uso.",
+          "isCorrect": false,
+          "rationale": "Si bien el mantenimiento es clave, la razón de la operación continua es económica y técnica vinculada a la extracción."
+        },
+        {
+          "text": "Por exigencias exclusivas de los sindicatos de trabajadores de la zona.",
+          "isCorrect": false,
+          "rationale": "La continuidad operativa es una necesidad técnica de la industria, no una imposición sindical."
+        },
+        {
+          "text": "Para cumplir con la legislación ambiental sobre el uso de energía nocturna.",
+          "isCorrect": false,
+          "rationale": "La legislación ambiental regula el impacto, pero no obliga a operar 24/7; esto responde a la rentabilidad del proyecto."
+        }
+      ],
+      "hint": "Piensa en el impacto financiero de detener una operación que requiere miles de millones en inversión."
+    },
+    {
+      "question": "¿Qué objetivo estratégico de la cadena de suministro busca evitar las 'paradas de planta' en ubicaciones remotas?",
+      "answerOptions": [
+        {
+          "text": "La integración de la red global.",
+          "isCorrect": false,
+          "rationale": "La integración orquesta a los proveedores, pero la disponibilidad inmediata depende de la capacidad de respuesta local."
+        },
+        {
+          "text": "El incremento del nivel de servicio.",
+          "isCorrect": false,
+          "rationale": "Este se enfoca en el manejo de inventario para sostener el ritmo, mientras que la inmediatez ante paradas es respuesta pura."
+        },
+        {
+          "text": "La capacidad de respuesta.",
+          "isCorrect": true,
+          "rationale": "Asegurar que los insumos estén disponibles de inmediato en zonas alejadas previene interrupciones catastróficas."
+        },
+        {
+          "text": "La optimización de decisiones tácticas.",
+          "isCorrect": false,
+          "rationale": "La optimización se basa en datos para saber cuándo reabastecer, pero la acción de tener el insumo ahí es respuesta."
+        }
+      ],
+      "hint": "Se refiere a la agilidad para reaccionar ante la necesidad de insumos en el sitio de operación."
+    },
+    {
+      "question": "¿Cuál es la principal diferencia en el horizonte de planificación entre la logística tradicional y la minera?",
+      "answerOptions": [
+        {
+          "text": "La logística minera es reactiva ante las fluctuaciones del mercado diario.",
+          "isCorrect": false,
+          "rationale": "La minería no puede permitirse ser reactiva debido a los tiempos de tránsito y la escala de los insumos."
+        },
+        {
+          "text": "La logística tradicional planifica a años, mientras la minera lo hace por semanas.",
+          "isCorrect": false,
+          "rationale": "Es al revés; la minería requiere una visión a muy largo plazo por su complejidad global."
+        },
+        {
+          "text": "La minería utiliza una planificación predictiva a meses o incluso años de vista.",
+          "isCorrect": true,
+          "rationale": "La complejidad de mover cargas globales y materiales peligrosos exige una anticipación extrema que no ocurre en logística comercial básica."
+        },
+        {
+          "text": "No existen diferencias significativas en sus modelos de planificación temporal.",
+          "isCorrect": false,
+          "rationale": "Existe un 'abismo' entre ambas debido a la escala, el régimen de 24/7 y la naturaleza de los insumos críticos."
+        }
+      ],
+      "hint": "Reflexiona sobre la necesidad de anticiparse a movimientos de carga monstruosos que cruzan el mundo."
+    },
+    {
+      "question": "¿En qué categoría de insumos críticos se clasifican los elementos vitales para la fragmentación de la roca?",
+      "answerOptions": [
+        {
+          "text": "Reactivos químicos de flotación.",
+          "isCorrect": false,
+          "rationale": "Los reactivos químicos se utilizan para separar el mineral de la roca ya fragmentada, no para la rotura inicial."
+        },
+        {
+          "text": "Sistemas de gestión de agua.",
+          "isCorrect": false,
+          "rationale": "El agua es vital para el procesamiento y transporte de relaves, pero no fragmenta la roca en la extracción primaria."
+        },
+        {
+          "text": "Explosivos y accesorios de voladura.",
+          "isCorrect": true,
+          "rationale": "Estos son esenciales para romper la corteza terrestre y permitir el movimiento de tierras posterior."
+        },
+        {
+          "text": "Repuestos de línea amarilla.",
+          "isCorrect": false,
+          "rationale": "La línea amarilla es la maquinaria de carga y acarreo, pero la fragmentación inicial depende de la voladura."
+        }
+      ],
+      "hint": "Busca el insumo que requiere protocolos de seguridad extremos para su manipulación física inicial."
+    },
+    {
+      "question": "¿Para qué procesos específicos son esenciales reactivos como el ácido sulfúrico ($H_{2}SO_{4}$) y el cianuro?",
+      "answerOptions": [
+        {
+          "text": "Para la lubricación de motores de camiones de alto tonelaje.",
+          "isCorrect": false,
+          "rationale": "Estos son químicos volátiles y peligrosos, no lubricantes industriales."
+        },
+        {
+          "text": "Para los procesos de flotación y lixiviación del mineral.",
+          "isCorrect": true,
+          "rationale": "Estos reactivos permiten separar los metales valiosos (oro, cobre) de la roca mediante reacciones químicas."
+        },
+        {
+          "text": "Para la refrigeración de los sistemas de energía de la planta.",
+          "isCorrect": false,
+          "rationale": "El enfriamiento suele utilizar agua o refrigerantes específicos, no ácidos o sales cianuradas."
+        },
+        {
+          "text": "Para la construcción de vías de acceso en tajos abiertos.",
+          "isCorrect": false,
+          "rationale": "La construcción de vías utiliza materiales de cantera y estabilizadores, no reactivos de procesamiento mineral."
+        }
+      ],
+      "hint": "Estos químicos se utilizan en la etapa donde el mineral se separa de la ganga o roca estéril."
+    },
+    {
+      "question": "Desde una perspectiva financiera, ¿cómo impacta el ahorro de unos pocos centavos en insumos de gran volumen?",
+      "answerOptions": [
+        {
+          "text": "Es insignificante frente a los costos de planilla de la empresa.",
+          "isCorrect": false,
+          "rationale": "Debido a los volúmenes masivos, cualquier pequeña variación unitaria se multiplica exponencialmente."
+        },
+        {
+          "text": "Se traduce matemáticamente en millones de dólares optimizados al año.",
+          "isCorrect": true,
+          "rationale": "Las economías de escala en minería permiten que ahorros mínimos por litro o repuesto mejoren drásticamente la resiliencia financiera."
+        },
+        {
+          "text": "Solo afecta la percepción ética de los accionistas, pero no la caja real.",
+          "isCorrect": false,
+          "rationale": "El impacto es directamente en el flujo de caja y en la salud financiera del proyecto."
+        },
+        {
+          "text": "Genera un incremento proporcional en los impuestos a pagar, anulando el beneficio.",
+          "isCorrect": false,
+          "rationale": "La optimización de costos mejora la rentabilidad operativa independientemente de la estructura impositiva."
+        }
+      ],
+      "hint": "Aplica la lógica de las economías de escala a volúmenes internacionales gigantescos."
+    },
+    {
+      "question": "¿Cuál es la función principal de un operador logístico del tipo 3PL en la minería?",
+      "answerOptions": [
+        {
+          "text": "Administrar la información estratégica global del proyecto.",
+          "isCorrect": false,
+          "rationale": "La gestión estratégica de información y eliminación de barreras de datos es propia del modelo 5PL."
+        },
+        {
+          "text": "Actuar como un especialista táctico capaz de mover maquinaria super pesada.",
+          "isCorrect": true,
+          "rationale": "Los 3PL aportan la capacidad técnica y operativa para maniobras complejas y transporte especializado."
+        },
+        {
+          "text": "Limitarse al transporte interno dentro de las instalaciones de la mina.",
+          "isCorrect": false,
+          "rationale": "El transporte básico e interno suele ser cubierto por modelos 1PL o 2PL."
+        },
+        {
+          "text": "Otorgar la licencia social y gestionar las relaciones con las comunidades.",
+          "isCorrect": false,
+          "rationale": "La licencia social es gestionada por la empresa minera, no es un servicio logístico de un 3PL."
+        }
+      ],
+      "hint": "Este operador pone la capacidad técnica para mover los 'fierros' y componentes de gran escala."
+    },
+    {
+      "question": "¿Qué pilar de la licencia social se enfoca en dinamizar la economía local mediante la contratación de proveedores de la zona?",
+      "answerOptions": [
+        {
+          "text": "El compromiso transparente.",
+          "isCorrect": false,
+          "rationale": "El compromiso se refiere a la comunicación y relación directa, no específicamente al flujo económico."
+        },
+        {
+          "text": "La reputación ética.",
+          "isCorrect": false,
+          "rationale": "La reputación es el resultado de operar con estándares altos, mientras que la contratación local es una acción de desarrollo."
+        },
+        {
+          "text": "El beneficio compartido.",
+          "isCorrect": true,
+          "rationale": "Este pilar asegura que la comunidad se integre a la cadena de valor, generando desarrollo económico regional."
+        },
+        {
+          "text": "El cumplimiento normativo del DS 024.",
+          "isCorrect": false,
+          "rationale": "El DS 024 es una norma técnica de seguridad, no un pilar de beneficio social compartido."
+        }
+      ],
+      "hint": "Busca el concepto que describe la creación de valor mutuo entre la mina y sus vecinos."
+    },
+    {
+      "question": "¿Qué característica distingue operacionalmente a la minería subterránea de la minería a tajo abierto?",
+      "answerOptions": [
+        {
+          "text": "El uso exclusivo de camiones de 320 toneladas en túneles estrechos.",
+          "isCorrect": false,
+          "rationale": "Los camiones gigantes son de tajo abierto; en minería subterránea el espacio impide su uso."
+        },
+        {
+          "text": "La ausencia total de normas de seguridad ocupacional.",
+          "isCorrect": false,
+          "rationale": "Ambas están estrictamente reguladas, pero la subterránea tiene riesgos específicos de gases."
+        },
+        {
+          "text": "Las restricciones severas de espacio, ventilación y control de oxígeno.",
+          "isCorrect": true,
+          "rationale": "La logística subterránea debe lidiar con entornos claustrofóbicos que requieren monitoreo constante de supervivencia."
+        },
+        {
+          "text": "La mayor facilidad para mover volúmenes masivos de tierra al aire libre.",
+          "isCorrect": false,
+          "rationale": "El movimiento masivo al aire libre es la definición de tajo abierto, no de minería subterránea."
+        }
+      ],
+      "hint": "Piensa en las condiciones físicas de trabajar bajo tierra frente a trabajar en una cantera abierta."
+    },
+    {
+      "question": "En el tajo abierto, ¿qué capacidad de carga nominal posee un volquete Komatsu 930e?",
+      "answerOptions": [
+        {
+          "text": "70 toneladas.",
+          "isCorrect": false,
+          "rationale": "Esa es aproximadamente la capacidad de carga de una pala mecánica gigante por cada 'bocado', no del camión."
+        },
+        {
+          "text": "320 toneladas.",
+          "isCorrect": true,
+          "rationale": "Estos colosos están diseñados para mover volúmenes masivos de roca en cada ciclo de transporte."
+        },
+        {
+          "text": "1,000 toneladas.",
+          "isCorrect": false,
+          "rationale": "Aunque son inmensos, 1,000 toneladas exceden la capacidad de los modelos actuales mencionados."
+        },
+        {
+          "text": "15 toneladas.",
+          "isCorrect": false,
+          "rationale": "Esa capacidad corresponde a volquetes convencionales de construcción civil, no a la gran minería."
+        }
+      ],
+      "hint": "Es un número que simboliza la inmensidad de la maquinaria de alto tonelaje."
+    },
+    {
+      "question": "¿Por qué se utiliza preferentemente un patrón de diamante en las voladuras mineras?",
+      "answerOptions": [
+        {
+          "text": "Porque es el símbolo universal de la extracción de piedras preciosas.",
+          "isCorrect": false,
+          "rationale": "El uso del patrón es técnico-físico, no simbólico o estético."
+        },
+        {
+          "text": "Para concentrar y liberar la energía de los explosivos de forma controlada.",
+          "isCorrect": true,
+          "rationale": "Esta configuración geométrica optimiza la fragmentación de la roca de manera eficiente."
+        },
+        {
+          "text": "Para reducir el costo de los accesorios de voladura al usar menos cables.",
+          "isCorrect": false,
+          "rationale": "El patrón busca efectividad en la rotura, no necesariamente ahorro en cables."
+        },
+        {
+          "text": "Para permitir que los camiones circulen por encima de las cargas sin detonarlas.",
+          "isCorrect": false,
+          "rationale": "Nadie debe circular sobre un área cargada con explosivos por razones de seguridad crítica."
+        }
+      ],
+      "hint": "Tiene que ver con la eficiencia de la onda de choque y la fragmentación del material."
+    },
+    {
+      "question": "¿Qué consecuencia logística tiene una voladura deficiente que genera mineral fisurado?",
+      "answerOptions": [
+        {
+          "text": "Se agiliza el proceso de transporte por ser material más ligero.",
+          "isCorrect": false,
+          "rationale": "El material dañado no es más ligero, sino más difícil y caro de procesar."
+        },
+        {
+          "text": "Se crean cuellos de botella y se requiere el uso de rutas secundarias de lixiviación costosas.",
+          "isCorrect": true,
+          "rationale": "Un error en la voladura impacta toda la cadena, elevando los costos de procesamiento posterior."
+        },
+        {
+          "text": "Se elimina la necesidad de usar reactivos químicos en la planta.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el mineral mal fragmentado puede requerir procesos químicos más intensos."
+        },
+        {
+          "text": "Aumenta automáticamente el valor de mercado del metal extraído.",
+          "isCorrect": false,
+          "rationale": "El valor del metal lo dicta el mercado global; la mala voladura solo aumenta los costos de producción."
+        }
+      ],
+      "hint": "Considera cómo un error en el primer paso afecta los pasos siguientes de la cadena de valor."
+    },
+    {
+      "question": "¿Cuáles son algunas restricciones críticas en el transporte de materiales peligrosos (MATPEL) por vía terrestre?",
+      "answerOptions": [
+        {
+          "text": "Límites de velocidad de 30-40 km/h y uso obligatorio de escoltas.",
+          "isCorrect": true,
+          "rationale": "Dada la precariedad de las vías y el riesgo de los químicos, la mitigación de accidentes es la prioridad máxima."
+        },
+        {
+          "text": "Prioridad de paso sobre ambulancias y vehículos de emergencia.",
+          "isCorrect": false,
+          "rationale": "Los vehículos de emergencia siempre tienen prioridad; MATPEL tiene restricciones de seguridad, no privilegios de paso."
+        },
+        {
+          "text": "Prohibición de circular durante el día para evitar el calor solar.",
+          "isCorrect": false,
+          "rationale": "Muchos transportes MATPEL ocurren de día por visibilidad, aunque tienen horarios y rutas controladas."
+        },
+        {
+          "text": "Uso de camiones convencionales de carga abierta para facilitar la ventilación.",
+          "isCorrect": false,
+          "rationale": "Los MATPEL requieren envases y cisternas especiales herméticas, no carga abierta."
+        }
+      ],
+      "hint": "Estas medidas buscan mitigar riesgos en infraestructuras viales limitadas y agresivas."
+    },
+    {
+      "question": "En el ecosistema de la Minería 4.0, ¿qué software se encarga de integrar finanzas, materiales y mantenimiento a alto nivel?",
+      "answerOptions": [
+        {
+          "text": "Bizagi.",
+          "isCorrect": false,
+          "rationale": "Bizagi se utiliza para el modelado de procesos, no como el sistema transaccional central."
+        },
+        {
+          "text": "Datamine.",
+          "isCorrect": false,
+          "rationale": "Datamine es una herramienta técnica especializada en geología y diseño de mina."
+        },
+        {
+          "text": "SAP S/4HANA.",
+          "isCorrect": true,
+          "rationale": "Este ERP actúa como el cerebro administrativo que conecta todas las áreas del negocio minero."
+        },
+        {
+          "text": "Odoo.",
+          "isCorrect": false,
+          "rationale": "Aunque es un ERP, en este contexto se menciona específicamente para la gestión de talento humano y turnos."
+        }
+      ],
+      "hint": "Es el sistema conocido como el 'gran jefe' que orquesta los datos corporativos."
+    },
+    {
+      "question": "¿Qué herramienta se utiliza para el diseño técnico de la mina y la geología?",
+      "answerOptions": [
+        {
+          "text": "Visio.",
+          "isCorrect": false,
+          "rationale": "Visio es para diagramas de flujo y procesos, no para modelado geológico complejo."
+        },
+        {
+          "text": "MinePlan.",
+          "isCorrect": true,
+          "rationale": "Esta es una de las 'joyas' tecnológicas utilizadas para planificar la extracción y modelar el terreno."
+        },
+        {
+          "text": "Excel básico.",
+          "isCorrect": false,
+          "rationale": "La complejidad de la geología moderna requiere software especializado, no simples hojas de cálculo."
+        },
+        {
+          "text": "Facebook for Business.",
+          "isCorrect": false,
+          "rationale": "Esta es una herramienta de marketing, sin aplicación en el diseño técnico extractivo."
+        }
+      ],
+      "hint": "Es un software especializado que permite visualizar las capas de mineral en el subsuelo."
+    },
+    {
+      "question": "¿Cómo transforma el Machine Learning el mantenimiento de la maquinaria minera?",
+      "answerOptions": [
+        {
+          "text": "Permite reparar las máquinas solo cuando estas se detienen por completo.",
+          "isCorrect": false,
+          "rationale": "Ese es el modelo reactivo tradicional, el cual el Machine Learning busca eliminar."
+        },
+        {
+          "text": "Cambia el modelo de reacción ante emergencias por uno de predicción de fallas.",
+          "isCorrect": true,
+          "rationale": "Los algoritmos analizan datos históricos para anticipar roturas, ahorrando millones en tiempos muertos."
+        },
+        {
+          "text": "Elimina la necesidad de contar con mecánicos humanos en el taller.",
+          "isCorrect": false,
+          "rationale": "La tecnología apoya la decisión, pero la intervención física y el personal calificado siguen siendo indispensables."
+        },
+        {
+          "text": "Reduce la velocidad de los camiones para que las piezas no se desgasten.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la eficiencia; el software optimiza cuándo intervenir sin sacrificar la producción innecesariamente."
+        }
+      ],
+      "hint": "Se trata de pasar de 'esperar a que se rompa' a 'saber cuándo se va a romper'."
+    },
+    {
+      "question": "¿Qué dispositivo físico actúa como el puente de datos entre el motor de la máquina y los algoritmos digitales?",
+      "answerOptions": [
+        {
+          "text": "El GPS comercial.",
+          "isCorrect": false,
+          "rationale": "El GPS da ubicación, pero no mide el funcionamiento interno del motor para el mantenimiento."
+        },
+        {
+          "text": "El orómetro.",
+          "isCorrect": true,
+          "rationale": "Mide las horas reales de funcionamiento, siendo la métrica fundacional para cualquier análisis de Big Data en mantenimiento."
+        },
+        {
+          "text": "El velocímetro analógico.",
+          "isCorrect": false,
+          "rationale": "La velocidad es un dato puntual, pero las horas de trabajo acumuladas son lo que dictan los ciclos de mantenimiento."
+        },
+        {
+          "text": "El termómetro ambiental.",
+          "isCorrect": false,
+          "rationale": "Aunque el clima influye, no es la métrica base para el mantenimiento preventivo de los motores."
+        }
+      ],
+      "hint": "Mide el tiempo de vida operativa de un componente mecánico."
+    },
+    {
+      "question": "En el caso del taller de Ferreyros en La Joya, ¿cuál fue el resultado de instalar paneles solares?",
+      "answerOptions": [
+        {
+          "text": "Un incremento en el costo mensual para pagar la inversión inicial.",
+          "isCorrect": false,
+          "rationale": "La inversión se justifica precisamente por la reducción drástica de los costos operativos mensuales."
+        },
+        {
+          "text": "Una reducción del costo de energía de 2,500 soles a tan solo 800 soles mensuales.",
+          "isCorrect": true,
+          "rationale": "Este ahorro de 1,700 soles mensuales demuestra la viabilidad de las energías renovables en operaciones logísticas."
+        },
+        {
+          "text": "La paralización de la planta por falta de potencia eléctrica suficiente.",
+          "isCorrect": false,
+          "rationale": "La implementación fue un éxito de eficiencia, no un fracaso operativo."
+        },
+        {
+          "text": "Ningún cambio, ya que el sol no genera suficiente energía para minería.",
+          "isCorrect": false,
+          "rationale": "Los datos demuestran un impacto real y positivo en la salud financiera del taller."
+        }
+      ],
+      "hint": "Busca el ahorro matemático exacto mencionado en el análisis de eficiencia energética."
+    },
+    {
+      "question": "¿Cuál es la normativa clave mencionada para la seguridad minera que rige estas operaciones?",
+      "answerOptions": [
+        {
+          "text": "Ley General del Ambiente.",
+          "isCorrect": false,
+          "rationale": "Aunque es importante, se refiere al entorno ecológico, no específicamente a la operatividad de seguridad minera."
+        },
+        {
+          "text": "Decreto Supremo 024.",
+          "isCorrect": true,
+          "rationale": "Esta es la norma técnica fundamental que audita la seguridad en las actividades mineras."
+        },
+        {
+          "text": "Código de Comercio Internacional.",
+          "isCorrect": false,
+          "rationale": "Este rige las transacciones, pero no los protocolos de vida humana y seguridad en la mina."
+        },
+        {
+          "text": "Ley de Transparencia de Datos.",
+          "isCorrect": false,
+          "rationale": "No es la norma principal para la protección de la vida y ecosistemas en el campo de batalla logístico."
+        }
+      ],
+      "hint": "Es un decreto técnico específico que actúa como barrera de contención para proteger la vida humana."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Logística minera integral",
+      "Cadena de suministro global",
+      "Gestión de insumos críticos",
+      "Proveedores logísticos (PL)",
+      "Métodos de extracción (Tajo abierto vs. Subterráneo)",
+      "Minería 4.0 y transformación digital",
+      "Licencia social y marco legal",
+      "Eficiencia energética"
+    ],
+    "followUp": [
+      "Protocolos específicos para MATPEL (Materiales Peligrosos)",
+      "Modelado de procesos mineros con Bizagi y SAP S/4HANA",
+      "Geomecánica y diseño de mallas de voladura",
+      "Analítica predictiva aplicada a flotas de alto tonelaje",
+      "Desarrollo de proveedores locales para licencia social"
+    ]
+  }
+}

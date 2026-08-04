@@ -1,0 +1,544 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el horizonte de tiempo que abarca el nivel estratégico en la jerarquía de la planificación logística minera?",
+      "answerOptions": [
+        {
+          "text": "De 1 a 3 años.",
+          "isCorrect": false,
+          "rationale": "Este rango corresponde al nivel táctico, donde se gestionan inventarios y rutas."
+        },
+        {
+          "text": "De 5 a 10 años.",
+          "isCorrect": true,
+          "rationale": "El nivel estratégico se enfoca en la visión a largo plazo, asegurando la infraestructura pesada y la licencia social."
+        },
+        {
+          "text": "De 6 meses a 1 año.",
+          "isCorrect": false,
+          "rationale": "Este periodo es demasiado corto para las decisiones de infraestructura pesada y sostenibilidad de décadas."
+        },
+        {
+          "text": "Semanal o diario.",
+          "isCorrect": false,
+          "rationale": "Este es el horizonte del nivel operativo, enfocado en el acarreo y las voladuras inmediatas."
+        }
+      ],
+      "hint": "Considere la escala de tiempo necesaria para asegurar licencias sociales e infraestructura de gran envergadura."
+    },
+    {
+      "question": "¿Qué documento normativo rige estrictamente el transporte y segregación de materiales peligrosos (MATPEL) en la industria?",
+      "answerOptions": [
+        {
+          "text": "El Manual de Operaciones de Caterpillar.",
+          "isCorrect": false,
+          "rationale": "Este manual se enfoca en el uso de maquinaria, no en la normativa internacional de sustancias peligrosas."
+        },
+        {
+          "text": "Los protocolos internos de seguridad de la mina.",
+          "isCorrect": false,
+          "rationale": "Aunque existen, deben basarse obligatoriamente en un estándar internacional superior para evitar catástrofes."
+        },
+        {
+          "text": "El libro naranja de la ONU.",
+          "isCorrect": true,
+          "rationale": "Este es el estándar global que define las clases de sustancias y las reglas de segregación para evitar mezclas incompatibles."
+        },
+        {
+          "text": "La norma ISO 9001 de calidad.",
+          "isCorrect": false,
+          "rationale": "Esta es una norma general de gestión de calidad, no una específica para el manejo de químicos o explosivos."
+        }
+      ],
+      "hint": "Se trata de un estándar internacional identificado comúnmente por un color específico."
+    },
+    {
+      "question": "¿Por qué existe una política de 'tolerancia cero' a las caries en los exámenes de salud para el personal de campamentos remotos?",
+      "answerOptions": [
+        {
+          "text": "Para evitar el contagio de infecciones bucales entre los trabajadores.",
+          "isCorrect": false,
+          "rationale": "Las caries no son una enfermedad contagiosa que justifique por sí sola una evacuación de emergencia."
+        },
+        {
+          "text": "Debido a que los minerales del entorno agravan las infecciones dentales existentes.",
+          "isCorrect": true,
+          "rationale": "En entornos mineros, los minerales aceleran las complicaciones infecciosas, lo que puede derivar en evacuaciones costosas."
+        },
+        {
+          "text": "Para reducir los costos de los seguros dentales de la empresa.",
+          "isCorrect": false,
+          "rationale": "Aunque hay un impacto económico, la prioridad técnica es evitar interrupciones operativas y riesgos de salud graves en sitios aislados."
+        },
+        {
+          "text": "Porque el dolor dental afecta la precisión en el manejo de explosivos.",
+          "isCorrect": false,
+          "rationale": "Aunque el dolor distrae, la razón principal es la falta de especialistas cercanos y el riesgo de una evacuación aérea costosa."
+        }
+      ],
+      "hint": "Piense en la interacción entre el entorno geológico y la falta de servicios médicos especializados en zonas aisladas."
+    },
+    {
+      "question": "En la gestión de la demanda minera, ¿qué elemento es comparado metafóricamente con la 'sangre' del ecosistema?",
+      "answerOptions": [
+        {
+          "text": "Los explosivos.",
+          "isCorrect": false,
+          "rationale": "Los explosivos se comparan con el músculo, ya que dan el golpe inicial en la cadena de producción."
+        },
+        {
+          "text": "Los repuestos de maquinaria.",
+          "isCorrect": false,
+          "rationale": "Los repuestos se consideran el esqueleto, pues sostienen la estructura física de la operación."
+        },
+        {
+          "text": "El combustible (diésel).",
+          "isCorrect": true,
+          "rationale": "Sin diésel la 'línea amarilla' no tiene energía para moverse, funcionando como el flujo vital de la mina."
+        },
+        {
+          "text": "El capital financiero.",
+          "isCorrect": false,
+          "rationale": "Aunque es vital, la metáfora biológica se aplica específicamente a los insumos operativos críticos en el terreno."
+        }
+      ],
+      "hint": "Reflexione sobre qué insumo líquido permite el movimiento constante de toda la flota pesada."
+    },
+    {
+      "question": "¿Qué representa un valor bajo en la métrica del Error Medio Absoluto ($MAE$)?",
+      "answerOptions": [
+        {
+          "text": "Una baja rotación del inventario en el almacén.",
+          "isCorrect": false,
+          "rationale": "El $MAE$ mide la precisión del pronóstico, no la velocidad con la que se venden o usan los productos."
+        },
+        {
+          "text": "Una alta precisión en la planificación y eficiencia en el uso del capital.",
+          "isCorrect": true,
+          "rationale": "Un $MAE$ bajo indica que las proyecciones se acercan mucho al consumo real, evitando stock innecesario o faltantes."
+        },
+        {
+          "text": "Un incremento en el riesgo de paradas de planta por falta de insumos.",
+          "isCorrect": false,
+          "rationale": "Al contrario, un error bajo significa que se planifica con exactitud lo que se necesita para evitar paradas."
+        },
+        {
+          "text": "Que la mina está operando bajo el método Delphi.",
+          "isCorrect": false,
+          "rationale": "El $MAE$ es una métrica cuantitativa basada en datos históricos, mientras que el Delphi es cualitativo."
+        }
+      ],
+      "hint": "Piense en la relación entre la cercanía de los números proyectados frente a los reales."
+    },
+    {
+      "question": "¿Cuándo es más recomendable utilizar el método Delphi para realizar pronósticos de demanda?",
+      "answerOptions": [
+        {
+          "text": "Cuando se cuenta con una base de datos histórica de más de diez años.",
+          "isCorrect": false,
+          "rationale": "Si existen datos históricos abundantes, se prefieren los modelos matemáticos cuantitativos como el $MAE$."
+        },
+        {
+          "text": "Al abrir una mina desde cero o en mercados de altísima volatilidad.",
+          "isCorrect": true,
+          "rationale": "Ante la falta de historial matemático, se depende del consenso y la intuición técnica de expertos operativos."
+        },
+        {
+          "text": "Para calcular el tiempo promedio entre fallas de un motor.",
+          "isCorrect": false,
+          "rationale": "Para fallas mecánicas se utilizan indicadores de mantenimiento específicos ($MTBF$), no métodos cualitativos de consenso."
+        },
+        {
+          "text": "Únicamente para el transporte de materiales peligrosos.",
+          "isCorrect": false,
+          "rationale": "El transporte de MATPEL se rige por normas rígidas, no por pronósticos basados en intuición."
+        }
+      ],
+      "hint": "Considere situaciones donde la incertidumbre es total y no hay registros previos en los cuales apoyarse."
+    },
+    {
+      "question": "¿Cuál es la diferencia fundamental entre un indicador 'Leading' (inductor) y uno 'Lagging' (de consecuencia)?",
+      "answerOptions": [
+        {
+          "text": "Los leading miden el resultado final y los lagging miden el proceso.",
+          "isCorrect": false,
+          "rationale": "Es al revés; los inductores o leading miden la causa, mientras que los de consecuencia miden el efecto final."
+        },
+        {
+          "text": "Los leading miden las causas y procesos en movimiento; los lagging muestran la foto final de los resultados.",
+          "isCorrect": true,
+          "rationale": "Gestionar los inductores (como horas de capacitación) permite influir en los resultados finales (como las toneladas extraídas)."
+        },
+        {
+          "text": "No hay diferencia real, ambos términos se usan indistintamente en la gestión estratégica.",
+          "isCorrect": false,
+          "rationale": "La distinción es crítica para saber dónde enfocar los esfuerzos de mejora operativa para cambiar un resultado."
+        },
+        {
+          "text": "Los indicadores lagging son siempre financieros y los leading son siempre técnicos.",
+          "isCorrect": false,
+          "rationale": "Ambos pueden ser técnicos o financieros; la diferencia radica en si preceden o siguen al evento analizado."
+        }
+      ],
+      "hint": "Piense en términos de causa y efecto: ¿cuál de ellos permite actuar antes de que ocurra el resultado?"
+    },
+    {
+      "question": "¿Qué mide el indicador $MTTF$ (Mean Time To Failure) en la gestión de flota pesada?",
+      "answerOptions": [
+        {
+          "text": "El tiempo que tarda el equipo de mantenimiento en reparar una avería.",
+          "isCorrect": false,
+          "rationale": "El tiempo de reparación es una métrica distinta; el $MTTF$ se refiere a la vida útil antes de una falla irreparable."
+        },
+        {
+          "text": "La frecuencia con la que un camión debe entrar a mantenimiento preventivo.",
+          "isCorrect": false,
+          "rationale": "La programación de paradas preventivas se basa principalmente en el $MTBF$ (tiempo entre fallas)."
+        },
+        {
+          "text": "La confiabilidad o esperanza de vida útil de un componente antes de que deje de funcionar.",
+          "isCorrect": true,
+          "rationale": "Representa el tiempo promedio hasta que el componente falla por completo, indicando su durabilidad teórica."
+        },
+        {
+          "text": "La velocidad promedio de acarreo entre el PIT y la planta.",
+          "isCorrect": false,
+          "rationale": "Esta es una métrica de productividad operativa, no de confiabilidad mecánica del activo."
+        }
+      ],
+      "hint": "Asocie este término con el concepto de 'esperanza de vida' de una pieza o componente."
+    },
+    {
+      "question": "En la industria minera, ¿cuál es el estándar de excelencia para el nivel de servicio o pedidos perfectos?",
+      "answerOptions": [
+        {
+          "text": "$100\\%$",
+          "isCorrect": false,
+          "rationale": "Aunque es el sueño teórico, la complejidad geográfica y distancias hacen que el $100\\%$ sea prácticamente inalcanzable."
+        },
+        {
+          "text": "$90\\%$",
+          "isCorrect": true,
+          "rationale": "Un $90\\%$ se considera un estándar de clase mundial debido a los desafíos logísticos extremos de las ubicaciones mineras."
+        },
+        {
+          "text": "$75\\%$",
+          "isCorrect": false,
+          "rationale": "Un $75\\%$ sería insuficiente para una industria donde una parada de planta cuesta millones por hora."
+        },
+        {
+          "text": "$50\\%$",
+          "isCorrect": false,
+          "rationale": "Un nivel de servicio tan bajo indicaría un colapso total de la cadena de suministro y una falta de planificación estratégica."
+        }
+      ],
+      "hint": "Es un porcentaje alto que reconoce la inevitabilidad de un pequeño margen de error por factores geográficos."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal de integrar metodologías como Lean Logistics, Kaizen y Scrum en la logística minera?",
+      "answerOptions": [
+        {
+          "text": "Reducir el número de trabajadores en el campamento.",
+          "isCorrect": false,
+          "rationale": "El objetivo no es el recorte de personal, sino la mejora de los flujos de trabajo y la eficiencia."
+        },
+        {
+          "text": "Eliminar cualquier fricción en la operación para que materiales y máquinas fluyan sin interrupciones.",
+          "isCorrect": true,
+          "rationale": "Estas metodologías ágiles buscan mejoras incrementales constantes y la eliminación de cuellos de botella."
+        },
+        {
+          "text": "Sustituir el uso de sistemas $SAP$ por procesos manuales más ágiles.",
+          "isCorrect": false,
+          "rationale": "La agilidad no implica retroceso tecnológico; al contrario, se apoya en la tecnología para ser más eficiente."
+        },
+        {
+          "text": "Aumentar el stock de seguridad en todos los almacenes de la mina.",
+          "isCorrect": false,
+          "rationale": "Lean Logistics busca precisamente optimizar inventarios, no aumentarlos innecesariamente."
+        }
+      ],
+      "hint": "Piense en la búsqueda de la fluidez total y la eliminación de obstáculos en el proceso logístico."
+    },
+    {
+      "question": "¿Qué función estratégica cumple el 'planner' o planificador de mantenimiento en una operación de clase mundial?",
+      "answerOptions": [
+        {
+          "text": "Es el encargado de conducir los camiones hacia el taller de reparaciones.",
+          "isCorrect": false,
+          "rationale": "Esa es una tarea operativa de los conductores; el planner tiene una función analítica y de coordinación."
+        },
+        {
+          "text": "Actúa como un puente que lee orómetros y coordina con el almacén antes de que ocurra una falla.",
+          "isCorrect": true,
+          "rationale": "Su rol es predecir fallas y asegurar que los repuestos estén listos, evitando que el equipo pase tiempo apagado."
+        },
+        {
+          "text": "Supervisa exclusivamente el cumplimiento de las normas de salud dental.",
+          "isCorrect": false,
+          "rationale": "Esa es una responsabilidad del área médica u ocupacional, no del planificador de mantenimiento."
+        },
+        {
+          "text": "Es el responsable de la impresión $3D$ de todas las piezas de la mina.",
+          "isCorrect": false,
+          "rationale": "Aunque usa tecnología, su rol es la planificación sistémica; la impresión $3D$ es una herramienta de soporte."
+        }
+      ],
+      "hint": "Considere a este profesional como el traductor de los datos de la máquina en acciones logísticas preventivas."
+    },
+    {
+      "question": "¿Cómo transforma la impresión $3D$ (manufactura aditiva) las reglas del juego en la logística minera remota?",
+      "answerOptions": [
+        {
+          "text": "Permite fabricar combustible sintético en el sitio.",
+          "isCorrect": false,
+          "rationale": "La manufactura aditiva se aplica a componentes sólidos y repuestos, no a la producción de hidrocarburos."
+        },
+        {
+          "text": "Elimina la necesidad de contratar personal capacitado para el mantenimiento.",
+          "isCorrect": false,
+          "rationale": "Al contrario, se requiere personal más especializado para operar y validar estas nuevas tecnologías."
+        },
+        {
+          "text": "Reduce la dependencia de la logística internacional al permitir fabricar repuestos críticos en el sitio.",
+          "isCorrect": true,
+          "rationale": "Esto disminuye los tiempos de espera de meses a horas para piezas que de otro modo tendrían que ser importadas."
+        },
+        {
+          "text": "Sustituye por completo el uso de camiones de gran tonelaje.",
+          "isCorrect": false,
+          "rationale": "La impresión $3D$ fabrica piezas, no reemplaza la función del equipo pesado en la extracción."
+        }
+      ],
+      "hint": "Piense en el impacto de producir localmente lo que antes debía viajar miles de kilómetros."
+    },
+    {
+      "question": "¿Cuál es la relación entre el control de triglicéridos y la seguridad operativa en la minería?",
+      "answerOptions": [
+        {
+          "text": "Los triglicéridos altos impiden la correcta absorción de minerales en la mina.",
+          "isCorrect": false,
+          "rationale": "No existe una relación biológica directa entre la absorción de minerales externos y los triglicéridos."
+        },
+        {
+          "text": "Es vital porque el personal opera maquinaria pesada a altitudes superiores a $4,000$ metros.",
+          "isCorrect": true,
+          "rationale": "La salud cardiovascular es crítica para evitar descompensaciones graves al trabajar en condiciones de hipoxia y alta presión física."
+        },
+        {
+          "text": "Ayuda a reducir el peso de los trabajadores para que quepan en las cabinas.",
+          "isCorrect": false,
+          "rationale": "El control médico busca la salud interna y prevención de emergencias, no es un tema de dimensiones físicas de la cabina."
+        },
+        {
+          "text": "Los triglicéridos altos corroen los componentes electrónicos de los equipos.",
+          "isCorrect": false,
+          "rationale": "Este es un factor de salud humana y no tiene relación con la corrosión de materiales inorgánicos."
+        }
+      ],
+      "hint": "Reflexione sobre los riesgos de salud que se potencian al trabajar en condiciones de extrema altitud geográfica."
+    },
+    {
+      "question": "¿Por qué se afirma que la logística minera no es un simple apoyo, sino la 'columna vertebral' de la industria?",
+      "answerOptions": [
+        {
+          "text": "Porque es el área que más personal emplea en todo el proyecto.",
+          "isCorrect": false,
+          "rationale": "El tamaño del personal no define su importancia estratégica; es su rol en la continuidad operativa lo que importa."
+        },
+        {
+          "text": "Debido a que un error logístico puede detener la producción y costar millones de dólares.",
+          "isCorrect": true,
+          "rationale": "En la minería, el movimiento preciso de recursos es lo que mantiene vivo el ecosistema y garantiza la viabilidad financiera."
+        },
+        {
+          "text": "Porque se encarga de la extracción directa del mineral del yacimiento.",
+          "isCorrect": false,
+          "rationale": "La extracción es función del área de operaciones/mina; la logística asegura que los recursos para extraer estén presentes."
+        },
+        {
+          "text": "Porque la logística define el precio internacional de los minerales.",
+          "isCorrect": false,
+          "rationale": "El precio lo define el mercado; la logística influye en el costo interno y la eficiencia para ser rentables."
+        }
+      ],
+      "hint": "Piense en las consecuencias de una falla en el suministro de insumos críticos para la operación."
+    },
+    {
+      "question": "¿Qué implicación tiene que el tiempo de reabastecimiento en zonas extremas sea de 15 a 45 días?",
+      "answerOptions": [
+        {
+          "text": "Que la planificación puede ser reactiva según se necesiten los materiales.",
+          "isCorrect": false,
+          "rationale": "Un tiempo tan largo de espera prohíbe la reactividad; exige una anticipación total para no parar la mina."
+        },
+        {
+          "text": "Que la anticipación y el manejo de stock de seguridad son obligatorios para la supervivencia.",
+          "isCorrect": true,
+          "rationale": "Ante tiempos de espera tan largos, no se puede esperar a que el inventario llegue a cero para pedir más."
+        },
+        {
+          "text": "Que los proveedores deben estar ubicados a menos de 10 kilómetros de la mina.",
+          "isCorrect": false,
+          "rationale": "Si estuvieran a 10 km, el tiempo de reabastecimiento no sería de hasta 45 días; el dato implica lejanía geográfica."
+        },
+        {
+          "text": "Que la mina debe cerrar sus operaciones cada 45 días para descansar.",
+          "isCorrect": false,
+          "rationale": "La mina busca operar de forma continua; el tiempo se refiere al ciclo logístico de suministros, no al operativo."
+        }
+      ],
+      "hint": "Considere la necesidad de planificar con mucha antelación cuando los suministros tardan semanas en llegar."
+    },
+    {
+      "question": "¿Cuál es la consecuencia de mezclar explosivos (clase 1) con sustancias tóxicas (clase 6) en el mismo transporte?",
+      "answerOptions": [
+        {
+          "text": "Se mejora la potencia de las voladuras en el PIT.",
+          "isCorrect": false,
+          "rationale": "Mezclar sustancias incompatibles es una violación de seguridad, no una técnica de mejora de producción."
+        },
+        {
+          "text": "Se considera una práctica de eficiencia logística para ahorrar espacio.",
+          "isCorrect": false,
+          "rationale": "El ahorro de espacio nunca debe comprometer la seguridad; esta mezcla es un riesgo de catástrofe total."
+        },
+        {
+          "text": "Podría generar una catástrofe total por incompatibilidad de materiales químicos.",
+          "isCorrect": true,
+          "rationale": "Los protocolos de segregación impiden que sustancias que pueden reaccionar entre sí viajen juntas."
+        },
+        {
+          "text": "No tiene ninguna consecuencia si los envases están bien cerrados.",
+          "isCorrect": false,
+          "rationale": "Incluso con envases cerrados, la normativa prohíbe el transporte conjunto para mitigar riesgos en caso de accidentes."
+        }
+      ],
+      "hint": "Piense en el riesgo extremo de combinar materiales volátiles con agentes químicos peligrosos."
+    },
+    {
+      "question": "En el contexto de indicadores de mantenimiento, ¿para qué se utiliza específicamente el $MTBF$?",
+      "answerOptions": [
+        {
+          "text": "Para determinar la fecha de jubilación de los operadores de maquinaria.",
+          "isCorrect": false,
+          "rationale": "El $MTBF$ es una métrica de equipos mecánicos, no de gestión de recursos humanos por edad."
+        },
+        {
+          "text": "Para programar paradas preventivas de forma calculada y evitar colapsos repentinos.",
+          "isCorrect": true,
+          "rationale": "Saber el tiempo promedio entre fallas permite intervenir la máquina antes de que falle inesperadamente."
+        },
+        {
+          "text": "Para calcular el costo total de los neumáticos de la flota pesada.",
+          "isCorrect": false,
+          "rationale": "Aunque impacta el costo, el indicador se centra en el tiempo y la confiabilidad operativa, no en la contabilidad."
+        },
+        {
+          "text": "Para medir el nivel de satisfacción de los clientes externos de la mina.",
+          "isCorrect": false,
+          "rationale": "Es un indicador técnico interno de mantenimiento, no una métrica de mercadotecnia o servicio al cliente."
+        }
+      ],
+      "hint": "Considere cómo la frecuencia de los fallos ayuda a decidir cuándo es mejor detener un equipo por voluntad propia."
+    },
+    {
+      "question": "¿Cuál es la filosofía principal detrás de la frase: 'Lo que no se mide no se gestiona y lo que no se gestiona no es rentable'?",
+      "answerOptions": [
+        {
+          "text": "Que la rentabilidad depende únicamente de la suerte en el mercado.",
+          "isCorrect": false,
+          "rationale": "La frase promueve el control estratégico y objetivo, rechazando la improvisación o la suerte."
+        },
+        {
+          "text": "Que los indicadores son la brújula necesaria para dejar de ser reactivos y ser estratégicos.",
+          "isCorrect": true,
+          "rationale": "Sin métricas objetivas (KPIs), el gerente opera a ciegas, aumentando el riesgo de colapso operativo."
+        },
+        {
+          "text": "Que medir datos es un gasto innecesario que reduce el capital de la empresa.",
+          "isCorrect": false,
+          "rationale": "Al contrario, la falta de medición es lo que genera pérdidas millonarias por falta de control."
+        },
+        {
+          "text": "Que solo se deben medir las toneladas de mineral extraídas al final del mes.",
+          "isCorrect": false,
+          "rationale": "Ese sería solo un indicador lagging; la filosofía exige medir también los inductores para gestionar el éxito."
+        }
+      ],
+      "hint": "Piense en la importancia de los datos para la toma de decisiones informadas en lugar de actuar por impulso."
+    },
+    {
+      "question": "¿Qué papel juegan marcas como Komatsu o Caterpillar en el contexto de la capacitación del factor humano?",
+      "answerOptions": [
+        {
+          "text": "Son los encargados de realizar la planificación estratégica de la mina.",
+          "isCorrect": false,
+          "rationale": "La planificación es responsabilidad de la empresa minera; estas marcas proveen el equipo y la tecnología."
+        },
+        {
+          "text": "Representan el estándar tecnológico hacia el cual el talento humano debe evolucionar constantemente.",
+          "isCorrect": true,
+          "rationale": "La capacitación asegura que operadores y técnicos puedan manejar equipos de alta tecnología de estas marcas líderes."
+        },
+        {
+          "text": "Son los proveedores exclusivos de los servicios médicos en el campamento.",
+          "isCorrect": false,
+          "rationale": "Son fabricantes de maquinaria pesada, no proveedores de servicios de salud u odontología."
+        },
+        {
+          "text": "Determinan la licencia social de los proyectos mineros.",
+          "isCorrect": false,
+          "rationale": "La licencia social depende de la relación de la minera con la comunidad, no del fabricante de los camiones."
+        }
+      ],
+      "hint": "Piense en la necesidad de que el conocimiento del personal vaya a la par con la sofisticación de la maquinaria."
+    },
+    {
+      "question": "¿Cuál de estos elementos es considerado el 'músculo' de la operación minera por dar el golpe inicial en la cadena?",
+      "answerOptions": [
+        {
+          "text": "La flota de camiones de acarreo.",
+          "isCorrect": false,
+          "rationale": "Los camiones mueven el material, pero el 'golpe inicial' para liberar la roca lo dan los explosivos."
+        },
+        {
+          "text": "Los explosivos.",
+          "isCorrect": true,
+          "rationale": "Ellos inician el proceso productivo; si fallan, se detiene toda la cadena desde su origen."
+        },
+        {
+          "text": "El software $SAP$.",
+          "isCorrect": false,
+          "rationale": "El software es una herramienta de gestión y soporte, no el elemento físico que rompe el mineral."
+        },
+        {
+          "text": "Los soldadores y técnicos de mantenimiento.",
+          "isCorrect": false,
+          "rationale": "Ellos son el soporte del factor humano, pero no representan el insumo que inicia la fragmentación de la roca."
+        }
+      ],
+      "hint": "Identifique el insumo encargado de la fragmentación de la roca para iniciar el ciclo productivo."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Planificación jerárquica logística",
+      "Gestión de materiales peligrosos (MATPEL)",
+      "Salud y normativa ocupacional",
+      "Gestión de la demanda e indicadores de precisión ($MAE$)",
+      "Métodos cualitativos de pronóstico (Delphi)",
+      "Indicadores de desempeño (KPIs leading y lagging)",
+      "Métricas de mantenimiento de flota ($MTTF$, $MTBF$)",
+      "Metodologías ágiles y transformación digital"
+    ],
+    "followUp": [
+      "Optimización de costos por lucro cesante en paradas de planta",
+      "Modelado matemático avanzado para niveles de stock de seguridad",
+      "Legislación internacional detallada sobre el Libro Naranja de la ONU",
+      "Sistemas de telemetría en tiempo real para gestión de orómetros",
+      "Aplicaciones específicas de manufactura aditiva en minería de tajo abierto"
+    ]
+  }
+}

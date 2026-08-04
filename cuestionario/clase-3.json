@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cómo se define el fenómeno de expansión o esponjamiento en la gestión de materiales?",
+      "answerOptions": [
+        {
+          "text": "Es el aumento del peso del mineral debido a la absorción de humedad durante el transporte.",
+          "isCorrect": false,
+          "rationale": "El esponjamiento se refiere a un cambio en el volumen físico por fragmentación, no a un cambio en la masa por factores ambientales."
+        },
+        {
+          "text": "Es la transición del volumen del bloque in situ al volumen fragmentado tras la voladura.",
+          "isCorrect": true,
+          "rationale": "Al fragmentarse el material, se generan espacios vacíos que incrementan el volumen total que ocupará en las unidades de transporte."
+        },
+        {
+          "text": "Es la reducción del volumen del material al ser compactado dentro de la tolva del camión.",
+          "isCorrect": false,
+          "rationale": "La compactación es el proceso inverso al esponjamiento, el cual ocurre naturalmente tras la fragmentación inicial."
+        },
+        {
+          "text": "Es la pérdida de material fino que se dispersa en el aire durante el proceso de carguío.",
+          "isCorrect": false,
+          "rationale": "La pérdida de finos es un problema de merma, mientras que el esponjamiento describe el incremento del espacio ocupado por la carga."
+        }
+      ],
+      "hint": "Piense en qué sucede con el espacio que ocupa un sólido cuando se rompe en pedazos pequeños."
+    },
+    {
+      "question": "¿Cuál es el rango porcentual de expansión esperado para el mineral de cobre?",
+      "answerOptions": [
+        {
+          "text": "$20\\%$",
+          "isCorrect": false,
+          "rationale": "Este porcentaje es característico de materiales más uniformes y menos fragmentables como la arcilla."
+        },
+        {
+          "text": "$30\\% - 45\\%$",
+          "isCorrect": false,
+          "rationale": "Este rango corresponde generalmente al carbón, el cual tiene un factor de esponjamiento intermedio."
+        },
+        {
+          "text": "$40\\% - 60\\%$",
+          "isCorrect": true,
+          "rationale": "El cobre presenta una fragmentación que genera un incremento significativo de volumen, situándose en este rango tras la voladura."
+        },
+        {
+          "text": "$70\\% - 90\\%$",
+          "isCorrect": false,
+          "rationale": "Valores tan elevados son inusuales para minerales metálicos y representarían una estructura extremadamente porosa."
+        }
+      ],
+      "hint": "Es uno de los valores de expansión más altos mencionados para minerales metálicos."
+    },
+    {
+      "question": "En la jerarquía de la cronometría logística, ¿qué representa el 'Tiempo Efectivo'?",
+      "answerOptions": [
+        {
+          "text": "El tiempo total de las 24 horas del día sin considerar paradas.",
+          "isCorrect": false,
+          "rationale": "El periodo total de 24 horas se define como tiempo cronológico, la base de toda la medición."
+        },
+        {
+          "text": "El periodo en que el equipo está mecánicamente sano y listo para operar.",
+          "isCorrect": false,
+          "rationale": "La condición de salud mecánica del equipo define el tiempo disponible, no necesariamente el tiempo de producción real."
+        },
+        {
+          "text": "El tiempo neto dedicado exclusivamente a las tareas de carguío y acarreo.",
+          "isCorrect": true,
+          "rationale": "Es la métrica de oro que mide la producción pura, descontando demoras operativas o esperas."
+        },
+        {
+          "text": "El tiempo total que la máquina permanece con el motor encendido.",
+          "isCorrect": false,
+          "rationale": "Una máquina puede estar encendida (tiempo operativo) pero estar en espera, lo cual no cuenta como tiempo efectivo de producción."
+        }
+      ],
+      "hint": "Considere la métrica que mide únicamente la ejecución de la tarea principal."
+    },
+    {
+      "question": "¿Cómo se calcula el índice de Disponibilidad Física de una flota?",
+      "answerOptions": [
+        {
+          "text": "$\\frac{Tiempo \\text{ } Operativo}{Tiempo \\text{ } Disponible} \\times 100$",
+          "isCorrect": false,
+          "rationale": "Esta fórmula corresponde a la Utilización, que mide cuánto se aprovecha el equipo mientras está listo."
+        },
+        {
+          "text": "$\\frac{Tiempo \\text{ } Disponible}{Tiempo \\text{ } Cronológico} \\times 100$",
+          "isCorrect": true,
+          "rationale": "Mide qué porcentaje del tiempo total el equipo estuvo mecánicamente apto para trabajar, sin considerar si se usó o no."
+        },
+        {
+          "text": "$\\frac{Tiempo \\text{ } Efectivo}{Tiempo \\text{ } Operativo} \\times 100$",
+          "isCorrect": false,
+          "rationale": "Esta relación se enfoca en la eficiencia del trabajo realizado durante la operación, no en la salud mecánica del equipo."
+        },
+        {
+          "text": "$\\frac{Tiempo \\text{ } Operativo}{Tiempo \\text{ } Hipotético} \\times 100$",
+          "isCorrect": false,
+          "rationale": "Esta fórmula se utiliza para calcular el aprovechamiento condicionado por factores del entorno."
+        }
+      ],
+      "hint": "Relacione el tiempo en que la máquina está 'sana' frente al tiempo total del reloj."
+    },
+    {
+      "question": "¿Cuáles son las cinco etapas que componen el ciclo operativo de acarreo interno?",
+      "answerOptions": [
+        {
+          "text": "Planificación, extracción, refinación, almacenamiento y despacho.",
+          "isCorrect": false,
+          "rationale": "Estos pasos corresponden a la cadena de valor completa de la mina, no al ciclo específico de movimiento de tierras."
+        },
+        {
+          "text": "Posicionamiento, carguío, transporte, descarga y retorno.",
+          "isCorrect": true,
+          "rationale": "Representa la secuencia lógica y repetitiva que realiza un camión desde que llega a la pala hasta que vuelve por más material."
+        },
+        {
+          "text": "Exploración, perforación, voladura, acarreo y cierre.",
+          "isCorrect": false,
+          "rationale": "Esta es la secuencia de las operaciones mineras principales, donde el acarreo es solo un eslabón."
+        },
+        {
+          "text": "Mantenimiento, encendido, operación, apagado y revisión.",
+          "isCorrect": false,
+          "rationale": "Describe un ciclo de uso de maquinaria desde la perspectiva técnica de mantenimiento."
+        }
+      ],
+      "hint": "Visualice el recorrido físico de un camión desde que llega a la zona de carga hasta que regresa vacío."
+    },
+    {
+      "question": "En trayectos logísticos internos, ¿a partir de qué distancia se debe evaluar con mayor rigor la rentabilidad de las fajas transportadoras frente a los camiones?",
+      "answerOptions": [
+        {
+          "text": "Distancias mayores a 5 kilómetros.",
+          "isCorrect": false,
+          "rationale": "A distancias largas las fajas suelen ser superiores; el reto de rentabilidad ocurre en tramos mucho más cortos."
+        },
+        {
+          "text": "Distancias menores a 0.5 kilómetros.",
+          "isCorrect": true,
+          "rationale": "Para trayectos tan cortos, la inversión inicial de una faja puede no justificarse frente a la flexibilidad de un camión tradicional."
+        },
+        {
+          "text": "Distancias exactas de 2 kilómetros.",
+          "isCorrect": false,
+          "rationale": "No existe un punto crítico documentado en los 2 kilómetros; la decisión técnica se vuelve sensible por debajo de los 500 metros."
+        },
+        {
+          "text": "Distancias superiores a 10 kilómetros.",
+          "isCorrect": false,
+          "rationale": "A esta escala, sistemas como mineroductos o trenes suelen ser los competidores directos, no los camiones estándar."
+        }
+      ],
+      "hint": "Piense en una distancia muy corta, equivalente a media unidad de medida kilométrica."
+    },
+    {
+      "question": "¿Qué sistema de transporte utiliza una combinación de camiones y trenes en una ruta de aproximadamente 730 km?",
+      "answerOptions": [
+        {
+          "text": "Sistema de transporte encapsulado.",
+          "isCorrect": false,
+          "rationale": "El encapsulado se refiere al sellado de la carga por motivos ambientales, no a la combinación de modos de transporte."
+        },
+        {
+          "text": "Sistema bimodal.",
+          "isCorrect": true,
+          "rationale": "Se denomina así porque utiliza dos modos distintos (carretera y vía férrea) para completar la entrega del mineral."
+        },
+        {
+          "text": "Sistema de mineroducto.",
+          "isCorrect": false,
+          "rationale": "El mineroducto traslada pulpa líquida a través de tuberías, sin intervención de camiones o trenes en el trayecto principal."
+        },
+        {
+          "text": "Sistema de faja de larga distancia.",
+          "isCorrect": false,
+          "rationale": "Aunque existen fajas largas, el caso mencionado de 730 km implica específicamente una transferencia de carga entre unidades móviles."
+        }
+      ],
+      "hint": "El término indica el uso de dos tipos de medios de transporte diferentes."
+    },
+    {
+      "question": "¿Cuál es el principal destino de exportación del mineral, representando un $37.5\\%$ del total?",
+      "answerOptions": [
+        {
+          "text": "Estados Unidos",
+          "isCorrect": false,
+          "rationale": "Aunque es un socio importante, su participación es cercana al $9.4\\%$, muy por debajo del líder asiático."
+        },
+        {
+          "text": "China",
+          "isCorrect": true,
+          "rationale": "Es el mayor consumidor global de concentrados minerales, dominando más de un tercio de las exportaciones del sector."
+        },
+        {
+          "text": "Suiza",
+          "isCorrect": false,
+          "rationale": "Su participación es relevante ($8.9\\%$) pero se enfoca principalmente en metales preciosos y comercio de materias primas."
+        },
+        {
+          "text": "India",
+          "isCorrect": false,
+          "rationale": "India representa aproximadamente el $7.1\\%$, siendo un mercado creciente pero secundario frente a China."
+        }
+      ],
+      "hint": "Considere la potencia asiática con la mayor demanda industrial de materias primas del mundo."
+    },
+    {
+      "question": "¿Con cuánta anticipación mínima se recomienda planificar los suministros en zonas altoandinas de difícil acceso?",
+      "answerOptions": [
+        {
+          "text": "Una semana de antelación.",
+          "isCorrect": false,
+          "rationale": "Una semana es insuficiente debido a la precariedad de los caminos y los tiempos de tránsito en zonas remotas."
+        },
+        {
+          "text": "De 1 a 2 meses.",
+          "isCorrect": true,
+          "rationale": "Este periodo permite blindar la cadena contra imprevistos climáticos o bloqueos, asegurando que no haya quiebres de stock."
+        },
+        {
+          "text": "Seis meses exactos.",
+          "isCorrect": false,
+          "rationale": "Aunque la previsión es buena, seis meses podrían generar costos excesivos de almacenamiento e inmovilización de capital."
+        },
+        {
+          "text": "Quince días calendario.",
+          "isCorrect": false,
+          "rationale": "En geografías extremas, quince días no ofrecen margen de maniobra suficiente ante fallas en equipos críticos."
+        }
+      ],
+      "hint": "Es un periodo de tiempo que permite cubrir al menos cuatro u ocho semanas de contingencia."
+    },
+    {
+      "question": "En la matriz de Kraljic, ¿qué caracteriza a los insumos estratégicos?",
+      "answerOptions": [
+        {
+          "text": "Bajo riesgo de suministro y bajo impacto en el costo total.",
+          "isCorrect": false,
+          "rationale": "Esta descripción pertenece a los insumos rutinarios, que no requieren una gestión logística compleja."
+        },
+        {
+          "text": "Alto riesgo de suministro y alto impacto en la rentabilidad.",
+          "isCorrect": true,
+          "rationale": "Son suministros críticos, como repuestos específicos, que requieren una respuesta rápida y proveedores de primer nivel."
+        },
+        {
+          "text": "Alta disponibilidad en el mercado local pero costo elevado.",
+          "isCorrect": false,
+          "rationale": "Si hay alta disponibilidad, el riesgo de suministro es bajo, clasificándolos más como insumos apalancados."
+        },
+        {
+          "text": "Dificultad de transporte pero nulo impacto en la continuidad operativa.",
+          "isCorrect": false,
+          "rationale": "Si no impactan la operación, se consideran cuellos de botella menores, no estratégicos."
+        }
+      ],
+      "hint": "Piense en aquellos elementos que, si faltan, detienen la operación y son difíciles de conseguir."
+    },
+    {
+      "question": "¿Cuál es la función principal del 'Cross-docking' en la logística minera remota?",
+      "answerOptions": [
+        {
+          "text": "Almacenar grandes volúmenes de repuestos por largos periodos para evitar la escasez.",
+          "isCorrect": false,
+          "rationale": "El cross-docking busca precisamente lo contrario: minimizar o eliminar el tiempo de almacenamiento intermedio."
+        },
+        {
+          "text": "Consolidar carga de varios proveedores para enviarla directamente a la mina sin almacenamiento intermedio.",
+          "isCorrect": true,
+          "rationale": "Permite reducir tiempos de tránsito y optimizar el uso de los vehículos al unificar pedidos en un solo flujo logístico."
+        },
+        {
+          "text": "Reparar maquinaria pesada en puntos intermedios antes de que llegue a la zona de trabajo.",
+          "isCorrect": false,
+          "rationale": "Se trata de una estrategia de distribución de materiales, no de un servicio de mantenimiento mecánico."
+        },
+        {
+          "text": "Verificar la calidad metalúrgica del mineral antes de ser exportado.",
+          "isCorrect": false,
+          "rationale": "Esta labor se realiza en laboratorios o puertos, no es una función logística de movimiento de suministros."
+        }
+      ],
+      "hint": "Piense en un proceso que agiliza el envío eliminando el paso por el almacén central."
+    },
+    {
+      "question": "¿Qué indicador determina finalmente si la logística y la maquinaria están siendo productivas en el frente de trabajo?",
+      "answerOptions": [
+        {
+          "text": "La cantidad de combustible consumido por hora.",
+          "isCorrect": false,
+          "rationale": "El consumo es un costo; una máquina puede gastar mucho combustible sin generar avance real."
+        },
+        {
+          "text": "El metraje avanzado (lineal o cúbico).",
+          "isCorrect": true,
+          "rationale": "Es el resultado tangible de la operación; si no hay avance en la perforación o extracción, la logística no está cumpliendo su fin."
+        },
+        {
+          "text": "El número de empleados presentes en el turno.",
+          "isCorrect": false,
+          "rationale": "La presencia de personal es un requisito operativo, pero no garantiza por sí sola la productividad del frente."
+        },
+        {
+          "text": "El porcentaje de limpieza de las unidades de transporte.",
+          "isCorrect": false,
+          "rationale": "La limpieza es parte del mantenimiento, pero es un factor estético o preventivo secundario frente al avance físico."
+        }
+      ],
+      "hint": "Reflexione sobre la medida física que indica cuánto se ha excavado o perforado."
+    },
+    {
+      "question": "¿Qué tipo de materiales se clasifican en la Clase 6 según la normativa de la ONU para MATPEL?",
+      "answerOptions": [
+        {
+          "text": "Explosivos como la dinamita.",
+          "isCorrect": false,
+          "rationale": "Los explosivos pertenecen a la Clase 1 debido a su riesgo intrínseco de detonación masiva."
+        },
+        {
+          "text": "Venenos y sustancias tóxicas como el cianuro de potasio.",
+          "isCorrect": true,
+          "rationale": "Esta clase agrupa sustancias que, en pequeñas cantidades, pueden causar daños graves a la salud o la muerte."
+        },
+        {
+          "text": "Líquidos inflamables como el benceno.",
+          "isCorrect": false,
+          "rationale": "Los líquidos que pueden arder con facilidad se agrupan en la Clase 3."
+        },
+        {
+          "text": "Sustancias corrosivas como el ácido sulfúrico.",
+          "isCorrect": false,
+          "rationale": "Los corrosivos, que destruyen tejidos vivos o materiales, están asignados a la Clase 8."
+        }
+      ],
+      "hint": "Piense en sustancias cuya principal peligrosidad es la toxicidad extrema o letalidad por contacto/ingestión."
+    },
+    {
+      "question": "¿Cuál es la distancia mínima de segregación que debe existir entre sustancias reactivas incompatibles en un almacén?",
+      "answerOptions": [
+        {
+          "text": "$1.2$ metros.",
+          "isCorrect": false,
+          "rationale": "Es una distancia insuficiente para prevenir interacciones químicas en caso de derrames menores."
+        },
+        {
+          "text": "$2.4$ metros.",
+          "isCorrect": true,
+          "rationale": "Es el estándar de seguridad estricto para evitar reacciones en cadena entre materiales que no deben mezclarse."
+        },
+        {
+          "text": "$5.0$ metros.",
+          "isCorrect": false,
+          "rationale": "Aunque es más seguro, excede el requerimiento normativo estándar, lo que podría desperdiciar espacio crítico de almacén."
+        },
+        {
+          "text": "$10$ metros.",
+          "isCorrect": false,
+          "rationale": "Esta distancia suele reservarse para polvorines de explosivos, no para segregación general de químicos en estantería."
+        }
+      ],
+      "hint": "Es un valor numérico específico que termina en cuatro décimas."
+    },
+    {
+      "question": "Para gestionar la fatiga del conductor en el transporte de materiales peligrosos, ¿qué ciclo de descanso se aplica?",
+      "answerOptions": [
+        {
+          "text": "Ciclos de $8 \\times 2$ (ocho horas de conducción por dos de descanso).",
+          "isCorrect": false,
+          "rationale": "Ocho horas continuas en rutas extremas representan un riesgo inaceptable de fatiga y pérdida de reflejos."
+        },
+        {
+          "text": "Ciclos de $4 \\times 1$ (cuatro horas de conducción por una de descanso).",
+          "isCorrect": true,
+          "rationale": "Este ritmo asegura que el operador recupere la atención y reduzca el estrés físico de la conducción en geografías complejas."
+        },
+        {
+          "text": "Ciclos de $12 \\times 12$ (doce horas de trabajo por doce de descanso).",
+          "isCorrect": false,
+          "rationale": "Este es un esquema de jornada laboral, pero no aborda las pausas activas necesarias durante el trayecto."
+        },
+        {
+          "text": "Conducción continua con relevo inmediato en cabina.",
+          "isCorrect": false,
+          "rationale": "Aunque se usa en algunos países, no es la práctica recomendada para rutas altoandinas de alto riesgo."
+        }
+      ],
+      "hint": "Considere un esquema que permite un descanso breve tras una jornada de conducción de duración media."
+    },
+    {
+      "question": "¿Cuántos documentos obligatorios debe portar un convoy que transporta materiales peligrosos según la normativa vigente?",
+      "answerOptions": [
+        {
+          "text": "3 documentos.",
+          "isCorrect": false,
+          "rationale": "Esta cantidad es insuficiente, ya que no cubriría aspectos críticos como seguros ambientales o fichas técnicas."
+        },
+        {
+          "text": "5 documentos.",
+          "isCorrect": false,
+          "rationale": "Faltarían documentos legales específicos requeridos por el Ministerio de Transportes y Comunicaciones."
+        },
+        {
+          "text": "7 documentos.",
+          "isCorrect": true,
+          "rationale": "Incluye guías, hojas MSDS, certificados vehiculares, licencia especial, SOAT y póliza de seguro ambiental."
+        },
+        {
+          "text": "10 documentos.",
+          "isCorrect": false,
+          "rationale": "Aunque se pueden llevar registros adicionales, la ley exige específicamente siete documentos troncales para la legalidad del transporte."
+        }
+      ],
+      "hint": "Es un número impar, superior a cinco."
+    },
+    {
+      "question": "¿Cuál es la recomendación estratégica para la renovación de la flota de transporte con el fin de mantener la eficiencia?",
+      "answerOptions": [
+        {
+          "text": "Renovar los equipos cada 10 años para amortizar totalmente la inversión.",
+          "isCorrect": false,
+          "rationale": "A los 10 años, la disponibilidad física es muy baja y los costos de mantenimiento son prohibitivos."
+        },
+        {
+          "text": "Renovar la flota cada 2 o 3 años.",
+          "isCorrect": true,
+          "rationale": "Permite recuperar un alto porcentaje del valor del equipo y garantiza el uso de tecnología con alta disponibilidad mecánica."
+        },
+        {
+          "text": "Solo renovar cuando el equipo sufra una falla mecánica irreparable.",
+          "isCorrect": false,
+          "rationale": "Esta es una estrategia reactiva que pone en riesgo la continuidad de la producción y la seguridad."
+        },
+        {
+          "text": "Arrendar equipos usados para reducir los gastos fijos iniciales.",
+          "isCorrect": false,
+          "rationale": "Los equipos usados aumentan el riesgo de paradas no programadas, afectando la rentabilidad neta."
+        }
+      ],
+      "hint": "Considere un periodo corto que permita recuperar gran parte del valor de reventa."
+    },
+    {
+      "question": "Al renovar la flota de transporte de forma temprana, ¿qué porcentaje aproximado de su valor se estima que se puede recuperar?",
+      "answerOptions": [
+        {
+          "text": "$20\\%$",
+          "isCorrect": false,
+          "rationale": "Este valor se acerca más al precio de chatarra o de un equipo con un desgaste extremo tras una década de uso."
+        },
+        {
+          "text": "$50\\%$",
+          "isCorrect": false,
+          "rationale": "Es una recuperación moderada, pero la estrategia de 2 a 3 años apunta a un valor de reventa mucho más competitivo."
+        },
+        {
+          "text": "$80\\%$",
+          "isCorrect": true,
+          "rationale": "Debido al buen estado relativo y la demanda de equipos seminuevos, se logra recuperar la mayor parte de la inversión original."
+        },
+        {
+          "text": "$100\\%$",
+          "isCorrect": false,
+          "rationale": "Es imposible recuperar el valor total debido a la depreciación inmediata tras la puesta en marcha del equipo."
+        }
+      ],
+      "hint": "Piense en una cifra de recuperación muy alta, cercana a la totalidad pero con un margen de depreciación."
+    },
+    {
+      "question": "¿Qué elemento se considera indispensable para prevenir conflictos y bloqueos en las rutas logísticas remotas?",
+      "answerOptions": [
+        {
+          "text": "El aumento de la escolta policial en cada convoy.",
+          "isCorrect": false,
+          "rationale": "La seguridad armada puede escalar conflictos; la prevención real se basa en la gestión de relaciones."
+        },
+        {
+          "text": "La integración de la logística con las comunidades locales (paz social).",
+          "isCorrect": true,
+          "rationale": "Mantener un equilibrio y beneficios compartidos con el entorno social es la única forma de garantizar el libre tránsito a largo plazo."
+        },
+        {
+          "text": "El uso exclusivo de rutas aéreas para evitar el paso por pueblos.",
+          "isCorrect": false,
+          "rationale": "Es económicamente inviable para el transporte masivo de concentrados minerales."
+        },
+        {
+          "text": "El pago de peajes privados a las autoridades locales.",
+          "isCorrect": false,
+          "rationale": "Esto no garantiza la sostenibilidad operativa y podría incurrir en faltas éticas o legales."
+        }
+      ],
+      "hint": "Se refiere al concepto de armonía con las poblaciones aledañas a la operación."
+    },
+    {
+      "question": "En la gestión de MATPEL, ¿qué documento describe las propiedades químicas, riesgos y medidas de auxilio de una sustancia específica?",
+      "answerOptions": [
+        {
+          "text": "Certificado Técnico Vehicular.",
+          "isCorrect": false,
+          "rationale": "Este documento certifica el estado del camión, no las propiedades químicas de lo que transporta."
+        },
+        {
+          "text": "Hoja de Datos de Seguridad (MSDS).",
+          "isCorrect": true,
+          "rationale": "Es la guía fundamental que el personal debe consultar ante cualquier derrame o accidente para saber cómo reaccionar."
+        },
+        {
+          "text": "Póliza de Seguro Ambiental.",
+          "isCorrect": false,
+          "rationale": "Es un respaldo financiero para remediación, pero no contiene instrucciones de manejo seguro o primeros auxilios."
+        },
+        {
+          "text": "Guía de Remisión del Transportista.",
+          "isCorrect": false,
+          "rationale": "Es un documento mercantil que detalla origen y destino de la carga, no sus características de peligrosidad."
+        }
+      ],
+      "hint": "Piense en el documento que se actualiza obligatoriamente ante cualquier cambio de proveedor químico."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Factor productivo y expansión de materiales",
+      "Cronometría y métricas de eficiencia en transporte",
+      "Sistemas de acarreo y distribución multimodal",
+      "Optimización de inventarios en zonas remotas",
+      "Gestión de materiales peligrosos (MATPEL)",
+      "Estrategias de mantenimiento y renovación de flota"
+    ],
+    "followUp": [
+      "Ingeniería de transporte y diseño de tolvas",
+      "Matemática aplicada a la predicción de demanda (Solver)",
+      "Marco normativo legal para el transporte de alto riesgo",
+      "Análisis de costos de ciclos operativos en minería de gran escala",
+      "Tecnologías de trazabilidad ambiental mediante drones y GPS"
+    ]
+  }
+}
